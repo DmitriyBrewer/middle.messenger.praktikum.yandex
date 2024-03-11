@@ -1,0 +1,9 @@
+.chatMessage {
+    display: flex;
+    width: 100%;
+
+    &__my {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

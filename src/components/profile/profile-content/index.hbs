@@ -1,0 +1,7 @@
+    {{#if isForm}}
+        <form class="profileContent">{{> @partial-block }}</form>
+    {{else}}
+        <div class="profileContent">
+        {{> @partial-block }}
+        </div>
+    {{/if}}

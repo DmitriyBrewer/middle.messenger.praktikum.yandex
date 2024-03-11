@@ -1,0 +1,26 @@
+<div class="chatWindow">
+<div class="chatWindow__content">
+    {{>ChatHeader}}
+
+    <p class="chatWindow__date">{{data.date}} </p>
+
+    {{#> ChatMessage}}
+    {{> ChatText }}
+    {{/ ChatMessage}}
+
+    {{#> ChatMessage}}
+    {{>Image src="/assets/screen.png" alt="screen" width="200"}}
+    {{/ ChatMessage}}
+
+
+
+    {{#> ChatMessage my='__my'}}
+    {{> ChatText my='__my'}} 
+    {{/ ChatMessage}}
+
+</div>
+
+
+{{> ChatSend }}
+
+</div>

@@ -1,0 +1,35 @@
+.chatSend {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: var(--g12);
+
+    &__arrow {
+        width: 16px;
+        height: 16px;
+    }
+
+    &__send {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: var(--g20);
+        background-color: var(--primary);
+        border: none;
+    }
+
+    &__input {
+        border: none;
+        border: var(--b);
+        outline: none;
+        width: 100%;
+        height: 34px;
+        box-sizing: border-box;
+        padding-left: var(--g8);
+        background-color: var(--primary_bg_default);
+    }
+}

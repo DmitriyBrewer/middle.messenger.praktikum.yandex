@@ -1,0 +1,24 @@
+{{#> ProfileRoot}}
+    {{>ProfilePrev href='/chat' src='/assets/arrow-left.svg' alt='prev'}}
+        {{#> ProfileContent}}
+        {{> ProfileHeader}}
+
+        {{#> ProfileParams}}
+            {{> ProfileParam param='Почта' value='pochta@yandex.ru'}}
+            {{> ProfileParam param='Логин' value='ivanivanov'}}
+            {{> ProfileParam param='Имя' value='Иван'}}
+            {{> ProfileParam param='Фамилия' value='Иванов'}}
+            {{> ProfileParam param='Имя в чате' value='Ivan'}}
+            {{> ProfileParam param='Телефон' value='+7 (909) 967 30 30'}}
+        {{/ ProfileParams}}
+
+        {{#> ProfileParams}}
+            {{> ProfileParam textLink='Изменить данные' href='/profile/change'}}
+            {{> ProfileParam textLink='Изменить пароль' href='/profile/change/password'}}
+            <div class="profile__buttonWrapper">
+                {{> Button type='button' text='Выйти' className='profile__logout'}}
+            </div>
+        {{/ ProfileParams}}
+{{/ ProfileContent}}
+
+{{/ ProfileRoot}}
