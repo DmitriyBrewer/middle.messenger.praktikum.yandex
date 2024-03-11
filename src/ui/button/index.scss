@@ -1,0 +1,9 @@
+.button {
+    border-radius: var(--br);
+    border: none;
+    height: 37px;
+    background-color: var(--primary);
+    color: var(--primary_text_white);
+    font-weight: var(--fw-button_text);
+    font-size: var(--fs-button_text);
+}

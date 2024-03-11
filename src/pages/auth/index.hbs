@@ -1,0 +1,17 @@
+{{#> BaseLayout}}
+{{#> Form id='authorizationForm'}}
+
+{{> Title title='Вход'}}
+
+{{#> FieldWrapper}}
+{{> TextField type="text" id="login" name="login" autocomplete="username" helper="Логин" error="Неверный логин"}}
+{{> TextField type="password" id="password" name="password" autocomplete="current-password" helper="Пароль" error="Неверный пароль"}}
+{{/ FieldWrapper}}
+
+{{#> ButtonWrapper}}
+{{> Button type='submit' text='Вход'}}
+{{> Link href='/registration' text='Нет аккаунта?'}}
+{{/ ButtonWrapper}}
+
+{{/ Form}}
+{{/ BaseLayout}}

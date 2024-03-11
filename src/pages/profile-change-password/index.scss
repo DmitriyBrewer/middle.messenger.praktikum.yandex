@@ -1,0 +1,24 @@
+.profileChangePassword {
+    &__input {
+        border: none;
+        width: 200px;
+        background-color: var(--primary_bg);
+        border: none;
+        outline: none;
+        height: 34px;
+        box-sizing: border-box;
+        padding-left: var(--g8);
+    }
+
+    &__button {
+        cursor: pointer;
+        width: 520px;
+        border-radius: var(--br);
+        border: none;
+        height: 37px;
+        background-color: var(--primary);
+        color: var(--primary_text_white);
+        font-weight: var(--fw-button_text);
+        font-size: var(--fs-button_text);
+    }
+}

@@ -1,0 +1,11 @@
+.chatMenu {
+    display: none; /* Изначально скрываем меню */
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+    &_show {
+        display: block;
+    }
+}

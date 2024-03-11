@@ -1,0 +1,38 @@
+{{#> ProfileRoot}}
+    {{>ProfilePrev href='/profile' src='/assets/arrow-left.svg' alt='prev'}}
+        {{#> ProfileContent isForm='true'}}
+        {{> ProfileHeader}}
+
+        {{#> ProfileParams}}
+            {{#> ProfileParam param='Почта' input='true'}}
+                {{> Input dir='rtl' type='text' id='email' name='email' placeholder='Почта' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+            {{#> ProfileParam param='Логин' input='true'}}
+                {{> Input dir='rtl' type='text' id='login' name='login' placeholder='Логин' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+            {{#> ProfileParam param='Имя' input='true'}}
+                {{> Input dir='rtl' type='text' id='first_name' name='first_name' placeholder='Имя' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+            {{#> ProfileParam param='Фамилия' input='true'}}
+                {{> Input dir='rtl' type='text' id='second_name' name='second_name' placeholder='Фамилия' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+            {{#> ProfileParam param='Имя в чате' input='true'}}
+                {{> Input dir='rtl' type='text' id='display_name' name='display_name' placeholder='Имя в чате' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+            {{#> ProfileParam param='Телефон' input='true'}}
+                {{> Input dir='rtl' type='text' id='phone' name='phone' placeholder='Телефон' className='profileChangeData__input' }}
+            {{/ ProfileParam}}
+
+        {{/ ProfileParams}}
+
+        {{> Button type='submit' text='Сохранить' className='profileChangeData__button'}}
+
+
+{{/ ProfileContent}}
+
+{{/ ProfileRoot}}

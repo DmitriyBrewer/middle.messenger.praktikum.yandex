@@ -1,0 +1,32 @@
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: var(--g16);
+    border-bottom: var(--b);
+    padding: var(--g4) 0;
+
+    &__menu {
+        cursor: pointer;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--secondary);
+        width: 25px;
+        height: 25px;
+        border-radius: 20px;
+    }
+
+    &____menuImage {
+        width: 3px;
+        height: 15px;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: var(--g16);
+    }
+}

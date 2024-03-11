@@ -1,0 +1,18 @@
+.profile {
+    display: grid;
+    grid-template-columns: 64px 3fr;
+    height: 100%;
+
+    &__buttonWrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    &__logout {
+        font-size: var(--fs-base);
+        font-weight: var(--fw-base);
+        padding: 0;
+        border: none;
+        color: var(--primary_error);
+    }
+}

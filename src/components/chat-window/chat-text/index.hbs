@@ -1,0 +1,10 @@
+<div class="chatText{{my}}">
+    <p class="chatText__messageText">{{data.message}}</p>
+
+    <div class="chatText__date chatText__messageDate">
+        {{#if my}}
+            {{> Image src="/assets/status.svg" alt="status" }}
+        {{/if}}
+        <p class="chatText__dateText">{{data.date}}</p>
+    </div>
+</div>

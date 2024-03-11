@@ -1,0 +1,64 @@
+.chat {
+    cursor: pointer;
+    border-bottom: var(--b);
+    padding: var(--g4) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+        background-color: var(--secondary);
+    }
+
+    &_active {
+        background-color: var(--primary_light);
+    }
+
+    &__info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: var(--g12);
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        row-gap: var(--g4);
+    }
+
+    &__message {
+        color: var(--secondary_text);
+        font-size: var(--fs-chat_last);
+        font-weight: var(--fw-chat_last);
+        margin: 0;
+    }
+
+    &__minor {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    &__date {
+        color: var(--secondary_text);
+        font-size: var(--fs-chat_date);
+        font-weight: var(--fw-chat_date);
+    }
+
+    &__counter {
+        font-size: var(--fs-base);
+        font-weight: var(--fw-base);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary_light);
+        background-color: var(--primary);
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
+}

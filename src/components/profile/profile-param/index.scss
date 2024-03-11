@@ -1,0 +1,22 @@
+.profileParam {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--b);
+    padding: var(--g4) 0;
+
+    &__param {
+        margin: 0;
+        color: var(--primary-text);
+        font-size: var(--fs-profile_param);
+        font-weight: var(--fw-profile_param);
+    }
+
+    &__value {
+        margin: 0;
+        color: var(--secondary_text);
+        font-size: var(--fs-input_text);
+        font-weight: var(--fw-input_text);
+    }
+}
