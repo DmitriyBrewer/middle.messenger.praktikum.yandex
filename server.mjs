@@ -1,19 +1,20 @@
 import express from "express";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-const API_PREFIX = "/api/v1";
+app.use(express.static(path.join(__dirname, "dist")));
 
-app.get(`${API_PREFIX}/text`, (req, res) => {
-    res.status(200).send("Hello, World!");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-app.put(`${API_PREFIX}/json`, (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.status(201).send(JSON.stringify({ data: { items: [1, 2, 3] } }));
-});
-
-app.listen(PORT, () => {
-    console.log(`Сервер запущен на порту: ${PORT}!`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });
