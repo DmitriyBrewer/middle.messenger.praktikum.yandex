@@ -17,7 +17,7 @@
 
 ## Предпросмотр
 
--   [Домен Netlify](https://deploy--yamfyd.netlify.app/)
+-   [Домен Netlify](https://deploy--messengerydv.netlify.app/)
 
 ## Начало работы
 
@@ -52,14 +52,14 @@
 
 ## Доступные ссылки
 
--   [Главная страница, страница авторизации](https://deploy--yamfyd.netlify.app/)
--   [Страница регистрации](https://deploy--yamfyd.netlify.app/registration)
--   [Старница чата](https://deploy--yamfyd.netlify.app/chat)
--   [Старница профиля](https://deploy--yamfyd.netlify.app/profile)
--   [Старница изменения данных профиля](https://deploy--yamfyd.netlify.app/profile/change)
--   [Старница изменения пароля профиля](https://deploy--yamfyd.netlify.app/profile/change/password)
--   [Старница 404](https://deploy--yamfyd.netlify.app/404)
--   [Старница 500](https://deploy--yamfyd.netlify.app/500)
+-   [Главная страница, страница авторизации](https://deploy--messengerydv.netlify.app/)
+-   [Страница регистрации](https://deploy--messengerydv.netlify.app/registration)
+-   [Старница чата](https://deploy--messengerydv.netlify.app/chat)
+-   [Старница профиля](https://deploy--messengerydv.netlify.app/profile)
+-   [Старница изменения данных профиля](https://deploy--messengerydv.netlify.app/profile/change)
+-   [Старница изменения пароля профиля](https://deploy--messengerydv.netlify.app/profile/change/password)
+-   [Старница 404](https://deploy--messengerydv.netlify.app/404)
+-   [Старница 500](https://deploy--messengerydv.netlify.app/500)
 
 ## Команда и проект
 
