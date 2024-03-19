@@ -11,7 +11,7 @@
     }
 
     &_active {
-        background-color: var(--primary_light);
+        background-color: var(--primary-light);
     }
 
     &__info {
@@ -30,9 +30,9 @@
     }
 
     &__message {
-        color: var(--secondary_text);
-        font-size: var(--fs-chat_last);
-        font-weight: var(--fw-chat_last);
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-last);
+        font-weight: var(--fw-chat-last);
         margin: 0;
     }
 
@@ -44,9 +44,9 @@
     }
 
     &__date {
-        color: var(--secondary_text);
-        font-size: var(--fs-chat_date);
-        font-weight: var(--fw-chat_date);
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-date);
+        font-weight: var(--fw-chat-date);
     }
 
     &__counter {
@@ -55,7 +55,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: var(--primary_light);
+        color: var(--primary-light);
         background-color: var(--primary);
         width: 20px;
         height: 20px;

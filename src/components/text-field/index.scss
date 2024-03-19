@@ -3,12 +3,12 @@
 }
 
 .label {
-    color: var(--primary_hint);
-    font-size: var(--fs-helper_text);
+    color: var(--primary-hint);
+    font-size: var(--fs-helper-text);
 }
 
 .input {
-    background-color: var(--primary_bg);
+    background-color: var(--primary-bg);
     border: none;
     border: var(--b);
     outline: none;
@@ -19,6 +19,6 @@
 }
 
 .error-message {
-    color: var(--primary_error);
-    font-size: var(--fs-hint_text);
+    color: var(--primary-error);
+    font-size: var(--fs-hint-text);
 }

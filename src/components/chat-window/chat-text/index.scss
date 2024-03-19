@@ -2,16 +2,16 @@
     padding: var(--g12);
     background-color: var(--secondary);
     width: 40%;
-    color: var(--primary_text);
+    color: var(--primary-text);
     font-size: var(--fs-chat-message-text);
     font-weight: var(--fw-chat-message-text);
     border-radius: 0 var(--g12) var(--g12);
 
     &__my {
         padding: var(--g12);
-        background-color: var(--primary_light);
+        background-color: var(--primary-light);
         width: 40%;
-        color: var(--primary_text);
+        color: var(--primary-text);
         font-size: var(--fs-chat-message-text);
         font-weight: var(--fw-chat-message-text);
         border-radius: var(--g12) var(--g12) 0 var(--g12);
@@ -22,9 +22,9 @@
         width: 100%;
         justify-content: center;
         align-items: center;
-        color: var(--secondary_text);
-        font-size: var(--fs-chat_date);
-        font-weight: var(--fw-chat_date);
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-date);
+        font-weight: var(--fw-chat-date);
         margin: 0;
     }
 

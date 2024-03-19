@@ -1,8 +1,7 @@
 .profileChangePassword {
     &__input {
-        border: none;
         width: 200px;
-        background-color: var(--primary_bg);
+        background-color: var(--primary-bg);
         border: none;
         outline: none;
         height: 34px;
@@ -17,8 +16,8 @@
         border: none;
         height: 37px;
         background-color: var(--primary);
-        color: var(--primary_text_white);
-        font-weight: var(--fw-button_text);
-        font-size: var(--fs-button_text);
+        color: var(--primary-text-white);
+        font-weight: var(--fw-button-text);
+        font-size: var(--fs-button-text);
     }
 }

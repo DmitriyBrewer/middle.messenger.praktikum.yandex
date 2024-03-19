@@ -1,19 +1,19 @@
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     font-style: normal;
     font-weight: 400;
     src: url("/assets/font/Roboto-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     font-style: normal;
     font-weight: 500;
     src: url("/assets/font/Roboto-Medium.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     font-style: normal;
     font-weight: 700;
     src: url("/assets/font/Roboto-Bold.ttf") format("truetype");
@@ -30,67 +30,67 @@ body {
 
 .root {
     height: 100%;
-    // color
-    --primary: #1c3d70;
-    --primary_light: #e5d8f9;
-    --primary_text: #1e1e1e;
-    --primary_text_white: #ffffff;
-    --primary_bg: #f1f1f1;
-    --primary_bg_default: #ffffff;
-    --primary_hint: #999999;
-    --primary_link: #3369f3;
-    --primary_error: #ff2f2f;
-    --secondary: #efefef;
-    --secondary_dark: #272727;
-    --secondary_bg: #fbfbfb;
-    --secondary_text: #999999;
 
-    // font family
+    /* color */
+    --primary: #1c3d70;
+    --primary-light: #e5d8f9;
+    --primary-text: #1e1e1e;
+    --primary-text-white: #fff;
+    --primary-bg: #f1f1f1;
+    --primary-bg-default: #fff;
+    --primary-hint: #999;
+    --primary-link: #3369f3;
+    --primary-error: #ff2f2f;
+    --secondary: #efefef;
+    --secondary-dark: #272727;
+    --secondary-bg: #fbfbfb;
+    --secondary-text: #999;
+
+    /* font family */
     --ff: "Roboto", sans-serif;
+
     font-family: var(--ff);
 
-    // font-size
+    /* font-size */
     --fs8: 8px;
     --fs9: 9px;
     --fs12: 12px;
     --fs13: 13px;
-
     --fs-title: 20px;
-    --fs-input_text: var(--fs13);
+    --fs-input-text: var(--fs13);
     --fs-base: 11px;
-    --fs-button_text: 14px;
-    --fs-helper_text: var(--fs9);
-    --fs-hint_text: var(--fs8);
+    --fs-button-text: 14px;
+    --fs-helper-text: var(--fs9);
+    --fs-hint-text: var(--fs8);
     --fs-h1: 40px;
     --fs-h6: 20px;
-    --fs-chat_name: var(--fs13);
-    --fs-chat_last: var(--fs12);
-    --fs-chat_date: var(--fs9);
+    --fs-chat-name: var(--fs13);
+    --fs-chat-last: var(--fs12);
+    --fs-chat-date: var(--fs9);
     --fs-chat-message-text: var(--fs12);
-    --fs-profile_param: var(--fs13);
-    --fs-profile_value: var(--fs13);
+    --fs-profile-param: var(--fs13);
+    --fs-profile-value: var(--fs13);
 
-    // font weight
+    /* font weight */
     --fw-regular: 400;
     --fw-medium: 500;
     --fw-bold: 700;
-
     --fw-title: var(--fw-bold);
-    --fw-input_text: var(--fw-regular);
+    --fw-input-text: var(--fw-regular);
     --fw-base: var(--fw-regular);
-    --fw-button_text: var(--fw-medium);
-    --fw-helper_text: var(--fw-regular);
-    --fw-hint_text: var(--fw-regular);
+    --fw-button-text: var(--fw-medium);
+    --fw-helper-text: var(--fw-regular);
+    --fw-hint-text: var(--fw-regular);
     --fw-h1: var(--fw-bold);
     --fw-h6: var(--fw-bold);
-    --fw-chat_name: var(--fw-medium);
-    --fw-chat_last: var(--fw-regular);
-    --fw-chat_date: var(--fw-regular);
+    --fw-chat-name: var(--fw-medium);
+    --fw-chat-last: var(--fw-regular);
+    --fw-chat-date: var(--fw-regular);
     --fw-chat-message-text: var(--fw-regular);
-    --fw-profile_param: var(--fw-regular);
-    --fw-profile_value: var(--fw-regular);
+    --fw-profile-param: var(--fw-regular);
+    --fw-profile-value: var(--fw-regular);
 
-    // gaps
+    /* gaps */
     --g54: 54px;
     --g24: 24px;
     --g20: 20px;
@@ -99,11 +99,11 @@ body {
     --g8: 8px;
     --g4: 4px;
 
-    // border
-    --b: 1px solid var(--secondary_dark);
+    /* border */
+    --b: 1px solid var(--secondary-dark);
     --br: 8px;
 
-    // orientation
+    /* orientation */
     .vertical {
         display: flex;
         flex-direction: column;

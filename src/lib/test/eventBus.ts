@@ -1,9 +1,13 @@
+type EventHandler = (...args: unknown[]) => void;
+
 class EventBus {
+    private listeners: { [key: string]: EventHandler[] };
+
     constructor() {
         this.listeners = {};
     }
 
-    on(event, callback) {
+    on(event: string, callback: EventHandler): void {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -11,7 +15,7 @@ class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event, callback) {
+    off(event: string, callback: EventHandler): void {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
@@ -21,12 +25,12 @@ class EventBus {
         );
     }
 
-    emit(event, ...args) {
+    emit(event: string, ...args: unknown[]): void {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
 
-        this.listeners[event].forEach(function (listener) {
+        this.listeners[event].forEach((listener) => {
             listener(...args);
         });
     }

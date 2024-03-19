@@ -9,14 +9,14 @@
     &__param {
         margin: 0;
         color: var(--primary-text);
-        font-size: var(--fs-profile_param);
-        font-weight: var(--fw-profile_param);
+        font-size: var(--fs-profile-param);
+        font-weight: var(--fw-profile-param);
     }
 
     &__value {
         margin: 0;
-        color: var(--secondary_text);
-        font-size: var(--fs-input_text);
-        font-weight: var(--fw-input_text);
+        color: var(--secondary-text);
+        font-size: var(--fs-input-text);
+        font-weight: var(--fw-input-text);
     }
 }
