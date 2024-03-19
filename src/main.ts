@@ -6,7 +6,6 @@ const button = new ButtonComponent({
     text: "Вход",
     className: "fullWidth button"
 });
-console.log(button);
 
 function render(query: string, component: string) {
     const element = document.querySelector(query);
@@ -17,4 +16,4 @@ function render(query: string, component: string) {
     }
 }
 
-render("#app", button.render());
+render(".root", button.render());
