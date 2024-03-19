@@ -1,21 +1,18 @@
 import "./index.scss";
-import Block from "../../lib/test/block";
-import handlebars from "handlebars";
+import Block, { BlockProps } from "../../lib/test/block";
 import  ButtonTemplate  from "./index.hbs?raw";
+import { compiledTemplate } from "../../lib/compileTemplate";
 
 class ButtonComponent extends Block {
-    constructor(props) {
+    constructor(props: BlockProps) {
         super("span", props);
     }
 
     render() {
-        const template = handlebars.compile(ButtonTemplate);
-        console.log(template);
-        const html = template({
+        return compiledTemplate(ButtonTemplate, {
             type: "submit",
             text: "Вход",
         });
-        return html;
     }
 }
 

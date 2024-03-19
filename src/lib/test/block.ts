@@ -1,6 +1,6 @@
 import EventBus from "./eventBus";
 
-interface BlockProps {
+export interface BlockProps {
     [key: string]: unknown;
 }
 

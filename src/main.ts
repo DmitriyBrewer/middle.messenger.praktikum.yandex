@@ -1,4 +1,5 @@
 import "./index.scss";
+import renderComponent from "./lib/renderComponent";
 import ButtonComponent from "./ui/button/index";
 
 const button = new ButtonComponent({
@@ -7,13 +8,4 @@ const button = new ButtonComponent({
     className: "fullWidth button"
 });
 
-function render(query: string, component: string) {
-    const element = document.querySelector(query);
-    if (element) {
-        element.innerHTML = component;
-    } else {
-        console.error(`Element with query '${query}' not found`);
-    }
-}
-
-render(".root", button.render());
+renderComponent(".root", button.render());
