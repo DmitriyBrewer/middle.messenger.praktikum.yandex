@@ -14,7 +14,7 @@ export const allPartials: Record<string, string> = {
     Registration: partials.RegistrationPage,
     BaseLayout: partials.BaseLayout,
     TextField: partials.TextField,
-    Button: partials.Button,
+    // Button: partials.Button,
     Link: partials.Link,
     Form: partials.Form,
     Title: partials.Title,

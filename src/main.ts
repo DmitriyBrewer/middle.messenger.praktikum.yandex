@@ -1,18 +1,20 @@
-import renderTemplate from "./lib/render";
 import "./index.scss";
-// import Button from "./lib/test/Button";
-import button from "./ui/button/index";
+import ButtonComponent from "./ui/button/index";
 
-type AuthData = {
-    title: string;
-};
-
-const authPage = renderTemplate<AuthData>("Auth");
-
+const button = new ButtonComponent({
+    type: "submit",
+    text: "Вход",
+    className: "fullWidth button"
+});
 console.log(button);
 
-// document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-//   <div class='root'>
-//    ${authPage}
-//   </div>
-// `;
+function render(query: string, component: string) {
+    const element = document.querySelector(query);
+    if (element) {
+        element.innerHTML = component;
+    } else {
+        console.error(`Element with query '${query}' not found`);
+    }
+}
+
+render("#app", button.render());

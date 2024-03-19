@@ -2,7 +2,7 @@ export { AuthPage } from "../../pages/auth";
 export { RegistrationPage } from "../../pages/registration";
 export { BaseLayout } from "../../layout/base-layout";
 export { TextField } from "../../components/text-field";
-export { Button } from "../../ui/button";
+// export { Button } from "../../ui/button";
 export { Link } from "../../ui/link";
 export { Form } from "../../ui/form";
 export { Title } from "../../ui/title";

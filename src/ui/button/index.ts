@@ -1,40 +1,22 @@
 import "./index.scss";
 import Block from "../../lib/test/block";
-import renderTemplate from "../../lib/render";
+import handlebars from "handlebars";
+import  ButtonTemplate  from "./index.hbs?raw";
 
-class Button extends Block {
+class ButtonComponent extends Block {
     constructor(props) {
         super("span", props);
     }
 
     render() {
-        return renderTemplate("Button", {
-            data: {
-                type: "submit",
-                text: "Вход",
-            },
+        const template = handlebars.compile(ButtonTemplate);
+        console.log(template);
+        const html = template({
+            type: "submit",
+            text: "Вход",
         });
+        return html;
     }
 }
 
-function render(query, block) {
-    const root = document.querySelector(query);
-    root.appendChild(block.getContent());
-    return root;
-}
-
-const button = new Button({
-    text: "Click me",
-});
-
-render("#app", button);
-
-setTimeout(() => {
-    button.setProps({
-        text: "Click me, please",
-    });
-}, 1000);
-
-export default button;
-
-// export { default as Button } from "./index.hbs?raw";
+export default ButtonComponent;
