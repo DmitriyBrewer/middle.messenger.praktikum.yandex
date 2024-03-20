@@ -5,13 +5,13 @@ import { compiledTemplate } from "../../lib/compileTemplate";
 
 class ButtonComponent extends Block {
     constructor(props: BlockProps) {
-        super("span", props);
+        super("button", props);
     }
 
     render() {
         return compiledTemplate(ButtonTemplate, {
-            type: "submit",
-            text: "Вход",
+            type: this.props.type ||  "submit",
+            text: this.props.text || "54",
         });
     }
 }

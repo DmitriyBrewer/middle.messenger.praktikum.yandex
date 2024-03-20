@@ -1,7 +1,7 @@
 import EventBus from "./eventBus";
 
 export interface BlockProps {
-    [key: string]: unknown;
+    [key: string]: string | boolean | number ;
 }
 
 type BlockFunction = (...args: unknown[]) => unknown;
@@ -18,8 +18,9 @@ class Block {
     private _meta: { tagName: string; props: BlockProps } | null = null;
     public props: BlockProps;
     private eventBus: () => EventBus;
+    private children: Block[] = [];
 
-    constructor(tagName: string = "div", props: BlockProps = {}) {
+    constructor(tagName: string = "div", props: BlockProps = {}, children: Block[] = []) {
         const eventBus = new EventBus();
         this._meta = {
             tagName,
@@ -29,6 +30,8 @@ class Block {
         this.props = this._makePropsProxy(props);
 
         this.eventBus = () => eventBus;
+
+        this.children = children;
 
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
@@ -40,10 +43,13 @@ class Block {
             this._componentDidMount(args as BlockProps);
         });
 
-        eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
-            const [oldProps, newProps] = args as [BlockProps, BlockProps];
-            this._componentDidUpdate(oldProps, newProps);
-        });
+        // eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
+        //     console.log(args);
+        //     // const [oldProps, newProps] = args as [BlockProps, BlockProps];
+        //     this._componentDidUpdate(args as unknown);
+        // });
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
@@ -75,8 +81,10 @@ class Block {
     ): void {
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
+            console.log("lsm,ds");
             return;
         }
+        console.log("s");
         this._render();
     }
 
@@ -101,8 +109,15 @@ class Block {
     }
 
     private _render(): void {
-        const block = this.render();
-        this._element!.innerHTML = block;
+        // const block = this.render();
+        // this._element!.innerHTML = block;
+        const content = this.render();
+        if (this.children.length > 0) {
+            const childrenContent = this.children.map(child => child.render()).join("");
+            this._element!.innerHTML = content + childrenContent;
+        } else {
+            this._element!.innerHTML = content;
+        }
     }
 
     public render(): string {

@@ -1,4 +1,4 @@
-export { AuthPage } from "../../pages/auth";
+// export { AuthPage } from "../../pages/auth";
 export { RegistrationPage } from "../../pages/registration";
 export { BaseLayout } from "../../layout/base-layout";
 export { TextField } from "../../components/text-field";
