@@ -5,7 +5,12 @@ import { compiledTemplate } from "../../lib/compileTemplate";
 
 class ButtonComponent extends Block {
     constructor(props: BlockProps) {
-        super("button", props);
+        super("span", {
+            ...props,
+            events: {
+                click: () => console.log("event")
+            }
+        });
     }
 
     render() {

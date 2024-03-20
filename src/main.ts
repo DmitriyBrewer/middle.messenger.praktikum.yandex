@@ -5,25 +5,38 @@ import ButtonComponent from "./ui/button/index";
 
 
 class PageComponent extends Block {
-    constructor(props: BlockProps, children: Block[]) {
-        super("div", props, children);
+    constructor(props: BlockProps) {
+        super("span", props);
     }
 
     render() {
-        return `<div>${super.render()}</div>`;
+        const button = new ButtonComponent({
+            text: this.props.buttonText,
+            
+        });
+
+        const button2 = new ButtonComponent({
+            text: this.props.buttonText2,
+        });
+
+        return `<div>
+        ${button.render()}
+        ${button2.render()}
+        <button>ssd</button>
+        </div>`;
     }
 }
 
-const button = new ButtonComponent({
-    text: "Click me",
-});
-
 setTimeout(() => {
-    button.setProps({
-        text: "Click me, please",
+    page.setProps({
+        buttonText: "Click me, erer",
+        buttonText2: "Trara",
+        // events: {
+        //     click: () => console.log("event")
+        // }
     });
 }, 1000);
 
-const page = new PageComponent({}, [button, button]);
+const page = new PageComponent({buttonText:"default", buttonText2:"deff"});
 
 renderComponent(".root", page);

@@ -37,6 +37,23 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
+    private _addEvents() {
+        const {events = {}} = this.props;
+
+        console.log(events);
+    
+        Object.keys(events).forEach(eventName => {
+            console.log(eventName);
+            console.log(this._element?.firstChild);
+
+            // this._element.addEventListener(eventName, events[eventName]);
+            this._element?.firstChild.addEventListener(eventName, events[eventName]);
+            console.log(this._element?.firstChild);
+
+        });
+    }
+    
+
     private _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, (args: unknown) => {
@@ -62,6 +79,8 @@ class Block {
         this._createResources();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
+
+
 
     private _componentDidMount(oldProps: BlockProps): void {
         this.componentDidMount(oldProps);
@@ -101,6 +120,7 @@ class Block {
         if (!nextProps) {
             return;
         }
+        console.log("lk");
         Object.assign(this.props, nextProps);
     };
 
@@ -112,11 +132,21 @@ class Block {
         // const block = this.render();
         // this._element!.innerHTML = block;
         const content = this.render();
+        console.log("render");
         if (this.children.length > 0) {
+            console.log(this.children);
+
             const childrenContent = this.children.map(child => child.render()).join("");
+            console.log(childrenContent);
             this._element!.innerHTML = content + childrenContent;
         } else {
+            // const mefunc = ()=>{console.log(this.props.buttonText);};
+            // this._element?.removeEventListener("click",mefunc);
+
             this._element!.innerHTML = content;
+            // this._element?.addEventListener("click",mefunc);
+            this._addEvents();
+
         }
     }
 
