@@ -2,11 +2,11 @@ import renderComponent from "./lib/renderComponent";
 import Block from "./lib/test/block";
 import "./index.scss";
 import Button from "./ui/button";
-import FormComponent from "./ui/form";
 import "../src/layout/base-layout/index.scss";
 import InputComponent from "./ui/input";
 import {  registerHandlebarsPartials } from "./lib/register";
 import { allPartials } from "./lib/partials";
+import AuthPage from "./pages/auth";
 
 registerHandlebarsPartials(allPartials);
 
@@ -27,6 +27,11 @@ class ChatItem extends Block {
 }
 
 
+const auth  = new AuthPage({
+    
+});
+
+console.log(auth);
 
 class Page extends Block {
     constructor(props) {
@@ -59,6 +64,7 @@ class Page extends Block {
                     this.setProps({buttonText: value});
                 }
             }),
+            // auth: new AuthPage({})
             // form: new FormComponent({content:"ss"})
         });
     }
@@ -84,6 +90,6 @@ class Page extends Block {
 
 const block = new Page({buttonText: "Text button",buttonText2: "Text button2"});
 
-renderComponent(".root", block);
+renderComponent(".root", auth);
 
 

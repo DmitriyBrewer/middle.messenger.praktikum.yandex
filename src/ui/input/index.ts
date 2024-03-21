@@ -1,6 +1,6 @@
 import "./index.scss";
 
-import   Input  from "./index.hbs?raw";
+import Input  from "./index.hbs?raw";
 import Block from "../../lib/test/block";
 import { compiledTemplate } from "../../lib/compileTemplate";
 
