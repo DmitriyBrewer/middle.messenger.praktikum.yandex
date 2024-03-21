@@ -1,24 +1,23 @@
 import "./index.scss";
-import Block, { BlockProps } from "../../lib/test/block";
 import  ButtonTemplate  from "./index.hbs?raw";
+import Block from "../../lib/test/block";
 import { compiledTemplate } from "../../lib/compileTemplate";
 
-class ButtonComponent extends Block {
-    constructor(props: BlockProps) {
-        super("span", {
+class Button extends Block {
+    constructor(props) {
+        super({
             ...props,
-            events: {
-                click: () => console.log("event")
-            }
+            events: props.events || {}
         });
     }
 
     render() {
         return compiledTemplate(ButtonTemplate, {
-            type: this.props.type ||  "submit",
+            type: this.props.type === "button" ? "submit" : "reset",
             text: this.props.text || "54",
         });
     }
 }
 
-export default ButtonComponent;
+
+export default Button;

@@ -1,42 +1,121 @@
-import "./index.scss";
 import renderComponent from "./lib/renderComponent";
-import Block, { BlockProps } from "./lib/test/block";
-import ButtonComponent from "./ui/button/index";
+import Block from "./lib/test/block";
+import "./index.scss";
+import Button from "./ui/button";
+import AuthPage from "./pages/auth";
+import { compiledTemplate } from "./lib/compileTemplate";
+import  PageTemplate  from "./index.hbs?raw";
 
-
-class PageComponent extends Block {
-    constructor(props: BlockProps) {
-        super("span", props);
+// import { BaseLayout } from "./layout/base-layout";
+class ChatItem extends Block {
+    constructor({...props}) {
+        super({
+            ...props,
+        });
     }
 
     render() {
-        const button = new ButtonComponent({
-            text: this.props.buttonText,
-            
-        });
-
-        const button2 = new ButtonComponent({
-            text: this.props.buttonText2,
-        });
-
-        return `<div>
-        ${button.render()}
-        ${button2.render()}
-        <button>ssd</button>
-        </div>`;
+        return `
+      <div>
+        <div>{{ name }}</div>
+        <div>{{ message }}</div>
+      </div>`;
     }
 }
 
-setTimeout(() => {
-    page.setProps({
-        buttonText: "Click me, erer",
-        buttonText2: "Trara",
-        // events: {
-        //     click: () => console.log("event")
-        // }
-    });
-}, 1000);
+class Input extends Block {
+    constructor(props) {
+        super({
+            ...props,
+            events: {
+                change: (event) => props.onChange(event.target.value),
+                blur: (event) => this.validate(),
+            },
+            attr: {
+                class: "fake"
+            }
+        });
+    }
 
-const page = new PageComponent({buttonText:"default", buttonText2:"deff"});
+    render() {
+        return "<input />";
+    }
 
-renderComponent(".root", page);
+    validate() {
+        console.log("blur");
+    }
+}
+
+class AuthPages extends Block {
+    constructor(props) {
+        super(
+            props,
+        );
+    }
+
+    render() {
+        console.log(this.props.button);
+        return compiledTemplate(AuthPage, {button:this.props.button} );
+    }
+}
+
+
+class Page extends Block {
+    constructor(props) {
+        super({
+            ...props,
+            button: new Button({
+                type: "button",
+                text: "Click me ",
+                events: {
+                    click: () => {
+                        console.log("Event for Button");
+                    }
+                }
+            }),
+            button2: new Button({
+                type: "button2",
+                text: "Click me 2",
+                events: {
+                    click: () => {
+                        console.log("Event for Button2");
+                    }
+                }
+            }),
+            input: new Input({
+                label: "input",
+                onChange: (value) => {
+                    this.setProps({buttonText: value});
+                }
+            }),
+            auth: new AuthPages({}),
+
+        });
+    }
+
+    componentDidUpdate(oldProps, newProps) {
+        if (oldProps.buttonText !== newProps.buttonText) {
+            this.children.button.setProps({ text: newProps.buttonText });
+        }
+        return true;
+    }
+
+    override render() {
+        const renderedContent = compiledTemplate(PageTemplate, {
+            button: "{{{ button }}}",
+            button2: "{{{ button2 }}}",
+            input: "{{{ input }}}",
+            auth: "{{{ auth }}}"
+        });
+        
+        console.log(renderedContent);
+        return  renderedContent;
+    }
+}
+
+
+const block = new Page({buttonText: "Text button",buttonText2: "Text button2"});
+
+renderComponent(".root", block);
+
+

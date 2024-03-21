@@ -12,6 +12,7 @@ for (const key in allPartials) {
 }
 
 function renderTemplate<T>(key: string, data?: TemplateData<T>): string {
+    console.log(compiledTemplates);
     if (compiledTemplates[key]) {
         const template = compiledTemplates[key];
         return template(data);
