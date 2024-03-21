@@ -1,36 +1,67 @@
-// export { AuthPage } from "../../pages/auth";
-export { RegistrationPage } from "../../pages/registration";
-export { BaseLayout } from "../../layout/base-layout";
-export { TextField } from "../../components/text-field";
-// export { Button } from "../../ui/button";
-export { Link } from "../../ui/link";
-export { Form } from "../../ui/form";
-export { Title } from "../../ui/title";
-export { FieldWrapper } from "../../components/field-wrapper";
-export { ButtonWrapper } from "../../components/button-wrapper";
-export { ErrorPage } from "../../pages/error-page";
-export { SidebarLayout } from "../../layout/sidebar-layout";
-export { ChatPage } from "../../pages/chat";
-export { Sidebar } from "../../components/sidebar";
-export { SearchField } from "../../components/sidebar/search-field";
-export { ChatItem } from "../../components/sidebar/sidebar-item";
-export { Avatar } from "../../ui/avatar";
-export { ChatTitle } from "../../components/chat-title";
-export { ChatWindow } from "../../components/chat-window";
-export { ChatMesssage } from "../../components/chat-window/chat-message";
-export { ChatText } from "../../components/chat-window/chat-text";
-export { ChatHeader } from "../../components/chat-window/chat-header";
-export { ChatSend } from "../../components/chat-window/chat-send";
-export { ChatMenu } from "../../components/chat-window/chat-menu";
-export { ProfilePage } from "../../pages/profile";
-export { ProfileParam } from "../../components/profile/profile-param";
-export { ProfileChangeDataPage } from "../../pages/profile-change-data";
-export { ProfileHeader } from "../../components/profile/profle-header";
-export { ProfilePrev } from "../../components/profile/profile-prev";
-export { ProfileContent } from "../../components/profile/profile-content";
-export { ProfileParams } from "../../components/profile/profile-params";
-export { ProfileRoot } from "../../components/profile/profile-root";
-export { Input } from "../../ui/input";
-export { ProfileChangePasswordPage } from "../../pages/profile-change-password";
-export { ButtonImage } from "../../ui/button-image";
-export { Image } from "../../ui/img";
+import { ButtonWrapper } from "../../components/button-wrapper";
+import { ChatTitle } from "../../components/chat-title";
+import { ChatWindow } from "../../components/chat-window";
+import { ChatHeader } from "../../components/chat-window/chat-header";
+import { ChatMenu } from "../../components/chat-window/chat-menu";
+import { ChatMesssage } from "../../components/chat-window/chat-message";
+import { ChatSend } from "../../components/chat-window/chat-send";
+import { ChatText } from "../../components/chat-window/chat-text";
+import { FieldWrapper } from "../../components/field-wrapper";
+import { ProfileContent } from "../../components/profile/profile-content";
+import { ProfileParam } from "../../components/profile/profile-param";
+import { ProfileParams } from "../../components/profile/profile-params";
+import { ProfilePrev } from "../../components/profile/profile-prev";
+import { ProfileRoot } from "../../components/profile/profile-root";
+import { ProfileHeader } from "../../components/profile/profle-header";
+import { SearchField } from "../../components/sidebar/search-field";
+import { ChatItem } from "../../components/sidebar/sidebar-item";
+import { TextField } from "../../components/text-field";
+import { BaseLayoutTemplate } from "../../layout/base-layout";
+import { SidebarLayout } from "../../layout/sidebar-layout";
+import { ChatPage } from "../../pages/chat";
+import { ErrorPage } from "../../pages/error-page";
+import { ProfilePage } from "../../pages/profile";
+import { ProfileChangeDataPage } from "../../pages/profile-change-data";
+import { ProfileChangePasswordPage } from "../../pages/profile-change-password";
+import { RegistrationPage } from "../../pages/registration";
+import { Avatar } from "../../ui/avatar";
+import { ButtonImage } from "../../ui/button-image";
+import { FormTemplate } from "../../ui/form";
+import { Link } from "../../ui/link";
+import { Title } from "../../ui/title";
+
+
+export const allPartials: Record<string, string> = {
+    BaseLayout: BaseLayoutTemplate,
+    Form: FormTemplate,
+    // Registration: RegistrationPage,
+    // TextField:TextField,
+    // Link: Link,
+    // Title:Title,
+    // FieldWrapper: FieldWrapper,
+    // ButtonWrapper: ButtonWrapper,
+    // ErrorPage:ErrorPage,
+    // SidebarLayout: SidebarLayout,
+    // ChatPage: ChatPage,
+    // Sidebar: SidebarLayout,
+    // SearchField: SearchField,
+    // ChatItem: ChatItem,
+    // Avatar: Avatar,
+    // ChatTitle: ChatTitle,
+    // ChatWindow: ChatWindow,
+    // ChatMessage: ChatMesssage,
+    // ChatText: ChatText,
+    // ChatHeader: ChatHeader,
+    // ChatSend: ChatSend,
+    // ChatMenu: ChatMenu,
+    // ProfilePage: ProfilePage,
+    // ProfileParam: ProfileParam,
+    // ProfileChangeDataPage: ProfileChangeDataPage,
+    // ProfileHeader: ProfileHeader,
+    // ProfilePrev:ProfilePrev,
+    // ProfileContent: ProfileContent,
+    // ProfileParams: ProfileParams,
+    // ProfileRoot: ProfileRoot,
+    // ProfileChangePasswordPage: ProfileChangePasswordPage,
+    // ButtonImage:ButtonImage,
+};
