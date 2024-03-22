@@ -1,4 +1,5 @@
 import TextFieldComponent from "../../components/text-field";
+import { BaseLayoutTemplate } from "../../layout/base-layout";
 import { compiledTemplate } from "../../lib/compileTemplate";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";
@@ -8,14 +9,15 @@ class AuthPage extends Block {
     constructor(props) {
         super({
             ...props,
+            events: props.events,
             button: new Button({
-                type: "submit",
+                type: "button",
                 text: props.buttonText,
-                events: {
-                    click: () => {
-                        console.log("auth submit");
-                    }
-                }
+                // events: {
+                //     click: () => {
+                //         console.log("auth submit");
+                //     }
+                // }
             }),
             login: new TextFieldComponent({
                 type:"text", 
@@ -33,12 +35,13 @@ class AuthPage extends Block {
                 }
             }),
             password: new TextFieldComponent({
-                type:"text", 
+                type:"password", 
                 id:"password",
                 name:"password", 
                 placeholder:"password",
                 helper: props.helperPassword,
                 error: props.errorPassword,
+                autocomplete:"current-password",
                 onChange: (value) => {
                     this.setProps({buttonText: value});
                 },
@@ -46,7 +49,6 @@ class AuthPage extends Block {
                     this.validatePassword(value);
                 }
             }),
-            events: props.events || {}
         });
     }
 
@@ -69,7 +71,8 @@ class AuthPage extends Block {
     }
 
     render() {
-        return compiledTemplate(AuthTemplate, {button: "{{{ button }}}", login: "{{{ login }}}", password: "{{{ password }}}"});
+        const authForm = compiledTemplate(AuthTemplate, {button: "{{{ button }}}", login: "{{{ login }}}", password: "{{{ password }}}"});
+        return `{{#> BaseLayout}}${authForm}{{/ BaseLayout}}`;
     }
 
     validateLogin(value) {

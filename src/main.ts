@@ -13,6 +13,11 @@ const auth  = new AuthPage({
     helperLogin:"Логин",
     errorLogin:"Сообщение об ошибке",
     errorPassword:"Сообщение об ошибке",
+    events: {
+        submit:() => {
+            console.log("Form submitted");
+        }
+    }
 });
 
 renderComponent(".root", auth);
