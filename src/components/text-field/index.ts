@@ -8,13 +8,6 @@ class TextFieldComponent extends Block {
     constructor(props) {
         super({
             ...props,
-            events: {
-                change: (event) => props.onChange(event.target.value),
-                blur: (event) => this.validate(),
-            },
-            attr: {
-                class: "fake"
-            },
             input: new InputComponent({
                 type:props.type,
                 id:props.id,
@@ -25,24 +18,30 @@ class TextFieldComponent extends Block {
                 autocomplete: props.autocomplete,
                 pattern: props.pattern,
                 dir: props.dir,
-                onChange: (value) => {
-                    console.log(value);
-                }
+                error: props.error,
+                onChange: props.onChange,
+                blur: props.blur
             })
         });
     }
 
     render() {
+        console.log(this.props );
         return compiledTemplate(TextFieldTemplate,{
             input:"{{{ input }}}",
-          
-            error:"ERROR"
+            error: this.props.error 
         });
     }
 
-    validate() {
-        console.log("validate blur");
-    }
+
+
+    // componentDidUpdate(prevProps) {
+    //     console.log(prevProps);
+    //     if (this.children.input.props.error !== prevProps.input.props.error) {
+    //         console.log("update");
+    //         this.children.input.setError(this.children.input.props.error);
+    //     }
+    // }
 }
 
 export default TextFieldComponent;
