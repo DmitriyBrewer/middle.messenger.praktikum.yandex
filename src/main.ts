@@ -9,17 +9,9 @@ registerHandlebarsPartials(allPartials);
 
 const auth  = new AuthPage({
     buttonText: "Вход",
-    errorLogin:"deafult error login",
-    errorPassword:"deafult error password",
-
+    errorLogin:"Сообщение об ошибке",
+    errorPassword:"Сообщение об ошибке",
 });
-
-// if (window.location.href.includes("/registration")) {
-//     const registration  = new AuthPage({
-//         buttonText: "Вхsод"
-//     });
-//     renderComponent(".root", registration);
-// }
 
 renderComponent(".root", auth);
 

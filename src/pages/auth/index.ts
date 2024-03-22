@@ -23,6 +23,7 @@ class AuthPage extends Block {
                 name:"email", 
                 placeholder:"Почта",
                 error: props.errorLogin,
+                disabled: props.disabled,
                 onChange: (value) => {
                     this.setProps({buttonText: value});
                 },
@@ -48,15 +49,20 @@ class AuthPage extends Block {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        if (oldProps.buttonText !== newProps.buttonText) {
-            this.children.button.setProps({ text: newProps.buttonText });
-        }
+        // if (oldProps.buttonText !== newProps.buttonText) {
+        //     this.children.button.setProps({ text: newProps.buttonText });
+        // }
         if (oldProps.errorLogin !== newProps.errorLogin) {
             this.children.login.setProps({ error: newProps.errorLogin });
         }
         if (oldProps.errorPassword !== newProps.errorPassword) {
             this.children.password.setProps({ error: newProps.errorPassword });
         }
+
+        const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
+        this.children.button.setProps({ disabled: isButtonDisabled });
+        console.log(isButtonDisabled);
+        
         return true;
     }
 

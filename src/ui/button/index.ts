@@ -15,6 +15,7 @@ class Button extends Block {
         return compiledTemplate(ButtonTemplate, {
             type: this.props.type === "button" ? "submit" : "reset",
             text: this.props.text || "54",
+            disabled: this.props.disabled
         });
     }
 }
