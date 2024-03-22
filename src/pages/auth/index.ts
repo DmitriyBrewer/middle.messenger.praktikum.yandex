@@ -1,9 +1,7 @@
-// export { default as AuthPage } from "./index.hbs?raw";
 import TextFieldComponent from "../../components/text-field";
 import { compiledTemplate } from "../../lib/compileTemplate";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";
-import InputComponent from "../../ui/input";
 import  AuthTemplate  from "./index.hbs?raw";
 
 class AuthPage extends Block {
@@ -12,7 +10,7 @@ class AuthPage extends Block {
             ...props,
             button: new Button({
                 type: "submit",
-                text: "Вход",
+                text: props.buttonText,
                 events: {
                     click: () => {
                         console.log("auth submit");
@@ -41,6 +39,7 @@ class AuthPage extends Block {
         });
     }
 
+    // TODO удалить , если не нужно
     componentDidUpdate(oldProps, newProps) {
         if (oldProps.buttonText !== newProps.buttonText) {
             this.children.button.setProps({ text: newProps.buttonText });

@@ -6,6 +6,7 @@ type Data = {
 
 document.addEventListener("DOMContentLoaded", () => {
     if (window.location.href.includes("/registration")) {
+        console.log("ok");
         const registrationPage = renderTemplate<Data>("Registration");
         document.querySelector(".root")!.innerHTML = registrationPage;
     }

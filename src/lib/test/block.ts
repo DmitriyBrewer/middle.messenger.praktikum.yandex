@@ -1,6 +1,18 @@
 import Handlebars from "handlebars";
 import EventBus from "./eventBus";
 
+interface Props {
+    [key: string]: unknown;
+}
+
+interface Children {
+    [key: string]: Block;
+}
+
+interface Lists {
+    [key: string]: unknown[];
+}
+
 export default class Block {
     static EVENTS = {
         INIT: "init",
@@ -9,9 +21,13 @@ export default class Block {
         FLOW_RENDER: "flow:render"
     };
 
-    _element = null;
-    _id = Math.floor(100000 + Math.random() * 900000);
-
+    private _element = null;
+    private _id = Math.floor(100000 + Math.random() * 900000);
+    private props: Props = {};
+    private children: Children = {};
+    private lists: Lists = {};
+    private eventBus: () => EventBus;
+    
     constructor(propsWithChildren = {}) {
         const eventBus = new EventBus();
         const {props, children, lists} = this._getChildrenPropsAndProps(propsWithChildren);
@@ -25,7 +41,8 @@ export default class Block {
 
     _addEvents() {
         const {events = {}} = this.props;
-        Object.keys(events).forEach(eventName => {this._element.addEventListener(eventName, events[eventName]);} );
+        Object.keys(events).forEach(eventName => {
+            this._element.addEventListener(eventName, events[eventName]);} );
     }
 
     _registerEvents(eventBus) {

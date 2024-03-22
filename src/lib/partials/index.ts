@@ -27,6 +27,7 @@ import { RegistrationPage } from "../../pages/registration";
 import { Avatar } from "../../ui/avatar";
 import { ButtonImage } from "../../ui/button-image";
 import { FormTemplate } from "../../ui/form";
+import { InputTemplate } from "../../ui/input";
 import { Link } from "../../ui/link";
 import { Title } from "../../ui/title";
 
@@ -40,6 +41,7 @@ export const allPartials: Record<string, string> = {
     Title:Title,
     FieldWrapper: FieldWrapper,
     ButtonWrapper: ButtonWrapper,
+    Input: InputTemplate
     // ErrorPage:ErrorPage,
     // SidebarLayout: SidebarLayout,
     // ChatPage: ChatPage,
