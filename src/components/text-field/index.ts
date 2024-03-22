@@ -4,7 +4,6 @@ import "./index.scss";
 
 import TextFieldTemplate  from "./index.hbs?raw";
 import InputComponent from "../../ui/input";
-import Button from "../../ui/button";
 class TextFieldComponent extends Block {
     constructor(props) {
         super({

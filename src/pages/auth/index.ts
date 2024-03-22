@@ -1,5 +1,4 @@
 import TextFieldComponent from "../../components/text-field";
-import { BaseLayoutTemplate } from "../../layout/base-layout";
 import { compiledTemplate } from "../../lib/compileTemplate";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";

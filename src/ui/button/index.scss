@@ -7,4 +7,9 @@
     color: var(--primary-text-white);
     font-weight: var(--fw-button-text);
     font-size: var(--fs-button-text);
+
+    &__disabled { 
+        background-color: var(--primary-hint);
+    }
 }
+
