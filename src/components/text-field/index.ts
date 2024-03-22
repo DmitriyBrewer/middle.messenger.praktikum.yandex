@@ -4,6 +4,7 @@ import "./index.scss";
 
 import TextFieldTemplate  from "./index.hbs?raw";
 import InputComponent from "../../ui/input";
+import Button from "../../ui/button";
 class TextFieldComponent extends Block {
     constructor(props) {
         super({
@@ -21,27 +22,17 @@ class TextFieldComponent extends Block {
                 error: props.error,
                 onChange: props.onChange,
                 blur: props.blur
-            })
+            }),
         });
     }
 
     render() {
-        console.log(this.props );
+        console.log(this.props.error );
         return compiledTemplate(TextFieldTemplate,{
             input:"{{{ input }}}",
-            error: this.props.error 
+            error: this.props.error as string
         });
     }
-
-
-
-    // componentDidUpdate(prevProps) {
-    //     console.log(prevProps);
-    //     if (this.children.input.props.error !== prevProps.input.props.error) {
-    //         console.log("update");
-    //         this.children.input.setError(this.children.input.props.error);
-    //     }
-    // }
 }
 
 export default TextFieldComponent;
