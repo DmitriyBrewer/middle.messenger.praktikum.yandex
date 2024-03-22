@@ -9,6 +9,8 @@ registerHandlebarsPartials(allPartials);
 
 const auth  = new AuthPage({
     buttonText: "Вход",
+    helperPassword:"Пароль",
+    helperLogin:"Логин",
     errorLogin:"Сообщение об ошибке",
     errorPassword:"Сообщение об ошибке",
 });

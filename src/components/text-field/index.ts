@@ -21,7 +21,7 @@ class TextFieldComponent extends Block {
                 dir: props.dir,
                 error: props.error,
                 onChange: props.onChange,
-                blur: props.blur
+                blur: props.blur,
             }),
         });
     }
@@ -30,7 +30,8 @@ class TextFieldComponent extends Block {
         console.log(this.props.error );
         return compiledTemplate(TextFieldTemplate,{
             input:"{{{ input }}}",
-            error: this.props.error as string
+            error: this.props.error as string,
+            helper: this.props.helper
         });
     }
 }
