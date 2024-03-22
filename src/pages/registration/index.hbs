@@ -1,21 +1,19 @@
-{{#> BaseLayout}}
 {{#> Form id='registrationForm'}}
 {{> Title title='Регистрация'}}
 
 {{#> FieldWrapper}}
-    {{> TextField type="text" id="email" name="email" helper="Почта" }}
-    {{> TextField type="text" id="login" name="login" autocomplete="username" helper="Логин" }}
-    {{> TextField type="text" id="first_name" name="first_name" helper="Имя" }}
-    {{> TextField type="text" id="second_name" name="second_name" helper="Фамилия" }}
-    {{> TextField type="tel" id="phone" name="phone" helper="Телефон" pattern="[+][0-9]{1} [(][0-9]{3}[)] [0-9]{3} [0-9]{2} [0-9]{2}" autocomplete='usermane'}}
-    {{> TextField type="password" id="password" name="password" autocomplete="current-password" helper="Пароль" }}
-    {{> TextField type="password" id="password2" name="password" autocomplete="current-password" helper="Пароль ещё раз" error="Пароли не совпадают"}}
+    {{ email }}
+    {{ login }}
+    {{ first_name }}
+    {{ second_name }}
+    {{ phone }}
+    {{ password }}
+    {{ password2 }}
 {{/ FieldWrapper}}
 
 {{#> ButtonWrapper}}
-    {{> Button type='submit' text='Регистрация'}}
+    {{ button }}
     {{> Link href='/auth' text='Войти'}}
 {{/ ButtonWrapper}}
 
 {{/ Form}}
-{{/ BaseLayout}}
