@@ -7,6 +7,7 @@ import InputComponent from "./ui/input";
 import {  registerHandlebarsPartials } from "./lib/register";
 import { allPartials } from "./lib/partials";
 import AuthPage from "./pages/auth";
+import TextFieldComponent from "./components/text-field";
 
 registerHandlebarsPartials(allPartials);
 
@@ -31,7 +32,18 @@ const auth  = new AuthPage({
     
 });
 
-console.log(auth);
+const textField = new TextFieldComponent({
+    type:"text", 
+    id:"email",
+    name:"email", 
+    placeholder:"Почта",
+    error: "Соощение об ошибке",
+    onChange: (value) => {
+        this.setProps({buttonText: value});
+    }
+});
+
+console.log(textField);
 
 class Page extends Block {
     constructor(props) {

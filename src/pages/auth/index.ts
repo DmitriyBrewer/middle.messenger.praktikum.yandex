@@ -1,4 +1,5 @@
 // export { default as AuthPage } from "./index.hbs?raw";
+import TextFieldComponent from "../../components/text-field";
 import { compiledTemplate } from "../../lib/compileTemplate";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";
@@ -18,7 +19,7 @@ class AuthPage extends Block {
                     }
                 }
             }),
-            login: new InputComponent({
+            login: new TextFieldComponent({
                 type:"text", 
                 id:"email",
                 name:"email", 
@@ -27,7 +28,7 @@ class AuthPage extends Block {
                     this.setProps({buttonText: value});
                 }
             }),
-            password: new InputComponent({
+            password: new TextFieldComponent({
                 type:"text", 
                 id:"password",
                 name:"password", 
@@ -38,6 +39,13 @@ class AuthPage extends Block {
             }),
             events: props.events || {}
         });
+    }
+
+    componentDidUpdate(oldProps, newProps) {
+        if (oldProps.buttonText !== newProps.buttonText) {
+            this.children.button.setProps({ text: newProps.buttonText });
+        }
+        return true;
     }
 
     render() {

@@ -15,7 +15,7 @@ import { ProfileRoot } from "../../components/profile/profile-root";
 import { ProfileHeader } from "../../components/profile/profle-header";
 import { SearchField } from "../../components/sidebar/search-field";
 import { ChatItem } from "../../components/sidebar/sidebar-item";
-import { TextField } from "../../components/text-field";
+// import { TextField } from "../../components/text-field";
 import { BaseLayoutTemplate } from "../../layout/base-layout";
 import { SidebarLayout } from "../../layout/sidebar-layout";
 import { ChatPage } from "../../pages/chat";
@@ -35,7 +35,7 @@ export const allPartials: Record<string, string> = {
     BaseLayout: BaseLayoutTemplate,
     Form: FormTemplate,
     // Registration: RegistrationPage,
-    TextField:TextField,
+    // TextField:TextField,
     Link: Link,
     Title:Title,
     FieldWrapper: FieldWrapper,
