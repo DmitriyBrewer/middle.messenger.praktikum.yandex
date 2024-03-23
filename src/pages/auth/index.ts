@@ -1,5 +1,7 @@
+import TextFieldComponent from "../../components/text-field";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";
+import InputComponent from "../../ui/input";
 import  AuthTemplate  from "./index.hbs?raw";
 
 // class AuthPage extends Block {
@@ -117,6 +119,24 @@ class AuthPage extends Block {
     constructor(props) {
         super("div",props);
 
+        
+
+        this.children.login = new InputComponent({
+            type:"text", 
+            id:"email",
+            name:"email", 
+            placeholder:"Почта",
+            error: props.errorLogin,
+            helper: props.helperLogin,
+            onChange: (value) => {
+                console.log(value);
+                this.setProps({buttonText: value});
+            },
+            // blur: (value) => {
+            //     this.validateLogin(value);
+            // }
+        });
+
         this.children.button = new Button({
             text: props.buttonText,
             events: {
@@ -125,20 +145,22 @@ class AuthPage extends Block {
                 },
             },
         });
+        
     }
 
     componentDidUpdate(oldProps, newProps) {
-        if (oldProps.buttonText !== newProps.buttonText) {
-            this.children.button.setProps({ text: newProps.buttonText });
-        }
+        // if (oldProps.buttonText !== newProps.buttonText) {
+        this.children.button.setProps({ text: newProps.buttonText });
+        // }
 
         return true;
     }
 
     render() {
-        console.log(this);
+        console.log(this.children);
         return this.compile(AuthTemplate, {
             button: this.button,
+            login: this.login
         });
     }
 }

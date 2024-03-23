@@ -146,13 +146,17 @@ class Block {
 
         const fragment = this._createDocumentElement("template");
 
+
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
+        console.log(fragment);
 
         Object.values(this.children).forEach(child => {
             const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
             
             stub.replaceWith(child.getContent());
         });
+
+        console.log(fragment.content);
 
         return fragment.content;
     }

@@ -1,8 +1,10 @@
+{{#> BaseLayout}}
 {{#> Form id='authorizationForm'}}
 
 {{> Title title='Вход'}}
 
 {{#> FieldWrapper}}
+{{{ login }}}
 {{!-- {{ login }}
 {{ password }} --}}
 {{!-- {{> TextField type="text" id="login" name="login" autocomplete="username" helper="Логин" error="Неверный логин"}} --}}
@@ -15,3 +17,4 @@
 {{/ ButtonWrapper}}
 
 {{/ Form}}
+{{/ BaseLayout}}
