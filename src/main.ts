@@ -8,13 +8,14 @@ registerHandlebarsPartials(allPartials);
 
 const profile = new AuthPage({
     buttonText: "Вход",
-    login: "Логин"
+    login: "Логин",
+    errorLogin: "Введите корректно логин",
 });
 
 
 
 renderComponent(".root", profile);
 
-profile.setProps({
-    buttonText: "Change namess"
-});
+// profile.setProps({
+//     buttonText: "Change namess"
+// });
