@@ -17,7 +17,7 @@ import { SearchField } from "../../components/sidebar/search-field";
 import { ChatItem } from "../../components/sidebar/sidebar-item";
 // import { TextField } from "../../components/text-field";
 import { BaseLayoutTemplate } from "../../layout/base-layout";
-import { SidebarLayout } from "../../layout/sidebar-layout";
+import {  SidebarLayoutTemplate } from "../../layout/sidebar-layout";
 import { ChatPage } from "../../pages/chat";
 import { ErrorPage } from "../../pages/error-page";
 import { ProfilePage } from "../../pages/profile";
@@ -41,9 +41,9 @@ export const allPartials: Record<string, string> = {
     Title:Title,
     FieldWrapper: FieldWrapper,
     ButtonWrapper: ButtonWrapper,
-    Input: InputTemplate
+    Input: InputTemplate,
     // ErrorPage:ErrorPage,
-    // SidebarLayout: SidebarLayout,
+    SidebarLayout: SidebarLayoutTemplate,
     // ChatPage: ChatPage,
     // Sidebar: SidebarLayout,
     // SearchField: SearchField,

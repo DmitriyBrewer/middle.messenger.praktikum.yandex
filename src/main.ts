@@ -4,6 +4,7 @@ import {  registerHandlebarsPartials } from "./lib/register";
 import { allPartials } from "./lib/partials";
 import AuthPage from "./pages/auth";
 import RegistrationPage from "./pages/registration";
+import ChatPage from "./pages/chat";
 
 registerHandlebarsPartials(allPartials);
 
@@ -31,8 +32,14 @@ if (window.location.href.includes("/registration")) {
         errorPassword: "Введите корректно пароль",
         errorPassword2: "Пароли не совпадают"
     });
-
     renderComponent(".root", registration);
+
+} if (window.location.href.includes("/chat")) {
+    const chat = new ChatPage({
+       
+    });
+    renderComponent(".root", chat);
+    
 } else  renderComponent(".root", auth);
 
 

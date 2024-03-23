@@ -1,24 +1,22 @@
 import "./index.scss";
-import renderTemplate from "../../lib/render";
+import Block from "../../lib/test/block";
+// export { default as ChatPage } from "./index.hbs?raw";
+import ChatTemplate from "./index.hbs?raw";
+import { compiledTemplate } from "../../lib/compileTemplate";
 
-document.addEventListener("DOMContentLoaded", () => {
-    const renderChatPage = () => {
-        const chat = renderTemplate("ChatPage");
-        document.querySelector(".root")!.innerHTML = chat;
-    };
-
-    if (window.location.pathname === "/chat") {
-        renderChatPage();
-    }
-
-    const chatLink = document.querySelector("a[href='/chat']");
-    if (chatLink) {
-        chatLink.addEventListener("click", (event) => {
-            event.preventDefault();
-            renderChatPage();
-            window.history.pushState({}, "", "/chat");
+class ChatPage extends Block {
+    constructor(props) {
+        super({
+            ...props,
+            events: props.events,
         });
     }
-});
 
-export { default as ChatPage } from "./index.hbs?raw";
+    render() {
+        // const authForm = compiledTemplate(RegistrationTemplate, {button:  "{{{ button }}}",email: "{{{ email }}}", login: "{{{ login }}}", first_name: "{{{ first_name }}}",second_name: "{{{ second_name }}}", phone: "{{{ phone }}}",password: "{{{ password }}}", password2: "{{{ password2 }}}"});
+        return compiledTemplate(ChatTemplate, {});
+    }
+
+}
+
+export default ChatPage;
