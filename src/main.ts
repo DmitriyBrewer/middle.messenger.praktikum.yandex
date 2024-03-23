@@ -1,46 +1,81 @@
-import renderComponent from "./lib/renderComponent";
 import "./index.scss";
-import {  registerHandlebarsPartials } from "./lib/register";
-import { allPartials } from "./lib/partials";
-import AuthPage from "./pages/auth";
-import RegistrationPage from "./pages/registration";
-import ChatPage from "./pages/chat";
+import Block from "./lib/test/block";
+import Button from "./ui/button";
 
-registerHandlebarsPartials(allPartials);
+function render(query, block) {
+    const root = document.querySelector(query);
+  
+    root.appendChild(block.getContent());
+  
+    block.dispatchComponentDidMount();
+  
+    return root;
+} 
 
-const auth  = new AuthPage({
-    buttonText: "Вход",
-    helperPassword:"Пароль",
-    helperLogin:"Логин",
-    errorLogin:"Сообщение об ошибке",
-    errorPassword:"Сообщение об ошибке",
-    events: {
-        submit:() => {
-            console.log("Form submitted");
-        }
+const templates = `
+<div class="{{ className }}">
+    {{ buttonText }}
+</div>
+`; 
+
+// class Button extends Block {
+//     constructor(props) {
+//         super("button", props);
+//     }
+  
+//     render() {
+//         console.log(this);
+//         return this.compile(templates,{buttonText: this.props.buttonText});
+//     }    
+// }
+
+const profileTemplate = `
+    <div>
+    {{{ userName }}}
+    {{{ button }}}
+    </div>
+`; 
+
+class UserProfile extends Block {
+    constructor(props) {
+        super("div",props);
+
+        this.children.button = new Button({
+            text: props.buttonText,
+            events: {
+                click: event => {
+                    console.log(event);
+                },
+            },
+        });
     }
+
+    componentDidUpdate(oldProps, newProps) {
+        if (oldProps.buttonText !== newProps.buttonText) {
+            this.children.button.setProps({ text: newProps.buttonText });
+        }
+
+        return true;
+    }
+
+    render() {
+        console.log(this);
+        return this.compile(profileTemplate, {
+            button: this.button,
+            userName: this.props.userName,
+        });
+    }
+}
+
+const profile = new UserProfile({
+    userName: "John Doe",
+    buttonText: "Вход",
 });
 
-if (window.location.href.includes("/registration")) {
-    const registration = new RegistrationPage({
-        buttonText: "Регистрация",
-        errorEmail: "Введите корректно почту",
-        errorLogin: "Введите корректно логин",
-        errorName: "Введите корректно Имя",
-        errorSecondName: "Введите корректно Фамилию",
-        errorMobile: "Введите корректно телефон",
-        errorPassword: "Введите корректно пароль",
-        errorPassword2: "Пароли не совпадают"
-    });
-    renderComponent(".root", registration);
-
-} if (window.location.href.includes("/chat")) {
-    const chat = new ChatPage({
-       
-    });
-    renderComponent(".root", chat);
-    
-} else  renderComponent(".root", auth);
 
 
+render(".root", profile);
 
+profile.setProps({
+    buttonText: "Change namess"
+});

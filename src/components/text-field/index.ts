@@ -1,4 +1,3 @@
-import { compiledTemplate } from "../../lib/compileTemplate";
 import Block from "../../lib/test/block";
 import "./index.scss";
 
@@ -27,7 +26,7 @@ class TextFieldComponent extends Block {
 
     render() {
         console.log(this.props.error );
-        return compiledTemplate(TextFieldTemplate,{
+        return this.compile(TextFieldTemplate,{
             input:"{{{ input }}}",
             error: this.props.error as string,
             helper: this.props.helper
