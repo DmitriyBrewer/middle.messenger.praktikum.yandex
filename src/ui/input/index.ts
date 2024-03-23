@@ -51,7 +51,7 @@ class InputComponent extends Block {
         super("div",{...props,
             events: {
                 change: (event) => props.onChange(event.target.value),
-                // blur: (event) => props.blur(event.target.value)
+                blur: (event) => props.blur(event.target.value)
             },
         });
     }

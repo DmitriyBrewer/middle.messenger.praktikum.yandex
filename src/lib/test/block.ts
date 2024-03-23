@@ -174,6 +174,8 @@ class Block {
         if (!nextProps) {
             return;
         }
+
+        console.log(this.props);
         Object.assign(this.props, nextProps);
     };
 

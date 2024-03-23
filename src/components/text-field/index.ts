@@ -42,21 +42,31 @@ import Block from "../../lib/test/block";
 import "./index.scss";
 
 import TextFieldTemplate  from "./index.hbs?raw";
-import InputComponent from "../../ui/input";
 
-const mockTemplate = `
-<div>
-{{{ input }}} 
-</div>`;
 class TextFieldComponent extends Block {
     constructor(props) {
-        super("div",props);
-        this.children.login = new InputComponent({login:props.login});
+        super("div",{...props,
+            events: {
+                change: (event) => props.onChange(event.target.value),
+                blur: (event) => props.blur(event.target.value)
+            },
+        });
     }
 
     render() { 
-        return this.compile(mockTemplate,{
-            input: this.login,
+        return this.compile(TextFieldTemplate,{
+            type:this.props.type,
+            id:this.props.id,
+            name: this.props.name,
+            placeholder:  this.props.placeholder,
+            isRequired: this.props.isRequired,
+            className:  this.props.className,
+            autocomplete:  this.props.autocomplete,
+            pattern:  this.props.pattern,
+            dir:  this.props.dir,
+            error:  this.props.error,
+            onChange:  this.props.onChange,
+            blur:  this.props.blur,
         });
     } 
 }

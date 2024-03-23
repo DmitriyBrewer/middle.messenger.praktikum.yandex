@@ -119,9 +119,7 @@ class AuthPage extends Block {
     constructor(props) {
         super("div",props);
 
-        
-
-        this.children.login = new InputComponent({
+        this.children.login = new TextFieldComponent({
             type:"text", 
             id:"email",
             name:"email", 
@@ -132,9 +130,10 @@ class AuthPage extends Block {
                 console.log(value);
                 this.setProps({buttonText: value});
             },
-            // blur: (value) => {
-            //     this.validateLogin(value);
-            // }
+            blur: (value) => {
+                console.log("ll");
+                this.validateLogin(value);
+            }
         });
 
         this.children.button = new Button({
@@ -149,9 +148,10 @@ class AuthPage extends Block {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        // if (oldProps.buttonText !== newProps.buttonText) {
-        this.children.button.setProps({ text: newProps.buttonText });
-        // }
+        // TODO поправить обновление пропсов
+        if (oldProps.buttonText !== newProps.buttonText) {
+            this.children.button.setProps({ buttonText: newProps.buttonText });
+        }
 
         return true;
     }
