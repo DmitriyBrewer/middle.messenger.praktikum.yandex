@@ -55,6 +55,7 @@ class Block {
                 props[key] = value;
             }
         });
+        console.log( { children, props });
         return { children, props };
     }
 
@@ -67,14 +68,17 @@ class Block {
     }
 
     private _removeEvents(): void {
+        console.log("_removeEvents");
 
         if (this._element) {
             const { events = {} } = this.props;
+            console.log("_removeEventsstage");
 
             Object.keys(events).forEach(eventName => {
                 this._element.removeEventListener(eventName, events[eventName]);
             });
 
+            console.log("_removeEventscomplete");
 
         }
     }
@@ -157,6 +161,8 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
+        console.log(oldProps);
+        console.log(newProps);
         return true;
     }
 
@@ -172,16 +178,19 @@ class Block {
     }
 
     private _render(): void {
-        // this._removeEvents();
-        // const block = this.render();
-        // this._element!.innerHTML = block;
-        // this._addEvents();
-        const block = this.render(); // render теперь возвращает DocumentFragment
+
+        const block = this.render(); 
 
         this._removeEvents();
-        this._element.innerHTML = ""; // удаляем предыдущее содержимое
+        const fragment = block;
 
-        this._element.appendChild(block);
+        const newElement = fragment.firstElementChild;
+
+        if (this._element) {
+            this._element.replaceWith(newElement);
+        }
+
+        this._element = newElement;
 
         this._addEvents();
     }
@@ -224,7 +233,6 @@ class Block {
     }
 
     private _createDocumentElement(tagName: string): HTMLElement {
-        console.log(this);
         const element = document.createElement(tagName);
         if(this._id) {
             element.setAttribute("data-id", this._id);
