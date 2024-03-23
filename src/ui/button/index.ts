@@ -4,7 +4,7 @@ import Block from "../../lib/test/block";
 
 class Button extends Block {
     constructor(props) {
-        super(props);
+        super("div",props);
     }
 
     render() {

@@ -1,4 +1,3 @@
-import TextFieldComponent from "../../components/text-field";
 import Block from "../../lib/test/block";
 import Button from "../../ui/button";
 import  AuthTemplate  from "./index.hbs?raw";
@@ -82,12 +81,44 @@ import  AuthTemplate  from "./index.hbs?raw";
 //     }
 // }
 
-class AuthPage extends Block{
+// class AuthPage extends Block{
+//     constructor(props) {
+//         super("div",props);
+
+//         this.children.button = new Button({
+//             buttonText: props.buttonText,
+//             events: {
+//                 click: event => {
+//                     console.log(event);
+//                 },
+//             },
+//         });
+//     }
+
+//     // componentDidUpdate(oldProps, newProps) {
+//     //     if (oldProps.buttonText !== newProps.buttonText) {
+//     //         this.children.button.setProps({ buttonText: newProps.buttonText });
+//     //     }
+
+//     //     return true;
+//     // }
+
+//     render() {
+//         console.log(this.children.button);
+//         return this.compile(AuthTemplate, {
+//             button: "{{{ button }}}",
+//             userName: this.props.userName,
+//         });
+//     }
+// }
+
+
+class AuthPage extends Block {
     constructor(props) {
         super("div",props);
 
         this.children.button = new Button({
-            buttonText: props.buttonText,
+            text: props.buttonText,
             events: {
                 click: event => {
                     console.log(event);
@@ -96,19 +127,18 @@ class AuthPage extends Block{
         });
     }
 
-    // componentDidUpdate(oldProps, newProps) {
-    //     if (oldProps.buttonText !== newProps.buttonText) {
-    //         this.children.button.setProps({ buttonText: newProps.buttonText });
-    //     }
+    componentDidUpdate(oldProps, newProps) {
+        if (oldProps.buttonText !== newProps.buttonText) {
+            this.children.button.setProps({ text: newProps.buttonText });
+        }
 
-    //     return true;
-    // }
+        return true;
+    }
 
     render() {
-        console.log(this.children.button);
+        console.log(this);
         return this.compile(AuthTemplate, {
-            button: "{{{ button }}}",
-            userName: this.props.userName,
+            button: this.button,
         });
     }
 }
