@@ -119,7 +119,7 @@ class AuthPage extends Block {
     constructor(props) {
         super("div",props);
 
-        this.children.login = new InputComponent({
+        this.children.login = new TextFieldComponent({
             type:"text", 
             id:"email",
             name:"email", 
@@ -131,8 +131,9 @@ class AuthPage extends Block {
                 this.setProps({buttonText: value});
             },
             blur: (value) => {
-                console.log("ll");
+                // console.log("ll");
                 this.validateLogin(value);
+                // this.children.login.setProps({error: value});
             }
         });
 
@@ -161,6 +162,7 @@ class AuthPage extends Block {
                     console.log(event);
                 },
             },
+            disabled:true
         });
         
         this.props.button = this.children.button.props;
@@ -168,7 +170,7 @@ class AuthPage extends Block {
     }
 
     componentDidUpdate(oldProps, newProps) {
-        console.log(oldProps.buttonText);
+        console.log(oldProps);
         // TODO поправить обновление пропсов
         console.log(this.children.button.props.text);
         console.log(newProps.buttonText);
@@ -176,6 +178,11 @@ class AuthPage extends Block {
         if (oldProps.buttonText !== newProps.buttonText) {
             this.children.button.setProps({ text: newProps.buttonText });
         }
+
+        // TODO поправить валидацию
+        const isButtonDisabled = this.children.login.error !== "";
+        this.children.button.setProps({ disabled: isButtonDisabled });
+        // console.log(isButtonDisabled);
 
         return true;
     }
@@ -191,20 +198,23 @@ class AuthPage extends Block {
     }
 
     validateLogin(value) {
-        console.log("z nen");
         if (value.trim() === "") {
-            this.setProps({ errorLogin: "Поле не может быть пустым" });
+            this.children.login.setProps({ error: "Поле не может быть пустым" });
+            // this.children.button.setProps({disabled: true});
         } else {
-            this.setProps({ errorLogin: "" });
+            this.children.login.setProps({ error: "" });
+            // this.children.button.setProps({disabled: false});
         }     
     }
     
 
     validatePassword(value) {
         if (value.length < 6) {
-            this.setProps({ errorPassword: "Пароль должен содержать минимум 6 символов" });
+            this.children.password.setProps({ error: "Пароль должен содержать минимум 6 символов" });
+            // this.children.button.setProps({disabled: true});
         } else {
-            this.setProps({ errorPassword: "" });
+            this.children.password.setProps({ error: "" });
+            // this.children.button.setProps({disabled: false});
         }
     }
 }

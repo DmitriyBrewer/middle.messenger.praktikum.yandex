@@ -9,7 +9,6 @@ registerHandlebarsPartials(allPartials);
 const profile = new AuthPage({
     buttonText: "Вход",
     login: "Логин",
-    errorLogin: "Введите корректно логин",
 });
 
 
