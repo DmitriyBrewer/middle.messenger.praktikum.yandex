@@ -157,7 +157,6 @@ class RegistrationPage extends Block {
 
     validateText(value, atr) {
         if (value.trim() === "") {
-            console.log({[atr]: "Поле не может быть пустым"});
             this.setProps({ [atr]: "Поле не может быть пустым" });
         } else {
             this.setProps({ [atr]: "" });
@@ -174,7 +173,6 @@ class RegistrationPage extends Block {
     }
 
     validatePassword2(value) {
-        // console.log(this.children.password._element);
         if (value.length < 6) {
             this.setProps({ errorPassword2: "Пароль должен содержать минимум 6 символов" });
         } else {

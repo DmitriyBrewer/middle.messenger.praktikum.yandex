@@ -55,7 +55,6 @@ class Block {
                 props[key] = value;
             }
         });
-        console.log( { children, props });
         return { children, props };
     }
 
@@ -68,17 +67,14 @@ class Block {
     }
 
     private _removeEvents(): void {
-        console.log("_removeEvents");
 
         if (this._element) {
             const { events = {} } = this.props;
-            console.log("_removeEventsstage");
 
             Object.keys(events).forEach(eventName => {
                 this._element.removeEventListener(eventName, events[eventName]);
             });
 
-            console.log("_removeEventscomplete");
 
         }
     }
@@ -116,7 +112,6 @@ class Block {
     }
 
     public componentDidMount(oldProps: BlockProps): void {
-        console.log(oldProps);
     }
 
     public dispatchComponentDidMount(): void {
@@ -127,9 +122,6 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): void {
-        console.log(oldProps);
-        console.log(newProps);
-        console.log("_componentDidUpdate");
         const response = this.componentDidUpdate(oldProps, newProps);
         if (!response) {
             return;
@@ -148,7 +140,6 @@ class Block {
 
 
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
-        console.log(fragment);
 
         Object.values(this.children).forEach(child => {
             const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
@@ -156,7 +147,6 @@ class Block {
             stub.replaceWith(child.getContent());
         });
 
-        console.log(fragment.content);
 
         return fragment.content;
     }
@@ -165,8 +155,6 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
-        console.log(oldProps);
-        console.log(newProps);
         return true;
     }
 
@@ -175,7 +163,6 @@ class Block {
             return;
         }
 
-        console.log(this.props);
         Object.assign(this.props, nextProps);
     };
 
