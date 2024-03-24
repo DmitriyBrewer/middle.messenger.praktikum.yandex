@@ -5,22 +5,18 @@ import Block from "../../lib/test/block";
 import Button from "../../ui/button";
 import RegistrationTemplate from "./index.hbs?raw";
 // export { default as RegistrationPage } from "./index.hbs?raw";
+const testTemplate ="<div> {{{ test }}}</div>";
 
 class RegistrationPage extends Block {
     constructor(props) {
-        super({
+        super("div",{
             ...props,
-            events: props.events,
-            button: new Button({
-                type: "button",
-                text: props.buttonText,
-            }),
+           
             email: new TextFieldComponent({
                 type:"text", 
                 id:"email",
                 name:"email", 
                 placeholder:"Почта",
-                error: props.errorEmail,
                 helper: "Почта",
                 onChange: (value) => {},
                 blur: (value) => {
@@ -33,10 +29,9 @@ class RegistrationPage extends Block {
                 name:"login", 
                 autocomplete:"username",
                 placeholder:"Логин",
-                error: props.errorLogin,
                 helper: "Логин",
                 onChange: (value) => {},
-                blur: (value) => {
+                blur: () => {
                     this.validateText(value, "errorLogin");
                 }
             }),
@@ -45,11 +40,10 @@ class RegistrationPage extends Block {
                 id:"first_name",
                 name:"first_name", 
                 placeholder:"Имя",
-                error: props.errorName,
                 helper: "Имя",
                 onChange: (value) => {},
                 blur: (value) => {
-                    this.validateText(value, "errorName");
+                    // this.validateText(value, "errorName");
                 }
             }),
             second_name: new TextFieldComponent({
@@ -57,11 +51,10 @@ class RegistrationPage extends Block {
                 id:"second_name",
                 name:"second_name", 
                 placeholder:"Фамилия",
-                error: props.errorSecondName,
                 helper: "Фамилия",
                 onChange: (value) => {},
                 blur: (value) => {
-                    this.validateText(value, "errorSecondName");
+                    // this.validateText(value, "errorSecondName");
                 }
             }),
             phone: new TextFieldComponent({
@@ -69,13 +62,12 @@ class RegistrationPage extends Block {
                 id:"phone",
                 name:"phone", 
                 placeholder:"Телефон",
-                error: props.errorMobile,
                 helper: "Телефон",
                 pattern:"[+][0-9]{1} [(][0-9]{3}[)] [0-9]{3} [0-9]{2} [0-9]{2}",
                 autocomplete:"usermane",
                 onChange: (value) => {},
                 blur: (value) => {
-                    this.validateText(value, "errorMobile");
+                    // this.validateText(value, "errorMobile");
                 }
             }),
             password: new TextFieldComponent({
@@ -83,12 +75,11 @@ class RegistrationPage extends Block {
                 id:"password",
                 name:"password", 
                 placeholder:"Пароль",
-                error: props.errorPassword,
                 helper: "Пароль",
                 autocomplete:"current-password",
                 onChange: (value) => {},
                 blur: (value) => {
-                    this.validatePassword(value, "errorPassword");
+                    // this.validatePassword(value, "errorPassword");
                 }
             }),
             password2: new TextFieldComponent({
@@ -96,13 +87,17 @@ class RegistrationPage extends Block {
                 id:"password2",
                 name:"password2", 
                 placeholder:"Пароль ещё раз",
-                error: props.errorPassword,
                 helper: "Пароль ещё раз",
                 autocomplete:"current-password",
                 onChange: (value) => {},
                 blur: (value) => {
-                    this.validatePassword2(value);
+                    // this.validatePassword2(value);
                 }
+            }),
+            button: new Button({
+                type: "button",
+                text: props.buttonText,
+                disabled: true
             }),
         });
     }
@@ -115,6 +110,7 @@ class RegistrationPage extends Block {
         if (oldProps.errorLogin !== newProps.errorLogin) {
             this.children.login.setProps({ error: newProps.errorLogin });
         }
+
 
         if (oldProps.errorName !== newProps.errorName) {
             this.children.first_name.setProps({ error: newProps.errorName });
@@ -137,13 +133,13 @@ class RegistrationPage extends Block {
         }
 
         const isButtonDisabled = newProps.errorEmail !== "" ||
-         newProps.errorLogin !== "" ||
-          newProps.errorPassword !== ""|| 
-          newProps.errorSecondName !== "" ||
-          newProps.errorName !== "" ||
-          newProps.errorMobile !== "" || 
-          newProps.errorPassword !== "" || 
-          newProps.errorPassword2 !== "";
+             newProps.errorLogin !== "" ||
+              newProps.errorPassword !== ""|| 
+              newProps.errorSecondName !== "" ||
+              newProps.errorName !== "" ||
+              newProps.errorMobile !== "" || 
+              newProps.errorPassword !== "" || 
+              newProps.errorPassword2 !== "";
 
         this.children.button.setProps({ disabled: isButtonDisabled });
         
@@ -151,8 +147,7 @@ class RegistrationPage extends Block {
     }
 
     render() {
-        const authForm = compiledTemplate(RegistrationTemplate, {button:  "{{{ button }}}",email: "{{{ email }}}", login: "{{{ login }}}", first_name: "{{{ first_name }}}",second_name: "{{{ second_name }}}", phone: "{{{ phone }}}",password: "{{{ password }}}", password2: "{{{ password2 }}}"});
-        return `{{#> BaseLayout}}${authForm}{{/ BaseLayout}}`;
+        return this.compile(RegistrationTemplate, {});
     }
 
     validateText(value, atr) {

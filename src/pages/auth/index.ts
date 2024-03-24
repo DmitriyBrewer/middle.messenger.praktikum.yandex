@@ -12,7 +12,6 @@ class AuthPage extends Block {
                 placeholder:"Логин",
                 helper: "Логин",
                 autocomplete: "username",
-                error: props.errorLogin,
                 onChange: (value) => {
                     this.setProps({buttonText: value});
 

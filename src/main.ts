@@ -9,16 +9,15 @@ registerHandlebarsPartials(allPartials);
 
 const profile = new AuthPage({
     buttonText: "Вход",
-    helperLogin: "Логин",
 });
 
-// const registration = new RegistrationPage({
+const registration = new RegistrationPage({
+    buttonText: "Регистрация"
+});
 
-// });
 
 
-
-renderComponent(".root", profile);
+renderComponent(".root", registration);
 
 // profile.setProps({
 //     buttonText: "Change namess"

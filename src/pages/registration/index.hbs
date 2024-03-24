@@ -1,19 +1,21 @@
+{{#> BaseLayout}}
 {{#> Form id='registrationForm'}}
 {{> Title title='Регистрация'}}
 
 {{#> FieldWrapper}}
-    {{ email }}
-    {{ login }}
-    {{ first_name }}
-    {{ second_name }}
-    {{ phone }}
-    {{ password }}
-    {{ password2 }}
+    {{{ email }}}
+    {{{ login }}}
+    {{{ first_name }}}
+    {{{ second_name }}}
+    {{{ phone }}}
+    {{{ password }}}
+    {{{ password2 }}}
 {{/ FieldWrapper}}
 
 {{#> ButtonWrapper}}
-    {{ button }}
+    {{{ button }}}
     {{> Link href='/auth' text='Войти'}}
 {{/ ButtonWrapper}}
 
 {{/ Form}}
+{{/ BaseLayout}}
