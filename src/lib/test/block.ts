@@ -163,7 +163,10 @@ class Block {
             return;
         }
 
+        const oldProps = { ...this.props }; 
         Object.assign(this.props, nextProps);
+    
+        this._componentDidUpdate(oldProps, this.props); 
     };
 
     get element(): HTMLElement | null {

@@ -4,53 +4,48 @@ import Button from "../../ui/button";
 import  AuthTemplate  from "./index.hbs?raw";
 class AuthPage extends Block {
     constructor(props) {
-        super("div",props);
+        super("div",{...props,
+            login:new TextFieldComponent({
+                type:"text", 
+                id:"login",
+                name:"login", 
+                placeholder:"Логин",
+                helper: "Логин",
+                autocomplete: "username",
+                error: props.errorLogin,
+                onChange: (value) => {
+                    this.setProps({buttonText: value});
 
-        this.children.login = new TextFieldComponent({
-            type:"text", 
-            id:"login",
-            name:"login", 
-            placeholder:"Логин",
-            error: props.errorLogin,
-            helper: "Логин",
-            onChange: (value) => {
-                this.setProps({buttonText: value});
-            },
-            blur: (value) => {
-                this.validateLogin(value);
-            }
-        });
-
-        this.children.password = new TextFieldComponent({
-            type:"password", 
-            id:"password",
-            name:"password", 
-            placeholder:"Пароль",
-            helper: "Пароль",
-            error: props.errorPassword,
-            autocomplete:"current-password",
-            onChange: (value) => {
-                this.setProps({buttonText: value});
-            },
-            blur: (value) => {
-                this.validatePassword(value);
-            }
-        }),
-    
-
-
-        this.children.button = new Button({
-            text: props.buttonText,
-            events: {
-                click: event => {
-                    console.log(event);
                 },
-            },
-            disabled:true
+                blur: (value) => {
+                    this.validateLogin(value);
+                }
+            }),
+            password: new TextFieldComponent({
+                type:"password", 
+                id:"password",
+                name:"password", 
+                placeholder:"Пароль",
+                helper: "Пароль",
+                autocomplete:"current-password",
+                pattern: "(?=^.{8,40}$)(?=.*[A-Z])(?=.*\\d).*",
+                onChange: (value) => {
+                    this.setProps({buttonText: value});
+                },
+                blur: (value) => {
+                    this.validatePassword(value);
+                }
+            }),
+            button: new Button({
+                text: props.buttonText,
+                events: {
+                    click: event => {
+                        console.log(event);
+                    },
+                },
+                disabled: true
+            })
         });
-        
-        this.props.button = this.children.button.props;
-
     }
 
     componentDidUpdate(oldProps, newProps) {
@@ -58,35 +53,36 @@ class AuthPage extends Block {
             this.children.button.setProps({ text: newProps.buttonText });
         }
 
-        // TODO поправить валидацию
-        const isButtonDisabled = this.children.login.error !== "";
-        this.children.button.setProps({ disabled: isButtonDisabled });
+        const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
+        this.children.button.setProps({disabled: isButtonDisabled});
+        this.children.password.setProps({error: newProps.errorPassword});
+        this.children.login.setProps({error: newProps.errorLogin});
 
         return true;
     }
 
     render() {
         return this.compile(AuthTemplate, {
-            button: this.button,
-            login: this.login,
-            password: this.password
+            button: this.props.button,
+            login: this.props.login,
+            password: this.props.password
         });
     }
 
     validateLogin(value) {
         if (value.trim() === "") {
-            this.children.login.setProps({ error: "Поле не может быть пустым" });
+            this.setProps({ errorLogin: "Поле не может быть пустым" });
         } else {
-            this.children.login.setProps({ error: "" });
+            this.setProps({ errorLogin: "" });
         }     
     }
     
 
     validatePassword(value) {
         if (value.length < 6) {
-            this.children.password.setProps({ error: "Пароль должен содержать минимум 6 символов" });
+            this.setProps({ errorPassword: "Пароль должен содержать минимум 6 символов" });
         } else {
-            this.children.password.setProps({ error: "" });
+            this.setProps({ errorPassword: "" });
         }
     }
 }

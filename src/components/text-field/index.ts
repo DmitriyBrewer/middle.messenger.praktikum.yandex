@@ -24,6 +24,7 @@ class TextFieldComponent extends Block {
     }
 
     render() { 
+        console.log(this);
         return this.compile(TextFieldTemplate,{
             error:  this.props.error,
             helper: this.props.helper
