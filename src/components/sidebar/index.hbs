@@ -1,11 +1,16 @@
 <div class="sidebar">
     {{> Link text="Профиль" href='/profile'}}
-    {{!-- {{> SearchField type="text" id="search" name="message" placeholder="search" }} --}}
     {{{ search }}}
     <ul class="chats">
+        {{{ mockChats }}}
+    </ul>
+</div>
+
+
+  {{!-- {{#each mockChats}}
+           <div>sss</div>
+        {{/each}} --}}
      {{!-- {{#each data.chats}}
             {{>ChatItem title=this.title}}
         {{/each}} --}}
-        {{{ chatItem }}}
-    </ul>
-</div>
+        {{!-- {{{ chatItem }}} --}}

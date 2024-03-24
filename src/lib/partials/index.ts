@@ -14,7 +14,7 @@ import { ProfilePrev } from "../../components/profile/profile-prev";
 import { ProfileRoot } from "../../components/profile/profile-root";
 import { ProfileHeader } from "../../components/profile/profle-header";
 // import { SearchField } from "../../components/sidebar/search-field";
-import { ChatItem } from "../../components/sidebar/sidebar-item";
+// import { ChatItem } from "../../components/sidebar/sidebar-item";
 // import { TextField } from "../../components/text-field";
 import { BaseLayoutTemplate } from "../../layout/base-layout";
 import {  SidebarLayoutTemplate } from "../../layout/sidebar-layout";
