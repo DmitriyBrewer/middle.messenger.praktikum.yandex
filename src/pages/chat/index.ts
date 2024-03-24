@@ -3,18 +3,19 @@ import Block from "../../lib/test/block";
 // export { default as ChatPage } from "./index.hbs?raw";
 import ChatTemplate from "./index.hbs?raw";
 import { compiledTemplate } from "../../lib/compileTemplate";
+import Sidebar from "../../components/sidebar";
 
 class ChatPage extends Block {
     constructor(props) {
-        super({
+        super("div",{
             ...props,
             events: props.events,
+            sidebar: new Sidebar({}),
         });
     }
 
     render() {
-        // const authForm = compiledTemplate(RegistrationTemplate, {button:  "{{{ button }}}",email: "{{{ email }}}", login: "{{{ login }}}", first_name: "{{{ first_name }}}",second_name: "{{{ second_name }}}", phone: "{{{ phone }}}",password: "{{{ password }}}", password2: "{{{ password2 }}}"});
-        return compiledTemplate(ChatTemplate, {});
+        return this.compile(ChatTemplate, {});
     }
 
 }

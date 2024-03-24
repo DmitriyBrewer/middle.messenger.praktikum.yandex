@@ -13,7 +13,7 @@ import { ProfileParams } from "../../components/profile/profile-params";
 import { ProfilePrev } from "../../components/profile/profile-prev";
 import { ProfileRoot } from "../../components/profile/profile-root";
 import { ProfileHeader } from "../../components/profile/profle-header";
-import { SearchField } from "../../components/sidebar/search-field";
+// import { SearchField } from "../../components/sidebar/search-field";
 import { ChatItem } from "../../components/sidebar/sidebar-item";
 // import { TextField } from "../../components/text-field";
 import { BaseLayoutTemplate } from "../../layout/base-layout";
@@ -30,6 +30,7 @@ import { FormTemplate } from "../../ui/form";
 import { InputTemplate } from "../../ui/input";
 import { Link } from "../../ui/link";
 import { Title } from "../../ui/title";
+import { Image } from "../../ui/img";
 
 
 export const allPartials: Record<string, string> = {
@@ -37,6 +38,7 @@ export const allPartials: Record<string, string> = {
     Form: FormTemplate,
     // Registration: RegistrationPage,
     // TextField:TextField,
+    Image: Image,
     Link: Link,
     Title:Title,
     FieldWrapper: FieldWrapper,
