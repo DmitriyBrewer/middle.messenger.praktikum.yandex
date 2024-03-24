@@ -37,6 +37,7 @@ class AuthPage extends Block {
                 }
             }),
             button: new Button({
+                type:"button",
                 text: props.buttonText,
                 events: {
                     click: event => {
