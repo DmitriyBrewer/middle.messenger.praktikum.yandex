@@ -106,7 +106,7 @@ class Block {
 
     private _componentDidMount(oldProps: BlockProps): void {
         this.componentDidMount();
-
+        
         Object.values(this.children).forEach(child => {
             child.dispatchComponentDidMount();
         });
@@ -131,47 +131,38 @@ class Block {
     }
 
     compile(template, props) {
-        // const propsAndStubs = { ...props };
-
-        // Object.entries(this.children).forEach(([key, child]) => {
-        //     console.log(this.children);
-        //     propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
-        // });
-        // console.log(propsAndStubs);
-
-        // const fragment = this._createDocumentElement("template");
-
-
-        // fragment.innerHTML = compiledTemplate(template, propsAndStubs);
-        // console.log(propsAndStubs);
-        // Object.values(this.children).forEach(child => {
-        //     const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-        //     console.log(stub);
-        //     stub.replaceWith(child.getContent());
-        // });
-
-        // return fragment.content;
         const propsAndStubs = { ...props };
-    
-        // Проверяем, является ли this.children массивом
-        if (Array.isArray(this.children)) {
-            this.children.forEach((child, index) => {
-                const key = `item${index}`; // Генерируем ключ для каждого дочернего элемента
-                propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
-            });
-        } else {
-            Object.entries(this.children).forEach(([key, child]) => {
-                propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
-            });
-        }
+        const _tmpId =  Math.floor(100000 + Math.random() * 900000);
 
+        console.log(this.children);
+      
+        Object.entries(this.children).forEach(([key, child]) => {
+            if(Array.isArray(child)) {
+                console.log(";uuu");
+                propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
+            } else
+                propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+        });
+        
         const fragment = this._createDocumentElement("template");
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
 
         Object.values(this.children).forEach(child => {
-            const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-            console.log(stub);
-            stub.replaceWith(child.getContent());
+
+            if(Array.isArray(child)) {
+                const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
+                console.log(child._id);
+                child.forEach(item => {
+                    if (item instanceof Block) {
+                        stub.appendChild(item.getContent());
+                    } else {
+                        stub.replaceWith(`${item}`);
+                    }
+                });
+            } else {  
+                const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+                stub.replaceWith(child.getContent());
+            }
         });
 
         return fragment.content;

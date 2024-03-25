@@ -93,11 +93,7 @@ const itemTemplate ="<div>{{title}}</div>";
 
 const MockChatsTemplate = `
 <div>
-{{{button2}}}
-{{{ button }}}
-{{#each data}}
-{{text}}
-{{/each}}
+{{{button}}}
 </div>
 `;
 
@@ -114,55 +110,15 @@ const MockChatsTemplate = `
 
 class MockChats extends Block {
     constructor(props) {
-        super("span", {...props, button: new Button({text:"default"})}); 
-        this.props.items.forEach((itemProps, index) => {
-            const item = new Button(itemProps);
-            this.children[`item${index}`] = item; // добавляем каждый созданный Item в объект children
-        });
-        // this.children.button2 = new Button({
-        //     text: "sfdsf",
-        //     setting: {withInternalID:true}
-        // });
-        // this.props.button3 = this.children.button3;
-        // this.props.items = new SearchFieldComponent({});
-        // this.children.items = new SearchFieldComponent({});
-        // this.items = [];
-        // Создание и добавление дочерних компонентов Item
-        // this.props.items.forEach(itemProps => {
-        //     const item = new Item(itemProps);
-        //     console.log(this);
-        //     // this.addChild(item);
-        //     // this.children.item = item;
-        //     this.items.push(item);
-        // });
-        // this.items = [];
-
-        // this.items.forEach(itemProps => {
-        //     const item = new Button(itemProps);
-        //     console.log(this);
-        //     // this.addChild(item);
-        //     // this.children.item = item;
-        //     this.items.push(item);
-        // });
-        // this.props.items = props.items;
-        // this.props.items.forEach((itemProps, index) => {
-        //     const item = new Item({itemProps});
-        //     this.children[`item${index}`] = item; // добавляем каждый созданный Item в объект children
-        // });
-        // this.props.items.forEach((itemProps, index) => {
-        //     const item = new Button({text:"dfd"});
-        //     this.children[`item${index}`] = item; // добавляем каждый созданный Item в объект children
-        // });
-
-        // this.props.items = this.children.items;
-        // this.props.data = [new Button({text:"sdas"}),new Button({text:"sdas"})];
+        super("span", props); 
+        this.children.button = [new Button({text:"lll"}),new Button({text:"rtrtS"})];
+        this.props.button = this.children.button;
     }
 
-    render() {      
-        console.log(this);
-        // console.log(this.compile(MockChatsTemplate,{}));
-        // return this.compile(MockChatsTemplate, {button:this.button},);
-        return this.compile(MockChatsTemplate, {data: this.props.items,button2:this.props.button2});
+    render() {    
+        console.log(this);  
+        console.log(this.children.button); 
+        return this.compile(MockChatsTemplate, {});
 
     }
 }
@@ -171,11 +127,12 @@ class MockChats extends Block {
 
 
 
-const chatList = new MockChats({items:[
-    { text: "Item 1" },
-    { text: "Item 2" },
-],
-button2: new Button({text:"ssS"})
+const chatList = new MockChats({
+//     button:[
+//     { text: "Item 1" },
+//     { text: "Item 2" },
+// ],
+    // button: new Button({text:"ssS"})
 });
 // const chatList = new MockChats({});
 
