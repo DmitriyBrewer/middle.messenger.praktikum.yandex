@@ -61,4 +61,16 @@
         height: 20px;
         border-radius: 20px;
     }
+
+    &__chatTitle {
+        color: var(--primary-text);
+        font-size: var(--fs-chat-name);
+        font-weight: var(--fw-chat-name);
+        margin: 0;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+    }
 }

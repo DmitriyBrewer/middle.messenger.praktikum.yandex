@@ -6,6 +6,7 @@ import SidebarTemplate from "./index.hbs?raw";
 import Block from "../../lib/test/block";
 import SearchFieldComponent from "./search-field";
 import Button from "../../ui/button";
+import ChatItem from "./sidebar-item";
 
 const mockChats = [
     {
@@ -97,45 +98,21 @@ const mockChats = [
 // {{/each}}
 // `;
 
-const MockChatsTemplate = `
-<div>
-{{{button}}}
-</div>
-`;
-
 class ChatList extends Block {
     constructor(props) {
         super("span", {...props}); 
-        this.children.button = [];
+        this.children.list = [];
         this.props.data.forEach(itemProps => {
-            const item = new Button({...itemProps,
-                events: {click:()=>item.setProps({text:"s", disabled:true})}
-            });
-            this.children.button.push(item);
+            const item = new ChatItem(itemProps);
+            this.children.list.push(item);
         });
-        this.props.button = this.children.button;
+        this.props.list = this.children.list;
     }
 
     render() {    
-        console.log(this);  
-        console.log(this.children.button); 
-        return this.compile(MockChatsTemplate, {});
+        return this.compile("{{{list}}}", {});
     }
 }
-
-const chatList = new ChatList({
-    data:[{text:"sdsd",events: {
-        click:(e)=>{
-            // this.setProps({text:"s"});
-            console.log("click1");}
-    }},{text:"sda",events: {
-        click:(e)=>{
-            console.log("click2");}
-    }}]
-});
-
-// console.log(chatList);
-
 class Sidebar extends Block {
     constructor(props) {
         super("div",{
@@ -143,36 +120,13 @@ class Sidebar extends Block {
             events: props.events,
             search: new SearchFieldComponent({}),
             chats: new ChatList({
-                data:[{text:"sdsd",events: {
-                    click:(e)=>{
-                        console.log("click1");}
-                }},{text:"sda",events: {
-                    click:(e)=>{
-                        console.log("click2");}
-                }}]
+                data:mockChats
             })
         });
         
-        
-        // this.children.chat =  new MockChats({});
     }
 
     render() {
-        // const chatList = new ChatList({
-        //     data:[{text:"sdsd",events: {
-        //         click:(e)=>{
-        //             // this.setProps({text:"s"});
-        //             console.log("click1");}
-        //     }},{text:"sda",events: {
-        //         click:(e)=>{
-        //             console.log("click2");}
-        //     }}]
-        // });
-
-        // console.log(chatList);
-        // console.log(this);
-        // console.log(chatss);
-        // console.log(this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, data:mockChats, chats: this.props.chats}));
         return this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search});
     }
 
