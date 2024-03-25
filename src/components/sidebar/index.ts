@@ -95,11 +95,6 @@ const MockChatsTemplate = `
 <div class="chat-title">{{title}}</div>
 {{/each}}
 `;
-
-// const MockChatsTemplates = `
-// <div class="chat-title">{{title}}</div>
-// `;
-
 class MockChats extends Block {
     constructor(props) {
         super("div", props); 
@@ -108,6 +103,7 @@ class MockChats extends Block {
 
     render() {
         console.log(this.compile(MockChatsTemplate, {data: mockChats}));
+      
         return this.compile(MockChatsTemplate, {data: mockChats});
     }
 }
@@ -126,7 +122,6 @@ class Sidebar extends Block {
 
     render() {
         // console.log(this);
-        new MockChats({});
         // console.log(chatss);
         // console.log(this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, data:mockChats, chats: this.props.chats}));
         return this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, data:mockChats, chats: this.props.chats});

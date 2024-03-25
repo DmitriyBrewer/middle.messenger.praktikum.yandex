@@ -25,7 +25,7 @@ class Block {
         console.log(propsAndChildren);
         const { children, props } = this._getChildren(propsAndChildren);
         this.children = children;
-
+        console.log(props);
         const eventBus = new EventBus();
         this._meta = {
             tagName,
@@ -131,20 +131,46 @@ class Block {
     }
 
     compile(template, props) {
-        const propsAndStubs = { ...props };
+        // const propsAndStubs = { ...props };
 
-        Object.entries(this.children).forEach(([key, child]) => {
-            propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
-        });
+        // Object.entries(this.children).forEach(([key, child]) => {
+        //     console.log(this.children);
+        //     propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+        // });
+        // console.log(propsAndStubs);
+
+        // const fragment = this._createDocumentElement("template");
+
+
+        // fragment.innerHTML = compiledTemplate(template, propsAndStubs);
+        // console.log(propsAndStubs);
+        // Object.values(this.children).forEach(child => {
+        //     const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+        //     console.log(stub);
+        //     stub.replaceWith(child.getContent());
+        // });
+
+        // return fragment.content;
+        const propsAndStubs = { ...props };
+    
+        // Проверяем, является ли this.children массивом
+        if (Array.isArray(this.children)) {
+            this.children.forEach((child, index) => {
+                const key = `item${index}`; // Генерируем ключ для каждого дочернего элемента
+                propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+            });
+        } else {
+            Object.entries(this.children).forEach(([key, child]) => {
+                propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+            });
+        }
 
         const fragment = this._createDocumentElement("template");
-
-
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
 
         Object.values(this.children).forEach(child => {
             const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-            
+            console.log(stub);
             stub.replaceWith(child.getContent());
         });
 
