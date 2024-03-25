@@ -81,23 +81,34 @@ const mockChats = [
     },
 ];
 
+// const MockChatsTemplate = `
+// <div class="chat-item">
+//     <div class="chat-title">{{title}}</div>
+//     <div class="chat-message">{{message}}</div>
+//     <div class="chat-time">{{time}}</div>
+//     <div class="chat-counter">{{counter}}</div>
+// </div>
+// `;
+
 const MockChatsTemplate = `
-{{#each mockChats}}
-<div class="chat-item">
-    <div class="chat-title">{{title}}</div>
-    <div class="chat-message">{{message}}</div>
-    <div class="chat-time">{{time}}</div>
-    <div class="chat-counter">{{counter}}</div>
-</div>
-{{/each}}`;
+{{#each data}}
+<div class="chat-title">{{title}}</div>
+{{/each}}
+`;
+
+// const MockChatsTemplates = `
+// <div class="chat-title">{{title}}</div>
+// `;
 
 class MockChats extends Block {
     constructor(props) {
-        super("div", props);
+        super("div", props); 
     }
 
+
     render() {
-        return this.compile(MockChatsTemplate, { mockChats });
+        console.log(this.compile(MockChatsTemplate, {data: mockChats}));
+        return this.compile(MockChatsTemplate, {data: mockChats});
     }
 }
 
@@ -108,12 +119,17 @@ class Sidebar extends Block {
             ...props,
             events: props.events,
             search: new SearchFieldComponent({}),
-            mockChats: new MockChats({})
+            chats: new MockChats({})
         });
+        // this.children.chat =  new MockChats({});
     }
 
     render() {
-        return this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, mockChats:this.props.mockChats});
+        // console.log(this);
+        new MockChats({});
+        // console.log(chatss);
+        // console.log(this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, data:mockChats, chats: this.props.chats}));
+        return this.compile(SidebarTemplate, {chatItem: "chatItem", search:this.props.search, data:mockChats, chats: this.props.chats});
     }
 
 }

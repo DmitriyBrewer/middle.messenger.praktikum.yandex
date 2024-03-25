@@ -22,6 +22,7 @@ class Block {
     private _id: number | null = null;
 
     constructor(tagName = "div", propsAndChildren = {}) {
+        console.log(propsAndChildren);
         const { children, props } = this._getChildren(propsAndChildren);
         this.children = children;
 
@@ -146,7 +147,6 @@ class Block {
             
             stub.replaceWith(child.getContent());
         });
-
 
         return fragment.content;
     }

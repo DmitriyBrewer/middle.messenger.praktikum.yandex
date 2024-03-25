@@ -2,7 +2,19 @@
     {{> Link text="Профиль" href='/profile'}}
     {{{ search }}}
     <ul class="chats">
-        {{{ mockChats }}}
+        {{!-- {{#each data}} --}}
+        {{!-- <div class="chat-item">
+            <div class="chat-title">{{title}}</div>
+            <div class="chat-message">{{message}}</div>
+            <div class="chat-time">{{time}}</div>
+            <div class="chat-counter">{{counter}}</div>
+        </div> --}}
+     
+        {{!-- {{/each }} --}}
+           <div>
+        {{{ chats }}}
+        {{{ lists }}}
+        </div>
     </ul>
 </div>
 

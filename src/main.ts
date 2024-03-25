@@ -2,9 +2,11 @@ import "./index.scss";
 import { allPartials } from "./lib/partials";
 import { registerHandlebarsPartials } from "./lib/register";
 import renderComponent from "./lib/renderComponent";
+import Block from "./lib/test/block";
 import AuthPage from "./pages/auth";
 import ChatPage from "./pages/chat";
 import RegistrationPage from "./pages/registration";
+import Button from "./ui/button";
 
 registerHandlebarsPartials(allPartials);
 
@@ -18,6 +20,7 @@ const registration = new RegistrationPage({
 
 const chat = new ChatPage({
 });
+
 
 
 
