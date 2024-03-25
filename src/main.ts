@@ -47,7 +47,13 @@ class MockChats extends Block {
 }
 
 const chatList = new MockChats({
-    data:[{text:"sdsd"},{text:"sda"}]
+    data:[{text:"sdsd",events: {
+        click:(e)=>{
+            console.log("click1");}
+    }},{text:"sda",events: {
+        click:(e)=>{
+            console.log("click2");}
+    }}]
 
 });
 
