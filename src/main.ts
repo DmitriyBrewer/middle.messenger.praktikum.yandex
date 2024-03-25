@@ -30,7 +30,14 @@ const MockChatsTemplate = `
 
 class MockChats extends Block {
     constructor(props) {
-        super("span", props); 
+        super("span", {...props, data:[{text:"sdsd",events: {
+            click:(e)=>{
+                // this.setProps({text:"s"});
+                console.log(this);}
+        }},{text:"sda",events: {
+            click:(e)=>{
+                console.log("click2");}
+        }}]}); 
         this.children.button = [];
         this.props.data.forEach(itemProps => {
             const item = new Button(itemProps);
@@ -47,13 +54,14 @@ class MockChats extends Block {
 }
 
 const chatList = new MockChats({
-    data:[{text:"sdsd",events: {
-        click:(e)=>{
-            console.log("click1");}
-    }},{text:"sda",events: {
-        click:(e)=>{
-            console.log("click2");}
-    }}]
+    // data:[{text:"sdsd",events: {
+    //     click:(e)=>{
+    //         this.setProps({text:"s"});
+    //         console.log("click1");}
+    // }},{text:"sda",events: {
+    //     click:(e)=>{
+    //         console.log("click2");}
+    // }}]
 
 });
 
