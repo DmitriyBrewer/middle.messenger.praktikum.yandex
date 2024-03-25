@@ -1,8 +1,6 @@
 import "./index.scss";
 import Block from "../../lib/test/block";
-// export { default as ChatPage } from "./index.hbs?raw";
 import ChatTemplate from "./index.hbs?raw";
-import { compiledTemplate } from "../../lib/compileTemplate";
 import Sidebar from "../../components/sidebar";
 
 class ChatPage extends Block {

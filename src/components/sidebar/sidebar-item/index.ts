@@ -1,45 +1,57 @@
-import renderTemplate from "../../../lib/render";
 import "./index.scss";
+import ChatItemTemplate from "./index.hbs?raw";
+import Block from "../../../lib/test/block";
+class ChatItem extends Block {
+    constructor(props) {
+        super("div",props);
+    }
+    render() {
+        
+        return this.compile(ChatItemTemplate, {title:"title", message:"message", time:"time",counter:"0" });
+    }
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-    const chatsList = document.querySelectorAll(".chat");
+export default ChatItem;
 
-    chatsList.forEach((chat) => {
-        chat.addEventListener("click", function () {
-            chatsList.forEach((chat) => {
-                chat.classList.remove("chat_active");
-            });
+// document.addEventListener("DOMContentLoaded", function () {
+//     const chatsList = document.querySelectorAll(".chat");
 
-            chat.classList.add("chat_active");
-            const chatMain = chat.querySelector(".chat__main");
-            const chatMinor = chat.querySelector(".chat__minor");
+//     chatsList.forEach((chat) => {
+//         chat.addEventListener("click", function () {
+//             chatsList.forEach((chat) => {
+//                 chat.classList.remove("chat_active");
+//             });
 
-            if (chatMain && chatMinor) {
-                const chatTitle =
-                    chatMain.querySelector(".chatTitle")?.textContent ||
-                    "Нет данных";
-                const chatMessage =
-                    chatMain.querySelector(".chat__message")?.textContent ||
-                    "Нет данных";
-                const chatTime =
-                    chatMinor.querySelector(".chat__date")?.textContent ||
-                    "Нет данных";
+//             chat.classList.add("chat_active");
+//             const chatMain = chat.querySelector(".chat__main");
+//             const chatMinor = chat.querySelector(".chat__minor");
 
-                const chatWindowTemplate = renderTemplate("ChatWindow", {
-                    data: {
-                        title: chatTitle,
-                        message: chatMessage,
-                        date: chatTime,
-                    },
-                });
+//             if (chatMain && chatMinor) {
+//                 const chatTitle =
+//                     chatMain.querySelector(".chatTitle")?.textContent ||
+//                     "Нет данных";
+//                 const chatMessage =
+//                     chatMain.querySelector(".chat__message")?.textContent ||
+//                     "Нет данных";
+//                 const chatTime =
+//                     chatMinor.querySelector(".chat__date")?.textContent ||
+//                     "Нет данных";
 
-                document.querySelector(".chatWindowWrapper")!.innerHTML =
-                    chatWindowTemplate;
-            } else {
-                console.log("Ошибка: Не удалось найти данные чата");
-            }
-        });
-    });
-});
+//                 const chatWindowTemplate = renderTemplate("ChatWindow", {
+//                     data: {
+//                         title: chatTitle,
+//                         message: chatMessage,
+//                         date: chatTime,
+//                     },
+//                 });
 
-export { default as ChatItem } from "./index.hbs?raw";
+//                 document.querySelector(".chatWindowWrapper")!.innerHTML =
+//                     chatWindowTemplate;
+//             } else {
+//                 console.log("Ошибка: Не удалось найти данные чата");
+//             }
+//         });
+//     });
+// });
+
+// export { default as ChatItem } from "./index.hbs?raw";

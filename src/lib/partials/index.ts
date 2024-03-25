@@ -24,7 +24,7 @@ import { ProfilePage } from "../../pages/profile";
 import { ProfileChangeDataPage } from "../../pages/profile-change-data";
 import { ProfileChangePasswordPage } from "../../pages/profile-change-password";
 import { RegistrationPage } from "../../pages/registration";
-import { Avatar } from "../../ui/avatar";
+// import { Avatar } from "../../ui/avatar";
 import { ButtonImage } from "../../ui/button-image";
 import { FormTemplate } from "../../ui/form";
 import { InputTemplate } from "../../ui/input";

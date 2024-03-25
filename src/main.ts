@@ -19,46 +19,45 @@ registerHandlebarsPartials(allPartials);
 //     buttonText: "Регистрация"
 // });
 
-// const chat = new ChatPage({
-// });
-
-const MockChatsTemplate = `
-<div>
-{{{button}}}
-</div>
-`;
-
-class MockChats extends Block {
-    constructor(props) {
-        super("span", {...props}); 
-        this.children.button = [];
-        this.props.data.forEach(itemProps => {
-            const item = new Button({...itemProps,
-                events: {click:()=>item.setProps({text:"s", disabled:true})}
-            });
-            this.children.button.push(item);
-        });
-        this.props.button = this.children.button;
-    }
-
-    render() {    
-        console.log(this);  
-        console.log(this.children.button); 
-        return this.compile(MockChatsTemplate, {});
-    }
-}
-
-const chatList = new MockChats({
-    data:[{text:"sdsd",events: {
-        click:(e)=>{
-            // this.setProps({text:"s"});
-            console.log("click1");}
-    }},{text:"sda",events: {
-        click:(e)=>{
-            console.log("click2");}
-    }}]
-
+const chat = new ChatPage({
 });
 
-renderComponent(".root", chatList);
+// const MockChatsTemplate = `
+// <div>
+// {{{button}}}
+// </div>
+// `;
+
+// class MockChats extends Block {
+//     constructor(props) {
+//         super("span", {...props}); 
+//         this.children.button = [];
+//         this.props.data.forEach(itemProps => {
+//             const item = new Button({...itemProps,
+//                 events: {click:()=>item.setProps({text:"s", disabled:true})}
+//             });
+//             this.children.button.push(item);
+//         });
+//         this.props.button = this.children.button;
+//     }
+
+//     render() {    
+//         console.log(this);  
+//         console.log(this.children.button); 
+//         return this.compile(MockChatsTemplate, {});
+//     }
+// }
+
+// const chatList = new MockChats({
+//     data:[{text:"sdsd",events: {
+//         click:(e)=>{
+//             // this.setProps({text:"s"});
+//             console.log("click1");}
+//     }},{text:"sda",events: {
+//         click:(e)=>{
+//             console.log("click2");}
+//     }}]
+// });
+
+renderComponent(".root", chat);
 

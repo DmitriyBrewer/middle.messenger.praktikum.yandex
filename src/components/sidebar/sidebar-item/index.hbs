@@ -1,8 +1,10 @@
 <li class="chat">
     <div class="chat__info">
-        {{> Avatar}}
+        {{!-- {{> Avatar}} --}}
+        <img src="/assets/avatar.png" alt="chatAvatar" class="avatar" />
         <div class="chat__main">
-            {{> ChatTitle }}
+            {{!-- {{> ChatTitle }} --}}
+            <h1 class="chatTitle">{{title}}</h1>
             <p class="chat__message">{{message}}</p>
         </div>
     </div>
