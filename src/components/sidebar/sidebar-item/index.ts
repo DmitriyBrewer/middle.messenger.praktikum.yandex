@@ -6,8 +6,13 @@ class ChatItem extends Block {
         super("div",props);
     }
     render() {
-        
-        return this.compile(ChatItemTemplate, {title:"title", message:"message", time:"time",counter:"0" });
+        console.log(this);
+        return this.compile(ChatItemTemplate, {
+            title:this.props.title, 
+            message:this.props.message, 
+            time:this.props.time,
+            counter:this.props.counter
+        });
     }
 }
 
