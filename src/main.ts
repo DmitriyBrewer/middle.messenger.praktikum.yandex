@@ -22,96 +22,20 @@ registerHandlebarsPartials(allPartials);
 // const chat = new ChatPage({
 // });
 
-
-// const mockChats = [
-//     {
-//         title: "Chat1",
-//         message: "Last message 1s",
-//         time: "10:30",
-//         counter: 4,
-//     },
-//     {
-//         title: "Chat2",
-//         message: "Last message 2",
-//         time: "11:45",
-//         counter: 2,
-//     },
-// ];
-
-// const MockChatsTemplate = `
-// {{#each data}}
-// <div class="chat-title">{{title}}</div>
-// {{/each}}
-// `;
-
-// const MockChatsTemplate = `
-// {{#each data}}
-// {{{ item }}}
-// {{/each}}
-// `;
-
-// const itemTemplate ="<div>{{title}}</div>";
-
-// class Item extends Block {
-//     constructor(props) {
-//         super("div", props); 
-//     }
-
-//     render() {      
-//         return this.compile(itemTemplate, {title: "s"});
-//     }
-// }
-// class MockChats extends Block {
-//     constructor(props) {
-//         super("div", {...props, item:new Item({})}); 
-//     }
-
-
-//     render() {      
-//         return this.compile(MockChatsTemplate, {});
-//     }
-// }
-
-// const chatList = new MockChats({});
-
-const mockChats = {
-    items: [
-        { text: "Item 1" },
-        { text: "Item 2" },
-    ]
-};
-
-const itemTemplate ="<div>{{title}}</div>";
-
-// const MockChatsTemplate = `
-// <div>
-// {{#each items}}
-//     {{> itemTemplate}}
-// {{/each}}
-// </div>
-// `;
-
 const MockChatsTemplate = `
 <div>
 {{{button}}}
 </div>
 `;
 
-// class Item extends Block {
-//     constructor(props) {
-//         super("div", props); 
-//     }
-
-//     render() {      
-//         console.log(this.compile(itemTemplate, this.props));
-//         return this.compile(itemTemplate, this.props);
-//     }
-// }
-
 class MockChats extends Block {
     constructor(props) {
         super("span", props); 
-        this.children.button = [new Button({text:"lll"}),new Button({text:"rtrtS"})];
+        this.children.button = [];
+        this.props.data.forEach(itemProps => {
+            const item = new Button(itemProps);
+            this.children.button.push(item);
+        });
         this.props.button = this.children.button;
     }
 
@@ -119,25 +43,13 @@ class MockChats extends Block {
         console.log(this);  
         console.log(this.children.button); 
         return this.compile(MockChatsTemplate, {});
-
     }
 }
 
-
-
-
-
 const chatList = new MockChats({
-//     button:[
-//     { text: "Item 1" },
-//     { text: "Item 2" },
-// ],
-    // button: new Button({text:"ssS"})
+    data:[{text:"sdsd"},{text:"sda"}]
+
 });
-// const chatList = new MockChats({});
 
 renderComponent(".root", chatList);
 
-// profile.setProps({
-//     buttonText: "Change namess"
-// });
