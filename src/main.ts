@@ -19,13 +19,13 @@ import Button from "./ui/button";
 
 registerHandlebarsPartials(allPartials);
 
-// const profile = new AuthPage({
-//     buttonText: "Вход",
-// });
+const auth = new AuthPage({
+    buttonText: "Вход",
+});
 
-// const registration = new RegistrationPage({
-//     buttonText: "Регистрация"
-// });
+const registration = new RegistrationPage({
+    buttonText: "Регистрация"
+});
 
 const chat = new ChatPage({
 });
@@ -86,42 +86,5 @@ const profileChangeData = new ProfilePage({
     data: mockProfile
 });
 
-// const MockChatsTemplate = `
-// <div>
-// {{{button}}}
-// </div>
-// `;
-
-// class MockChats extends Block {
-//     constructor(props) {
-//         super("span", {...props}); 
-//         this.children.button = [];
-//         this.props.data.forEach(itemProps => {
-//             const item = new Button({...itemProps,
-//                 events: {click:()=>item.setProps({text:"s", disabled:true})}
-//             });
-//             this.children.button.push(item);
-//         });
-//         this.props.button = this.children.button;
-//     }
-
-//     render() {    
-//         console.log(this);  
-//         console.log(this.children.button); 
-//         return this.compile(MockChatsTemplate, {});
-//     }
-// }
-
-// const chatList = new MockChats({
-//     data:[{text:"sdsd",events: {
-//         click:(e)=>{
-//             // this.setProps({text:"s"});
-//             console.log("click1");}
-//     }},{text:"sda",events: {
-//         click:(e)=>{
-//             console.log("click2");}
-//     }}]
-// });
-
-renderComponent(".root", profileChangeData);
+renderComponent(".root", auth);
 

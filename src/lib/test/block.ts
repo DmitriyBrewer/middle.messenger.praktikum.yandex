@@ -1,13 +1,18 @@
 import { compiledTemplate } from "../compileTemplate";
 import EventBus from "./eventBus";
 
+type BlockChildren  =  { [key: string]: unknown }
+
+
 export interface BlockProps {
     [key: string]: unknown;
+    children?: BlockChildren;
+    settings?:boolean;
 }
 
-type BlockFunction = (...args: unknown[]) => unknown;
+type BlockFunction<P = BlockProps> = (props: P | NonNullable<unknown>) => unknown;
 
-class Block {
+class Block<P = BlockProps> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -16,16 +21,15 @@ class Block {
     };
 
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props: BlockProps } | null = null;
-    public props: BlockProps;
+    private _meta: { tagName: string; props: P | NonNullable<unknown> } | null = null;
+    public props: P| NonNullable<unknown>;
+    public children:BlockChildren;
     private eventBus: () => EventBus;
     private _id: number | null = null;
 
-    constructor(tagName = "div", propsAndChildren = {}) {
-        console.log(propsAndChildren);
+    constructor(tagName = "div", propsAndChildren: { props: P | NonNullable<unknown>, children?: BlockChildren } = { props: {} }) {
         const { children, props } = this._getChildren(propsAndChildren);
         this.children = children;
-        console.log(props);
         const eventBus = new EventBus();
         this._meta = {
             tagName,
@@ -45,7 +49,7 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildren(propsAndChildren) {
+    _getChildren(propsAndChildren:{ props: Partial<P>, children?: { [key: string]: unknown } }) {
         const children = {};
         const props = {};
 
