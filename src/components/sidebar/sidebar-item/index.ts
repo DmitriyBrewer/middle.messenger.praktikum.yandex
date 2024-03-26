@@ -6,7 +6,6 @@ class ChatItem extends Block {
         super("div",props);
     }
     render() {
-        console.log(this);
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
             message:this.props.message, 

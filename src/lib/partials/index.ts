@@ -24,7 +24,7 @@ import { ProfilePage } from "../../pages/profile";
 import { ProfileChangeDataPage } from "../../pages/profile-change-data";
 import { ProfileChangePasswordPage } from "../../pages/profile-change-password";
 import { RegistrationPage } from "../../pages/registration";
-// import { Avatar } from "../../ui/avatar";
+import { Avatar } from "../../ui/avatar";
 import { ButtonImage } from "../../ui/button-image";
 import { FormTemplate } from "../../ui/form";
 import { InputTemplate } from "../../ui/input";
@@ -50,13 +50,13 @@ export const allPartials: Record<string, string> = {
     // Sidebar: SidebarLayout,
     // SearchField: SearchField,
     // ChatItem: ChatItem,
-    // Avatar: Avatar,
-    // ChatTitle: ChatTitle,
+    Avatar: Avatar,
+    ChatTitle: ChatTitle,
     // ChatWindow: ChatWindow,
     // ChatMessage: ChatMesssage,
-    // ChatText: ChatText,
-    // ChatHeader: ChatHeader,
-    // ChatSend: ChatSend,
+    ChatText: ChatText,
+    ChatHeader: ChatHeader,
+    ChatSend: ChatSend,
     // ChatMenu: ChatMenu,
     // ProfilePage: ProfilePage,
     // ProfileParam: ProfileParam,
