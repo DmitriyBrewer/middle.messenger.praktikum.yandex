@@ -84,7 +84,7 @@ class ChatPage extends Block {
         super("div",{
             ...props,
             events: props.events,
-            sidebar: new Sidebar({data: mockChats, activeChat: null}),
+            sidebar: new Sidebar({data: mockChats}),
             window: new ChatWindow({
                 activeChat: mockChats[0]
             })

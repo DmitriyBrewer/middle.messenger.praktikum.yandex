@@ -1,2 +1,18 @@
 import "./index.scss";
-export { default as ChatTitle } from "./index.hbs?raw";
+import   ChatTitleTemplate from "./index.hbs?raw";
+import Block from "../../lib/test/block";
+
+class ChatTitle extends Block {
+    constructor(props) {
+        super("span", props); 
+    }
+
+    render() {
+        return this.compile(ChatTitleTemplate, {
+            title:this.props.title
+        });
+    }
+}
+
+
+export default ChatTitle;

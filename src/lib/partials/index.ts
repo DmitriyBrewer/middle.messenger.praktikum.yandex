@@ -1,11 +1,11 @@
 import { ButtonWrapper } from "../../components/button-wrapper";
-import { ChatTitle } from "../../components/chat-title";
+// import { ChatTitle } from "../../components/chat-title";
 import { ChatWindow } from "../../components/chat-window";
-import { ChatHeader } from "../../components/chat-window/chat-header";
+// import { ChatHeader } from "../../components/chat-window/chat-header";
 import { ChatMenu } from "../../components/chat-window/chat-menu";
 import { ChatMesssage } from "../../components/chat-window/chat-message";
 import { ChatSend } from "../../components/chat-window/chat-send";
-import { ChatText } from "../../components/chat-window/chat-text";
+// import { ChatText } from "../../components/chat-window/chat-text";
 import { FieldWrapper } from "../../components/field-wrapper";
 import { ProfileContent } from "../../components/profile/profile-content";
 import { ProfileParam } from "../../components/profile/profile-param";
@@ -51,11 +51,11 @@ export const allPartials: Record<string, string> = {
     // SearchField: SearchField,
     // ChatItem: ChatItem,
     Avatar: Avatar,
-    ChatTitle: ChatTitle,
+    // ChatTitle: ChatTitle,
     // ChatWindow: ChatWindow,
     // ChatMessage: ChatMesssage,
-    ChatText: ChatText,
-    ChatHeader: ChatHeader,
+    // ChatText: ChatText,
+    // ChatHeader: ChatHeader,
     ChatSend: ChatSend,
     // ChatMenu: ChatMenu,
     // ProfilePage: ProfilePage,

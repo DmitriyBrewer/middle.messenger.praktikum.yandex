@@ -1,2 +1,20 @@
 import "./index.scss";
-export { default as ChatText } from "./index.hbs?raw";
+import ChatTextTemplate  from "./index.hbs?raw";
+import Block from "../../../lib/test/block";
+
+
+class ChatText extends Block {
+    constructor(props) {
+        super("span", props); 
+    }
+
+    render() {
+        return this.compile(ChatTextTemplate, {
+            message: this.props.message,
+            date:this.props.date,
+            my:this.props.message ? "__my" : ""
+        });
+    }
+}
+
+export default ChatText;

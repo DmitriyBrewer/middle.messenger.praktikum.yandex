@@ -1,7 +1,8 @@
 <nav class="chatHeader">
     <div class="chatHeader__info">
         {{> Avatar}}
-        {{> ChatTitle title=data.title}}
+        {{{ chatTitle }}}
+        {{!-- {{> ChatTitle title=title}} --}}
     </div>
         {{#> ButtonImage className="chatHeader__menu" type="button"}}
             {{> Image src="/assets/menu.svg" alt="menu" className='chatHeader__menuImage'}}
