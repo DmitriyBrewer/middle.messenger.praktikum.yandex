@@ -84,10 +84,10 @@ class ChatPage extends Block {
         super("div",{
             ...props,
             events: props.events,
-            testProps:"sdsad",
             sidebar: new Sidebar({data: mockChats}),
             window: new ChatWindow({
-                activeChat: mockChats[0]
+                activeChat: mockChats[0],
+                empty: false
             })
         });
     }
