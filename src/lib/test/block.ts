@@ -153,7 +153,6 @@ class Block {
                 const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
                 console.log(child._id);
                 child.forEach(item => {
-                    console.log(this);
                     if (item instanceof Block) {
                         this.props.className && stub.classList.add(this.props.className);
                         stub.appendChild(item.getContent());
