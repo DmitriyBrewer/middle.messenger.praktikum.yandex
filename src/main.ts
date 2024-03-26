@@ -1,3 +1,9 @@
+import ProfileFootMenu from "./components/profile/profile-foot-menu";
+import ProfileInputList from "./components/profile/profile-input-list";
+import ProfileParam from "./components/profile/profile-param";
+import ProfileParamsList from "./components/profile/profile-param-list";
+import ProfilePrev from "./components/profile/profile-prev";
+import ProfileHeader from "./components/profile/profle-header";
 import SearchFieldComponent from "./components/sidebar/search-field";
 import "./index.scss";
 import { allPartials } from "./lib/partials";
@@ -34,8 +40,50 @@ const errorPage404 = new ErrorPage({
     subtitle:"Не туда попали"
 });
 
+
+const mockProfile = {
+    email:"pochta@yandex.ru",
+    login:"ivanivanov",
+    first_name:"Федот",
+    last_name: "Тутов",
+    chat_name: "feDoT",
+    phone: "8 888 888 88 88"
+};
+
 const profile = new ProfilePage({
-    
+    profilePrev: new ProfilePrev({
+        href:"/chat",
+        alt:"prev",
+        src: "/assets/arrow-left.svg"
+    }),
+    profileHeader: new ProfileHeader({
+        name: mockProfile.first_name
+    }),
+    profileParamList: new ProfileParamsList({
+        data:mockProfile,
+    }),
+    footMenu: new ProfileFootMenu({}),
+    data: mockProfile
+});
+
+const profileChangeData = new ProfilePage({
+    profilePrev: new ProfilePrev({
+        href:"/profile",
+        alt:"prev",
+        src: "/assets/arrow-left.svg"
+    }),
+    profileHeader: new ProfileHeader({
+        name: mockProfile.first_name
+    }),
+    profileParamList: new ProfileInputList({
+        data:mockProfile,
+    }),
+    footMenu: new Button({
+        text: "Сохранить", 
+        type:"buttton",
+        className: "profileChangeButton"
+    }),
+    data: mockProfile
 });
 
 // const MockChatsTemplate = `
@@ -75,5 +123,5 @@ const profile = new ProfilePage({
 //     }}]
 // });
 
-renderComponent(".root", profile);
+renderComponent(".root", profileChangeData);
 

@@ -34,3 +34,15 @@
     align-items: center;
     row-gap: var(--g12);
 }
+
+.profileChangeButton {
+    cursor: pointer;
+    width: 520px;
+    border-radius: var(--br);
+    border: none;
+    height: 37px;
+    background-color: var(--primary);
+    color: var(--primary-text-white);
+    font-weight: var(--fw-button-text);
+    font-size: var(--fs-button-text);
+}
