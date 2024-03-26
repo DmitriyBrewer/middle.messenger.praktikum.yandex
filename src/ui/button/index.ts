@@ -9,9 +9,10 @@ class Button extends Block {
 
     render() {
         return this.compile(ButtonTemplate, {
-            type: this.props.type === "button" ? "submit" : "reset",
-            text: this.props.text || "54",
-            disabled: this.props.disabled
+            type: this.props.type,
+            text: this.props.text,
+            disabled: this.props.disabled,
+            className: this.props.className
         });
     }
 }

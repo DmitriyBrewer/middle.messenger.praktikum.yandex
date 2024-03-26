@@ -3,6 +3,15 @@
     grid-template-columns: 64px 3fr;
     height: 100%;
 
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: var(--g54);
+        background-color: var(--primary-bg);
+    }
+
     &__buttonWrapper {
         display: flex;
         width: 100%;
@@ -15,4 +24,13 @@
         border: none;
         color: var(--primary-error);
     }
+}
+
+.profileParams {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: var(--g12);
 }

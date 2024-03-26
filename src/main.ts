@@ -7,6 +7,7 @@ import Block from "./lib/test/block";
 import AuthPage from "./pages/auth";
 import ChatPage from "./pages/chat";
 import ErrorPage from "./pages/error-page";
+import ProfilePage from "./pages/profile";
 import RegistrationPage from "./pages/registration";
 import Button from "./ui/button";
 
@@ -31,6 +32,10 @@ const errorPage500 = new ErrorPage({
 const errorPage404 = new ErrorPage({
     title:"404",
     subtitle:"Не туда попали"
+});
+
+const profile = new ProfilePage({
+    
 });
 
 // const MockChatsTemplate = `
@@ -70,5 +75,5 @@ const errorPage404 = new ErrorPage({
 //     }}]
 // });
 
-renderComponent(".root", chat);
+renderComponent(".root", profile);
 

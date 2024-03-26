@@ -1,4 +1,4 @@
-{{#> ProfileRoot}}
+{{!-- {{#> ProfileRoot}}
     {{>ProfilePrev href='/chat' src='/assets/arrow-left.svg' alt='prev'}}
         {{#> ProfileContent}}
         {{> ProfileHeader}}
@@ -21,4 +21,23 @@
         {{/ ProfileParams}}
 {{/ ProfileContent}}
 
-{{/ ProfileRoot}}
+{{/ ProfileRoot}} --}}
+
+<div class="profile">
+    {{{ profilePrev }}}
+    <div class="profile__content">
+    {{{ profileHeader }}}
+    {{{ profileParamList }}}
+    <div class="profileParams">
+        <div class="profileParam">
+        {{> Link text='Изменить данные' href='/profile/change'}}
+        </div>
+        <div class="profileParam">
+        {{> Link text='Изменить пароль' href='/profile/change/password'}}
+        </div>
+        <div class="profile__buttonWrapper">
+        {{{ logout }}}
+        </div>
+    </div>
+    </div>
+    </div>

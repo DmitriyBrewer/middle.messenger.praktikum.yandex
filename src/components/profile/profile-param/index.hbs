@@ -1,4 +1,4 @@
-<div class="profileParam">
+{{!-- <div class="profileParam">
     {{#if textLink}}
         {{> Link text=textLink href=href}}
     {{else}}
@@ -10,4 +10,13 @@
             <p class="profileParam__value">{{value}}</p>
         {{/if}}
     {{/if}}
+</div> --}}
+{{!-- {{{ param }}} --}}
+<div class="profileParam">
+    <p class="profileParam__param">
+    {{{ param }}}
+    </p>
+    <p class="profileParam__value">
+    {{{ value }}}
+    </p>
 </div>
