@@ -1,18 +1,18 @@
 import { compiledTemplate } from "../compileTemplate";
 import EventBus from "./eventBus";
 
-type BlockChildren  =  { [key: string]: unknown }
+type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
 
 
-export interface BlockProps {
+type BlockProps = {
     [key: string]: unknown;
     children?: BlockChildren;
-    settings?:boolean;
 }
 
-type BlockFunction<P = BlockProps> = (props: P | NonNullable<unknown>) => unknown;
+// type BlockFunction<P = BlockProps> = (props: P) => unknown;
+type PropsType<P = BlockProps> = P | NonNullable<unknown>
 
-class Block<P = BlockProps> {
+class Block {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -21,13 +21,13 @@ class Block<P = BlockProps> {
     };
 
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props: P | NonNullable<unknown> } | null = null;
-    public props: P| NonNullable<unknown>;
+    private _meta: { tagName: string; props: PropsType } | null = null;
+    public props: PropsType;
     public children:BlockChildren;
     private eventBus: () => EventBus;
     private _id: number | null = null;
 
-    constructor(tagName = "div", propsAndChildren: { props: P | NonNullable<unknown>, children?: BlockChildren } = { props: {} }) {
+    constructor(tagName = "div", propsAndChildren: { props: PropsType, children?: BlockChildren } = { props: {} }) {
         const { children, props } = this._getChildren(propsAndChildren);
         this.children = children;
         const eventBus = new EventBus();
@@ -36,7 +36,7 @@ class Block<P = BlockProps> {
             props,
         };
 
-        if (props.settings?.withInternalID) {
+        if (props.witchId) {
             this._id = Math.floor(100000 + Math.random() * 900000);
         }
 
@@ -49,9 +49,9 @@ class Block<P = BlockProps> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildren(propsAndChildren:{ props: Partial<P>, children?: { [key: string]: unknown } }) {
-        const children = {};
-        const props = {};
+    _getChildren(propsAndChildren:{ props: PropsType, children?: BlockChildren }) {
+        const children:BlockChildren = {};
+        const props:BlockProps = {};
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
             if (value instanceof Block) {
