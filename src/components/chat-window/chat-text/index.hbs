@@ -1,4 +1,4 @@
-{{#> ChatMessage}}
+<div class="chatMessage {{#if my}}chatMessage__my{{/if}}">
 <div class="chatText {{#if my}}chatText__my{{/if}}">
     <p class="chatText__messageText">{{message}}</p>
 
@@ -9,4 +9,4 @@
         <p class="chatText__dateText">{{date}}</p>
     </div>
 </div>
-{{/ ChatMessage}}
+</div>

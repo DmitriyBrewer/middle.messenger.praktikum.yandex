@@ -3,7 +3,7 @@ import  ChatTextListTemplate  from "./index.hbs?raw";
 import Block from "../../lib/test/block";
 import ChatText from "../chat-window/chat-text";
 
-class ChatTextList extends Block {
+class MessageList extends Block {
     constructor(props) {
         super("span", props); 
         this.children.list = [];
@@ -12,7 +12,7 @@ class ChatTextList extends Block {
             this.children.list.push(item);
         });
         this.props.list = this.children.list;
-
+        this.props.className = "chatLists";
     }
 
     render() {    
@@ -20,4 +20,4 @@ class ChatTextList extends Block {
     }
 }
 
-export default ChatTextList;
+export default MessageList;
