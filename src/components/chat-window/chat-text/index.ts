@@ -12,7 +12,7 @@ class ChatText extends Block {
         return this.compile(ChatTextTemplate, {
             message: this.props.message,
             date:this.props.date,
-            my:this.props.message ? "__my" : ""
+            my:this.props.my
         });
     }
 }
