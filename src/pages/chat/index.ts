@@ -1,5 +1,5 @@
 import "./index.scss";
-import Block from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/test/block";
 import ChatTemplate from "./index.hbs?raw";
 import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
@@ -80,7 +80,7 @@ const mockChats = [
 ];
 
 class ChatPage extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("div",{
             ...props,
             events: props.events,

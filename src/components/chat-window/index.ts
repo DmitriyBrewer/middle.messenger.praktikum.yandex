@@ -1,11 +1,11 @@
 import "./index.scss";
 import  ChatWindowTemplate  from "./index.hbs?raw";
-import Block from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/test/block";
 import ChatHeader from "./chat-header";
 import MessageList from "../message-list";
 
 class ChatWindow extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("span", {...props,
             chatHeader: new ChatHeader({title: props.activeChat.title}),
             chatTexts: new MessageList({

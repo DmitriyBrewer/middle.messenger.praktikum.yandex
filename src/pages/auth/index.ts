@@ -1,19 +1,11 @@
 import TextFieldComponent from "../../components/text-field";
-import Block from "../../lib/test/block";
+import Block, {  BlockProps } from "../../lib/test/block";
 import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
 
-interface AuthPageProps {
-    login: TextFieldComponent;
-    password: TextFieldComponent;
-    button: Button;
-    buttonText: string;
-    errorLogin: string;
-    errorPassword: string;
-}
 
-class AuthPage extends Block<AuthPageProps> {
-    constructor(props: AuthPageProps) {
+class AuthPage extends Block {
+    constructor(props:BlockProps) {
         super("div", {
             ...props,
             login: new TextFieldComponent({
@@ -23,10 +15,10 @@ class AuthPage extends Block<AuthPageProps> {
                 placeholder: "Логин",
                 helper: "Логин",
                 autocomplete: "username",
-                onChange: (value) => {
+                onChange: (value:string) => {
                     this.setProps({ buttonText: value });
                 },
-                blur: (value) => {
+                blur: (value:string) => {
                     this.validateLogin(value);
                 }
             }),
@@ -38,10 +30,10 @@ class AuthPage extends Block<AuthPageProps> {
                 helper: "Пароль",
                 autocomplete: "current-password",
                 pattern: "(?=^.{8,40}$)(?=.*[A-Z])(?=.*\\d).*",
-                onChange: (value) => {
+                onChange: (value:string) => {
                     this.setProps({ buttonText: value });
                 },
-                blur: (value) => {
+                blur: (value:string) => {
                     this.validatePassword(value);
                 }
             }),
@@ -49,7 +41,7 @@ class AuthPage extends Block<AuthPageProps> {
                 type: "button",
                 text: props.buttonText,
                 events: {
-                    click: event => {
+                    click: (event: Event) => {
                         console.log(event);
                     },
                 },
@@ -58,25 +50,17 @@ class AuthPage extends Block<AuthPageProps> {
         });
     }
 
-    componentDidUpdate(oldProps: AuthPageProps, newProps: AuthPageProps): boolean {
-        if (oldProps.buttonText !== newProps.buttonText) {
-            this.children.button.setProps({ text: newProps.buttonText });
-        }
-
+    componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
-        this.children.button.setProps({ disabled: isButtonDisabled });
-        this.children.password.setProps({ error: newProps.errorPassword });
-        this.children.login.setProps({ error: newProps.errorLogin });
+        this.children.button!.setProps({ disabled: isButtonDisabled });
+        this.children.password!.setProps({ error: newProps.errorPassword });
+        this.children.login!.setProps({ error: newProps.errorLogin });
 
         return true;
     }
 
-    render(): HTMLElement {
-        return this.compile(AuthTemplate, {
-            button: this.props.button,
-            login: this.props.login,
-            password: this.props.password
-        });
+    render() {
+        return this.compile(AuthTemplate, {});
     }
 
     private validateLogin(value: string): void {

@@ -1,9 +1,9 @@
 import "./index.scss";
 import   ChatTitleTemplate from "./index.hbs?raw";
-import Block from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/test/block";
 
 class ChatTitle extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("span", props); 
     }
 

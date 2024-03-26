@@ -7,17 +7,17 @@ import EventBus from "./eventBus";
 //     return value === null || value === undefined;
 // }
 
-type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
+export type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
 
-
+export type Prooops ={ [key: string]: unknown};
 export type BlockProps = {
     [key: string]: unknown;
-    children?: BlockChildren;
+    children?: BlockChildren | unknown;
 }
 
 // type BlockFunction<P = BlockProps> = (props: P) => unknown;
-type PropsType<P = BlockProps> = P | NonNullable<unknown>
-class Block<P = BlockProp> {
+export type PropsType<P = BlockProps> = P | NonNullable<unknown>
+class Block<P = BlockProps> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -32,7 +32,7 @@ class Block<P = BlockProp> {
     private eventBus: () => EventBus;
     private _id: number | string | null = null;
 
-    constructor(tagName = "div", propsAndChildren: { props: PropsType, children?: BlockChildren } = { props: {} }) {
+    constructor(tagName = "div", propsAndChildren={}) {
         const { children, props } = this._getChildren(propsAndChildren);
         this.children = children;
         const eventBus = new EventBus();
@@ -54,7 +54,7 @@ class Block<P = BlockProp> {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildren(propsAndChildren:{ props: PropsType, children?: BlockChildren }) {
+    _getChildren(propsAndChildren:BlockProps) {
         const children:BlockChildren = {};
         const props:BlockProps = {};
 
@@ -190,7 +190,7 @@ class Block<P = BlockProp> {
         return true;
     }
 
-    public setProps = (nextProps: BlockProps): void => {
+    public setProps = (nextProps:BlockProps): void => {
         if (!nextProps) {
             return;
         }
