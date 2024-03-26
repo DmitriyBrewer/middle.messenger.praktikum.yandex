@@ -1,17 +1,22 @@
 import { compiledTemplate } from "../compileTemplate";
 import EventBus from "./eventBus";
 
+// TODO удалить если не нужно
+// function isNil(value) {
+//     console.log(value);
+//     return value === null || value === undefined;
+// }
+
 type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
 
 
-type BlockProps = {
+export type BlockProps = {
     [key: string]: unknown;
     children?: BlockChildren;
 }
 
 // type BlockFunction<P = BlockProps> = (props: P) => unknown;
 type PropsType<P = BlockProps> = P | NonNullable<unknown>
-
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -25,7 +30,7 @@ class Block {
     public props: PropsType;
     public children:BlockChildren;
     private eventBus: () => EventBus;
-    private _id: number | null = null;
+    private _id: string | null = null;
 
     constructor(tagName = "div", propsAndChildren: { props: PropsType, children?: BlockChildren } = { props: {} }) {
         const { children, props } = this._getChildren(propsAndChildren);
@@ -64,10 +69,13 @@ class Block {
     }
 
     private _addEvents() {
-        const {events = {}} = this.props;
+        console.log(this);
+        const {events = {} } = this.props;
+        // const events:PropsType = this.props.events;
+        console.log(events);
     
         Object.keys(events).forEach(eventName => {
-            this._element.addEventListener(eventName, events[eventName]);
+            this._element!.addEventListener(eventName, events[eventName]);
         });
     }
 
@@ -77,7 +85,7 @@ class Block {
             const { events = {} } = this.props;
 
             Object.keys(events).forEach(eventName => {
-                this._element.removeEventListener(eventName, events[eventName]);
+                this._element!.removeEventListener(eventName, events[eventName]);
             });
 
 
@@ -109,7 +117,7 @@ class Block {
     }
 
     private _componentDidMount(oldProps: BlockProps): void {
-        this.componentDidMount();
+        this.componentDidMount(oldProps);
         
         Object.values(this.children).forEach(child => {
             child.dispatchComponentDidMount();
@@ -117,6 +125,7 @@ class Block {
     }
 
     public componentDidMount(oldProps: BlockProps): void {
+        console.log(oldProps);
     }
 
     public dispatchComponentDidMount(): void {
@@ -134,8 +143,8 @@ class Block {
         this._render();
     }
 
-    compile(template, props) {
-        const propsAndStubs = { ...props };
+    compile(template:string, props: PropsType) {
+        const propsAndStubs:BlockProps = { ...props };
         const _tmpId =  Math.floor(100000 + Math.random() * 900000);
 
         console.log(this.children);
@@ -177,6 +186,7 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
+        console.log(`componentDidUpdate oldProps${oldProps} ${newProps}`);
         return true;
     }
 
@@ -229,7 +239,7 @@ class Block {
                 }
                 const value = target[prop];
                 return typeof value === "function"
-                    ? (value as BlockFunction).bind(target)
+                    ? (value).bind(target)
                     : value;
             },
             set: (target, prop, value) => {
