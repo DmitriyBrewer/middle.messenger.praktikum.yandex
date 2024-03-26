@@ -5,6 +5,7 @@ import ProfileParam from "../../components/profile/profile-param";
 import ProfilePrev from "../../components/profile/profile-prev";
 import ProfileHeader from "../../components/profile/profle-header";
 import Button from "../../ui/button";
+import LinkComponent from "../../ui/link";
 
 const mockProfile = {
     email:"pochta@yandex.ru",
@@ -35,6 +36,43 @@ class ProfileParamsList extends Block {
     }
 }
 
+
+const ProfileFootMenuTemplate = `
+<div class="profileParams">
+<div class="profileParam">
+{{{ linkChange }}}
+</div>
+<div class="profileParam">
+    {{{ linkPasswordChange }}}
+</div>
+<div class="profile__buttonWrapper">
+{{{ logout }}}
+</div>
+</div>`;
+class ProfileFootMenu extends Block {
+    constructor(props) {
+        super("div",{...props,
+            linkChange: new LinkComponent({
+                href:"/profile/change",
+                text:"Изменить данные"
+            }),
+            linkPasswordChange: new LinkComponent({
+                href:"/profile/change/password",
+                text:"Изменить пароль"
+            }),
+            logout: new Button({
+                type:"button", 
+                text:"Выйти",
+                className:"profile__logout"
+            }),
+        });
+    }
+
+    render() {
+        return this.compile(ProfileFootMenuTemplate, {});
+    }
+}
+
 class ProfilePage extends Block {
     constructor(props) {
         super("div",{...props,
@@ -49,38 +87,14 @@ class ProfilePage extends Block {
             profileParamList: new ProfileParamsList({
                 data:mockProfile,
             }),
-            logout: new Button({
-                type:"button", 
-                text:"Выйти",
-                className:"profile__logout"
-            })
+            footMenu: new ProfileFootMenu({})
+
         });
     }
 
     render() {
         return this.compile(ProfilePageTemplate, {});
     }
-
 }
 
 export default ProfilePage;
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     if (window.location.href.includes("/profile")) {
-//         const profile = renderTemplate("ProfilePage");
-//         document.querySelector(".root")!.innerHTML = profile;
-//     }
-
-//     const chatLink = document.querySelector("a[href='/profile']");
-//     if (chatLink) {
-//         chatLink.addEventListener("click", (event) => {
-//             event.preventDefault();
-//             const profilePage = renderTemplate("ProfilePage");
-//             document.querySelector(".root")!.innerHTML = profilePage;
-
-//             window.history.pushState({}, "", "/profile");
-//         });
-//     }
-// });
-
-// export { default as ProfilePage } from "./index.hbs?raw";

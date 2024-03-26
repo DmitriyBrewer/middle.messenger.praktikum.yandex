@@ -1,4 +1,4 @@
-{{#> ProfileRoot}}
+{{!-- {{#> ProfileRoot}}
     {{>ProfilePrev href='/profile' src='/assets/arrow-left.svg' alt='prev'}}
         {{#> ProfileContent isForm='true'}}
         {{> ProfileHeader}}
@@ -35,4 +35,10 @@
 
 {{/ ProfileContent}}
 
-{{/ ProfileRoot}}
+{{/ ProfileRoot}} --}}
+<div class="profile">
+    {{{ profilePrev }}}
+    <form class="profile__content">
+    {{{ profileHeader }}}
+    </form>
+</div>
