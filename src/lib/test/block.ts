@@ -17,7 +17,7 @@ export type BlockProps = {
 
 // type BlockFunction<P = BlockProps> = (props: P) => unknown;
 type PropsType<P = BlockProps> = P | NonNullable<unknown>
-class Block {
+class Block<P = BlockProp> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -30,7 +30,7 @@ class Block {
     public props: PropsType;
     public children:BlockChildren;
     private eventBus: () => EventBus;
-    private _id: string | null = null;
+    private _id: number | string | null = null;
 
     constructor(tagName = "div", propsAndChildren: { props: PropsType, children?: BlockChildren } = { props: {} }) {
         const { children, props } = this._getChildren(propsAndChildren);
