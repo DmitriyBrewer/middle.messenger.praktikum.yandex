@@ -6,6 +6,7 @@ import renderComponent from "./lib/renderComponent";
 import Block from "./lib/test/block";
 import AuthPage from "./pages/auth";
 import ChatPage from "./pages/chat";
+import ErrorPage from "./pages/error-page";
 import RegistrationPage from "./pages/registration";
 import Button from "./ui/button";
 
@@ -20,6 +21,16 @@ registerHandlebarsPartials(allPartials);
 // });
 
 const chat = new ChatPage({
+});
+
+const errorPage500 = new ErrorPage({
+    title:"500",
+    subtitle:"Мы уже фиксим"
+});
+
+const errorPage404 = new ErrorPage({
+    title:"404",
+    subtitle:"Не туда попали"
 });
 
 // const MockChatsTemplate = `
