@@ -142,7 +142,7 @@ class Block {
         this._render();
     }
 
-    compile<T extends { id: string }>(template:string, props: PropsType) {
+    compile<T extends Block & { id: string }>(template:string, props: PropsType) {
         const propsAndStubs:BlockProps = { ...props };
         const _tmpId =  Math.floor(100000 + Math.random() * 900000);
       
@@ -174,10 +174,10 @@ class Block {
                 }
             } else {  
                 const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+          
                 stub && stub.replaceWith(child.getContent());
             }
         });
-
         return fragment.content;
     }
 
