@@ -6,9 +6,11 @@ import EventBus from "./eventBus";
 //     console.log(value);
 //     return value === null || value === undefined;
 // }
-
 type BlockEvents = Record<string, EventListenerOrEventListenerObject>
-export type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
+
+export type BlockChildren<T = unknown> = {
+    [key: string]: T;
+}
 
 export type BlockProps = {
     [key: string]: unknown;
@@ -93,11 +95,13 @@ class Block {
             this._componentDidMount(args as BlockProps);
         });
 
-        // eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
-        //     const [oldProps, newProps] = args as [BlockProps, BlockProps];
-        //     this._componentDidUpdate(oldProps, newProps);
-        // });
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+        eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
+            if (Array.isArray(args)) {
+                const [oldProps, newProps] = args as [BlockProps, BlockProps];
+                this._componentDidUpdate(oldProps, newProps);
+            }
+        });
+
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
@@ -115,7 +119,7 @@ class Block {
         this.componentDidMount(oldProps);
         
         Object.values(this.children).forEach(child => {
-            child.dispatchComponentDidMount();
+            (child as Block).dispatchComponentDidMount();
         });
     }
 
@@ -138,28 +142,25 @@ class Block {
         this._render();
     }
 
-    compile(template:string, props: PropsType) {
+    compile<T extends { id: string }>(template:string, props: PropsType) {
         const propsAndStubs:BlockProps = { ...props };
         const _tmpId =  Math.floor(100000 + Math.random() * 900000);
-
-        console.log(this.children);
       
-        Object.entries(this.children).forEach(([key, child]) => {
-            if(Array.isArray(child)) {
-                console.log(";uuu");
+        Object.entries(this.children as BlockChildren<T>).forEach(([key, child]) => {
+            if (Array.isArray(child)) {
                 propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
-            } else
+            } else {
                 propsAndStubs[key] = `<div data-id="${child.id}"></div>`;
+            }
         });
         
         const fragment = this._createDocumentElement("template");
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
 
-        Object.values(this.children).forEach(child => {
+        Object.values(this.children as BlockChildren<T>).forEach(child => {
 
             if(Array.isArray(child)) {
                 const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-                console.log(child._id);
                 child.forEach(item => {
                     if (item instanceof Block) {
                         this.props.className && stub.classList.add(this.props.className);

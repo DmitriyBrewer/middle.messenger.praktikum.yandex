@@ -3,7 +3,7 @@ function renderComponent(query:string, block) {
   
     root.appendChild(block.getContent());
   
-    // block.dispatchComponentDidMount();
+    block.dispatchComponentDidMount();
   
     return root;
 }
