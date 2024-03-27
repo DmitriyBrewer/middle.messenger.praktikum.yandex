@@ -1,10 +1,10 @@
-import Block from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/test/block";
 import Button from "../../../ui/button";
 import LinkComponent from "../../../ui/link";
 import ProfileFootMenuTemplate from "./index.hbs?raw";
 
 class ProfileFootMenu extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("div",{...props,
             linkChange: new LinkComponent({
                 href:"/profile/change",

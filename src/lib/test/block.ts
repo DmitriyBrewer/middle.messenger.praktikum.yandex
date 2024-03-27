@@ -101,6 +101,7 @@ class Block {
         //         this._componentDidUpdate(oldProps, newProps);
         //     }
         // });
+        // TODO решить проблему типизациии
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
 
 

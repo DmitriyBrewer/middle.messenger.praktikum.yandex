@@ -30,10 +30,10 @@ const registration = new RegistrationPage({
 const chat = new ChatPage({
 });
 
-// const errorPage500 = new ErrorPage({
-//     title:"500",
-//     subtitle:"Мы уже фиксим"
-// });
+const errorPage500 = new ErrorPage({
+    title:"500",
+    subtitle:"Мы уже фиксим"
+});
 
 // const errorPage404 = new ErrorPage({
 //     title:"404",
@@ -41,30 +41,30 @@ const chat = new ChatPage({
 // });
 
 
-// const mockProfile = {
-//     email:"pochta@yandex.ru",
-//     login:"ivanivanov",
-//     first_name:"Федот",
-//     last_name: "Тутов",
-//     chat_name: "feDoT",
-//     phone: "8 888 888 88 88"
-// };
+const mockProfile = {
+    email:"pochta@yandex.ru",
+    login:"ivanivanov",
+    first_name:"Федот",
+    last_name: "Тутов",
+    chat_name: "feDoT",
+    phone: "8 888 888 88 88"
+};
 
-// const profile = new ProfilePage({
-//     profilePrev: new ProfilePrev({
-//         href:"/chat",
-//         alt:"prev",
-//         src: "/assets/arrow-left.svg"
-//     }),
-//     profileHeader: new ProfileHeader({
-//         name: mockProfile.first_name
-//     }),
-//     profileParamList: new ProfileParamsList({
-//         data:mockProfile,
-//     }),
-//     footMenu: new ProfileFootMenu({}),
-//     data: mockProfile
-// });
+const profile = new ProfilePage({
+    profilePrev: new ProfilePrev({
+        href:"/chat",
+        alt:"prev",
+        src: "/assets/arrow-left.svg"
+    }),
+    profileHeader: new ProfileHeader({
+        name: mockProfile.first_name
+    }),
+    profileParamList: new ProfileParamsList({
+        data:mockProfile,
+    }),
+    footMenu: new ProfileFootMenu({}),
+    data: mockProfile
+});
 
 // const profileChangeData = new ProfilePage({
 //     profilePrev: new ProfilePrev({
@@ -87,20 +87,6 @@ const chat = new ChatPage({
 // });
 
 
-// class ButtonWrapper  extends Block{
-//     constructor(props:BlockProps) {
-//         super("button",{...props, button:new Button({text:"tte"})});
 
-//     }
-
-//     render() {
-//         return this.compile("{{{ button }}}", {
-//         });
-//     }
-// }
-
-// const button = new ButtonWrapper({});
-
-
-renderComponent(".root", chat);
+renderComponent(".root", profile);
 

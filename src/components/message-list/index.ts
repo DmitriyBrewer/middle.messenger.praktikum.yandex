@@ -1,13 +1,14 @@
 import "./index.scss";
 import  ChatTextListTemplate  from "./index.hbs?raw";
-import Block from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/test/block";
 import ChatText from "../chat-window/chat-text";
 
 class MessageList extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("span", props); 
         this.children.list = [];
-        this.props.data.forEach(itemProps => {
+        // TODO рушить пробелум типизации
+        this.props.data.forEach((itemProps:BlockProps) => {
             const item = new ChatText(itemProps);
             this.children.list.push(item);
         });

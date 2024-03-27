@@ -1,9 +1,10 @@
-import Block from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/test/block";
 import ProfileParam from "../profile-param";
 
 class ProfileParamsList extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("span", props); 
+        // TODO решить пробелму типизации
         this.children.list = [
             new ProfileParam({param:"email",value:props.data.email}),
             new ProfileParam({param:"login",value:props.data.login}),

@@ -5,7 +5,7 @@ export { default as FormTemplate } from "./index.hbs?raw";
 // import { compiledTemplate } from "../../lib/compileTemplate";
 
 // class FormComponent extends Block {
-//     constructor(props) {
+//      {
 //         super({
 //             ...props,
 //             events: props.events || {}

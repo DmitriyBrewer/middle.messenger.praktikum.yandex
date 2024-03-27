@@ -1,10 +1,10 @@
 import "./index.scss";
 
 import ProfilePrevTemplate  from "./index.hbs?raw";
-import Block from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/test/block";
 
 class ProfilePrev extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("div",props);
     }
     render() {
