@@ -154,24 +154,27 @@ class Block {
             }
         });
         
-        const fragment = this._createDocumentElement("template");
+        const fragment = this._createDocumentElement("template") as HTMLTemplateElement;
         fragment.innerHTML = compiledTemplate(template, propsAndStubs);
 
         Object.values(this.children as BlockChildren<T>).forEach(child => {
-
-            if(Array.isArray(child)) {
-                const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-                child.forEach(item => {
-                    if (item instanceof Block) {
-                        this.props.className && stub.classList.add(this.props.className);
-                        stub.appendChild(item.getContent());
-                    } else {
-                        stub.replaceWith(`${item}`);
-                    }
-                });
+            const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
+            if(stub) {
+                if(Array.isArray(child)) {
+                    child.forEach(item => {
+                        if (item instanceof Block) {
+                            if (typeof this.props.className === "string") {
+                                stub.classList.add(this.props.className);
+                            }
+                            stub.appendChild(item.getContent());
+                        } else {
+                            stub.replaceWith(`${item}`);
+                        }
+                    });
+                }
             } else {  
                 const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
-                stub.replaceWith(child.getContent());
+                stub && stub.replaceWith(child.getContent());
             }
         });
 
@@ -219,7 +222,7 @@ class Block {
         this._addEvents();
     }
 
-    public render(): string {
+    public render(): DocumentFragment {
         return "";
     }
 
