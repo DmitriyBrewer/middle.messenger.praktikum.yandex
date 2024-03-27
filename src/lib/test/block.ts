@@ -210,16 +210,18 @@ class Block {
 
         this._removeEvents();
         const fragment = block;
-
+    
         const newElement = fragment.firstElementChild;
-
-        if (this._element) {
-            this._element.replaceWith(newElement);
+        
+        if (newElement) {
+            if (this._element) {
+                this._element.replaceWith(newElement);
+            }
+    
+            this._element = newElement as HTMLElement;
+    
+            this._addEvents();
         }
-
-        this._element = newElement;
-
-        this._addEvents();
     }
 
     public render(): DocumentFragment {
