@@ -7,17 +7,18 @@ import EventBus from "./eventBus";
 //     return value === null || value === undefined;
 // }
 
+type BlockEvents = Record<string, EventListenerOrEventListenerObject>
 export type BlockChildren  =  { [key: string]: unknown | NonNullable<unknown>}
 
-export type Prooops ={ [key: string]: unknown};
 export type BlockProps = {
     [key: string]: unknown;
     children?: BlockChildren | unknown;
+    events?: BlockEvents;
 }
 
 // type BlockFunction<P = BlockProps> = (props: P) => unknown;
-export type PropsType<P = BlockProps> = P | NonNullable<unknown>
-class Block<P = BlockProps> {
+export type PropsType<P = BlockProps> = P
+class Block {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -68,27 +69,21 @@ class Block<P = BlockProps> {
         return { children, props };
     }
 
-    private _addEvents() {
-        console.log(this);
-        const {events = {} } = this.props;
-        // const events:PropsType = this.props.events;
-        console.log(events);
-    
+    private _addEvents(): void {
+        const { events = {} } = this.props;
+
         Object.keys(events).forEach(eventName => {
             this._element!.addEventListener(eventName, events[eventName]);
         });
     }
 
     private _removeEvents(): void {
-
         if (this._element) {
             const { events = {} } = this.props;
 
             Object.keys(events).forEach(eventName => {
                 this._element!.removeEventListener(eventName, events[eventName]);
             });
-
-
         }
     }
 

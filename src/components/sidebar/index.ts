@@ -1,42 +1,41 @@
 import "./index.scss";
 import SidebarTemplate from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, {  BlockProps } from "../../lib/test/block";
 import SearchFieldComponent from "./search-field";
 import ChatItem from "./sidebar-item";
 
 class ChatList extends Block {
-    constructor(props:BlockProps) {
+    constructor(props: BlockProps) {
         super("span", props); 
-        this.children.list = [];
-        this.props.data.forEach((itemProps:BlockProps) => {
-            const item = new ChatItem(itemProps);
-            this.children.list.push(item);
-        });
-        this.props.list = this.children.list;
-
+        if (!this.children) {
+            this.children = {};
+        }
+        if (props.data && Array.isArray(props.data)) {
+            this.children.list = props.data.map((itemProps: BlockProps) => new ChatItem(itemProps));
+            this.props.list = this.children.list;
+        }
     }
 
-    render() {    
+    render() {  
         return this.compile("{{{list}}}", {});
     }
 }
+
 class Sidebar extends Block {
-    constructor(props:BlockProps) {
-        super("div",{
+    constructor(props: BlockProps) {
+        super("div", {
             ...props,
             events: props.events,
             search: new SearchFieldComponent({}),
             chats: new ChatList({
-                data:props.data
+                data: props.data
             })
         });        
     }
 
     render() {
-        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
-
 }
 
 export default Sidebar;

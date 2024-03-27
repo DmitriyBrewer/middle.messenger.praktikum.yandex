@@ -16,6 +16,7 @@ class AuthPage extends Block {
                 helper: "Логин",
                 autocomplete: "username",
                 onChange: (value:string) => {
+                    console.log(this);
                     this.setProps({ buttonText: value });
                 },
                 blur: (value:string) => {
@@ -51,10 +52,13 @@ class AuthPage extends Block {
     }
 
     componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        // TODO исправить ошибки
         const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
-        this.children.button!.setProps({ disabled: isButtonDisabled });
-        this.children.password!.setProps({ error: newProps.errorPassword });
-        this.children.login!.setProps({ error: newProps.errorLogin });
+        if(oldProps.disabled !== newProps.disabled) {
+            this.setProps({ disabled: isButtonDisabled });
+        }
+        // this.children.password!.setProps({ error: newProps.errorPassword });
+        // this.children.login!.setProps({ error: newProps.errorLogin });
 
         return true;
     }

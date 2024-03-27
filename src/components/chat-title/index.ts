@@ -8,9 +8,7 @@ class ChatTitle extends Block {
     }
 
     render() {
-        return this.compile(ChatTitleTemplate, {
-            title:this.props.title
-        });
+        return this.compile(ChatTitleTemplate, {props:this.props});
     }
 }
 

@@ -102,5 +102,5 @@ const chat = new ChatPage({
 // const button = new ButtonWrapper({});
 
 
-renderComponent(".root", chat);
+renderComponent(".root", auth);
 
