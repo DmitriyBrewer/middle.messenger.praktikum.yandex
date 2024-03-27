@@ -2,26 +2,7 @@ import "./index.scss";
 import SidebarTemplate from "./index.hbs?raw";
 import Block, {  BlockProps } from "../../lib/test/block";
 import SearchFieldComponent from "./search-field";
-import ChatItem from "./sidebar-item";
-
-// TODO вынести в отдельный компонент
-class ChatList extends Block {
-    constructor(props: BlockProps) {
-        super("span", props); 
-        if (!this.children) {
-            this.children = {};
-        }
-        if (props.data && Array.isArray(props.data)) {
-            this.children.list = props.data.map((itemProps: BlockProps) => new ChatItem(itemProps));
-            this.props.list = this.children.list;
-        }
-    }
-
-    render() {  
-        return this.compile("{{{list}}}", {});
-    }
-}
-
+import ChatList from "../chat-list";
 class Sidebar extends Block {
     constructor(props: BlockProps) {
         super("div", {

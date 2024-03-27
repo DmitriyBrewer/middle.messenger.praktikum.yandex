@@ -5,7 +5,7 @@ function renderComponent(query:string, block:Block) {
   
     root && root.appendChild(block.getContent());
   
-    block.dispatchComponentDidMount();
+    // block.dispatchComponentDidMount();
   
     return root;
 }

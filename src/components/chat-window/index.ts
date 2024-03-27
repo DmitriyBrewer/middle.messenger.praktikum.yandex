@@ -6,6 +6,7 @@ import MessageList from "../message-list";
 
 class ChatWindow extends Block {
     constructor(props:BlockProps) {
+        // TODO решить проблемы типизации
         super("span", {...props,
             chatHeader: new ChatHeader({title: props.activeChat.title}),
             chatTexts: new MessageList({

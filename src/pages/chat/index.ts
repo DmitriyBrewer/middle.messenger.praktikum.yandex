@@ -1,6 +1,6 @@
 import "./index.scss";
 import Block, { BlockProps } from "../../lib/test/block";
-import ChatTemplate from "./index.hbs?raw";
+import ChatPageTemplate from "./index.hbs?raw";
 import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
 import { mockChats } from "../../constants/mockChats";
@@ -21,7 +21,7 @@ class ChatPage extends Block {
 
     render() {
         console.log(this);
-        return this.compile(ChatTemplate, {});
+        return this.compile(ChatPageTemplate, {});
     }
 
 }
