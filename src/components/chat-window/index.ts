@@ -6,19 +6,18 @@ import MessageList from "../message-list";
 
 class ChatWindow extends Block {
     constructor(props:BlockProps) {
-        // TODO решить проблемы типизации
         super("span", {...props,
-            chatHeader: new ChatHeader({title: props.activeChat.title}),
+            chatHeader: new ChatHeader({title: props.title}),
             chatTexts: new MessageList({
                 data:[
                     {
-                        message: props.activeChat.message, 
+                        message: props.message, 
                         my:true, 
-                        date: props.activeChat.time
+                        date: props.time
                     },
                     {
                         message: "Hello",  
-                        date: props.activeChat.time
+                        date: props.time
                     }
                 ]
             })
@@ -29,7 +28,7 @@ class ChatWindow extends Block {
         console.log(this);
         return this.compile(ChatWindowTemplate, {
             empty: this.props.empty,
-            date: this.props.activeChat.time
+            date: this.props.time
         });
     }
 }

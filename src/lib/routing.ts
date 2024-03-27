@@ -1,3 +1,4 @@
+// TODO сделать сюда роутинг
 // import renderComponent from "./renderComponent";
 
 // function handleRouting() {

@@ -13,7 +13,7 @@ class ChatPage extends Block {
             sidebar: new Sidebar({data: mockChats}),
             // TODO сделать полноценный выбор чата
             window: new ChatWindow({
-                activeChat: mockChats[0],
+                ...mockChats[0],
                 empty: false
             })
         });

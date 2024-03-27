@@ -2,7 +2,7 @@ import { ButtonWrapper } from "../../components/button-wrapper";
 // import { ChatTitle } from "../../components/chat-title";
 import { ChatWindow } from "../../components/chat-window";
 // import { ChatHeader } from "../../components/chat-window/chat-header";
-import { ChatMenu } from "../../components/chat-window/chat-menu";
+// import { ChatMenu } from "../../components/chat-window/chat-menu";
 import { ChatMesssage } from "../../components/chat-window/chat-message";
 import { ChatSend } from "../../components/chat-window/chat-send";
 // import { ChatText } from "../../components/chat-window/chat-text";

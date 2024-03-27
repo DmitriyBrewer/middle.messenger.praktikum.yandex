@@ -1,8 +1,5 @@
 import "./index.scss";
-
-// export { default as ChatHeader } from "./index.hbs?raw";
-
-import   ChatHeaderTemplate from "./index.hbs?raw";
+import ChatHeaderTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/test/block";
 import ChatTitle from "../../chat-title";
 

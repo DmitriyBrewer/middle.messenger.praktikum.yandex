@@ -59,9 +59,7 @@ const profile = new ProfilePage({
     profileHeader: new ProfileHeader({
         name: mockProfile.first_name
     }),
-    profileParamList: new ProfileParamsList({
-        data:mockProfile,
-    }),
+    profileParamList: new ProfileParamsList(mockProfile),
     footMenu: new ProfileFootMenu({}),
     data: mockProfile
 });
@@ -88,5 +86,5 @@ const profile = new ProfilePage({
 
 
 
-renderComponent(".root", profile);
+renderComponent(".root", chat);
 

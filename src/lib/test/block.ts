@@ -6,6 +6,7 @@ import EventBus from "./eventBus";
 //     console.log(value);
 //     return value === null || value === undefined;
 // }
+// TODO вынести types отдельно
 export type BlockEvents = Record<string, EventListenerOrEventListenerObject>
 
 export type BlockChildren<T = unknown> = {

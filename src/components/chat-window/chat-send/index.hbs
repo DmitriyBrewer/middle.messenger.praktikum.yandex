@@ -3,7 +3,7 @@
 
     {{> Input className="chatSend__input" placeholder="Сообщение" type='text' id='message' name='message' }}
 
-    {{#> ButtonImage className="chatSend__send" type="submit"}}
+    <button className="chatSend__send" type="button">
         {{> Image src="/assets/arrow.svg" alt="send" className="chatSend__arrow"}}
-    {{/ ButtonImage }}
+    </button>
 </form>

@@ -2,8 +2,6 @@ import TextFieldComponent from "../../components/text-field";
 import Block, {  BlockProps } from "../../lib/test/block";
 import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
-
-
 class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div", {

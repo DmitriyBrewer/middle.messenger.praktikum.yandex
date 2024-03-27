@@ -6,13 +6,14 @@ import ChatText from "../chat-window/chat-text";
 class MessageList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
-        this.children.list = [];
-        // TODO рушить пробелум типизации
-        this.props.data.forEach((itemProps:BlockProps) => {
-            const item = new ChatText(itemProps);
-            this.children.list.push(item);
-        });
-        this.props.list = this.children.list;
+        if (!this.children) {
+            this.children = {};
+        }
+        if (props.data && Array.isArray(props.data)) {
+            this.children.list = props.data.map((itemProps: BlockProps) => new ChatText(itemProps));
+            this.props.list = this.children.list;
+        }
+        
         this.props.className = "chatLists";
     }
 
