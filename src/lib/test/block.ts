@@ -95,12 +95,14 @@ class Block {
             this._componentDidMount(args as BlockProps);
         });
 
-        eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
-            if (Array.isArray(args)) {
-                const [oldProps, newProps] = args as [BlockProps, BlockProps];
-                this._componentDidUpdate(oldProps, newProps);
-            }
-        });
+        // eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
+        //     if (Array.isArray(args)) {
+        //         const [oldProps, newProps] = args as [BlockProps, BlockProps];
+        //         this._componentDidUpdate(oldProps, newProps);
+        //     }
+        // });
+        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+
 
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
