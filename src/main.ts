@@ -23,9 +23,9 @@ const auth = new AuthPage({
     buttonText: "Вход",
 });
 
-// const registration = new RegistrationPage({
-//     buttonText: "Регистрация"
-// });
+const registration = new RegistrationPage({
+    buttonText: "Регистрация"
+});
 
 const chat = new ChatPage({
 });
@@ -102,5 +102,5 @@ const chat = new ChatPage({
 // const button = new ButtonWrapper({});
 
 
-renderComponent(".root", auth);
+renderComponent(".root", chat);
 

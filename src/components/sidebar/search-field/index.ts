@@ -1,14 +1,13 @@
 import "./index.scss";
 
-// export { default as SearchField } from "./index.hbs?raw";
 import SearchFieldTemplate from "./index.hbs?raw";
-import Block from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/test/block";
 import InputComponent from "../../../ui/input";
 class SearchFieldComponent extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("div",{...props,
             events: {
-                submit:(e)=>{
+                submit:(e:Event)=>{
                     e.preventDefault();}
             },
             input: new InputComponent({

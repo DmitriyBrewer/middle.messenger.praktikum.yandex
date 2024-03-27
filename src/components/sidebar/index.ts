@@ -4,6 +4,7 @@ import Block, {  BlockProps } from "../../lib/test/block";
 import SearchFieldComponent from "./search-field";
 import ChatItem from "./sidebar-item";
 
+// TODO вынести в отдельный компонент
 class ChatList extends Block {
     constructor(props: BlockProps) {
         super("span", props); 

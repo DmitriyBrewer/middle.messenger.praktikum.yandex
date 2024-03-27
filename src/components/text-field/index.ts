@@ -1,11 +1,11 @@
-import Block from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/test/block";
 import "./index.scss";
 
 import TextFieldTemplate  from "./index.hbs?raw";
 import InputComponent from "../../ui/input";
 
 class TextFieldComponent extends Block {
-    constructor(props) {
+    constructor(props:BlockProps) {
         super("div",{...props,
             input: new InputComponent({
                 type:props.type,

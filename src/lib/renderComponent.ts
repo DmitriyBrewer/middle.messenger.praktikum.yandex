@@ -1,7 +1,9 @@
-function renderComponent(query:string, block) {
+import Block from "./test/block";
+
+function renderComponent(query:string, block:Block) {
     const root = document.querySelector(query);
   
-    root.appendChild(block.getContent());
+    root && root.appendChild(block.getContent());
   
     block.dispatchComponentDidMount();
   
