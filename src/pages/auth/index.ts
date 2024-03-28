@@ -29,12 +29,12 @@ class Auth extends Block {
                 helper: "Логин",
                 autocomplete: "username",
                 pattern:conditions.login.pattern,
-                required: true,
+                isRequired:true,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.login.pattern);
                     const errorText = isValid ? "" : conditions.login.errorText;
                     (this.children.login as Block).setProps({error:errorText});
-                    (this.children.button as Block).setProps({disabled:!isValid});
+                    // this.setProps({error: //TODO старый просп как перве условие и как сторое условие isValid})
                 }
             }),
             password: new TextFieldComponent({
@@ -45,18 +45,17 @@ class Auth extends Block {
                 helper: "Пароль",
                 autocomplete: "current-password",
                 pattern: conditions.password.pattern,
-                required: true,
+                isRequired:true,
+                error:props.errorPassword,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.password.pattern);
                     const errorText = isValid ? "" : conditions.password.errorText;
                     (this.children.password as Block).setProps({error:errorText});
-                    (this.children.button as Block).setProps({disabled:!isValid});
                 }
             }),
             button: new Button({
                 type: "submit",
                 text: "Вход",
-                disabled: false
             })
         });
     }

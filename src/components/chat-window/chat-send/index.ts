@@ -4,7 +4,6 @@ import Block, { BlockProps } from "../../../lib/block";
 import Image from "../../../ui/img";
 import InputComponent from "../../../ui/input";
 import ButtonImage from "../../../ui/button-image";
-import { isEmptyValue } from "../../../lib/validations/isEmptyValue";
 import { validationField } from "../../../lib/validations/isValidLogin";
 import { conditions } from "../../../constants/conditions";
 

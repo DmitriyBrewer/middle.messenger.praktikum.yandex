@@ -22,7 +22,7 @@ class Registration extends Block {
                 name:"email", 
                 placeholder:"Почта",
                 helper: "Почта",
-                required: true,
+                isRequired:true,
                 // pattern: conditions.email.pattern,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.email.pattern);
@@ -37,7 +37,7 @@ class Registration extends Block {
                 autocomplete:"username",
                 placeholder:"Логин",
                 helper: "Логин",
-                required: true,
+                isRequired: true,
                 pattern: conditions.login.pattern,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.login.pattern);
@@ -51,7 +51,7 @@ class Registration extends Block {
                 name:"first_name", 
                 placeholder:"Имя",
                 helper: "Имя",
-                required: true,
+                isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.name.pattern);
@@ -65,7 +65,7 @@ class Registration extends Block {
                 name:"second_name", 
                 placeholder:"Фамилия",
                 helper: "Фамилия",
-                required: true,
+                isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.name.pattern);
@@ -80,7 +80,7 @@ class Registration extends Block {
                 placeholder:"Телефон",
                 helper: "Телефон",
                 pattern:conditions.phone.patten,
-                requre:true,
+                isRequired:true,
                 autocomplete:"usermane",
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.phone.patten);
@@ -96,7 +96,7 @@ class Registration extends Block {
                 helper: "Пароль",
                 autocomplete:"current-password",
                 pattern: conditions.password.pattern,
-                required: true,
+                isRequired: true,
                 blur: (value:string) => {
                     this.setProps({passwordValue:value});
                     const isValid = validationField(value, conditions.password.pattern);
