@@ -182,9 +182,9 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
-        console.log(oldProps);
-        console.log(newProps);
-        console.log("componentDidUpdat");
+        // console.log(oldProps);
+        // console.log(newProps);
+        // console.log("componentDidUpdat");
         return true;
     }
 

@@ -45,7 +45,7 @@ class Auth extends Block {
                 helper: "Пароль",
                 autocomplete: "current-password",
                 pattern: conditions.password.pattern,
-               
+                required: true,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.password.pattern);
                     const errorText = isValid ? "" : conditions.password.errorText;

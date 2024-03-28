@@ -1,21 +1,33 @@
 import TextFieldComponent from "../../components/text-field";
+import { conditions } from "../../constants/conditions";
 import Block, { BlockProps } from "../../lib/block";
+import { validationField } from "../../lib/validations/isValidLogin";
 import Button from "../../ui/button";
 import RegistrationTemplate from "./index.hbs?raw";
 class RegistrationPage extends Block {
     constructor(props:BlockProps) {
         super("div",{
             ...props,
-           
+            events:{
+                submit: (event: Event) => {
+                    event.preventDefault();
+                    this.handleFormData((formDataObject) => {
+                        console.log("Данные формы:", formDataObject);
+                    });
+                }
+            },
             email: new TextFieldComponent({
                 type:"text", 
                 id:"email",
                 name:"email", 
                 placeholder:"Почта",
                 helper: "Почта",
-                onChange: (value:string) => {console.log(value);},
+                required: true,
+                // pattern: conditions.email.pattern,
                 blur: (value:string) => {
-                    this.validateText(value, "errorEmail");
+                    const isValid = validationField(value, conditions.email.pattern);
+                    const errorText = isValid ? "" : conditions.email.errorText;
+                    (this.children.email as Block).setProps({error:errorText});
                 }
             }),
             login: new TextFieldComponent({
@@ -25,9 +37,12 @@ class RegistrationPage extends Block {
                 autocomplete:"username",
                 placeholder:"Логин",
                 helper: "Логин",
-                onChange: (value:string) => {console.log(value);},
+                required: true,
+                pattern: conditions.login.pattern,
                 blur: (value:string) => {
-                    this.validateText(value, "errorLogin");
+                    const isValid = validationField(value, conditions.login.pattern);
+                    const errorText = isValid ? "" : conditions.login.errorText;
+                    (this.children.login as Block).setProps({error:errorText});
                 }
             }),
             first_name: new TextFieldComponent({
@@ -36,9 +51,12 @@ class RegistrationPage extends Block {
                 name:"first_name", 
                 placeholder:"Имя",
                 helper: "Имя",
-                onChange: (value:string) => {console.log(value);},
+                required: true,
+                pattern: conditions.name.pattern,
                 blur: (value:string) => {
-                    this.validateText(value, "errorName");
+                    const isValid = validationField(value, conditions.name.pattern);
+                    const errorText = isValid ? "" : conditions.name.errorText;
+                    (this.children.first_name as Block).setProps({error:errorText});
                 }
             }),
             second_name: new TextFieldComponent({
@@ -47,9 +65,12 @@ class RegistrationPage extends Block {
                 name:"second_name", 
                 placeholder:"Фамилия",
                 helper: "Фамилия",
-                onChange: (value:string) => {console.log(value);},
+                required: true,
+                pattern: conditions.name.pattern,
                 blur: (value:string) => {
-                    this.validateText(value, "errorSecondName");
+                    const isValid = validationField(value, conditions.name.pattern);
+                    const errorText = isValid ? "" : conditions.name.errorText;
+                    (this.children.second_name as Block).setProps({error:errorText});
                 }
             }),
             phone: new TextFieldComponent({
@@ -58,11 +79,13 @@ class RegistrationPage extends Block {
                 name:"phone", 
                 placeholder:"Телефон",
                 helper: "Телефон",
-                pattern:"[+][0-9]{1} [(][0-9]{3}[)] [0-9]{3} [0-9]{2} [0-9]{2}",
+                pattern:conditions.phone.patten,
+                requre:true,
                 autocomplete:"usermane",
-                onChange: (value:string) => {console.log(value);},
                 blur: (value:string) => {
-                    this.validateText(value, "errorMobile");
+                    const isValid = validationField(value, conditions.phone.patten);
+                    const errorText = isValid ? "" : conditions.phone.errorText;
+                    (this.children.phone as Block).setProps({error:errorText});
                 }
             }),
             password: new TextFieldComponent({
@@ -72,9 +95,13 @@ class RegistrationPage extends Block {
                 placeholder:"Пароль",
                 helper: "Пароль",
                 autocomplete:"current-password",
-                onChange: (value:string) => {console.log(value);},
+                pattern: conditions.password.pattern,
+                required: true,
                 blur: (value:string) => {
-                    this.validatePassword(value, "errorPassword");
+                    this.setProps({passwordValue:value});
+                    const isValid = validationField(value, conditions.password.pattern);
+                    const errorText = isValid ? "" : conditions.password.errorText;
+                    (this.children.password as Block).setProps({error:errorText, passwordValue:value});
                 }
             }),
             password2: new TextFieldComponent({
@@ -84,97 +111,22 @@ class RegistrationPage extends Block {
                 placeholder:"Пароль ещё раз",
                 helper: "Пароль ещё раз",
                 autocomplete:"current-password",
-                onChange: (value:string) => {console.log(value);},
+                pattern: conditions.password.pattern,
                 blur: (value:string) => {
-                    this.validatePassword2(value);
+                    const passwordValue = this.props.passwordValue;
+                    const errorText = value === passwordValue ? "" : "Пароли не совпадают";
+                    (this.children.password2 as Block).setProps({error: errorText});
                 }
             }),
             button: new Button({
                 type: "button",
                 text: props.buttonText,
-                disabled: true
             }),
         });
     }
 
-    componentDidUpdate(oldProps:BlockProps, newProps:BlockProps) {
-        if (oldProps.errorEmail !== newProps.errorEmail) {
-            // TODO исправить валидацию
-            // this.children.email.setProps({ error: newProps.errorEmail });
-        }
-
-        if (oldProps.errorLogin !== newProps.errorLogin) {
-            // this.children.login.setProps({ error: newProps.errorLogin });
-        }
-
-
-        if (oldProps.errorName !== newProps.errorName) {
-            // this.children.first_name.setProps({ error: newProps.errorName });
-        }
-
-        if (oldProps.errorSecondName !== newProps.errorSecondName) {
-            // this.children.second_name.setProps({ error: newProps.errorSecondName });
-        }
-
-        if (oldProps.errorMobile !== newProps.errorMobile) {
-            // this.children.phone.setProps({ error: newProps.errorMobile });
-        }
-
-        if (oldProps.errorPassword !== newProps.errorPassword) {
-            // this.children.password.setProps({ error: newProps.errorPassword });
-        }
-
-        if (oldProps.errorPassword2 !== newProps.errorPassword2) {
-            // this.children.password2.setProps({ error: newProps.errorPassword2 });
-        }
-
-        //   TODO удалить если не нужно
-        // const isButtonDisabled = newProps.errorEmail !== "" ||
-        //      newProps.errorLogin !== "" ||
-        //       newProps.errorPassword !== ""|| 
-        //       newProps.errorSecondName !== "" ||
-        //       newProps.errorName !== "" ||
-        //       newProps.errorMobile !== "" || 
-        //       newProps.errorPassword !== "" || 
-        //       newProps.errorPassword2 !== "";
-
-        //   TODO исправить
-        // this.children.button.setProps({ disabled: isButtonDisabled });
-        
-        return true;
-    }
-
     render() {
         return this.compile(RegistrationTemplate, {});
-    }
-
-    // TODO все валидации вынести в 1 функцию
-    validateText(value:string, atr:string) {
-        if (value.trim() === "") {
-            this.setProps({ [atr]: "Поле не может быть пустым" });
-        } else {
-            this.setProps({ [atr]: "" });
-        }     
-    }
-    
-
-    validatePassword(value:string, atr:string) {
-        if (value.length < 6) {
-            this.setProps({ [atr]: "Пароль должен содержать минимум 6 символов" });
-        } else {
-            this.setProps({ [atr]: "" });
-        }
-    }
-
-    validatePassword2(value:string) {
-        if (value.length < 6) {
-            this.setProps({ errorPassword2: "Пароль должен содержать минимум 6 символов" });
-        } else {
-            // TODO логика с значением password
-            if(value === this.props.password) {
-                this.setProps({ errorPassword2: "" });
-            } else this.setProps({ errorPassword2: "Пароли не совпаадют" });
-        }
     }
 }
 
