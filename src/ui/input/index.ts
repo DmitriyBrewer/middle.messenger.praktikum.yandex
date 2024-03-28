@@ -2,7 +2,7 @@ import "./index.scss";
 
 import InputTemplate from "./index.hbs?raw";
 export {default as InputTemplate}  from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 
 class InputComponent extends Block {
     constructor(props:BlockProps) {

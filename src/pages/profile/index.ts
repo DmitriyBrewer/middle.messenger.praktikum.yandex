@@ -1,6 +1,6 @@
 import "./index.scss";
 import  ProfilePageTemplate from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 import ProfilePrev from "../../components/profile/profile-prev";
 import ProfileHeader from "../../components/profile/profle-header";
 import ProfileFootMenu from "../../components/profile/profile-foot-menu";

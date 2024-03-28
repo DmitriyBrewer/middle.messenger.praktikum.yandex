@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 import "./index.scss";
 
 import TextFieldTemplate  from "./index.hbs?raw";

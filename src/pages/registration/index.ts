@@ -1,5 +1,5 @@
 import TextFieldComponent from "../../components/text-field";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 import Button from "../../ui/button";
 import RegistrationTemplate from "./index.hbs?raw";
 class RegistrationPage extends Block {

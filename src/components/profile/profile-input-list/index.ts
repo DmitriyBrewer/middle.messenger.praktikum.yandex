@@ -1,5 +1,5 @@
 import "./index.scss";
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 import InputComponent from "../../../ui/input";
 import  ProfileInputParamTemplate from "./index.hbs?raw";
 

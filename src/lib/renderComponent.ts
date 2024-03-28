@@ -1,4 +1,4 @@
-import Block from "./test/block";
+import Block from "./block";
 
 function renderComponent(query:string, block:Block) {
     const root = document.querySelector(query);

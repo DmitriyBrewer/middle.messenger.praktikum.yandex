@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 import Button from "../../../ui/button";
 import LinkComponent from "../../../ui/link";
 import ProfileFootMenuTemplate from "./index.hbs?raw";

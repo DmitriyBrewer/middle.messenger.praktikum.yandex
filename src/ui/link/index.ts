@@ -1,7 +1,7 @@
 import "./index.scss";
 export { default as Link } from "./index.hbs?raw";
 import LinkTemplate from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 
 class LinkComponent extends Block {
     constructor(props:BlockProps) {

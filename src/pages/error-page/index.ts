@@ -1,6 +1,6 @@
 import "./index.scss";
 import  ErrorPageTemplate  from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 
 class ErrorPage extends Block {
     constructor(props:BlockProps) {

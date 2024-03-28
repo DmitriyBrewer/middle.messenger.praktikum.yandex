@@ -1,7 +1,7 @@
 import "./index.scss";
 
 import ProfilePrevTemplate  from "./index.hbs?raw";
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 
 class ProfilePrev extends Block {
     constructor(props:BlockProps) {
@@ -12,7 +12,8 @@ class ProfilePrev extends Block {
         return this.compile(ProfilePrevTemplate, {
             href:this.props.href,
             alt:this.props.alt,
-            src: this.props.src
+            src: this.props.src,
+            arrowImage: this.props.arrowImage
         });
     }
 }

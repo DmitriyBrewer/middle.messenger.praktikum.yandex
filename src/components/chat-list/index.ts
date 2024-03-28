@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 import ChatItem from "../sidebar/sidebar-item";
 class ChatList extends Block {
     constructor(props: BlockProps) {

@@ -1,7 +1,7 @@
 import TextFieldComponent from "../../components/text-field";
 import { allPartials } from "../../lib/partials";
 import { registerHandlebarsPartials } from "../../lib/register";
-import Block, {  BlockProps } from "../../lib/test/block";
+import Block, {  BlockProps } from "../../lib/block";
 import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
 

@@ -1,5 +1,5 @@
 import "./index.scss";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 import ChatPageTemplate from "./index.hbs?raw";
 import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
@@ -20,7 +20,6 @@ class ChatPage extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatPageTemplate, {});
     }
 

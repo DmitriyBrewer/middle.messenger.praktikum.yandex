@@ -1,9 +1,7 @@
 <form class="chatSend">
-    {{> Image src="/assets/file.svg" alt="file" }}
+    {{{ file }}}
 
-    {{> Input className="chatSend__input" placeholder="Сообщение" type='text' id='message' name='message' }}
+    {{{ input }}}
 
-    <button className="chatSend__send" type="button">
-        {{> Image src="/assets/arrow.svg" alt="send" className="chatSend__arrow"}}
-    </button>
+    {{{ sendButton }}}
 </form>

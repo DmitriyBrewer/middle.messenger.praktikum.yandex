@@ -1,7 +1,7 @@
 import "./index.scss";
 
 import  ProfileParamTemplate from "./index.hbs?raw";
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 class ProfileParam extends Block {
     constructor(props:BlockProps) {
         super("div",props);

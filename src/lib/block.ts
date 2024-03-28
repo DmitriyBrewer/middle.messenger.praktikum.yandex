@@ -1,12 +1,6 @@
-import { compiledTemplate } from "../compileTemplate";
+import { compiledTemplate } from "./compileTemplate";
 import EventBus from "./eventBus";
 
-// TODO удалить если не нужно
-// function isNil(value) {
-//     console.log(value);
-//     return value === null || value === undefined;
-// }
-// TODO вынести types отдельно
 export type BlockEvents = Record<string, EventListenerOrEventListenerObject>
 
 export type BlockChildren<T = unknown> = {
@@ -19,7 +13,6 @@ export type BlockProps = {
     events?: BlockEvents;
 }
 
-// type BlockFunction<P = BlockProps> = (props: P) => unknown;
 export type PropsType<P = BlockProps> = P
 class Block {
     static EVENTS = {

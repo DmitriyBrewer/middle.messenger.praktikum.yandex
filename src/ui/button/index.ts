@@ -1,6 +1,6 @@
 import "./index.scss";
 import  ButtonTemplate  from "./index.hbs?raw";
-import Block, { BlockProps } from "../../lib/test/block";
+import Block, { BlockProps } from "../../lib/block";
 
 class Button extends Block {
     constructor(props: BlockProps) {

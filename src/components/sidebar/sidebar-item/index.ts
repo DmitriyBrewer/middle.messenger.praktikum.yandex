@@ -1,6 +1,6 @@
 import "./index.scss";
 import ChatItemTemplate from "./index.hbs?raw";
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",props);

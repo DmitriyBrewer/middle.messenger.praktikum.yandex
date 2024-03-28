@@ -1,4 +1,4 @@
-import Block, { BlockProps } from "../../../lib/test/block";
+import Block, { BlockProps } from "../../../lib/block";
 import ProfileParam from "../profile-param";
 
 class ProfileParamsList extends Block {
