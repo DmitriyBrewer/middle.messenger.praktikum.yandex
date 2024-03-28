@@ -9,7 +9,16 @@ import ButtonImage from "../../../ui/button-image";
 class ChatSend extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
-            events:{submit:()=>{console.log("submit");}},
+            events:{submit:(event:Event)=>{
+                event.preventDefault();
+                const formData = new FormData(this.element as HTMLFormElement);
+                const message = formData.get("message") as string;
+                console.log("Отправлено сообщение:", message);
+                const inputElement = this.element!.querySelector("input[name=\"message\"]") as HTMLInputElement;
+                if (inputElement) {
+                    inputElement.value = "";
+                }
+            }},
             file: new Image({
                 alt:"file",
                 src:"/assets/file.svg"
