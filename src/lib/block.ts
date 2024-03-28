@@ -182,10 +182,7 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
-        // console.log(oldProps);
-        // console.log(newProps);
-        // console.log("componentDidUpdat");
-        return true;
+        return !!oldProps && !!newProps; 
     }
 
     public handleFormData(callback: (formDataObject: Record<string, string>) => void) {
@@ -247,7 +244,7 @@ class Block {
     }
 
     public render(): DocumentFragment {
-        return "";
+        return new DocumentFragment;
     }
 
     public getContent(): HTMLElement {

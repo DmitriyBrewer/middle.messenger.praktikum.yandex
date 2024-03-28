@@ -120,4 +120,16 @@ body {
     .fullWidth {
         width: 100%;
     }
+
+    .formWrapper {
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--g24) var(--g20);
+        width: 320px;
+        border: var(--b);
+        background-color: var(--primary-bg);
+        row-gap: var(--g24);
+    }
 }
+
+
