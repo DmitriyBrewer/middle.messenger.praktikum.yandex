@@ -4,7 +4,7 @@ import Block, { BlockProps } from "../../lib/block";
 import { validationField } from "../../lib/validations/isValidLogin";
 import Button from "../../ui/button";
 import RegistrationTemplate from "./index.hbs?raw";
-class RegistrationPage extends Block {
+class Registration extends Block {
     constructor(props:BlockProps) {
         super("div",{
             ...props,
@@ -119,8 +119,8 @@ class RegistrationPage extends Block {
                 }
             }),
             button: new Button({
-                type: "button",
-                text: props.buttonText,
+                type: "submit",
+                text: "Регистрация",
             }),
         });
     }
@@ -130,9 +130,19 @@ class RegistrationPage extends Block {
     }
 }
 
-export const registrationPage = new RegistrationPage({
-    buttonText: "Регистрация"
-});
+class RegistrationPage extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            registrationForm: new Registration({})
+        });
+    }
+
+    render() {
+        return this.compile("{{#> BaseLayout}}{{{ registrationForm }}}{{/ BaseLayout}}", {});
+    }
+}
+
+export const registrationPage = new RegistrationPage({});
 
 
 

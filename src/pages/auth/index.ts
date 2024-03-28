@@ -76,7 +76,6 @@ class AuthPage extends Block {
     render() {
         return this.compile("{{#> BaseLayout}}{{{ authForm }}}{{/ BaseLayout}}", {});
     }
-
 }
 
 export const authPage = new AuthPage({});
