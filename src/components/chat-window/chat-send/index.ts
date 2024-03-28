@@ -9,6 +9,7 @@ import ButtonImage from "../../../ui/button-image";
 class ChatSend extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
+            events:{submit:()=>{console.log("submit");}},
             file: new Image({
                 alt:"file",
                 src:"/assets/file.svg"
@@ -18,7 +19,9 @@ class ChatSend extends Block {
                 placeholder:"Сообщение" ,
                 type:"text",
                 id:"message",
-                name:"message"
+                name:"message",
+                onChange: ()=>{},
+                blur: ()=>{}
             }),
             sendButton: new ButtonImage({
                 className:"chatSend__send",
