@@ -11,15 +11,11 @@ class ChatSend extends Block {
         super("span", {...props,
             disabled:false,
             events:{
-                submit:(event:Event)=>{
+                submit: (event: Event) => {
                     event.preventDefault();
-                    const formData = new FormData(this.element as HTMLFormElement);
-                    const message = formData.get("message") as string;
-                    console.log("Отправлено сообщение:", message);
-                    const inputElement = this.element!.querySelector("input[name=\"message\"]") as HTMLInputElement;
-                    if (inputElement) {
-                        inputElement.value = "";
-                    }
+                    this.handleFormData((formDataObject) => {
+                        console.log("Отправлено сообщение:", formDataObject);
+                    });
                 }
             },
             file: new Image({

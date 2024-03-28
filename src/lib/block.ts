@@ -188,6 +188,22 @@ class Block {
         return true;
     }
 
+    public handleFormData(callback: (formDataObject: Record<string, string>) => void) {
+        const formData = new FormData(this.element as HTMLFormElement);
+        const formDataObject: Record<string, string> = {};
+
+        formData.forEach((value, key) => {
+            if (typeof value === "string") {
+                formDataObject[key] = value;
+            } else if (value instanceof File) {
+                formDataObject[key] = "File uploaded";
+            }
+        });
+
+        callback(formDataObject);
+        this.clearForm();
+    }
+
     public clearForm() {
         const inputElements = this.element!.querySelectorAll("input");
         inputElements.forEach((inputElement) => {

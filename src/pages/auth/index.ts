@@ -14,17 +14,9 @@ class Auth extends Block {
             events:{
                 submit: (event: Event) => {
                     event.preventDefault();
-                    const formData = new FormData(this.element as HTMLFormElement);
-                    const formDataObject: Record<string, string> = {};
-                    formData.forEach((value, key) => {
-                        if (typeof value === "string") {
-                            formDataObject[key] = value;
-                        } else if (value instanceof File) {
-                            formDataObject[key] = "File uploaded";
-                        }
+                    this.handleFormData((formDataObject) => {
+                        console.log("Данные формы:", formDataObject);
                     });
-                    console.log("Данные формы:", formDataObject);
-                    this.clearForm();
                 }
             },
             login: new TextFieldComponent({
