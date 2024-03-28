@@ -13,6 +13,7 @@ class Auth extends Block {
     constructor(props:BlockProps) {
         super("div", {
             ...props,
+            error:false,
             events:{
                 submit: (event: Event) => {
                     event.preventDefault();
@@ -34,7 +35,6 @@ class Auth extends Block {
                     const isValid = validationField(value, conditions.login.pattern);
                     const errorText = isValid ? "" : conditions.login.errorText;
                     (this.children.login as Block).setProps({error:errorText});
-                    // this.setProps({error: //TODO старый просп как перве условие и как сторое условие isValid})
                 }
             }),
             password: new TextFieldComponent({
