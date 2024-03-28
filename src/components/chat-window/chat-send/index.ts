@@ -1,4 +1,3 @@
-// TODO переписать шаблон под компноентный подход, добавить button
 import "./index.scss";
 import ChatSendTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
@@ -46,7 +45,6 @@ class ChatSend extends Block {
                 src:"/assets/arrow.svg",
                 alt:"send" ,
                 classNameImage:"chatSend__arrow",
-                // disabled:props.disabled
             })
         }); 
     }
