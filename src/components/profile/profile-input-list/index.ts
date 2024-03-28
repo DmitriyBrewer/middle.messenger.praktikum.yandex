@@ -13,8 +13,7 @@ class ProfileInputParam extends Block {
         return this.compile(ProfileInputParamTemplate, {param: this.props.helper});
     }
 }
-
-// TODO разбить input на компоненты 
+// TODO обновить инпуты
 class ProfileInputList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 

@@ -11,7 +11,6 @@ class ChatPage extends Block {
             ...props,
             events: props.events,
             sidebar: new Sidebar({data: mockChats}),
-            // TODO сделать полноценный выбор чата
             window: new ChatWindow({
                 ...mockChats[0],
                 empty: false

@@ -1,5 +1,4 @@
 import "./index.scss";
-
 import SearchFieldTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import InputComponent from "../../../ui/input";

@@ -3,7 +3,6 @@ import ChatHeaderTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import ChatTitle from "../../chat-title";
 import ButtonImage from "../../../ui/button-image";
-
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
@@ -21,6 +20,5 @@ class ChatHeader extends Block {
         return this.compile(ChatHeaderTemplate, {});
     }
 }
-
 
 export default ChatHeader;

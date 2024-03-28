@@ -6,7 +6,6 @@ import InputComponent from "../../../ui/input";
 import ButtonImage from "../../../ui/button-image";
 import { validationField } from "../../../lib/validations/isValidLogin";
 import { conditions } from "../../../constants/conditions";
-
 class ChatSend extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,

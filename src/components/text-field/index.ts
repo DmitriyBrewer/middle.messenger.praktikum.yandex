@@ -1,6 +1,5 @@
-import Block, { BlockProps } from "../../lib/block";
 import "./index.scss";
-
+import Block, { BlockProps } from "../../lib/block";
 import TextFieldTemplate  from "./index.hbs?raw";
 import InputComponent from "../../ui/input";
 

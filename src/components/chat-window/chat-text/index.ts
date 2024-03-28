@@ -1,8 +1,6 @@
 import "./index.scss";
 import ChatTextTemplate  from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
-
-
 class ChatText extends Block {
     constructor(props:BlockProps) {
         super("span", props); 

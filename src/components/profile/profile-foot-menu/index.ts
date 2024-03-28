@@ -2,7 +2,6 @@ import Block, { BlockProps } from "../../../lib/block";
 import Button from "../../../ui/button";
 import LinkComponent from "../../../ui/link";
 import ProfileFootMenuTemplate from "./index.hbs?raw";
-
 class ProfileFootMenu extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,

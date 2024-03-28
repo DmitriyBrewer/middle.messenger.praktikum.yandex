@@ -4,7 +4,6 @@ import Block, { BlockProps } from "../../lib/block";
 import ChatHeader from "./chat-header";
 import MessageList from "../message-list";
 import ChatSend from "./chat-send";
-
 class ChatWindow extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
@@ -33,6 +32,5 @@ class ChatWindow extends Block {
         });
     }
 }
-
 
 export default ChatWindow;

@@ -1,9 +1,7 @@
 import "./index.scss";
-
 import  ProfileHeaderTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import Image from "../../../ui/img";
-
 class ProfileHeader extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,

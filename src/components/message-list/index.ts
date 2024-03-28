@@ -2,7 +2,6 @@ import "./index.scss";
 import  ChatTextListTemplate  from "./index.hbs?raw";
 import Block, { BlockProps } from "../../lib/block";
 import ChatText from "../chat-window/chat-text";
-
 class MessageList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
