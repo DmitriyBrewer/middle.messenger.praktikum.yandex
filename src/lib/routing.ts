@@ -1,17 +1,12 @@
-// TODO сделать сюда роутинг
-// import renderComponent from "./renderComponent";
-
 import { authPage } from "../pages/auth";
 import { chatPage } from "../pages/chat";
 import { errorPage404, errorPage500 } from "../pages/error-page";
 import { profileChangeDataPage, profilePage } from "../pages/profile";
 import { registrationPage } from "../pages/registration";
-import { allPartials } from "./partials";
-import { registerHandlebarsPartials } from "./register";
+
 import renderComponent from "./renderComponent";
 
 export function renderApp(root:string) {
-    registerHandlebarsPartials(allPartials);
 
     const url = window.location.pathname;
     
