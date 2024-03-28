@@ -26,7 +26,7 @@ class Auth extends Block {
                 placeholder: "Логин",
                 helper: "Логин",
                 autocomplete: "username",
-                pattern:"^(?=.{1,20}$)[a-zA-Z_\\-]+[0-9_\\-a-zA-Z]*$",
+                pattern:"^(?=.*[a-zA-Z])(?=.*\\d?)[a-zA-Z\\d_\\-]{3,20}$",
                 blur: (value:string) => {
                     // this.validateLogin(value);
                 }
