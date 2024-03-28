@@ -35,10 +35,10 @@ const errorPage500 = new ErrorPage({
     subtitle:"Мы уже фиксим"
 });
 
-// const errorPage404 = new ErrorPage({
-//     title:"404",
-//     subtitle:"Не туда попали"
-// });
+const errorPage404 = new ErrorPage({
+    title:"404",
+    subtitle:"Не туда попали"
+});
 
 
 const mockProfile = {
@@ -64,25 +64,25 @@ const profile = new ProfilePage({
     data: mockProfile
 });
 
-// const profileChangeData = new ProfilePage({
-//     profilePrev: new ProfilePrev({
-//         href:"/profile",
-//         alt:"prev",
-//         src: "/assets/arrow-left.svg"
-//     }),
-//     profileHeader: new ProfileHeader({
-//         name: mockProfile.first_name
-//     }),
-//     profileParamList: new ProfileInputList({
-//         data:mockProfile,
-//     }),
-//     footMenu: new Button({
-//         text: "Сохранить", 
-//         type:"buttton",
-//         className: "profileChangeButton"
-//     }),
-//     data: mockProfile
-// });
+const profileChangeData = new ProfilePage({
+    profilePrev: new ProfilePrev({
+        href:"/profile",
+        alt:"prev",
+        src: "/assets/arrow-left.svg"
+    }),
+    profileHeader: new ProfileHeader({
+        name: mockProfile.first_name
+    }),
+    profileParamList: new ProfileInputList({
+        data:mockProfile,
+    }),
+    footMenu: new Button({
+        text: "Сохранить", 
+        type:"buttton",
+        className: "profileChangeButton"
+    }),
+    data: mockProfile
+});
 
 
 
