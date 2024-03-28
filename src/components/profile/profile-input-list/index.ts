@@ -1,20 +1,8 @@
 import "./index.scss";
 import Block, { BlockProps } from "../../../lib/block";
-import InputComponent from "../../../ui/input";
-import  ProfileInputParamTemplate from "./index.hbs?raw";
 import { conditions } from "../../../constants/conditions";
-import { validationField } from "../../../lib/validations/isValidLogin";
+import ProfileInputParam from "../profile-input-param";
 
-class ProfileInputParam extends Block {
-    constructor(props:BlockProps) {
-        super("div",{...props,
-            input: new InputComponent({...props}),
-        });
-    }
-    render() {
-        return this.compile(ProfileInputParamTemplate, {param: this.props.helper});
-    }
-}
 // TODO обновить инпуты
 class ProfileInputList extends Block {
     constructor(props:BlockProps) {
@@ -29,6 +17,7 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired:true,
                 blur: (value:string) => {
+                    console.log(value);
                 }
             }),
             new ProfileInputParam({
@@ -41,7 +30,9 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired: true,
                 pattern: conditions.login.pattern,
-                blur: (value:string) => {}
+                blur: (value:string) => {
+                    console.log(value);
+                }
             }),
             new ProfileInputParam({
                 type:"text", 
@@ -53,10 +44,7 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => {
-                    // const isValid = validationField(value, conditions.login.pattern);
-                    // const errorText = isValid ? "" : conditions.login.errorText;
-                    // TODO найти children по id
-                    // (this.children.login as Block).setProps({error:errorText});
+                    console.log(value);
                 }
             }),
             new ProfileInputParam({
@@ -68,7 +56,9 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired: true,
                 pattern: conditions.name.pattern,
-                blur: (value:string) => { }
+                blur: (value:string) => { 
+                    console.log(value);
+                }
             }),
             new ProfileInputParam({
                 type:"text", 
@@ -79,7 +69,9 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired: true,
                 pattern: conditions.name.pattern,
-                blur: (value:string) => { }
+                blur: (value:string) => { 
+                    console.log(value);
+                }
             }),
             new ProfileInputParam({
                 type:"tel", 
@@ -90,7 +82,9 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired: true,
                 pattern: conditions.phone.pattern,
-                blur: (value:string) => { }
+                blur: (value:string) => { 
+                    console.log(value);
+                }
             }),
             
         ];

@@ -7,6 +7,7 @@ import ProfileFootMenu from "../../components/profile/profile-foot-menu";
 import ProfileParamsList from "../../components/profile/profile-param-list";
 import ProfileInputList from "../../components/profile/profile-input-list";
 import Button from "../../ui/button";
+import ProfilePasswordList from "../../components/profile/profile-password-list";
 
 class ProfilePage extends Block {
     constructor(props:BlockProps) {
@@ -52,6 +53,27 @@ export const profileChangeDataPage = new ProfilePage({
         name: mockProfile.first_name
     }),
     profileParamList: new ProfileInputList({
+        data:mockProfile,
+    }),
+    footMenu: new Button({
+        text: "Сохранить", 
+        type:"buttton",
+        className: "profileChangeButton"
+    }),
+    data: mockProfile
+});
+
+
+export const profileChangePassword = new ProfilePage({
+    profilePrev: new ProfilePrev({
+        href:"/profile",
+        alt:"prev",
+        src: "/assets/arrow-left.svg"
+    }),
+    profileHeader: new ProfileHeader({
+        name: mockProfile.first_name
+    }),
+    profileParamList: new ProfilePasswordList({
         data:mockProfile,
     }),
     footMenu: new Button({
