@@ -4,6 +4,8 @@ import { registerHandlebarsPartials } from "../../lib/register";
 import Block, {  BlockProps } from "../../lib/block";
 import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
+import { validationField } from "../../lib/validations/isValidLogin";
+import { conditions } from "../../constants/conditions";
 
 registerHandlebarsPartials(allPartials);
 
@@ -26,9 +28,13 @@ class Auth extends Block {
                 placeholder: "Логин",
                 helper: "Логин",
                 autocomplete: "username",
-                pattern:"^(?=.*[a-zA-Z])(?=.*\\d?)[a-zA-Z\\d_\\-]{3,20}$",
+                pattern:conditions.login.pattern,
+                required: true,
                 blur: (value:string) => {
-                    // this.validateLogin(value);
+                    const isValid = validationField(value, conditions.login.pattern);
+                    const errorText = isValid ? "" : conditions.login.errorText;
+                    (this.children.login as Block).setProps({error:errorText});
+                    (this.children.button as Block).setProps({disabled:!isValid});
                 }
             }),
             password: new TextFieldComponent({
@@ -38,54 +44,26 @@ class Auth extends Block {
                 placeholder: "Пароль",
                 helper: "Пароль",
                 autocomplete: "current-password",
-                // pattern:"^(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,40}$",
-                // pattern: "(?=^.{8,40}$)(?=.*[A-Z])(?=.*\\d).*",
+                pattern: conditions.password.pattern,
+               
                 blur: (value:string) => {
-                    // this.validatePassword(value);
+                    const isValid = validationField(value, conditions.password.pattern);
+                    const errorText = isValid ? "" : conditions.password.errorText;
+                    (this.children.password as Block).setProps({error:errorText});
+                    (this.children.button as Block).setProps({disabled:!isValid});
                 }
             }),
             button: new Button({
                 type: "submit",
-                text: props.buttonText,
+                text: "Вход",
                 disabled: false
             })
         });
     }
 
-
-    
-
-    // componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-    //     // TODO исправить ошибки
-    //     const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
-    //     if(oldProps.disabled !== newProps.disabled) {
-    //         this.setProps({ disabled: isButtonDisabled });
-    //     }
-    //     // this.children.password!.setProps({ error: newProps.errorPassword });
-    //     // this.children.login!.setProps({ error: newProps.errorLogin });
-
-    //     return true;
-    // }
-
     render() {
         return this.compile(AuthTemplate, {});
     }
-
-    // private validateLogin(value: string): void {
-    //     if (value.trim() === "") {
-    //         this.setProps({ errorLogin: "Поле не может быть пустым" });
-    //     } else {
-    //         this.setProps({ errorLogin: "" });
-    //     }
-    // }
-
-    // private validatePassword(value: string): void {
-    //     if (value.length < 6) {
-    //         this.setProps({ errorPassword: "Пароль должен содержать минимум 6 символов" });
-    //     } else {
-    //         this.setProps({ errorPassword: "" });
-    //     }
-    // }
 }
 
 class AuthPage extends Block {

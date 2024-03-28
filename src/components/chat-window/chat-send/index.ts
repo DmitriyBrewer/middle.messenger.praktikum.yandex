@@ -5,6 +5,8 @@ import Image from "../../../ui/img";
 import InputComponent from "../../../ui/input";
 import ButtonImage from "../../../ui/button-image";
 import { isEmptyValue } from "../../../lib/validations/isEmptyValue";
+import { validationField } from "../../../lib/validations/isValidLogin";
+import { conditions } from "../../../constants/conditions";
 
 class ChatSend extends Block {
     constructor(props:BlockProps) {
@@ -32,7 +34,9 @@ class ChatSend extends Block {
                 isRequired:true,
                 autocomplete:"off",
                 blur: (value: string) => {
-                    isEmptyValue(value,"Поле сообщения не должно быть пустым!");
+                    const isValid = validationField(value, conditions.message.pattern);
+                    (this.children.sendButton as Block).setProps({disabled:!isValid});
+                    !isValid && console.log(conditions.message.errorText);
                 },
             }),
             sendButton: new ButtonImage({
