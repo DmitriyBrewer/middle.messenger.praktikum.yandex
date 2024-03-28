@@ -1,7 +1,12 @@
 import TextFieldComponent from "../../components/text-field";
+import { allPartials } from "../../lib/partials";
+import { registerHandlebarsPartials } from "../../lib/register";
 import Block, {  BlockProps } from "../../lib/test/block";
 import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
+
+registerHandlebarsPartials(allPartials);
+
 class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div", {
@@ -82,4 +87,6 @@ class AuthPage extends Block {
     }
 }
 
-export default AuthPage;
+export const authPage = new AuthPage({
+    buttonText: "Вход",
+});

@@ -178,7 +178,10 @@ class RegistrationPage extends Block {
     }
 }
 
-export default RegistrationPage;
+export const registrationPage = new RegistrationPage({
+    buttonText: "Регистрация"
+});
+
 
 
 

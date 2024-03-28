@@ -26,4 +26,5 @@ class ChatPage extends Block {
 
 }
 
-export default ChatPage;
+export const chatPage = new ChatPage({
+});

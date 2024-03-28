@@ -16,4 +16,12 @@ class ErrorPage extends Block {
 
 }
 
-export default ErrorPage;
+export const errorPage500 = new ErrorPage({
+    title:"500",
+    subtitle:"Мы уже фиксим"
+});
+
+export const errorPage404 = new ErrorPage({
+    title:"404",
+    subtitle:"Не туда попали"
+});
