@@ -27,7 +27,6 @@ class ChatWindow extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatWindowTemplate, {
             empty: this.props.empty,
             date: this.props.time

@@ -7,10 +7,26 @@ import AuthTemplate from "./index.hbs?raw";
 
 registerHandlebarsPartials(allPartials);
 
-class AuthPage extends Block {
+class Auth extends Block {
     constructor(props:BlockProps) {
         super("div", {
             ...props,
+            events:{
+                submit: (event: Event) => {
+                    event.preventDefault();
+                    const formData = new FormData(this.element as HTMLFormElement);
+                    const formDataObject: Record<string, string> = {};
+                    formData.forEach((value, key) => {
+                        if (typeof value === "string") {
+                            formDataObject[key] = value;
+                        } else if (value instanceof File) {
+                            formDataObject[key] = "File uploaded";
+                        }
+                    });
+                    console.log("Данные формы:", formDataObject);
+                    this.clearForm();
+                }
+            },
             login: new TextFieldComponent({
                 type: "text",
                 id: "login",
@@ -18,12 +34,8 @@ class AuthPage extends Block {
                 placeholder: "Логин",
                 helper: "Логин",
                 autocomplete: "username",
-                onChange: (value:string) => {
-                    console.log(this);
-                    this.setProps({ buttonText: value });
-                },
                 blur: (value:string) => {
-                    this.validateLogin(value);
+                    // this.validateLogin(value);
                 }
             }),
             password: new TextFieldComponent({
@@ -33,60 +45,66 @@ class AuthPage extends Block {
                 placeholder: "Пароль",
                 helper: "Пароль",
                 autocomplete: "current-password",
-                pattern: "(?=^.{8,40}$)(?=.*[A-Z])(?=.*\\d).*",
-                onChange: (value:string) => {
-                    this.setProps({ buttonText: value });
-                },
+                // pattern: "(?=^.{8,40}$)(?=.*[A-Z])(?=.*\\d).*",
                 blur: (value:string) => {
-                    this.validatePassword(value);
+                    // this.validatePassword(value);
                 }
             }),
             button: new Button({
-                type: "button",
+                type: "submit",
                 text: props.buttonText,
-                events: {
-                    click: (event: Event) => {
-                        console.log(event);
-                    },
-                },
-                disabled: true
+                disabled: false
             })
         });
     }
 
-    componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        // TODO исправить ошибки
-        const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
-        if(oldProps.disabled !== newProps.disabled) {
-            this.setProps({ disabled: isButtonDisabled });
-        }
-        // this.children.password!.setProps({ error: newProps.errorPassword });
-        // this.children.login!.setProps({ error: newProps.errorLogin });
 
-        return true;
-    }
+    
+
+    // componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    //     // TODO исправить ошибки
+    //     const isButtonDisabled = newProps.errorLogin !== "" || newProps.errorPassword !== "";
+    //     if(oldProps.disabled !== newProps.disabled) {
+    //         this.setProps({ disabled: isButtonDisabled });
+    //     }
+    //     // this.children.password!.setProps({ error: newProps.errorPassword });
+    //     // this.children.login!.setProps({ error: newProps.errorLogin });
+
+    //     return true;
+    // }
 
     render() {
         return this.compile(AuthTemplate, {});
     }
 
-    private validateLogin(value: string): void {
-        if (value.trim() === "") {
-            this.setProps({ errorLogin: "Поле не может быть пустым" });
-        } else {
-            this.setProps({ errorLogin: "" });
-        }
-    }
+    // private validateLogin(value: string): void {
+    //     if (value.trim() === "") {
+    //         this.setProps({ errorLogin: "Поле не может быть пустым" });
+    //     } else {
+    //         this.setProps({ errorLogin: "" });
+    //     }
+    // }
 
-    private validatePassword(value: string): void {
-        if (value.length < 6) {
-            this.setProps({ errorPassword: "Пароль должен содержать минимум 6 символов" });
-        } else {
-            this.setProps({ errorPassword: "" });
-        }
-    }
+    // private validatePassword(value: string): void {
+    //     if (value.length < 6) {
+    //         this.setProps({ errorPassword: "Пароль должен содержать минимум 6 символов" });
+    //     } else {
+    //         this.setProps({ errorPassword: "" });
+    //     }
+    // }
 }
 
-export const authPage = new AuthPage({
-    buttonText: "Вход",
-});
+class AuthPage extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            authForm: new Auth({})
+        });
+    }
+
+    render() {
+        return this.compile("{{#> BaseLayout}}{{{ authForm }}}{{/ BaseLayout}}", {});
+    }
+
+}
+
+export const authPage = new AuthPage({});

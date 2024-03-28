@@ -188,6 +188,13 @@ class Block {
         return true;
     }
 
+    public clearForm() {
+        const inputElements = this.element!.querySelectorAll("input");
+        inputElements.forEach((inputElement) => {
+            (inputElement as HTMLInputElement).value = "";
+        });
+    }
+
     public setProps = (nextProps:BlockProps): void => {
         if (!nextProps) {
             return;
