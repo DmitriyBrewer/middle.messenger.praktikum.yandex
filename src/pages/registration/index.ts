@@ -23,7 +23,6 @@ class Registration extends Block {
                 placeholder:"Почта",
                 helper: "Почта",
                 isRequired:true,
-                // pattern: conditions.email.pattern,
                 blur: (value:string) => {
                     const isValid = validationField(value, conditions.email.pattern);
                     const errorText = isValid ? "" : conditions.email.errorText;
@@ -79,11 +78,11 @@ class Registration extends Block {
                 name:"phone", 
                 placeholder:"Телефон",
                 helper: "Телефон",
-                pattern:conditions.phone.patten,
+                pattern:conditions.phone.pattern,
                 isRequired:true,
                 autocomplete:"usermane",
                 blur: (value:string) => {
-                    const isValid = validationField(value, conditions.phone.patten);
+                    const isValid = validationField(value, conditions.phone.pattern);
                     const errorText = isValid ? "" : conditions.phone.errorText;
                     (this.children.phone as Block).setProps({error:errorText});
                 }

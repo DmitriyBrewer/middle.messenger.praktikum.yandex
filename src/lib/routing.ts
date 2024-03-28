@@ -20,7 +20,7 @@ export function renderApp(root:string) {
         renderComponent(root, errorPage404);
     } else if (url === "/profile") {
         renderComponent(root, profilePage);
-    } else if (url === "/profile/changedata") {
+    } else if (url === "/profile/change") {
         renderComponent(root, profileChangeDataPage);
     } else {
         renderComponent(root, authPage);

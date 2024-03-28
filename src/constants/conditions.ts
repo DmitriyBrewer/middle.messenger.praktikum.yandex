@@ -16,7 +16,7 @@ export const conditions ={
         errorText:"Поле введено неверно"
     },
     phone: {
-        patten: "^\\+?\\d{10,15}$",
+        pattern: "^\\+?\\d{10,15}$",
         errorText: "Телефон введен неверно"
     },
     message: {
