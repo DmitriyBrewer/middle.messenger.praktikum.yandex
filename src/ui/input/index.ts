@@ -9,8 +9,9 @@ class InputComponent extends Block {
         super("div",{...props,
             events: {
                 // TODO поправить ts 
-                change: (event) => props.onChange(event.target.value),
-                blur: (event) => props.blur(event.target.value)
+                // change: (event) => props.onChange(event.target.value),
+                blur: (event) => props.blur(event.target.value),
+                // oninvalid:(event) => props.oninvalid(event.target.value)
             },
         });
     }
@@ -26,6 +27,7 @@ class InputComponent extends Block {
             autocomplete: this.props.autocomplete,
             pattern: this.props.pattern,
             dir: this.props.dir,
+            patternMessage: this.props.patternMessage
         });
     } 
 }
