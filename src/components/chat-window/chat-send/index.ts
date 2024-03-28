@@ -5,10 +5,12 @@ import Block, { BlockProps } from "../../../lib/block";
 import Image from "../../../ui/img";
 import InputComponent from "../../../ui/input";
 import ButtonImage from "../../../ui/button-image";
+import { isEmptyValue } from "../../../lib/validations/isEmptyValue";
 
 class ChatSend extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
+            disabled:false,
             events:{
                 submit:(event:Event)=>{
                     event.preventDefault();
@@ -34,16 +36,9 @@ class ChatSend extends Block {
                 pattern: ".+",
                 isRequired:true,
                 autocomplete:"off",
-                patternMessage: "Поле сообщения не должно быть пустым!",
-                blur:(value:string)=>{
-                    if (value.trim() === "") {
-                        console.log("Поле сообщения не должно быть пустым!");
-                        this.setProps({disabled:true});
-                    }
+                blur: (value: string) => {
+                    isEmptyValue(value,"Поле сообщения не должно быть пустым!");
                 },
-                // oninvalid:(event) {
-                //     event.target.setCustomValidity('Username should only contain lowercase letters. e.g. john');
-                // }
             }),
             sendButton: new ButtonImage({
                 className:"chatSend__send",
@@ -51,7 +46,7 @@ class ChatSend extends Block {
                 src:"/assets/arrow.svg",
                 alt:"send" ,
                 classNameImage:"chatSend__arrow",
-                disabled:props.disabled
+                // disabled:props.disabled
             })
         }); 
     }
