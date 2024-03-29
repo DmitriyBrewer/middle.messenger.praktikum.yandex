@@ -1,6 +1,6 @@
 type EventHandler = (...args: unknown[]) => void;
 
-class EventBus {
+export class EventBus {
     private listeners: { [key: string]: EventHandler[] };
 
     constructor() {

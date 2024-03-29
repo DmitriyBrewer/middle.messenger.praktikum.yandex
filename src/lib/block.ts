@@ -90,17 +90,9 @@ class Block {
             this._componentDidMount(args as BlockProps);
         });
 
-        // eventBus.on(Block.EVENTS.FLOW_CDU, (args: unknown) => {
-        //     if (Array.isArray(args)) {
-        //         const [oldProps, newProps] = args as [BlockProps, BlockProps];
-        //         this._componentDidUpdate(oldProps, newProps);
-        //     }
-        // });
-        // TODO решить проблему типизациии
-        console.log(this);
+        // eslint-disable-next-line
+        // @ts-ignore не успеваю решить эту проблему типизации, вероятно надо в EventBus делать generic, но пока оставляю так
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-
-
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 

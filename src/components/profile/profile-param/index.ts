@@ -7,7 +7,6 @@ class ProfileParam extends Block {
         super("div",props);
     }
     render() {
-        console.log(this.props);
         return this.compile(ProfileParamTemplate, {param:this.props.param, value: this.props.value});
     }
 }
