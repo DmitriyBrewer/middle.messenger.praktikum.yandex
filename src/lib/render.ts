@@ -1,5 +1,5 @@
 import handlebars from "handlebars";
-import { allPartials } from "./register";
+import { allPartials } from "./partials";
 
 interface TemplateData<T> {
     data: T;

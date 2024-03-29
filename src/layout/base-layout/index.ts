@@ -1,2 +1,2 @@
 import "./index.scss";
-export { default as BaseLayout } from "./index.hbs?raw";
+export { default as BaseLayoutTemplate } from "./index.hbs?raw";

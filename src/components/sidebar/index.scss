@@ -1,8 +1,7 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background-color: var(--secondary_bg);
+    background-color: var(--secondary-bg);
     box-sizing: border-box;
     padding: var(--g20) var(--g12);
     row-gap: var(--g16);

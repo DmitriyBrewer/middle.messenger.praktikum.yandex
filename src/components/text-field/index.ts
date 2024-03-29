@@ -1,41 +1,34 @@
 import "./index.scss";
+import Block, { BlockProps } from "../../lib/block";
+import TextFieldTemplate  from "./index.hbs?raw";
+import InputComponent from "../../ui/input";
 
-document.querySelectorAll(".textField").forEach((textField: Element) => {
-    const input: HTMLInputElement | null = textField.querySelector(".input");
-    const label: HTMLElement | null = textField.querySelector(".label");
-    const errorMessage: HTMLElement | null =
-        textField.querySelector(".error-message");
-
-    if (input && label && errorMessage) {
-        input.addEventListener("focus", () => {
-            if (label) {
-                label.classList.add("active");
-            }
-        });
-
-        input.addEventListener("blur", () => {
-            if (input.value === "") {
-                if (label) {
-                    label.classList.remove("active");
-                }
-            }
-        });
-
-        input.addEventListener("input", () => {
-            if (input.validity.valid) {
-                input.style.color = "";
-                if (errorMessage) {
-                    errorMessage.style.display = "none";
-                }
-            } else {
-                input.style.color = "#ff0000";
-                if (errorMessage) {
-                    errorMessage.style.display = "block";
-                    errorMessage.textContent = input.validationMessage;
-                }
-            }
+class TextFieldComponent extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            input: new InputComponent({
+                type:props.type,
+                id:props.id,
+                name: props.name,
+                placeholder:  props.placeholder,
+                isRequired: props.isRequired,
+                className:  props.className,
+                autocomplete:  props.autocomplete,
+                pattern:  props.pattern,
+                dir:  props.dir,
+                onChange: props.onChange,
+                blur: props.blur,
+            })
         });
     }
-});
 
-export { default as TextField } from "./index.hbs?raw";
+    render() { 
+        return this.compile(TextFieldTemplate,{
+            error:  this.props.error,
+            helper: this.props.helper,
+            classNameTextField: this.props.classNameTextField
+        });
+    } 
+}
+
+export default TextFieldComponent;

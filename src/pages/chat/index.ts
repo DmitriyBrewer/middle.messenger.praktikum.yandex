@@ -1,24 +1,28 @@
 import "./index.scss";
-import renderTemplate from "../../lib/render";
+import Block, { BlockProps } from "../../lib/block";
+import ChatPageTemplate from "./index.hbs?raw";
+import Sidebar from "../../components/sidebar";
+import ChatWindow from "../../components/chat-window";
+import { mockChats } from "../../constants/mockChats";
 
-document.addEventListener("DOMContentLoaded", () => {
-    const renderChatPage = () => {
-        const chat = renderTemplate("ChatPage");
-        document.querySelector(".root")!.innerHTML = chat;
-    };
-
-    if (window.location.pathname === "/chat") {
-        renderChatPage();
-    }
-
-    const chatLink = document.querySelector("a[href='/chat']");
-    if (chatLink) {
-        chatLink.addEventListener("click", (event) => {
-            event.preventDefault();
-            renderChatPage();
-            window.history.pushState({}, "", "/chat");
+class ChatPage extends Block {
+    constructor(props:BlockProps) {
+        super("div",{
+            ...props,
+            events: props.events,
+            sidebar: new Sidebar({data: mockChats}),
+            window: new ChatWindow({
+                ...mockChats[0],
+                empty: false
+            })
         });
     }
-});
 
-export { default as ChatPage } from "./index.hbs?raw";
+    render() {
+        return this.compile(ChatPageTemplate, {});
+    }
+
+}
+
+export const chatPage = new ChatPage({
+});

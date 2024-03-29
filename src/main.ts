@@ -1,14 +1,4 @@
-import renderTemplate from "./lib/render";
 import "./index.scss";
+import { renderApp } from "./lib/routing";
 
-type AuthData = {
-    title: string;
-};
-
-const authPage = renderTemplate<AuthData>("Auth");
-
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div class='root'>
-   ${authPage}
-  </div>
-`;
+renderApp(".root");

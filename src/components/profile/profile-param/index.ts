@@ -1,3 +1,14 @@
 import "./index.scss";
 
-export { default as ProfileParam } from "./index.hbs?raw";
+import  ProfileParamTemplate from "./index.hbs?raw";
+import Block, { BlockProps } from "../../../lib/block";
+class ProfileParam extends Block {
+    constructor(props:BlockProps) {
+        super("div",props);
+    }
+    render() {
+        return this.compile(ProfileParamTemplate, {param:this.props.param, value: this.props.value});
+    }
+}
+
+export default ProfileParam;

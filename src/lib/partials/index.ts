@@ -1,36 +1,19 @@
-export { AuthPage } from "../../pages/auth";
-export { RegistrationPage } from "../../pages/registration";
-export { BaseLayout } from "../../layout/base-layout";
-export { TextField } from "../../components/text-field";
-export { Button } from "../../ui/button";
-export { Link } from "../../ui/link";
-export { Form } from "../../ui/form";
-export { Title } from "../../ui/title";
-export { FieldWrapper } from "../../components/field-wrapper";
-export { ButtonWrapper } from "../../components/button-wrapper";
-export { ErrorPage } from "../../pages/error-page";
-export { SidebarLayout } from "../../layout/sidebar-layout";
-export { ChatPage } from "../../pages/chat";
-export { Sidebar } from "../../components/sidebar";
-export { SearchField } from "../../components/sidebar/search-field";
-export { ChatItem } from "../../components/sidebar/sidebar-item";
-export { Avatar } from "../../ui/avatar";
-export { ChatTitle } from "../../components/chat-title";
-export { ChatWindow } from "../../components/chat-window";
-export { ChatMesssage } from "../../components/chat-window/chat-message";
-export { ChatText } from "../../components/chat-window/chat-text";
-export { ChatHeader } from "../../components/chat-window/chat-header";
-export { ChatSend } from "../../components/chat-window/chat-send";
-export { ChatMenu } from "../../components/chat-window/chat-menu";
-export { ProfilePage } from "../../pages/profile";
-export { ProfileParam } from "../../components/profile/profile-param";
-export { ProfileChangeDataPage } from "../../pages/profile-change-data";
-export { ProfileHeader } from "../../components/profile/profle-header";
-export { ProfilePrev } from "../../components/profile/profile-prev";
-export { ProfileContent } from "../../components/profile/profile-content";
-export { ProfileParams } from "../../components/profile/profile-params";
-export { ProfileRoot } from "../../components/profile/profile-root";
-export { Input } from "../../ui/input";
-export { ProfileChangePasswordPage } from "../../pages/profile-change-password";
-export { ButtonImage } from "../../ui/button-image";
-export { Image } from "../../ui/img";
+import { ButtonWrapper } from "../../components/button-wrapper";
+import { FieldWrapper } from "../../components/field-wrapper";
+import { BaseLayoutTemplate } from "../../layout/base-layout";
+import {  SidebarLayoutTemplate } from "../../layout/sidebar-layout";
+import { Avatar } from "../../ui/avatar";
+import { InputTemplate } from "../../ui/input";
+import { Link } from "../../ui/link";
+import { Title } from "../../ui/title";
+
+export const allPartials: Record<string, string> = {
+    BaseLayout: BaseLayoutTemplate,
+    Link: Link,
+    Title:Title,
+    FieldWrapper: FieldWrapper,
+    ButtonWrapper: ButtonWrapper,
+    Input: InputTemplate,
+    SidebarLayout: SidebarLayoutTemplate,
+    Avatar: Avatar,
+};

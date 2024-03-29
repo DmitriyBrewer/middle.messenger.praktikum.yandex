@@ -1,13 +1,8 @@
 <div class="profileParam">
-    {{#if textLink}}
-        {{> Link text=textLink href=href}}
-    {{else}}
-        <p class="profileParam__param">{{param}}</p>
-        
-        {{#if input}}
-            {{> @partial-block}}
-        {{else}}
-            <p class="profileParam__value">{{value}}</p>
-        {{/if}}
-    {{/if}}
+    <p class="profileParam__param">
+    {{{ param }}}
+    </p>
+    <p class="profileParam__value">
+    {{{ value }}}
+    </p>
 </div>
