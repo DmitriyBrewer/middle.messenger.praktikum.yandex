@@ -248,10 +248,6 @@ class Block {
     private _makePropsProxy(props: BlockProps): BlockProps {
         return new Proxy(props, {
             get: (target, prop) => {
-                // TODO проверить нужны ли доп условия
-                // if (typeof prop === "symbol" && prop !== Symbol.toPrimitive) {
-                //     throw new Error("Symbols are not allowed as property keys");
-                // }
                 if (typeof prop === "symbol") {
                     throw new Error("Symbols are not allowed as property keys");
                 }
