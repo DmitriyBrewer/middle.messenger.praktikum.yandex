@@ -61,7 +61,7 @@ export const profileChangeDataPage = new ProfilePage({
         }),
         footMenu: new Button({
             text: "Сохранить", 
-            type:"buttton",
+            type:"submit",
             className: "profileChangeButton"
         }),
     }),
@@ -84,7 +84,7 @@ export const profileChangePassword = new ProfilePage({
         }),
         footMenu: new Button({
             text: "Сохранить", 
-            type:"buttton",
+            type:"submit",
             className: "profileChangeButton"
         }),
     }),

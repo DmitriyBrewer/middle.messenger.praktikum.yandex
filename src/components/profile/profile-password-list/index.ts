@@ -27,8 +27,8 @@ class ProfilePasswordList extends Block {
             }),
             new ProfileInputParam({
                 type:"password", 
-                id:"newPassword",
-                name:"password", 
+                id:"new_password",
+                name:"new_password", 
                 placeholder:"Новый пароль",
                 helper: "Новый пароль",
                 autocomplete:"current-password",
@@ -45,8 +45,8 @@ class ProfilePasswordList extends Block {
             }),
             new ProfileInputParam({
                 type:"password", 
-                id:"repeatPassword",
-                name:"password", 
+                id:"repeat_password",
+                name:"repeat_password", 
                 placeholder:"Повторите новый пароль",
                 helper: "Повторите новый пароль",
                 autocomplete:"current-password",

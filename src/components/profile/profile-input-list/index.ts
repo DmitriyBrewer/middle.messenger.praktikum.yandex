@@ -1,9 +1,8 @@
 import "./index.scss";
-import Block, { BlockProps } from "../../../lib/block";
+import Block, { BlockChildren, BlockProps } from "../../../lib/block";
 import { conditions } from "../../../constants/conditions";
 import ProfileInputParam from "../profile-input-param";
-
-// TODO обновить инпуты
+import { validationField } from "../../../lib/validations/isValidLogin";
 class ProfileInputList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
@@ -17,7 +16,10 @@ class ProfileInputList extends Block {
                 className: "changeProfileInput",
                 isRequired:true,
                 blur: (value:string) => {
-                    console.log(value);
+                    const isValid = validationField(value, conditions.email.pattern);
+                    const errorText = isValid ? "" : conditions.email.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[0] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
@@ -31,7 +33,10 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.login.pattern,
                 blur: (value:string) => {
-                    console.log(value);
+                    const isValid = validationField(value, conditions.login.pattern);
+                    const errorText = isValid ? "" : conditions.login.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[1] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
@@ -44,7 +49,10 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => {
-                    console.log(value);
+                    const isValid = validationField(value, conditions.name.pattern);
+                    const errorText = isValid ? "" : conditions.name.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[2] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
@@ -57,7 +65,10 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => { 
-                    console.log(value);
+                    const isValid = validationField(value, conditions.name.pattern);
+                    const errorText = isValid ? "" : conditions.name.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[3] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
@@ -70,7 +81,10 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.name.pattern,
                 blur: (value:string) => { 
-                    console.log(value);
+                    const isValid = validationField(value, conditions.name.pattern);
+                    const errorText = isValid ? "" : conditions.name.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[4] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
@@ -83,7 +97,10 @@ class ProfileInputList extends Block {
                 isRequired: true,
                 pattern: conditions.phone.pattern,
                 blur: (value:string) => { 
-                    console.log(value);
+                    const isValid = validationField(value, conditions.phone.pattern);
+                    const errorText = isValid ? "" : conditions.phone.errorText;
+                    ((this.children as BlockChildren<Block[]>).list[5] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             
