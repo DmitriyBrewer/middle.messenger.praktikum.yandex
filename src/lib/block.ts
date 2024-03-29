@@ -11,6 +11,7 @@ export type BlockProps = {
     [key: string]: unknown;
     children?: BlockChildren | unknown;
     events?: BlockEvents;
+    blur?: (event: string) => void; 
 }
 
 export type PropsType<P = BlockProps> = P
@@ -96,6 +97,7 @@ class Block {
         //     }
         // });
         // TODO решить проблему типизациии
+        console.log(this);
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
 
 
@@ -287,10 +289,10 @@ class Block {
 
     private _createDocumentElement(tagName: string): HTMLElement {
         const element = document.createElement(tagName);
-        if(this._id) {
-            element.setAttribute("data-id", this._id);
-        } 
-        return element;    
+        if (this._id) {
+            element.setAttribute("data-id", this._id.toString()); 
+        }
+        return element;
     }
 
     public show(): void {
