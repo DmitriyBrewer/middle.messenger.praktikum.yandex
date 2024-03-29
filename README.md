@@ -39,7 +39,7 @@
 
     npm run start
 
-5. Линтинг кода
+5. Линтинг кода (eslint + ts)
 
     npm run lint
 
