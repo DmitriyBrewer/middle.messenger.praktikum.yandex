@@ -1,10 +1,8 @@
 import "./index.scss";
-import Block, { BlockProps } from "../../../lib/block";
+import Block, { BlockChildren, BlockProps } from "../../../lib/block";
 import ProfileInputParam from "../profile-input-param";
 import { conditions } from "../../../constants/conditions";
 import { validationField } from "../../../lib/validations/isValidLogin";
-
-// TODO обновить инпуты
 class ProfilePasswordList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
@@ -23,7 +21,7 @@ class ProfilePasswordList extends Block {
                     this.setProps({oldPassword:value});
                     const isValid = validationField(value, conditions.password.pattern);
                     const errorText = isValid ? "" : conditions.password.errorText;
-                    (this.children.list[0] as Block).setProps({error:errorText});
+                    ((this.children as BlockChildren<Block[]>).list[0] as Block).setProps({error:errorText});
                     this.setProps({error:errorText});
                 }
             }),
@@ -41,7 +39,7 @@ class ProfilePasswordList extends Block {
                     this.setProps({passwordValue:value});
                     const isValid = validationField(value, conditions.password.pattern) && value !== this.props.oldPassword;
                     const errorText = isValid ? "" : conditions.password.errorText;
-                    (this.children.list[1] as Block).setProps({error:errorText});
+                    ((this.children as BlockChildren<Block[]>).list[1] as Block).setProps({error:errorText});
                     this.setProps({error:errorText});
                 }
             }),
@@ -58,7 +56,7 @@ class ProfilePasswordList extends Block {
                 blur: (value:string) => {
                     const passwordValue = this.props.passwordValue;
                     const errorText = value === passwordValue ? "" : "Пароли не совпадают";
-                    (this.children.list[2] as Block).setProps({error:errorText});
+                    ((this.children as BlockChildren<Block[]>).list[2] as Block).setProps({error:errorText});
                 }
             }),
         ];
