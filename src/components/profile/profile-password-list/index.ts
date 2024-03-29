@@ -2,6 +2,7 @@ import "./index.scss";
 import Block, { BlockProps } from "../../../lib/block";
 import ProfileInputParam from "../profile-input-param";
 import { conditions } from "../../../constants/conditions";
+import { validationField } from "../../../lib/validations/isValidLogin";
 
 // TODO обновить инпуты
 class ProfilePasswordList extends Block {
@@ -19,12 +20,16 @@ class ProfilePasswordList extends Block {
                 isRequired: true,
                 className: "changeProfileInput",
                 blur: (value:string) => {
-                    console.log(value);
+                    this.setProps({oldPassword:value});
+                    const isValid = validationField(value, conditions.password.pattern);
+                    const errorText = isValid ? "" : conditions.password.errorText;
+                    (this.children.list[0] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
                 type:"password", 
-                id:"password",
+                id:"newPassword",
                 name:"password", 
                 placeholder:"Новый пароль",
                 helper: "Новый пароль",
@@ -33,12 +38,16 @@ class ProfilePasswordList extends Block {
                 isRequired: true,
                 className: "changeProfileInput",
                 blur: (value:string) => {
-                    console.log(value);
+                    this.setProps({passwordValue:value});
+                    const isValid = validationField(value, conditions.password.pattern) && value !== this.props.oldPassword;
+                    const errorText = isValid ? "" : conditions.password.errorText;
+                    (this.children.list[1] as Block).setProps({error:errorText});
+                    this.setProps({error:errorText});
                 }
             }),
             new ProfileInputParam({
                 type:"password", 
-                id:"password",
+                id:"repeatPassword",
                 name:"password", 
                 placeholder:"Повторите новый пароль",
                 helper: "Повторите новый пароль",
@@ -47,7 +56,9 @@ class ProfilePasswordList extends Block {
                 isRequired: true,
                 className: "changeProfileInput",
                 blur: (value:string) => {
-                    console.log(value);
+                    const passwordValue = this.props.passwordValue;
+                    const errorText = value === passwordValue ? "" : "Пароли не совпадают";
+                    (this.children.list[2] as Block).setProps({error:errorText});
                 }
             }),
         ];
@@ -57,6 +68,7 @@ class ProfilePasswordList extends Block {
     }
 
     render() {    
+        console.log(this);
         return this.compile("{{{ list }}}", {});
     }
 }

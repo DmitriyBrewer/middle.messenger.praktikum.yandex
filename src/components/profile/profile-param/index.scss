@@ -19,4 +19,15 @@
         font-size: var(--fs-input-text);
         font-weight: var(--fw-input-text);
     }
+
+    &__input {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__error {
+        color: var(--primary-error);
+        font-size: var(--fs-hint-text);
+        margin: 0;
+    }
 }

@@ -9,7 +9,7 @@ class ProfileInputParam extends Block {
         });
     }
     render() {
-        return this.compile(ProfileInputParamTemplate, {param: this.props.helper});
+        return this.compile(ProfileInputParamTemplate, {param: this.props.helper, error:this.props.error});
     }
 }
 
