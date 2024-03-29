@@ -3,15 +3,6 @@
     grid-template-columns: 64px 3fr;
     height: 100%;
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        row-gap: var(--g54);
-        background-color: var(--primary-bg);
-    }
-
     &__buttonWrapper {
         display: flex;
         width: 100%;
@@ -26,23 +17,3 @@
     }
 }
 
-.profileParams {
-    width: 510px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: var(--g12);
-}
-
-.profileChangeButton {
-    cursor: pointer;
-    width: 520px;
-    border-radius: var(--br);
-    border: none;
-    height: 37px;
-    background-color: var(--primary);
-    color: var(--primary-text-white);
-    font-weight: var(--fw-button-text);
-    font-size: var(--fs-button-text);
-}

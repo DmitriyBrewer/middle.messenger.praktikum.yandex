@@ -8,6 +8,7 @@ import ProfileParamsList from "../../components/profile/profile-param-list";
 import ProfileInputList from "../../components/profile/profile-input-list";
 import Button from "../../ui/button";
 import ProfilePasswordList from "../../components/profile/profile-password-list";
+import ProfileForm from "../../components/profile/profile-form";
 
 class ProfilePage extends Block {
     constructor(props:BlockProps) {
@@ -34,11 +35,13 @@ export const profilePage = new ProfilePage({
         alt:"prev",
         src: "/assets/arrow-left.svg"
     }),
-    profileHeader: new ProfileHeader({
-        name: mockProfile.first_name
+    profileForm: new ProfileForm({
+        profileHeader: new ProfileHeader({
+            name: mockProfile.first_name
+        }),
+        profileParamList: new ProfileParamsList(mockProfile),
+        footMenu: new ProfileFootMenu({}),
     }),
-    profileParamList: new ProfileParamsList(mockProfile),
-    footMenu: new ProfileFootMenu({}),
     data: mockProfile
 });
 
@@ -49,16 +52,18 @@ export const profileChangeDataPage = new ProfilePage({
         alt:"prev",
         src: "/assets/arrow-left.svg"
     }),
-    profileHeader: new ProfileHeader({
-        name: mockProfile.first_name
-    }),
-    profileParamList: new ProfileInputList({
-        data:mockProfile,
-    }),
-    footMenu: new Button({
-        text: "Сохранить", 
-        type:"buttton",
-        className: "profileChangeButton"
+    profileForm: new ProfileForm({
+        profileHeader: new ProfileHeader({
+            name: mockProfile.first_name
+        }),
+        profileParamList: new ProfileInputList({
+            data:mockProfile,
+        }),
+        footMenu: new Button({
+            text: "Сохранить", 
+            type:"buttton",
+            className: "profileChangeButton"
+        }),
     }),
     data: mockProfile
 });
@@ -70,16 +75,18 @@ export const profileChangePassword = new ProfilePage({
         alt:"prev",
         src: "/assets/arrow-left.svg"
     }),
-    profileHeader: new ProfileHeader({
-        name: mockProfile.first_name
-    }),
-    profileParamList: new ProfilePasswordList({
-        data:mockProfile,
-    }),
-    footMenu: new Button({
-        text: "Сохранить", 
-        type:"buttton",
-        className: "profileChangeButton"
+    profileForm: new ProfileForm({
+        profileHeader: new ProfileHeader({
+            name: mockProfile.first_name
+        }),
+        profileParamList: new ProfilePasswordList({
+            data:mockProfile,
+        }),
+        footMenu: new Button({
+            text: "Сохранить", 
+            type:"buttton",
+            className: "profileChangeButton"
+        }),
     }),
     data: mockProfile
 });
