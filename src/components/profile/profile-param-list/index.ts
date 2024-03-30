@@ -9,7 +9,7 @@ class ProfileParamsList extends Block {
             new ProfileParam({param:"login",value:props.login}),
             new ProfileParam({param:"first_name",value:props.first_name}),
             new ProfileParam({param:"last_name",value:props.last_name}),
-            new ProfileParam({param:"chat_name",value:props.chat_name}),
+            new ProfileParam({param:"display_name",value:props.display_name}),
             new ProfileParam({param:"phone",value:props.phone}),
         ];
 

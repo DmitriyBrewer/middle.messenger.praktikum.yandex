@@ -25,7 +25,7 @@ const mockProfile = {
     login:"ivanivanov",
     first_name:"Федот",
     last_name: "Тутов",
-    chat_name: "feDoT",
+    display_name: "feDoT",
     phone: "8 888 888 88 88"
 };
 
