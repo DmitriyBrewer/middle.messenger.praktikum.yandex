@@ -1,0 +1,19 @@
+{{#if empty}}
+
+<div class="nochat">Выберите чат чтобы отправить сообщение</div>
+
+{{else}}
+
+<div class="chatWindow">
+<div class="chatWindow__content">
+    {{{ chatHeader }}}
+
+    <p class="chatWindow__date">{{{ date }}} </p>
+
+    {{{ chatTexts }}}
+
+</div>
+    {{{ chatSend }}}
+</div>
+
+{{/if}}

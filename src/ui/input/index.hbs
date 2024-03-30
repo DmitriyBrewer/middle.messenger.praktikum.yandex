@@ -1,0 +1,17 @@
+<input
+    dir="{{#if dir}}{{dir}}{{else}}ltr{{/if}}"
+    type={{type}}
+    id={{id}}
+    name={{name}}
+    placeholder={{placeholder}}
+    {{#if isRequired}}
+        required
+    {{/if}}
+    class="{{#if className}}{{className}}{{else}}input{{/if}}"
+    {{#if autocomplete}}
+        autocomplete="{{autocomplete}}"
+    {{/if}}
+    {{#if pattern}}
+        pattern="{{pattern}}"
+    {{/if}}
+/>

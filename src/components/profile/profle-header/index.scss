@@ -1,0 +1,30 @@
+.profileHeader {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--g20);
+
+    &__avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+        height: 130px;
+        border-radius: 100%;
+        background-color: var(--secondary);
+        border: var(--b);
+    }
+
+    &__avatarDefault {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__name {
+        margin: 0;
+        font-size: var(--fs-title);
+        font-weight: var(--fw-title);
+        color: var(--primary-text);
+    }
+}

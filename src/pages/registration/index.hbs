@@ -1,0 +1,19 @@
+<form class="vertical formWrapper">
+{{> Title title='Регистрация'}}
+
+{{#> FieldWrapper}}
+    {{{ email }}}
+    {{{ login }}}
+    {{{ first_name }}}
+    {{{ second_name }}}
+    {{{ phone }}}
+    {{{ password }}}
+    {{{ password2 }}}
+{{/ FieldWrapper}}
+
+{{#> ButtonWrapper}}
+    {{{ button }}}
+    {{> Link href='/auth' text='Войти'}}
+{{/ ButtonWrapper}}
+
+</form>
