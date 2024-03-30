@@ -73,8 +73,8 @@ class ProfileInputList extends Block {
             }),
             new ProfileInputParam({
                 type:"text", 
-                id:"chat_name",
-                name:"chat_name", 
+                id:"display_name",
+                name:"display_name", 
                 placeholder:"Имя в чате",
                 helper: "Имя в чате",
                 className: "changeProfileInput",
