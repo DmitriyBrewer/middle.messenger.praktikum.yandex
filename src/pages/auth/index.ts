@@ -65,7 +65,7 @@ class Auth extends Block {
     }
 }
 
-class AuthPage extends Block {
+export class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             authForm: new Auth({})
@@ -76,5 +76,3 @@ class AuthPage extends Block {
         return this.compile("{{#> BaseLayout}}{{{ authForm }}}{{/ BaseLayout}}", {});
     }
 }
-
-export const authPage = new AuthPage({});
