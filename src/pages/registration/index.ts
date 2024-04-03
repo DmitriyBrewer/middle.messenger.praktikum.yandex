@@ -129,7 +129,7 @@ class Registration extends Block {
     }
 }
 
-class RegistrationPage extends Block {
+export class RegistrationPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             registrationForm: new Registration({})
@@ -141,7 +141,6 @@ class RegistrationPage extends Block {
     }
 }
 
-export const registrationPage = new RegistrationPage({});
 
 
 

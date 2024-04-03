@@ -2,15 +2,14 @@ import Block, { BlockProps } from "./block";
 import { isEqual } from "./isEqual";
 import renderComponent from "./renderComponent";
 
-type BlockClass = new (props?: BlockProps) => Block
 type Pathname = string
 class Route {
     private _pathname: Pathname;
-    private _blockClass: BlockClass;
+    private _blockClass: new (props?: BlockProps) => Block;
     private _block: Block | null;
     private _props: BlockProps;
 
-    constructor(pathname:Pathname, view: BlockClass, props: BlockProps) {
+    constructor(pathname:Pathname, view: new (props?: BlockProps) => Block, props: BlockProps) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;

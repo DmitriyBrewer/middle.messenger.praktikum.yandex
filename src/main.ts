@@ -2,23 +2,25 @@ import { AuthPage } from "./pages/auth";
 import "../../middle.messenger.praktikum.yandex/src/components/text-field/index.scss";
 import "./index.scss";
 import { Router } from "./lib/router";
-
-  
-// Необходимо оставить в силу особенностей тренажёра
-history.pushState({}, "", "/");
+import { RegistrationPage } from "./pages/registration";
+import { ProfilePage, ProfilePageChangeData, ProfilePageChangePassword } from "./pages/profile";
+import { ChatPage } from "./pages/chat";
   
 const router = new Router(".root");
   
-// Можно обновиться на /user и получить сразу пользователя
 router
     .use("/", AuthPage)
-    .use("/users", AuthPage)
+    .use("/sign-up", RegistrationPage)
+    .use("/settings", ProfilePage)
+    .use("/messenger", ChatPage)
+    .use("/settings/change", ProfilePageChangeData)
+    .use("/settings/password", ProfilePageChangePassword)
     .start();
   
 // // Через секунду контент изменится сам, достаточно дёрнуть переход
-setTimeout(() => {
-    router.go("/users");
-}, 1000);
+// setTimeout(() => {
+//     router.go("/sign-up");
+// }, 1000);
   
 // // А можно и назад
 // setTimeout(() => {

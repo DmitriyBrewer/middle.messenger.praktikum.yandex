@@ -5,11 +5,12 @@ import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
 import { mockChats } from "../../constants/mockChats";
 
-class ChatPage extends Block {
+export class ChatPage extends Block {
     constructor(props:BlockProps) {
         super("div",{
             ...props,
-            events: props.events,
+            // TODO проверить корректность 
+            // events: props.events,
             sidebar: new Sidebar({data: mockChats}),
             window: new ChatWindow({
                 ...mockChats[0],
@@ -24,5 +25,5 @@ class ChatPage extends Block {
 
 }
 
-export const chatPage = new ChatPage({
-});
+// export const chatPage = new ChatPage({
+// });
