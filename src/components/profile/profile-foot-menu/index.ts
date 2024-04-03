@@ -6,11 +6,11 @@ class ProfileFootMenu extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             linkChange: new LinkComponent({
-                href:"/profile/change",
+                href:"/settings/change",
                 text:"Изменить данные"
             }),
             linkPasswordChange: new LinkComponent({
-                href:"/profile/change/password",
+                href:"/settings/password",
                 text:"Изменить пароль"
             }),
             logout: new Button({

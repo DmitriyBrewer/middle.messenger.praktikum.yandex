@@ -22,7 +22,7 @@ export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             profilePrev: new ProfilePrev({
-                href:"/chat",
+                href:"/messenger",
                 alt:"prev",
                 src: "/assets/arrow-left.svg"
             }),
@@ -46,7 +46,7 @@ export class ProfilePageChangeData extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             profilePrev: new ProfilePrev({
-                href:"/profile",
+                href:"/settings",
                 alt:"prev",
                 src: "/assets/arrow-left.svg"
             }),
@@ -76,7 +76,7 @@ export class ProfilePageChangePassword extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             profilePrev: new ProfilePrev({
-                href:"/profile",
+                href:"/settings",
                 alt:"prev",
                 src: "/assets/arrow-left.svg"
             }),
