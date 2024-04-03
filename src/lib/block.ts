@@ -284,10 +284,11 @@ class Block {
     }
 
     public show(): void {
-        this.getContent().style.display = "block";
+        this.getContent().style.display = "flex";
     }
 
     public hide(): void {
+        console.log("hbioe");
         this.getContent().style.display = "none";
     }
 }

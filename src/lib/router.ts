@@ -51,6 +51,7 @@ export class Router {
     private _rootQuery: string | undefined;
 
     constructor(rootQuery: string) {
+        // @ts-nocheck
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -63,7 +64,7 @@ export class Router {
         Router.__instance = this;
     }
   
-    use(pathname: Pathname, block: BlockClass) {
+    use(pathname: Pathname, block: new (props?: BlockProps) => Block) {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery});
   
         (this.routes as Route[]).push(route);

@@ -65,7 +65,7 @@ class Auth extends Block {
     }
 }
 
-export class AuthPage extends Block {
+export default class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             authForm: new Auth({})

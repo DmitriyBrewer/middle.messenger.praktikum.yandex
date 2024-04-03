@@ -9,15 +9,8 @@ import ProfileInputList from "../../components/profile/profile-input-list";
 import Button from "../../ui/button";
 import ProfilePasswordList from "../../components/profile/profile-password-list";
 import ProfileForm from "../../components/profile/profile-form";
+import { mockProfile } from "../../constants/mockProfile";
 
-const mockProfile = {
-    email:"pochta@yandex.ru",
-    login:"ivanivanov",
-    first_name:"Федот",
-    last_name: "Тутов",
-    display_name: "feDoT",
-    phone: "8 888 888 88 88"
-};
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
