@@ -2,15 +2,22 @@ import Block, { BlockProps } from "./block";
 import { isEqual } from "./isEqual";
 import renderComponent from "./renderComponent";
 
+type BlockClass = new (props?: BlockProps) => Block
+type Pathname = string
 class Route {
-    constructor(pathname:string, view: Block, props: BlockProps) {
+    private _pathname: Pathname;
+    private _blockClass: BlockClass;
+    private _block: Block | null;
+    private _props: BlockProps;
+
+    constructor(pathname:Pathname, view: BlockClass, props: BlockProps) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
         this._props = props;
     }
   
-    navigate(pathname: string) {
+    navigate(pathname: Pathname) {
         if (this.match(pathname)) {
             this._pathname = pathname;
             this.render();
@@ -23,14 +30,14 @@ class Route {
         }
     }
   
-    match(pathname:string) {
+    match(pathname:Pathname) {
         return isEqual(pathname, this._pathname);
     }
   
     render() {
         if (!this._block) {
             this._block = new this._blockClass();
-            renderComponent(this._props.rootQuery, this._block);
+            renderComponent((this._props.rootQuery as string), this._block);
             return;
         }
   
@@ -39,7 +46,12 @@ class Route {
 }
   
 export class Router {
-    constructor(rootQuery) {
+    private routes: Route[] | undefined;
+    private history: History | undefined;
+    private _currentRoute: Route | null | undefined;
+    private _rootQuery: string | undefined;
+
+    constructor(rootQuery: string) {
         if (Router.__instance) {
             return Router.__instance;
         }
@@ -52,23 +64,24 @@ export class Router {
         Router.__instance = this;
     }
   
-    use(pathname: string, block:Block) {
+    use(pathname: Pathname, block: BlockClass) {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery});
   
-        this.routes.push(route);
+        (this.routes as Route[]).push(route);
+        console.log(this);
   
         return this;
     }
   
     start() {
-        window.onpopstate = (event => {
+        window.onpopstate = ((event:Event) => {
             this._onRoute(event.currentTarget.location.pathname);
         }).bind(this);
   
         this._onRoute(window.location.pathname);
     }
   
-    _onRoute(pathname) {
+    _onRoute(pathname:Pathname) {
         const route = this.getRoute(pathname);
         if (!route) {
             return;
@@ -82,20 +95,20 @@ export class Router {
         route.render(route, pathname);
     }
   
-    go(pathname) {
-        this.history.pushState({}, "", pathname);
+    go(pathname: Pathname) {
+        (this.history as History).pushState({}, "", pathname);
         this._onRoute(pathname);
     }
   
     back() {
-        this.history.back();
+        (this.history as History).back();
     }
   
     forward() {
-        this.history.forward();
+        (this.history as History).forward();
     }
   
-    getRoute(pathname) {
-        return this.routes.find(route => route.match(pathname));
+    getRoute(pathname: Pathname) {
+        return (this.routes as Route[]).find(route => route.match(pathname));
     }
 }
