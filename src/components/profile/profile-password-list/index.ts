@@ -9,8 +9,8 @@ class ProfilePasswordList extends Block {
         this.children.list = [
             new ProfileInputParam({
                 type:"password", 
-                id:"password",
-                name:"password", 
+                id:"oldPassword",
+                name:"oldPassword", 
                 placeholder:"Старый пароль",
                 helper: "Старый пароль",
                 autocomplete:"current-password",
@@ -27,8 +27,8 @@ class ProfilePasswordList extends Block {
             }),
             new ProfileInputParam({
                 type:"password", 
-                id:"new_password",
-                name:"new_password", 
+                id:"newPassword",
+                name:"newPassword", 
                 placeholder:"Новый пароль",
                 helper: "Новый пароль",
                 autocomplete:"current-password",

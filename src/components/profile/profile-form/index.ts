@@ -10,6 +10,7 @@ class ProfileForm extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Данные формы:", formDataObject);
+                        (props as {api: (arg:Record<string, string>)=>void}).api(formDataObject);
                     });
                 }
             }
