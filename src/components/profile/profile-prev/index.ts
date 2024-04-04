@@ -3,17 +3,17 @@ import "./index.scss";
 import ProfilePrevTemplate  from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import Image from "../../../ui/img";
+import LinkComponent from "../../../ui/link";
 
-class ProfilePrev extends Block {
+class ProfilePrevContent extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             image: new Image({
-                href:props.href,
                 alt:props.alt,
                 src: props.src,
                 width:20,
                 height:20
-            })
+            }),
         });
     }
 
@@ -23,6 +23,27 @@ class ProfilePrev extends Block {
             alt:this.props.alt,
             src: this.props.src,
         });
+    }
+}
+
+class ProfilePrev extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            link: new LinkComponent({
+                href:"/messenger",
+                text: new ProfilePrevContent({
+                    href:"/messenger",
+                    alt:"prev",
+                    src: "/assets/arrow-left.svg"
+                }),
+                isRouter: true,
+                className:"profilePrev"
+            }),
+        });
+    }
+
+    render() {
+        return this.compile("{{{ link }}}", {});
     }
 }
 

@@ -3,6 +3,7 @@ import { conditions } from "../../constants/conditions";
 import Block, { BlockProps } from "../../lib/block";
 import { validationField } from "../../lib/validations/isValidLogin";
 import Button from "../../ui/button";
+import LinkComponent from "../../ui/link";
 import RegistrationTemplate from "./index.hbs?raw";
 class Registration extends Block {
     constructor(props:BlockProps) {
@@ -121,6 +122,11 @@ class Registration extends Block {
                 type: "submit",
                 text: "Регистрация",
             }),
+            link: new LinkComponent({
+                href:"/",
+                text:"Войти?",
+                isRouter: true
+            })
         });
     }
 
@@ -132,7 +138,8 @@ class Registration extends Block {
 export class RegistrationPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-            registrationForm: new Registration({})
+            registrationForm: new Registration({}),
+         
         });
     }
 

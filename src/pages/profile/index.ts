@@ -14,11 +14,7 @@ import { mockProfile } from "../../constants/mockProfile";
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-            profilePrev: new ProfilePrev({
-                href:"/messenger",
-                alt:"prev",
-                src: "/assets/arrow-left.svg"
-            }),
+            profilePrev: new ProfilePrev({}),
             profileForm: new ProfileForm({
                 profileHeader: new ProfileHeader({
                     name: mockProfile.first_name

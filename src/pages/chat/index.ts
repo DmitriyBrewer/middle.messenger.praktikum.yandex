@@ -9,8 +9,6 @@ export class ChatPage extends Block {
     constructor(props:BlockProps) {
         super("div",{
             ...props,
-            // TODO проверить корректность 
-            // events: props.events,
             sidebar: new Sidebar({data: mockChats}),
             window: new ChatWindow({
                 ...mockChats[0],
@@ -24,6 +22,3 @@ export class ChatPage extends Block {
     }
 
 }
-
-// export const chatPage = new ChatPage({
-// });

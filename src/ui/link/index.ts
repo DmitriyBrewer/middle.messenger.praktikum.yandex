@@ -18,7 +18,8 @@ class LinkComponent extends Block {
     render() {
         return this.compile(LinkTemplate, {
             href:this.props.href,
-            text:this.props.text
+            text:this.props.text,
+            className:this.props.className
         });
     }
 }

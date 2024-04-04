@@ -284,6 +284,7 @@ class Block {
     }
 
     public show(): void {
+        // TODO на messanger при show должно быть grid
         this.getContent().style.display = "flex";
     }
 
