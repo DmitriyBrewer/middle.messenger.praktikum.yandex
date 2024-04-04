@@ -6,6 +6,7 @@ import Button from "../../ui/button";
 import AuthTemplate from "./index.hbs?raw";
 import { validationField } from "../../lib/validations/isValidLogin";
 import { conditions } from "../../constants/conditions";
+import LinkComponent from "../../ui/link";
 
 registerHandlebarsPartials(allPartials);
 
@@ -56,6 +57,11 @@ class Auth extends Block {
             button: new Button({
                 type: "submit",
                 text: "Вход",
+            }),
+            link: new LinkComponent({
+                href:"/sign-up",
+                text:"Нет аккаунта?",
+                isRouter: true
             })
         });
     }

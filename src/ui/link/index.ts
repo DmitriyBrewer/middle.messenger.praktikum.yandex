@@ -2,10 +2,18 @@ import "./index.scss";
 export { default as Link } from "./index.hbs?raw";
 import LinkTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../lib/block";
+import router from "../../main";
 
 class LinkComponent extends Block {
     constructor(props:BlockProps) {
-        super("div",props);
+        super("div",{...props,
+            events: {click:(event:Event)=>{
+                if(props.isRouter) {
+                    event.preventDefault();
+                    router.go(props.href as string);
+                }
+            }}
+        });
     }
     render() {
         return this.compile(LinkTemplate, {

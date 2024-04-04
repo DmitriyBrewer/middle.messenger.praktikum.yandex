@@ -2,14 +2,16 @@ import Block, { BlockProps } from "./block";
 import { isEqual } from "./isEqual";
 import renderComponent from "./renderComponent";
 
+type BlockClass = new (props: BlockProps) => Block;
+
 type Pathname = string
 class Route {
     private _pathname: Pathname;
-    private _blockClass: new (props?: BlockProps) => Block;
+    private _blockClass: BlockClass;
     private _block: Block | null;
     private _props: BlockProps;
 
-    constructor(pathname:Pathname, view: new (props?: BlockProps) => Block, props: BlockProps) {
+    constructor(pathname:Pathname, view: BlockClass, props: BlockProps) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -64,7 +66,7 @@ export class Router {
         Router.__instance = this;
     }
   
-    use(pathname: Pathname, block: new (props?: BlockProps) => Block) {
+    use(pathname: Pathname, block: BlockClass) {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery});
   
         (this.routes as Route[]).push(route);

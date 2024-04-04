@@ -16,18 +16,20 @@ router
     .use("/settings/change", ProfilePageChangeData)
     .use("/settings/password", ProfilePageChangePassword)
     .start();
+
+export default router;
   
-// // Через секунду контент изменится сам, достаточно дёрнуть переход
-setTimeout(() => {
-    router.go("/sign-up");
-}, 1000);
+// // // Через секунду контент изменится сам, достаточно дёрнуть переход
+// setTimeout(() => {
+//     router.go("/sign-up");
+// }, 1000);
   
-// А можно и назад
-setTimeout(() => {
-    router.back();
-}, 3000);
+// // А можно и назад
+// setTimeout(() => {
+//     router.back();
+// }, 3000);
   
-// И снова вперёд
-setTimeout(() => {
-    router.forward();
-}, 5000);
+// // И снова вперёд
+// setTimeout(() => {
+//     router.forward();
+// }, 5000);
