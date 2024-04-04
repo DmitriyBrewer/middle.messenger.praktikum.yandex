@@ -1,4 +1,4 @@
-const METHODS = {
+export const METHODS = {
     GET: "GET",
     POST: "POST",
     PUT: "PUT",
@@ -92,7 +92,8 @@ export class HTTPTransport {
             
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
-                    
+            xhr.withCredentials = true;
+            
             if (isGet || !data) {
                 xhr.send();
             } else {
@@ -107,4 +108,4 @@ export class HTTPTransport {
 }
 
 
-export default HTTPTransport;
+export const http = new HTTPTransport();

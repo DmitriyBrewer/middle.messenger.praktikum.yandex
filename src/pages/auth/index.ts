@@ -7,6 +7,7 @@ import AuthTemplate from "./index.hbs?raw";
 import { validationField } from "../../lib/validations/isValidLogin";
 import { conditions } from "../../constants/conditions";
 import LinkComponent from "../../ui/link";
+import { authHandler } from "./api";
 
 registerHandlebarsPartials(allPartials);
 
@@ -20,6 +21,7 @@ class Auth extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Данные формы:", formDataObject);
+                        authHandler(formDataObject);
                     });
                 }
             },
