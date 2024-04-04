@@ -29,6 +29,7 @@ class Block {
     public children:BlockChildren;
     private eventBus: () => EventBus;
     private _id: number | string | null = null;
+    private savedDisplay: string = "";
 
     constructor(tagName = "div", propsAndChildren={}) {
         const { children, props } = this._getChildren(propsAndChildren);
@@ -282,15 +283,14 @@ class Block {
         }
         return element;
     }
-
     public show(): void {
-        // TODO на messanger при show должно быть grid
-        this.getContent().style.display = "flex";
+        this.getContent().style.display = this.savedDisplay;
     }
 
     public hide(): void {
-        console.log("hbioe");
-        this.getContent().style.display = "none";
+        this.savedDisplay = this.getContent().style.display;
+        console.log("hide prev route");
+        this.getContent().style.display = "none"; 
     }
 }
 
