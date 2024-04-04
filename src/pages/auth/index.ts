@@ -79,7 +79,7 @@ class AuthController {
         // store.set("user",{test:"ss"});
         // store.set("/",{});
         setTimeout(()=>{
-            store.set("h","Sfr");
+            store.set("buttonText","Sfr");
         },2000);
         // store.getState();
     }
@@ -93,14 +93,29 @@ export default class AuthPage extends Block {
         const authController = new AuthController();
         authController.getUser();
 
+        // store.on(StoreEvents.Updated, () => {
+        //     this.setProps(store.getState());  
+        // });
+
+        this.children.button = new Button({text:this.props.buttonText});
+        // this.setProps({buttonText:"KKK"});
         store.on(StoreEvents.Updated, () => {
-            this.setProps(store.getState());
+            this.setProps(store.getState());  
         });
+        this.props.button = this.children.button;
+    }
+    
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        console.log(newProps);
+        this.children.button.setProps({text:newProps.buttonText});
+        return true;
     }
 
     render() {
         console.log(store);
         console.log(this);
-        return this.compile("{{#> BaseLayout}}{{{ authForm }}}{{/ BaseLayout}}", {});
+        return this.compile("{{#> BaseLayout}} {{{ button }}} {{{ authForm }}}{{/ BaseLayout}}", {
+            button: this.props.button
+        });
     }
 }
