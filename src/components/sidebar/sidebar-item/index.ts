@@ -8,9 +8,9 @@ class ChatItem extends Block {
     render() {
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
-            message:this.props.message, 
+            message:this.props.last_message, 
             time:this.props.time,
-            counter:this.props.counter
+            counter:this.props.unread_count
         });
     }
 }

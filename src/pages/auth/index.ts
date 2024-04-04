@@ -8,6 +8,7 @@ import { validationField } from "../../lib/validations/isValidLogin";
 import { conditions } from "../../constants/conditions";
 import LinkComponent from "../../ui/link";
 import { authHandler } from "./api";
+import store, { StoreEvents } from "../../lib/store";
 
 registerHandlebarsPartials(allPartials);
 
@@ -73,14 +74,33 @@ class Auth extends Block {
     }
 }
 
+class AuthController {
+    public getUser() {
+        // store.set("user",{test:"ss"});
+        // store.set("/",{});
+        setTimeout(()=>{
+            store.set("h","Sfr");
+        },2000);
+        // store.getState();
+    }
+} 
 export default class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-            authForm: new Auth({})
+            authForm: new Auth({}),
+        });
+
+        const authController = new AuthController();
+        authController.getUser();
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
         });
     }
 
     render() {
+        console.log(store);
+        console.log(this);
         return this.compile("{{#> BaseLayout}}{{{ authForm }}}{{/ BaseLayout}}", {});
     }
 }
