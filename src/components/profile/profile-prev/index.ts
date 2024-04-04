@@ -37,7 +37,8 @@ class ProfilePrev extends Block {
                     src: "/assets/arrow-left.svg"
                 }),
                 isRouter: true,
-                className:"profilePrev"
+                className:"profilePrev",
+                isPrev:true
             }),
         });
     }

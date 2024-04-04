@@ -10,7 +10,12 @@ class LinkComponent extends Block {
             events: {click:(event:Event)=>{
                 if(props.isRouter) {
                     event.preventDefault();
-                    router.go(props.href as string);
+                    if(props.isPrev) {
+                        router.back();
+                    } 
+                    if(props.isForward) {
+                        router.forward();
+                    } else router.go(props.href as string);
                 }
             }}
         });

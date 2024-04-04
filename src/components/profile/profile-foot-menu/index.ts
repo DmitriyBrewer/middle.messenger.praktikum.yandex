@@ -7,16 +7,18 @@ class ProfileFootMenu extends Block {
         super("div",{...props,
             linkChange: new LinkComponent({
                 href:"/settings/change",
-                text:"Изменить данные"
+                text:"Изменить данные",
+                isRouter:true
             }),
             linkPasswordChange: new LinkComponent({
                 href:"/settings/password",
-                text:"Изменить пароль"
+                text:"Изменить пароль",
+                isRouter:true
             }),
             logout: new Button({
                 type:"button", 
                 text:"Выйти",
-                className:"profile__logout"
+                className:"profile__logout",
             }),
         });
     }
