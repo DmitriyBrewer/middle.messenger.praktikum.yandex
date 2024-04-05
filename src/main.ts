@@ -59,9 +59,7 @@ import { getAllChats } from "./pages/chat/api";
   
 const router = new Router(".root");
 
-function mapUserToProps(state) {
-    console.log(state);
-   
+function mapUserToProps(state) {   
     return {
         buttonText: state.buttonText,
     };
@@ -75,7 +73,7 @@ function mapChatsToProps(state) {
 }
 
 
-const withUser = connect(state => ({ buttonText: state.buttonText }));
+const withUser = connect(mapUserToProps,{updateFirstChildren:true});
 
 
 router
