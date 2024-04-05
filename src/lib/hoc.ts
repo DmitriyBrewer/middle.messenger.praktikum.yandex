@@ -27,10 +27,7 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed, updateProp
                 super({...props, ...mapStateToProps(store.getState())});
   
                 store.on(StoreEvents.Updated, () => {
-                    console.log(store.getState());
-                    console.log(this);
                     this.setProps({...store.getState()}, updatePropsOptions);
-                // this.setProps({...store.getState()});
                 });
             }
         };

@@ -1,4 +1,5 @@
 import EventBus from "./eventBus";
+import isEqual from "./isEqual";
 
 type Indexed<T = any> = {
     [key in string]: T;
@@ -43,19 +44,60 @@ export enum StoreEvents {
     Updated = "updated",
   }
   
-class Store extends EventBus {
+// class Store extends EventBus {
 
+//     private state: Indexed = {};
+
+//     public getState() {
+//         return this.state;
+//     }
+  
+//     public set(path: string, value: unknown) {
+//         console.log(value);
+//         console.log(this.state);
+
+//         set(this.state, path, value);
+  
+//         this.emit(StoreEvents.Updated);
+//     }
+// }
+  
+// export default new Store(); 
+
+
+// const newState = mapStateToProps(state);
+    
+// if (!isEqual(oldState, newState)) {
+//   // обновляем компонент
+// }
+
+class Store extends EventBus {
     private state: Indexed = {};
+    private oldState = { ...this.state };
 
     public getState() {
         return this.state;
     }
-  
+
     public set(path: string, value: unknown) {
+        console.log(value);
+        console.log(this.state);
+
         set(this.state, path, value);
-  
-        this.emit(StoreEvents.Updated);
+
+        this.emitUpdated(this.state);
+    }
+
+    private emitUpdated() {
+        // console.log(this.oldState);
+        const oldState = { ...this.state };
+        const newState = { ...this.state }; 
+
+        if (!isEqual(this.oldState, newState)) {
+            console.log("iis");
+            this.emit(StoreEvents.Updated, newState);
+        }
     }
 }
-  
-export default new Store(); 
+
+export default new Store();

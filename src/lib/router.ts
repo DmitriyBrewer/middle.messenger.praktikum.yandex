@@ -1,5 +1,5 @@
 import Block, { BlockProps } from "./block";
-import { isEqual } from "./isEqual";
+import isEqual from "./isEqual";
 import renderComponent from "./renderComponent";
 
 type BlockClass = new (props: BlockProps) => Block;
