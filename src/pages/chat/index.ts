@@ -8,20 +8,27 @@ import { chatController } from "./controller";
 
 export class ChatPage extends Block {
     constructor(props:BlockProps) {
-        super("div",{
-            ...props,
-            sidebar: new Sidebar({data: props.chats}),
-            window: new ChatWindow({
-                ...mockChats[0],
-                empty: false
-            })
-        });
+        // super("div",{
+        //     ...props,
+        //     // sidebar: new Sidebar({data: props.chats}),
+        //     // window: new ChatWindow({
+        //     //     ...mockChats[0],
+        //     //     empty: false
+        //     // })
+        // });
+        super("div",props);
 
         chatController.getChats();
+        this.children.sidebar = new Sidebar({data: []});
+        this.children.window = new ChatWindow({
+            ...mockChats[0],
+            empty: false
+        });
+
     }
 
     render() {
         console.log(this);
-        return this.compile(ChatPageTemplate, {});
+        return this.compile(ChatPageTemplate, {sidebar: this.props.sidebar, window:this.props.window });
     }
 }

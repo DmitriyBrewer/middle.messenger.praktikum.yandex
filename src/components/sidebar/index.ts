@@ -35,6 +35,7 @@ class Sidebar extends Block {
     }
 
     render() {
+        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
 }

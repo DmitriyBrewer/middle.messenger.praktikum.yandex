@@ -251,7 +251,7 @@ class Block {
     
         const oldProps = { ...this.props };
         Object.assign(this.props, nextProps);
-    
+
         const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps, options?: UpdatePropsOptions): void => {
             for (const key in children) {
                 if (children.hasOwnProperty(key)) {
