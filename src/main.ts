@@ -74,12 +74,16 @@ function mapChatsToProps(state) {
     // };
 }
 
+
+const withUser = connect(state => ({ buttonText: state.buttonText }));
+
+
 router
     // .use("/", connect(AuthPage,mapUserToProps))
-    .use("/", connect(AuthPage,mapUserToProps))
+    .use("/", withUser(AuthPage))
     .use("/sign-up", RegistrationPage)
     .use("/settings", ProfilePage)
-    .use("/messenger", connect(ChatPage, mapChatsToProps))
+    .use("/messenger", withUser(ChatPage))
     .use("/settings/change", ProfilePageChangeData)
     .use("/settings/password", ProfilePageChangePassword)
     .start();

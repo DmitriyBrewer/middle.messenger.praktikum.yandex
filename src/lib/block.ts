@@ -1,7 +1,7 @@
 import { compiledTemplate } from "./compileTemplate";
 import EventBus from "./eventBus";
 
-interface UpdatePropsOptions {
+export interface UpdatePropsOptions {
     updateFirstChildren?: boolean; // Обновить props у всех дочерних элементов
     updateSpecificChild?: { name: string, props: BlockProps }; // Обновить конкретный дочерний элемент и его props
 }
