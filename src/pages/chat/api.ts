@@ -30,7 +30,7 @@ import store from "../../lib/store";
 
 export function getAllChats() {
     const getUserOptions = {
-        method: "GET",
+        method: METHODS.GET,
     };
 
     return http.get(`${host}/api/v2/chats`, getUserOptions)
@@ -49,6 +49,32 @@ export function getAllChats() {
         .catch((error) => {
             console.error("Error:", error);
             throw error; // Пробрасываем ошибку дальше для обработки в вызывающем коде
+        });
+}
+
+export function deleteChat(data:Record<string,string>) {
+    const signUpOptions = {
+        method: METHODS.DELETE,
+        headers: ["Content-Type", "application/json"],
+        data: convertData(data),
+    };
+
+    return http.delete(`${host}/api/v2/chats`, signUpOptions)
+        .then((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                // return response.json();
+                const data = JSON.parse(response.responseText);
+                return data;
+                // router.go("/messenger");
+            } else {
+                throw new Error("Request failed with status: " + response.status);
+            }
+        })
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
         });
 }
 

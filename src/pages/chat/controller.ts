@@ -1,5 +1,5 @@
 import store from "../../lib/store";
-import { getAllChats } from "./api";
+import { deleteChat, getAllChats } from "./api";
 
 class ChatController {
     public getChats() {
@@ -9,6 +9,16 @@ class ChatController {
         })
             .catch((error) => {
                 console.error("Error fetching chats:", error);
+            });
+    }
+
+    public deleteChatController(data:{chatId:string}) {
+        deleteChat(data).then((res) => {
+            console.log(res);
+            store.set("data",(prev)=>{return ({...prev,k:"ss"});});
+        })
+            .catch((error) => {
+                console.error("Error delete chats:", error);
             });
     }
 } 
