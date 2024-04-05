@@ -1,4 +1,5 @@
 import Block, { UpdatePropsOptions } from "./block";
+import isEqual from "./isEqual";
 import store, { StoreEvents } from "./store";
 
 type Indexed<T = unknown> = {
@@ -24,10 +25,18 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed, updateProp
     return function(Component: typeof Block) {
         return class extends Component {
             constructor(props) {
-                super({...props, ...mapStateToProps(store.getState())});
+                let state = mapStateToProps(store.getState());
+                super({...props, ...state});
   
                 store.on(StoreEvents.Updated, () => {
-                    this.setProps({...store.getState()}, updatePropsOptions);
+                    const newState = mapStateToProps(store.getState());
+                    console.log(state);
+                    console.log(newState);
+                    if (!isEqual(state, newState)) {
+                        console.log("ls");
+                        this.setProps({...newState}, updatePropsOptions);
+                    }
+                    state = newState;
                 });
             }
         };

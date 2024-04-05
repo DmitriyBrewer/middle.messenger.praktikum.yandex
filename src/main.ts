@@ -61,7 +61,7 @@ const router = new Router(".root");
 
 function mapUserToProps(state) {   
     return {
-        buttonText: state.buttonText,
+        text: state.text,
     };
 }
 

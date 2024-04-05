@@ -20,7 +20,7 @@ class TestController {
 
 
         setTimeout(()=>{
-            store.set("text", "updateProps2");
+            store.set("text", "updateProps1");
         },2000);
     }
 } 

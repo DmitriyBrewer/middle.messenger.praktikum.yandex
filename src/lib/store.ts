@@ -44,25 +44,25 @@ export enum StoreEvents {
     Updated = "updated",
   }
   
-// class Store extends EventBus {
+class Store extends EventBus {
 
-//     private state: Indexed = {};
+    private state: Indexed = {};
 
-//     public getState() {
-//         return this.state;
-//     }
+    public getState() {
+        return this.state;
+    }
   
-//     public set(path: string, value: unknown) {
-//         console.log(value);
-//         console.log(this.state);
+    public set(path: string, value: unknown) {
+        console.log(value);
+        console.log(this.state);
 
-//         set(this.state, path, value);
+        set(this.state, path, value);
   
-//         this.emit(StoreEvents.Updated);
-//     }
-// }
+        this.emit(StoreEvents.Updated);
+    }
+}
   
-// export default new Store(); 
+export default new Store(); 
 
 
 // const newState = mapStateToProps(state);
@@ -71,30 +71,30 @@ export enum StoreEvents {
 //   // обновляем компонент
 // }
 
-class Store extends EventBus {
-    private state: Indexed = {};
+// class Store extends EventBus {
+//     private state: Indexed = {};
 
-    public getState() {
-        return this.state;
-    }
+//     public getState() {
+//         return this.state;
+//     }
 
-    public set(path: string, value: unknown) {
-        const oldState = {...this.state};
-        set(this.state, path, value);
+//     public set(path: string, value: unknown) {
+//         const oldState = {...this.state};
+//         set(this.state, path, value);
 
-        this.emitUpdated(oldState);
-    }
+//         this.emitUpdated(oldState);
+//     }
 
-    private emitUpdated(oldState) {
-        const newState = { ...this.state }; 
-        console.log(oldState);
-        console.log(newState);
+//     private emitUpdated(oldState) {
+//         const newState = { ...this.state }; 
+//         console.log(oldState);
+//         console.log(newState);
 
-        if (!isEqual(oldState, newState)) {
-            console.log("iis");
-            this.emit(StoreEvents.Updated, newState);
-        }
-    }
-}
+//         if (!isEqual(oldState, newState)) {
+//             console.log("iis");
+//             this.emit(StoreEvents.Updated, newState);
+//         }
+//     }
+// }
 
-export default new Store();
+// export default new Store();
