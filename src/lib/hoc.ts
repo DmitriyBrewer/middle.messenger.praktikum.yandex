@@ -1,12 +1,16 @@
 import Block from "./block";
 import store, { StoreEvents } from "./store";
 
-export function connect(Component: typeof Block) {
+type Indexed<T = any> = {
+    [key in string]: T;
+};
+
+export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
     // используем class expression
     return class extends Component {
-        constructor(...args) {
+        constructor(props) {
             // не забываем передать все аргументы конструктора
-            super(...args);
+            super({...props, ...mapStateToProps(store.getState())});
 
             // подписываемся на событие
             store.on(StoreEvents.Updated, () => {

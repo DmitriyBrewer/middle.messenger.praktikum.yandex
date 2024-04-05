@@ -37,9 +37,16 @@ import { connect } from "./lib/hoc";
 // } 
   
 const router = new Router(".root");
+
+function mapUserToProps(state) {
+    console.log(state);
+    return {
+        buttonText: state.h,
+    };
+}
   
 router
-    .use("/", connect(AuthPage))
+    .use("/", connect(AuthPage,mapUserToProps))
     .use("/sign-up", RegistrationPage)
     .use("/settings", ProfilePage)
     .use("/messenger", ChatPage)

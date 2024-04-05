@@ -76,12 +76,9 @@ class Auth extends Block {
 
 class AuthController {
     public getUser() {
-        // store.set("user",{test:"ss"});
-        // store.set("/",{});
         setTimeout(()=>{
-            store.set("buttonText","Sfr");
+            store.set("buttonText","new Text");
         },2000);
-        // store.getState();
     }
 } 
 export default class AuthPage extends Block {
@@ -90,10 +87,10 @@ export default class AuthPage extends Block {
             authForm: new Auth({}),
         });
 
-        this.children.button  = new Button({text: this.props.buttonText});
+        // this.children.button  = new Button({text: this.props.buttonText});
 
-        const authController = new AuthController();
-        authController.getUser();
+        // const authController = new AuthController();
+        // authController.getUser();
 
         // store.on(StoreEvents.Updated, () => {
         //     this.setProps(store.getState());  
@@ -101,19 +98,19 @@ export default class AuthPage extends Block {
 
         // this.children.button = new Button({text:this.props.buttonText});
         // this.setProps({buttonText:"KKK"});
-        store.on(StoreEvents.Updated, () => {
-            const {buttonText} = store.getState();
-            this.children.button.setProps({text:buttonText});  
-            // this.setProps(store.getState());
-        });
-        this.props.button = this.children.button;
+        // store.on(StoreEvents.Updated, () => {
+        //     const {buttonText} = store.getState();
+        //     this.children.button.setProps({text:buttonText});  
+        //     // this.setProps(store.getState());
+        // });
+        // this.props.button = this.children.button;
     }
 
     render() {
         console.log(store);
         console.log(this);
         return this.compile("{{#> BaseLayout}} {{{ button }}} {{{ authForm }}}{{/ BaseLayout}}", {
-            button: this.props.button
+            // button: this.props.button
         });
     }
 }
