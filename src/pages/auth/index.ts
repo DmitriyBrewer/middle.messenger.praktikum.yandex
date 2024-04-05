@@ -90,6 +90,8 @@ export default class AuthPage extends Block {
             authForm: new Auth({}),
         });
 
+        this.children.button  = new Button({text: this.props.buttonText});
+
         const authController = new AuthController();
         authController.getUser();
 
@@ -97,18 +99,14 @@ export default class AuthPage extends Block {
         //     this.setProps(store.getState());  
         // });
 
-        this.children.button = new Button({text:this.props.buttonText});
+        // this.children.button = new Button({text:this.props.buttonText});
         // this.setProps({buttonText:"KKK"});
         store.on(StoreEvents.Updated, () => {
-            this.setProps(store.getState());  
+            const {buttonText} = store.getState();
+            this.children.button.setProps({text:buttonText});  
+            // this.setProps(store.getState());
         });
         this.props.button = this.children.button;
-    }
-    
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        console.log(newProps);
-        this.children.button.setProps({text:newProps.buttonText});
-        return true;
     }
 
     render() {
