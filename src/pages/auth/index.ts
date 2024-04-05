@@ -15,12 +15,12 @@ registerHandlebarsPartials(allPartials);
 class TestController {
     public getUser() {
         setTimeout(()=>{
-            store.set("text", "lklk");
+            store.set("text", "updateProps1");
         },1000);
 
 
         setTimeout(()=>{
-            store.set("text", "asd");
+            store.set("text", "updateProps2");
         },2000);
     }
 } 

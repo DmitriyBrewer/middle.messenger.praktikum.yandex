@@ -73,7 +73,6 @@ export enum StoreEvents {
 
 class Store extends EventBus {
     private state: Indexed = {};
-    private oldState = { ...this.state };
 
     public getState() {
         return this.state;
@@ -82,18 +81,20 @@ class Store extends EventBus {
     public set(path: string, value: unknown) {
         console.log(value);
         console.log(this.state);
-
+        const oldState = {...this.state};
         set(this.state, path, value);
+        console.log(this.state);
 
-        this.emitUpdated(this.state);
+
+        this.emitUpdated(oldState);
     }
 
-    private emitUpdated() {
-        // console.log(this.oldState);
-        const oldState = { ...this.state };
+    private emitUpdated(oldState) {
         const newState = { ...this.state }; 
+        console.log(oldState);
+        console.log(newState);
 
-        if (!isEqual(this.oldState, newState)) {
+        if (!isEqual(oldState, newState)) {
             console.log("iis");
             this.emit(StoreEvents.Updated, newState);
         }
