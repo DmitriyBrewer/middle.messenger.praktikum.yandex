@@ -66,22 +66,21 @@ function mapUserToProps(state) {
 }
 
 function mapChatsToProps(state) {
-    console.log(state);
-    // return {
-    //     state
-    // };
+    return {
+        chats: state.chats
+    };
 }
 
 
 const withUser = connect(mapUserToProps,{updateFirstChildren:true});
-
+const withChats = connect(mapChatsToProps,{updateFirstChildren:true});
 
 router
     // .use("/", connect(AuthPage,mapUserToProps))
     .use("/", withUser(AuthPage))
     .use("/sign-up", RegistrationPage)
     .use("/settings", ProfilePage)
-    .use("/messenger", withUser(ChatPage))
+    .use("/messenger", withChats(ChatPage))
     .use("/settings/change", ProfilePageChangeData)
     .use("/settings/password", ProfilePageChangePassword)
     .start();
