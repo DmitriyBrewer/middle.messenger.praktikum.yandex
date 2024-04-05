@@ -13,7 +13,7 @@ export function connect(Component: typeof Block, mapStateToProps: (state: Indexe
             store.on(StoreEvents.Updated, () => {
                 console.log(store.getState());
                 console.log(this);
-                this.setProps({...store.getState()},{updateSpecificChild:{ name: "button", props: {text:"testText"} }});
+                this.setProps({...store.getState()});
                 // this.setProps({...store.getState()});
             });
         }

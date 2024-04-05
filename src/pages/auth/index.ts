@@ -94,23 +94,30 @@ export default class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             authForm: new Auth({}),
-            button: new Button({text:"hello"})
+            // button: new Button({text:"hello"})
         });
 
         testController.getUser();
 
-        // this.children.button = ;
-        // store.on(StoreEvents.Updated, () => {
+        this.children.button = new Button({text:"hello"});
+        // store.on(StoreEvent.Updated, () => {
         //     this.children.button.setProps({text: store.getState().buttonText});  
         // });
         // this.props.button = this.children.button;
     }
 
+    // public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    //     if(oldProps.text!==newProps.text) {
+    //         this.children.button.setProps({text: store.getState().text});  
+    //     }
+    //     return true;
+    // }
+
     render() {
         console.log(store);
         console.log(this);
         return this.compile("{{#> BaseLayout}} {{{ button }}} {{{ authForm }}}{{/ BaseLayout}}", {
-            // button: this.props.button
+            button: this.props.button
         });
     }
 }
