@@ -45,7 +45,7 @@ export enum StoreEvents {
   
 class Store extends EventBus {
 
-    private state: Indexed = {h:"sS"};
+    private state: Indexed = {};
 
     public getState() {
         return this.state;

@@ -8,6 +8,7 @@ import AuthPage from "./pages/auth";
 import Block from "./lib/block";
 import store, { StoreEvents } from "./lib/store";
 import { connect } from "./lib/hoc";
+import { getAllChats } from "./pages/chat/api";
 
 // class UserController {
 //     public getUser() {
@@ -40,16 +41,41 @@ const router = new Router(".root");
 
 function mapUserToProps(state) {
     console.log(state);
+   
     return {
-        buttonText: state.h,
+        buttonText: "",
+    };
+}
+
+function mapChatsToProps(state) {
+    console.log(state);
+    return {
+        chats: state.chats
+        // chats: [
+        //     {avatar: null,
+        //         created_by: 374,
+        //         id: 4025,
+        //         last_message: null,
+        //         title: "NameChat",
+        //         unread_count: 0
+        //     }, {avatar: null,
+        //         created_by: 374,
+        //         id: 4025,
+        //         last_message: null,
+        //         title: "NameChat",
+        //         unread_count: 0
+        //     }
+        // ],
     };
 }
   
+
+console.log(store);
 router
     .use("/", connect(AuthPage,mapUserToProps))
     .use("/sign-up", RegistrationPage)
     .use("/settings", ProfilePage)
-    .use("/messenger", ChatPage)
+    .use("/messenger", connect(ChatPage, mapChatsToProps))
     .use("/settings/change", ProfilePageChangeData)
     .use("/settings/password", ProfilePageChangePassword)
     .start();

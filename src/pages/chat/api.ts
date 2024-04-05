@@ -1,6 +1,32 @@
 import { host } from "../../constants/host";
 import { convertData } from "../../lib/convertData";
 import { METHODS, http } from "../../lib/http";
+import store from "../../lib/store";
+
+// export function getAllChats() {
+//     const getUserOptions = {
+//         method: METHODS.GET,
+//     };
+
+//     return http.get(`${host}/api/v2/chats`, getUserOptions)
+//         .then((response) => {
+//             if (response.readyState === 4 && response.status >= 200 && response.status < 300) {
+//                 const data = JSON.parse(response.responseText);
+//                 console.log(data); // Просмотр полученных данных
+//                 if (Array.isArray(data)) {
+//                     store.set("chats", data); // Установка данных в store как массив с объектами
+//                 } else {
+//                     throw new Error("Response data is not in the expected format");
+//                 }
+//                 return data; // Возможно, вам нужно вернуть данные для дальнейшей обработки
+//             } else {
+//                 throw new Error("Request failed with status: " + response.status);
+//             }
+//         })
+//         .catch((error) => {
+//             console.error("Error:", error);
+//         });
+// }
 
 export function getAllChats() {
     const getUserOptions = {
@@ -9,16 +35,22 @@ export function getAllChats() {
 
     return http.get(`${host}/api/v2/chats`, getUserOptions)
         .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-                console.log(response.response);
-                return response;
-                // return response.json();
+            if (response.readyState === 4 && response.status >= 200 && response.status < 300) {
+                const data = JSON.parse(response.responseText);
+                if (Array.isArray(data)) {
+                    return data; // Возвращаем массив с объектами чатов
+                } else {
+                    throw new Error("Response data is not in the expected format");
+                }
             } else {
                 throw new Error("Request failed with status: " + response.status);
             }
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            throw error; // Пробрасываем ошибку дальше для обработки в вызывающем коде
         });
 }
-
 
 export function addChats(data:Record<string,string>) {
     const signUpOptions = {
