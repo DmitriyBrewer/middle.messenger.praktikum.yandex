@@ -23,14 +23,18 @@ class Sidebar extends Block {
                 }}
             }),
             search: new SearchFieldComponent({}),
-            chats: new ChatList({
-                data: props.data
-            }),
+            chats: new ChatList({}),
         }); 
     }
 
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps.data!==newProps.data) {
+            (this.children.chats as Block).setProps({data:this.props.data});
+        }
+        return true;
+    }
+
     render() {
-        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
 }

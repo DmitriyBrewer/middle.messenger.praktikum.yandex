@@ -5,7 +5,7 @@ class ChatController {
     public getChats() {
         getAllChats().then((chats) => {
             console.log(chats);
-            store.set("chats",chats);
+            store.set("data",chats);
         })
             .catch((error) => {
                 console.error("Error fetching chats:", error);
