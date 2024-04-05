@@ -26,15 +26,11 @@ class Sidebar extends Block {
             chats: new ChatList({
                 data: props.data
             }),
-        });        
-    }
-
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        console.log(oldProps);
-        return true;
+        }); 
     }
 
     render() {
+        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
 }

@@ -12,7 +12,20 @@ import { authController } from "./controller";
 
 registerHandlebarsPartials(allPartials);
 
+class TestController {
+    public getUser() {
+        setTimeout(()=>{
+            store.set("text", "lklk");
+        },1000);
 
+
+        setTimeout(()=>{
+            store.set("text", "asd");
+        },2000);
+    }
+} 
+
+export const testController = new TestController();
 
 class Auth extends Block {
     constructor(props:BlockProps) {
@@ -81,23 +94,14 @@ export default class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             authForm: new Auth({}),
+            button: new Button({text:"hello"})
         });
 
-        // this.children.button  = new Button({text: this.props.buttonText});
+        testController.getUser();
 
-        // const authController = new AuthController();
-        // authController.getUser();
-
+        // this.children.button = ;
         // store.on(StoreEvents.Updated, () => {
-        //     this.setProps(store.getState());  
-        // });
-
-        // this.children.button = new Button({text:this.props.buttonText});
-        // this.setProps({buttonText:"KKK"});
-        // store.on(StoreEvents.Updated, () => {
-        //     const {buttonText} = store.getState();
-        //     this.children.button.setProps({text:buttonText});  
-        //     // this.setProps(store.getState());
+        //     this.children.button.setProps({text: store.getState().buttonText});  
         // });
         // this.props.button = this.children.button;
     }

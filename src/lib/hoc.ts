@@ -5,33 +5,34 @@ type Indexed<T = unknown> = {
     [key in string]: T;
 };
 
-// export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
-//     return class extends Component {
-//         constructor(props) {
-//             super({...props, ...mapStateToProps(store.getState())});
-  
-//             store.on(StoreEvents.Updated, () => {
-//                 console.log(store.getState());
-//                 console.log(this);
-//                 this.setProps({...store.getState()});
-//             });
-//         }
-//     }; 
-// } 
 export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
     return class extends Component {
         constructor(props) {
             super({...props, ...mapStateToProps(store.getState())});
   
-            this.updateProps = () => {
-                this.setProps({...mapStateToProps(store.getState())});
-            };
-
-            store.on(StoreEvents.Updated, this.updateProps);
-        }
-
-        componentWillUnmount() {
-            store.off(StoreEvents.Updated, this.updateProps);
+            store.on(StoreEvents.Updated, () => {
+                console.log(store.getState());
+                console.log(this);
+                this.setProps({...store.getState()},{updateSpecificChild:{ name: "button", props: {text:"testText"} }});
+                // this.setProps({...store.getState()});
+            });
         }
     }; 
-}
+} 
+// export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
+//     return class extends Component {
+//         constructor(props) {
+//             super({...props, ...mapStateToProps(store.getState())});
+  
+//             this.updateProps = () => {
+//                 this.setProps({...mapStateToProps(store.getState())});
+//             };
+
+//             store.on(StoreEvents.Updated, this.updateProps);
+//         }
+
+//         componentWillUnmount() {
+//             store.off(StoreEvents.Updated, this.updateProps);
+//         }
+//     }; 
+// }

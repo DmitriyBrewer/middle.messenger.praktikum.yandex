@@ -1,6 +1,11 @@
 import { compiledTemplate } from "./compileTemplate";
 import EventBus from "./eventBus";
 
+interface UpdatePropsOptions {
+    updateFirstChildren?: boolean; // Обновить props у всех дочерних элементов
+    updateSpecificChild?: { name: string, props: BlockProps }; // Обновить конкретный дочерний элемент и его props
+}
+
 export type BlockEvents = Record<string, EventListenerOrEventListenerObject>
 
 export type BlockChildren<T = unknown> = {
@@ -203,15 +208,66 @@ class Block {
         });
     }
 
-    public setProps = (nextProps:BlockProps): void => {
+    // public setProps = (nextProps:BlockProps): void => {
+    //     if (!nextProps) {
+    //         return;
+    //     }
+
+    //     const oldProps = { ...this.props }; 
+    //     Object.assign(this.props, nextProps);
+    
+    //     this._componentDidUpdate(oldProps, this.props); 
+    // };
+    // public setProps = (nextProps: BlockProps): void => {
+    //     if (!nextProps) {
+    //         return;
+    //     }
+    
+    //     const oldProps = { ...this.props };
+    //     Object.assign(this.props, nextProps);
+    
+    //     // Рекурсивная функция для обновления props у всех дочерних элементов
+    //     const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps) => {
+    //         for (const key in children) {
+    //             if (children.hasOwnProperty(key)) {
+    //                 const child = children[key];
+    //                 if (child instanceof Block) {
+    //                     child.setProps(nextProps); // Обновляем props у дочернего элемента
+    //                 }
+    //             }
+    //         }
+    //     };
+    
+    //     // Обновляем props у всех дочерних элементов
+    //     updateChildProps(this.children, nextProps);
+    
+    //     this._componentDidUpdate(oldProps, this.props);
+    // };
+
+    public setProps = (nextProps: BlockProps, options?: UpdatePropsOptions): void => {
         if (!nextProps) {
             return;
         }
-
-        const oldProps = { ...this.props }; 
+    
+        const oldProps = { ...this.props };
         Object.assign(this.props, nextProps);
     
-        this._componentDidUpdate(oldProps, this.props); 
+        const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps, options?: UpdatePropsOptions): void => {
+            for (const key in children) {
+                if (children.hasOwnProperty(key)) {
+                    const child = children[key];
+                    if (child instanceof Block) {
+                        if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
+                            child.setProps(options?.updateSpecificChild?.props || nextProps);
+                        }
+                    }
+                }
+            }
+        };
+    
+        updateChildProps((this.children), nextProps, options);
+    
+        this._componentDidUpdate(oldProps, this.props);
     };
 
     get element(): HTMLElement | null {

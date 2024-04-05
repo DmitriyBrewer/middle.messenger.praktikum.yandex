@@ -7,9 +7,11 @@ class ChatList extends Block {
             this.children = {};
         }
         if (props.data && Array.isArray(props.data)) {
+            console.log(props.data);
             this.children.list = props.data.map((itemProps: BlockProps) => new ChatItem(itemProps));
             this.props.list = this.children.list;
         }
+        
     }
 
     render() {  

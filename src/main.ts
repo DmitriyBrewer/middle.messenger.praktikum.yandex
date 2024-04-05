@@ -36,6 +36,26 @@ import { getAllChats } from "./pages/chat/api";
 //         // внутри рендер в this.props будут достпны данные из хранилища
 //     }
 // } 
+
+// if(!state.chats) {
+//     return {
+//     // chats: state.chats
+//         chats: [
+//             {avatar: null,
+//                 created_by: 374,
+//                 id: 4025,
+//                 last_message: null,
+//                 title: "NameChat",
+//                 unread_count: 0
+//             }, {avatar: null,
+//                 created_by: 374,
+//                 id: 4025,
+//                 last_message: null,
+//                 title: "NameChat",
+//                 unread_count: 0
+//             }
+//         ],
+//     }; } else return {chats:state.chats};
   
 const router = new Router(".root");
 
@@ -43,35 +63,19 @@ function mapUserToProps(state) {
     console.log(state);
    
     return {
-        buttonText: "",
+        buttonText: state.buttonText,
     };
 }
 
 function mapChatsToProps(state) {
     console.log(state);
-    return {
-        chats: state.chats
-        // chats: [
-        //     {avatar: null,
-        //         created_by: 374,
-        //         id: 4025,
-        //         last_message: null,
-        //         title: "NameChat",
-        //         unread_count: 0
-        //     }, {avatar: null,
-        //         created_by: 374,
-        //         id: 4025,
-        //         last_message: null,
-        //         title: "NameChat",
-        //         unread_count: 0
-        //     }
-        // ],
-    };
+    // return {
+    //     state
+    // };
 }
-  
 
-console.log(store);
 router
+    // .use("/", connect(AuthPage,mapUserToProps))
     .use("/", connect(AuthPage,mapUserToProps))
     .use("/sign-up", RegistrationPage)
     .use("/settings", ProfilePage)
