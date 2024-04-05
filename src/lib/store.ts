@@ -1,5 +1,4 @@
 import EventBus from "./eventBus";
-import isEqual from "./isEqual";
 
 type Indexed<T = any> = {
     [key in string]: T;
@@ -64,7 +63,7 @@ class Store extends EventBus {
   
 export default new Store(); 
 
-
+// TODO удалить если не нужно
 // const newState = mapStateToProps(state);
     
 // if (!isEqual(oldState, newState)) {

@@ -6,6 +6,7 @@ type Indexed<T = unknown> = {
     [key in string]: T;
 };
 
+// TODO удалить если не нужно
 // export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
 //     return class extends Component {
 //         constructor(props) {
@@ -42,6 +43,8 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed, updateProp
         };
     };
 }
+
+// TODO удалить если не нужно
 // export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
 //     return class extends Component {
 //         constructor(props) {
