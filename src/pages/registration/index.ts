@@ -1,11 +1,10 @@
 import TextFieldComponent from "../../components/text-field";
 import { conditions } from "../../constants/conditions";
-// import { registrationHandleTest } from "../../lib/api";
 import Block, { BlockProps } from "../../lib/block";
 import { validationField } from "../../lib/validations/isValidLogin";
 import Button from "../../ui/button";
 import LinkComponent from "../../ui/link";
-import { registrationHandler } from "./api";
+import { registrationController } from "./controller";
 import RegistrationTemplate from "./index.hbs?raw";
 class Registration extends Block {
     constructor(props:BlockProps) {
@@ -16,8 +15,7 @@ class Registration extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Данные формы:", formDataObject);
-                        registrationHandler(formDataObject);
-                        // registrationHandleTest(formDataObject);
+                        registrationController.registerUser(formDataObject);
                     });
                 }
             },

@@ -8,14 +8,6 @@ import { chatController } from "./controller";
 
 export class ChatPage extends Block {
     constructor(props:BlockProps) {
-        // super("div",{
-        //     ...props,
-        //     // sidebar: new Sidebar({data: props.chats}),
-        //     // window: new ChatWindow({
-        //     //     ...mockChats[0],
-        //     //     empty: false
-        //     // })
-        // });
         super("div",props);
 
         chatController.getChats();

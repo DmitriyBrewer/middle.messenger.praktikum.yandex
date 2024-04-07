@@ -15,9 +15,9 @@ function queryStringify(data: Data): string {
 }
 
 type Header = [string, string]
-type Data = Header[]
+export type Data = Header[]
   
-type Options = {
+export type Options = {
     method?: string,
     data?: Data,
     timeout?: number,

@@ -9,23 +9,24 @@ import { conditions } from "../../constants/conditions";
 import LinkComponent from "../../ui/link";
 import store from "../../lib/store";
 import { authController } from "./controller";
+// import { authController } from "./controller";
 
 registerHandlebarsPartials(allPartials);
 
-class TestController {
-    public getUser() {
-        setTimeout(()=>{
-            store.set("text", "updateProps1");
-        },1000);
+// class TestController {
+//     public getUser() {
+//         setTimeout(()=>{
+//             store.set("text", "updateProps1");
+//         },1000);
 
 
-        setTimeout(()=>{
-            store.set("text", "updateProps1");
-        },2000);
-    }
-} 
+//         setTimeout(()=>{
+//             store.set("text", "updateProps1");
+//         },2000);
+//     }
+// } 
 
-export const testController = new TestController();
+// export const testController = new TestController();
 
 class Auth extends Block {
     constructor(props:BlockProps) {
@@ -37,7 +38,7 @@ class Auth extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Данные формы:", formDataObject);
-                        authController.getUser(formDataObject);
+                        authController.signInUser(formDataObject);
                     });
                 }
             },
@@ -88,36 +89,16 @@ class Auth extends Block {
         return this.compile(AuthTemplate, {});
     }
 }
-
-
 export default class AuthPage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             authForm: new Auth({}),
-            // button: new Button({text:"hello"})
         });
-
-        testController.getUser();
-
-        this.children.button = new Button({text:"hello"});
-        // store.on(StoreEvent.Updated, () => {
-        //     this.children.button.setProps({text: store.getState().buttonText});  
-        // });
-        // this.props.button = this.children.button;
     }
-
-    // public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-    //     if(oldProps.text!==newProps.text) {
-    //         this.children.button.setProps({text: store.getState().text});  
-    //     }
-    //     return true;
-    // }
 
     render() {
         console.log(store);
         console.log(this);
-        return this.compile("{{#> BaseLayout}} {{{ button }}} {{{ authForm }}}{{/ BaseLayout}}", {
-            button: this.props.button
-        });
+        return this.compile("{{#> BaseLayout}} {{{ authForm }}}{{/ BaseLayout}}", {});
     }
 }

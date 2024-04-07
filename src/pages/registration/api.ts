@@ -1,6 +1,6 @@
 import { host } from "../../constants/host";
-import { convertData } from "../../lib/convertData";
-import { METHODS, http } from "../../lib/http";
+import BaseAPI from "../../lib/baseApi";
+import { Data, METHODS, Options } from "../../lib/http";
 import router from "../../main";
 
 export type RegistrationForm = {
@@ -11,53 +11,55 @@ export type RegistrationForm = {
     phone: string
     password: string
 }
+class RegistrationApi extends BaseAPI {
+    signUpUser(convertedData?: Data) {
+        const signUpOptions: Options = {
+            method: METHODS.POST,
+            headers: ["Content-Type", "application/json"],
+            data: convertedData,
+        };
 
-export function signUpUser(convertedData?:[string, unknown][]) {
-    const signUpOptions = {
-        method: METHODS.POST,
-        headers: [["Content-Type", "application/json"]],
-        data: convertedData,
-    };
+        return this.post(`${host}/api/v2/auth/signup`, signUpOptions)
+            .then((response: unknown) => {
+                if (response instanceof XMLHttpRequest) {
+                    console.log(response);
+                    if (response.status >= 200 && response.status < 300) {
+                        const jsonData = JSON.parse(response.responseText);
+                        console.log(jsonData);
+                        return jsonData;
+                    } else {
+                        throw new Error("Request failed with status: " + response.status);
+                    }
+                } else {
+                    throw new Error("Invalid response type");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });    
+    }
 
-    return http.post(`${host}/api/v2/auth/signup`, signUpOptions)
-        .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-                return response.json();
-            } else {
-                throw new Error("Request failed with status: " + response.status);
-            }
-        })
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
+    getUserInfo() {
+        const getUserOptions = {
+            method: METHODS.GET,
+        };
+
+        return this.get(`${host}/api/v2/auth/user`, getUserOptions)
+            .then((response: unknown) => {
+                if (response instanceof XMLHttpRequest) {
+                    if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
+                        router.go("/messenger");
+                    } else {
+                        throw new Error("Request failed with status: " + (response as XMLHttpRequest).status);
+                    }
+                } else {
+                    throw new Error("Invalid response type");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
 }
 
-export function getUserInfo() {
-    const getUserOptions = {
-        method: "GET",
-    };
-
-    return http.get(`${host}/api/v2/auth/user`, getUserOptions)
-        .then((response) => {
-            if (response.status >= 200 && response.status < 300) {
-                // return response.json();
-                router.go("/messenger");
-            } else {
-                throw new Error("Request failed with status: " + response.status);
-            }
-        });
-}
-
-export const registrationHandler = (data:Record<string,string>) => {
-    signUpUser(convertData(data))
-        .then(data => {
-            console.log(data);
-            return getUserInfo();
-        })
-        .then(data => {
-            console.log("user", data);
-        });
-};
+export default RegistrationApi;

@@ -1,5 +1,5 @@
 import { host } from "../../constants/host";
-import { convertData } from "../../lib/convertData";
+import { mapDataToEntriesArray } from "../../lib/convertData";
 import { METHODS, http } from "../../lib/http";
 import router from "../../main";
 
@@ -7,7 +7,7 @@ export function changeUserData(data:Record<string,string>) {
     const signUpOptions = {
         method: METHODS.PUT,
         headers: ["Content-Type", "application/json"],
-        data: convertData(data)
+        data: mapDataToEntriesArray(data)
     };
 
     return http.put(`${host}/api/v2/user/profile`, signUpOptions)
@@ -32,7 +32,7 @@ export function changeUserPassword(data:Record<string,string>) {
     const signUpOptions = {
         method: METHODS.PUT,
         headers: ["Content-Type", "application/json"],
-        data: convertData(data)
+        data: mapDataToEntriesArray(data)
     };
 
     return http.put(`${host}/api/v2/user/password`, signUpOptions)

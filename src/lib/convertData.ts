@@ -1,4 +1,3 @@
-export function convertData(data:Record<string, string>) {
-    const newData = Object.entries(data);
-    return newData;
+export function mapDataToEntriesArray(data:Record<string, string>) {
+    return Object.entries(data);
 }

@@ -5,7 +5,7 @@ import SearchFieldComponent from "./search-field";
 import ChatList from "../chat-list";
 import LinkComponent from "../../ui/link";
 import Button from "../../ui/button";
-import { addChats } from "../../pages/chat/api";
+import { chatController } from "../../pages/chat/controller";
 class Sidebar extends Block {
     constructor(props: BlockProps) {
         super("div", {
@@ -19,7 +19,7 @@ class Sidebar extends Block {
             addChat: new Button({
                 text:"Добавить чат",
                 events: {click: ()=>{
-                    addChats({title: "NameChat"});
+                    chatController.addChatController({title: "NameChat"});
                 }}
             }),
             search: new SearchFieldComponent({}),
@@ -35,7 +35,6 @@ class Sidebar extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
 }
