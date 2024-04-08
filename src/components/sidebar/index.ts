@@ -9,6 +9,7 @@ import { chatController } from "../../pages/chat/controller";
 import Modal from "../modal";
 import InputComponent from "../../ui/input";
 import NewChat from "../new-chat-form";
+import ButtonImage from "../../ui/button-image";
 class Sidebar extends Block {
     constructor(props: BlockProps) {
         super("div", {
@@ -36,22 +37,21 @@ class Sidebar extends Block {
         this.children.addChat = new Button({
             text:"Добавить чат",
             events: {click: ()=>{
-                // const title =  prompt("Наименование чата", "");
-                // title&& chatController.addChatController({title: title});
                 (this.children.modal as Block).show();
             }}
         });
         
         this.children.modal = new Modal({
+            closeModal: new ButtonImage({
+                src:"/assets/close.svg",
+                alt:"close",
+                classNameImage:"closeButtonImage",
+                className:"closeButton",
+                events: {click: ()=>{
+                    (this.children.modal as Block).hide();
+                }}
+            }),
             content: new NewChat({
-                events: {
-                    submit: (event: Event) => {
-                        event.preventDefault();
-                        this.handleFormData((formDataObject) => {
-                            console.log("Отправлено сообщение:", formDataObject);
-                        });
-                    }
-                },
                 input: new InputComponent({
                     type: "text",
                     id: "newChat",

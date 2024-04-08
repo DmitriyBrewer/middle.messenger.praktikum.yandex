@@ -67,6 +67,7 @@ class ChatController {
     }
 
     public addChatController(data: Record<string, string>) {
+        console.log(data);
         this.chatApi.addChat(data).then((res) => {
             store.set("data", res);
             this.getChats();
