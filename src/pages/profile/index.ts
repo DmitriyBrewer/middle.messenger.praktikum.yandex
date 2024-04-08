@@ -41,7 +41,7 @@ export class ProfilePageChangeData extends Block {
                 src: "/assets/arrow-left.svg"
             }),
             profileForm: new ProfileForm({
-                api: (formData) => {
+                api: (formData: Record<string, string>) => {
                     profileController.updateProfileController(formData);
                 },
                 profileHeader: new ProfileHeader({
@@ -74,7 +74,7 @@ export class ProfilePageChangePassword extends Block {
                 src: "/assets/arrow-left.svg"
             }),
             profileForm: new ProfileForm({
-                api: (formData) => {
+                api: (formData: Record<string, string>) => {
                     profileController.updatePasswordController(formData);
                 },
                 profileHeader: new ProfileHeader({

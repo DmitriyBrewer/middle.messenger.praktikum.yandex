@@ -1,8 +1,6 @@
 import "./index.scss";
 import   NewChatTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../lib/block";
-import { chatController } from "../../pages/chat/controller";
-
 
 class NewChat extends Block {
     constructor(props:BlockProps) {
@@ -12,7 +10,7 @@ class NewChat extends Block {
                 event.preventDefault();
                 this.handleFormData((formDataObject) => {
                     console.log("Отправлено сообщение:", formDataObject);
-                    chatController.addChatController({title: formDataObject.chat});
+                    (props as {api: (arg:Record<string, string>)=>void}).api(formDataObject);
                     (props as {hideBlock:()=>void}).hideBlock();
                 });
             }

@@ -9,6 +9,7 @@ import Modal from "../modal";
 import InputComponent from "../../ui/input";
 import NewChat from "../new-chat-form";
 import ButtonImage from "../../ui/button-image";
+import { chatController } from "../../pages/chat/controller";
 class Sidebar extends Block {
     constructor(props: BlockProps) {
         super("div", {
@@ -43,10 +44,13 @@ class Sidebar extends Block {
             }),
             content: new NewChat({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
+                api:(formData: Record<string, string>) => {
+                    chatController.addChatController(formData);
+                },
                 input: new InputComponent({
                     type: "text",
                     id: "newChat",
-                    name: "chat",
+                    name: "title",
                     placeholder: "Наименовение Чата",
                     helper: "Наименовение Чата",
                     autocomplete: "username",
