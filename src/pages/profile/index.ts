@@ -10,7 +10,7 @@ import Button from "../../ui/button";
 import ProfilePasswordList from "../../components/profile/profile-password-list";
 import ProfileForm from "../../components/profile/profile-form";
 import { mockProfile } from "../../constants/mockProfile";
-import { changeUserData, changeUserPassword } from "./api";
+import { profileController } from "./controller";
 
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
@@ -41,7 +41,9 @@ export class ProfilePageChangeData extends Block {
                 src: "/assets/arrow-left.svg"
             }),
             profileForm: new ProfileForm({
-                api: changeUserData,
+                api: (formData) => {
+                    profileController.updateProfileController(formData);
+                },
                 profileHeader: new ProfileHeader({
                     name: mockProfile.first_name
                 }),
@@ -72,7 +74,9 @@ export class ProfilePageChangePassword extends Block {
                 src: "/assets/arrow-left.svg"
             }),
             profileForm: new ProfileForm({
-                api: changeUserPassword,
+                api: (formData) => {
+                    profileController.updatePasswordController(formData);
+                },
                 profileHeader: new ProfileHeader({
                     name: mockProfile.first_name
                 }),
