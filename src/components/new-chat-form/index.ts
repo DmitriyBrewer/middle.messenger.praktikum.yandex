@@ -12,7 +12,8 @@ class NewChat extends Block {
                 event.preventDefault();
                 this.handleFormData((formDataObject) => {
                     console.log("Отправлено сообщение:", formDataObject);
-                    chatController.addChatController({title: "sds"});
+                    chatController.addChatController({title: formDataObject.chat});
+                    (this.parent.children.modal as Block).hide();
                 });
             }
         };

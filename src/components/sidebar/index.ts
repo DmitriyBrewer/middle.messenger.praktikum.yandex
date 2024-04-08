@@ -5,7 +5,6 @@ import SearchFieldComponent from "./search-field";
 import ChatList from "../chat-list";
 import LinkComponent from "../../ui/link";
 import Button from "../../ui/button";
-import { chatController } from "../../pages/chat/controller";
 import Modal from "../modal";
 import InputComponent from "../../ui/input";
 import NewChat from "../new-chat-form";
@@ -20,16 +19,6 @@ class Sidebar extends Block {
                 text:"Профиль",
                 isRouter: true
             }),
-            // modal: new Modal({}),
-            // addChat: new Button({
-            //     text:"Добавить чат",
-            //     events: {click: ()=>{
-            //         // const title =  prompt("Наименование чата", "");
-            //         // title&& chatController.addChatController({title: title});
-            //         // this.children.modal.show();
-            //         this.setProps({modal: new Modal({})});
-            //     }}
-            // }),
             search: new SearchFieldComponent({}),
             chats: new ChatList({}),
         }); 
@@ -63,7 +52,10 @@ class Sidebar extends Block {
                 }),
                 button: new Button({
                     text: "Добавить чат",
-                    type:"submit"
+                    type:"submit",
+                    // events: {click: ()=>{
+                    //     (this.children.modal as Block).hide();
+                    // }}
                 }),
             }),
             
