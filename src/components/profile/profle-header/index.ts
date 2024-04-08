@@ -4,21 +4,10 @@ import Block, { BlockProps } from "../../../lib/block";
 import InputImageComponent from "../../input-image";
 class ProfileHeader extends Block {
     constructor(props:BlockProps) {
-        super("div",{...props,
-            // image: new InputImageComponent({
-            //     src:"asdas",
-            //     className:"imageFile",
-            //     type: "file",
-            //     id: "avatarInput",
-            //     name: "avatar",
-            //     placeholder: "Выберите изображение",
-            //     isRequired: true,
-            //     accept: "image/*", 
-            // })
-        });
+        super("div",props);
 
         this.children.image = new InputImageComponent({
-            src:props.src,
+            src:this.props.src,
             className:"imageFile",
             type: "file",
             id: "avatarInput",
@@ -28,9 +17,14 @@ class ProfileHeader extends Block {
             accept: "image/*", 
         });
     }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps.src !== newProps.src) {
+            this.children.image.setProps({src:newProps.src});
+        }
+        return true;
+    }
     
-
-
     render() {
         console.log(this);
         return this.compile(ProfileHeaderTemplate, {

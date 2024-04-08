@@ -25,7 +25,10 @@ export class ProfilePage extends Block {
         }
 
         this.children.profileForm =  new ProfileForm({
-            profileHeader:new ProfileHeader({}),
+            profileHeader:new ProfileHeader({
+                src:"/assets/union.svg",
+                name: "Имя"
+            }),
             profileParamList: new ProfileParamsList({}),
             footMenu: new ProfileFootMenu({}),
         }),
@@ -53,7 +56,7 @@ export class ProfilePageChangeData extends Block {
                 },
                 profileHeader: new ProfileHeader({
                     name: mockProfile.first_name,
-                    src:"sasd"
+                    src:"profiless"
                 }),
                 profileParamList: new ProfileInputList({
                     data:mockProfile,
@@ -67,9 +70,6 @@ export class ProfilePageChangeData extends Block {
             data: mockProfile
         });
 
-        // if(!store.getState().userData) {
-        //     authController.getUserInformation();
-        // }
     }
 
     render() {

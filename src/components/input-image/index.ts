@@ -25,14 +25,22 @@ class InputImageComponent extends Block {
         });
 
         this.children.image = new Image({
-            width: 25,
-            height: 25,
+            width: 150,
+            height: 150,
             src:this.props.src,
             alt:"avatar",
             className:"profileHeader__avatarDefault"
         });
 
         this.props.image = this.children.image;
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps.src !== newProps.src) {
+            console.log("reres");
+            this.children.image.setProps({src:newProps.src});
+        }
+        return true;
     }
 
     render() { 

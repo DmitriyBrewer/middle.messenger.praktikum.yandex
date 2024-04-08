@@ -21,7 +21,9 @@ class ProfileForm extends Block {
         if(oldProps.userData!==newProps.userData && newProps.userData) {
             (this.children.profileHeader as Block).setProps({
                 name:newProps.userData.first_name,
-                src:"/sdsda"
+                src:"/assets/close.svg"
+                // src: "/assets/file.svg"
+                // src:newProps.userData.avatar
             });
             (this.children.profileParamList as Block).setProps(newProps.userData);
             console.log(newProps.userData);
