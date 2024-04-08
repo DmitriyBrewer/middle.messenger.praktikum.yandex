@@ -19,7 +19,10 @@ class ProfileForm extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps.userData!==newProps.userData && newProps.userData) {
-            (this.children.profileHeader as Block).setProps({name:newProps.userData.first_name});
+            (this.children.profileHeader as Block).setProps({
+                name:newProps.userData.first_name,
+                src:"/sdsda"
+            });
             (this.children.profileParamList as Block).setProps(newProps.userData);
             console.log(newProps.userData);
         }
@@ -27,6 +30,7 @@ class ProfileForm extends Block {
     }
 
     render() {
+        console.log(this);
         return this.compile(ProfileFormTemplate, {});
     }
 }

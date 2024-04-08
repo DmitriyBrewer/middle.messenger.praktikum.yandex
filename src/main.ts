@@ -81,8 +81,8 @@ router
     .use("/sign-up", RegistrationPage)
     .use("/settings", withUser(ProfilePage))
     .use("/messenger", withChats(ChatPage))
-    .use("/settings/change", ProfilePageChangeData)
-    .use("/settings/password", ProfilePageChangePassword)
+    .use("/settings/change", withUser(ProfilePageChangeData))
+    .use("/settings/password", withUser(ProfilePageChangePassword))
     .start();
 
 export default router;

@@ -28,3 +28,13 @@
         color: var(--primary-text);
     }
 }
+
+
+.imageFile {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+}

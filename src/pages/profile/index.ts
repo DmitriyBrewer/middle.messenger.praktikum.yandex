@@ -52,7 +52,8 @@ export class ProfilePageChangeData extends Block {
                     profileController.updateProfileController(formData);
                 },
                 profileHeader: new ProfileHeader({
-                    name: mockProfile.first_name
+                    name: mockProfile.first_name,
+                    src:"sasd"
                 }),
                 profileParamList: new ProfileInputList({
                     data:mockProfile,
@@ -65,6 +66,10 @@ export class ProfilePageChangeData extends Block {
             }),
             data: mockProfile
         });
+
+        // if(!store.getState().userData) {
+        //     authController.getUserInformation();
+        // }
     }
 
     render() {
@@ -85,7 +90,8 @@ export class ProfilePageChangePassword extends Block {
                     profileController.updatePasswordController(formData);
                 },
                 profileHeader: new ProfileHeader({
-                    name: mockProfile.first_name
+                    name: mockProfile.first_name,
+                    src:"/assets/union.svg"
                 }),
                 profileParamList: new ProfilePasswordList({
                     data:mockProfile,
@@ -98,6 +104,10 @@ export class ProfilePageChangePassword extends Block {
             }),
             data: mockProfile
         });
+
+        // if(!store.getState().userData) {
+        //     authController.getUserInformation();
+        // }
     }
 
     render() {
