@@ -22,7 +22,7 @@ class ProfileController {
     public updatePasswordController(data: Record<string, string>) {
         this.profileApi.updateUserPassword(data).then((res) => {
             console.log(res);
-            // Можно добавить дополнительную логику при успешном обновлении пароля
+            // TODO Можно добавить дополнительную логику при успешном обновлении пароля
         })
             .catch((error) => {
                 console.error("Error updating password:", error);
