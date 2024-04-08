@@ -13,7 +13,7 @@ class NewChat extends Block {
                 this.handleFormData((formDataObject) => {
                     console.log("Отправлено сообщение:", formDataObject);
                     chatController.addChatController({title: formDataObject.chat});
-                    (this.parent.children.modal as Block).hide();
+                    (props as {hideBlock:()=>void}).hideBlock();
                 });
             }
         };

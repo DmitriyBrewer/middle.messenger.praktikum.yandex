@@ -20,7 +20,6 @@ class Sidebar extends Block {
                 isRouter: true
             }),
             search: new SearchFieldComponent({}),
-            chats: new ChatList({}),
         }); 
 
         this.children.addChat = new Button({
@@ -29,6 +28,8 @@ class Sidebar extends Block {
                 (this.children.modal as Block).show();
             }}
         });
+
+        this.children.chats = new ChatList({}),
         
         this.children.modal = new Modal({
             closeModal: new ButtonImage({
@@ -41,6 +42,7 @@ class Sidebar extends Block {
                 }}
             }),
             content: new NewChat({
+                hideBlock: ()=>(this.children.modal as Block).hide(),
                 input: new InputComponent({
                     type: "text",
                     id: "newChat",
@@ -53,9 +55,6 @@ class Sidebar extends Block {
                 button: new Button({
                     text: "Добавить чат",
                     type:"submit",
-                    // events: {click: ()=>{
-                    //     (this.children.modal as Block).hide();
-                    // }}
                 }),
             }),
             
@@ -70,7 +69,6 @@ class Sidebar extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(SidebarTemplate, {});
     }
 }
