@@ -57,6 +57,7 @@
 import { host } from "../../constants/host";
 import BaseAPI from "../../lib/baseApi";
 import { Data, METHODS, Options } from "../../lib/http";
+import store from "../../lib/store";
 import router from "../../main";
 
 class AuthApi extends BaseAPI {
@@ -93,7 +94,8 @@ class AuthApi extends BaseAPI {
             .then((response: unknown) => {
                 if (response instanceof XMLHttpRequest) {
                     if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
-                        return JSON.parse((response as XMLHttpRequest).responseText);
+                        // return JSON.parse((response as XMLHttpRequest).responseText);
+                        store.set("userData", JSON.parse((response as XMLHttpRequest).responseText));
                     } else {
                         throw new Error("Request failed with status: " + (response as XMLHttpRequest).status);
                     }

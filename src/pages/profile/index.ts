@@ -11,23 +11,30 @@ import ProfilePasswordList from "../../components/profile/profile-password-list"
 import ProfileForm from "../../components/profile/profile-form";
 import { mockProfile } from "../../constants/mockProfile";
 import { profileController } from "./controller";
+import store from "../../lib/store";
+import { authController } from "../auth/controller";
 
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             profilePrev: new ProfilePrev({}),
-            profileForm: new ProfileForm({
-                profileHeader: new ProfileHeader({
-                    name: mockProfile.first_name
-                }),
-                profileParamList: new ProfileParamsList(mockProfile),
-                footMenu: new ProfileFootMenu({}),
-            }),
-            data: mockProfile
         });
+
+        if(!store.getState().userData) {
+            authController.getUserInformation();
+        }
+
+        this.children.profileForm =  new ProfileForm({
+            profileHeader:new ProfileHeader({}),
+            profileParamList: new ProfileParamsList({}),
+            footMenu: new ProfileFootMenu({}),
+        }),
+        console.log(store);
+       
     }
 
     render() {
+        console.log(this);
         return this.compile(ProfilePageTemplate, {});
     }
 }

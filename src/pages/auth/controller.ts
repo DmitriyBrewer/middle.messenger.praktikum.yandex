@@ -29,7 +29,7 @@ class AuthController {
         }
     }
 
-    private async getUserInformation() {
+    public async getUserInformation() {
         try {
             const userInfo = await this.authApi.getUserInfo();
             console.log("User information retrieved successfully:", userInfo);

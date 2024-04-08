@@ -61,7 +61,7 @@ const router = new Router(".root");
 
 function mapUserToProps(state) {   
     return {
-        text: state.text,
+        userData: state.userData
     };
 }
 
@@ -79,7 +79,7 @@ router
     // .use("/", connect(AuthPage,mapUserToProps))
     .use("/", withUser(AuthPage))
     .use("/sign-up", RegistrationPage)
-    .use("/settings", ProfilePage)
+    .use("/settings", withUser(ProfilePage))
     .use("/messenger", withChats(ChatPage))
     .use("/settings/change", ProfilePageChangeData)
     .use("/settings/password", ProfilePageChangePassword)

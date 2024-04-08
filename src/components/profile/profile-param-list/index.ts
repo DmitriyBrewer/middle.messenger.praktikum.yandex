@@ -4,20 +4,25 @@ import ProfileParam from "../profile-param";
 class ProfileParamsList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
-        this.children.list = [
-            new ProfileParam({param:"email",value:props.email}),
-            new ProfileParam({param:"login",value:props.login}),
-            new ProfileParam({param:"first_name",value:props.first_name}),
-            new ProfileParam({param:"last_name",value:props.last_name}),
-            new ProfileParam({param:"display_name",value:props.display_name}),
-            new ProfileParam({param:"phone",value:props.phone}),
-        ];
-
-        this.props.list = this.children.list;
         this.props.className = "profileParams";
     }
 
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps.first_name!==newProps.first_name ) {
+            this.children.list = [
+                new ProfileParam({param:"email",value:this.props.email}),
+                new ProfileParam({param:"login",value:this.props.login}),
+                new ProfileParam({param:"first_name",value:this.props.first_name}),
+                new ProfileParam({param:"second_name",value:this.props.second_name}),
+                new ProfileParam({param:"display_name",value:this.props.display_name}),
+                new ProfileParam({param:"phone",value:this.props.phone}),
+            ];
+        }
+        return true;
+    }
+
     render() {    
+        console.log(this);
         return this.compile("{{{ list }}}", {});
     }
 }

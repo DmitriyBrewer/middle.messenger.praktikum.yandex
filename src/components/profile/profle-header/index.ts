@@ -12,7 +12,9 @@ class ProfileHeader extends Block {
             })
         });
     }
+
     render() {
+        console.log(this);
         return this.compile(ProfileHeaderTemplate, {
             name: this.props.name
         });
