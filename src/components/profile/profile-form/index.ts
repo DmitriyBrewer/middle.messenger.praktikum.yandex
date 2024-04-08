@@ -21,7 +21,8 @@ class ProfileForm extends Block {
         if(oldProps.userData!==newProps.userData && newProps.userData) {
             (this.children.profileHeader as Block).setProps({
                 name:newProps.userData.first_name,
-                src:"/assets/close.svg"
+                // TODO мжет изначально отправлять vayterнемного в другом формате ы
+                src:newProps.userData.avatar
                 // src: "/assets/file.svg"
                 // src:newProps.userData.avatar
             });
