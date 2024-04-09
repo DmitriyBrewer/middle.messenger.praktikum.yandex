@@ -1,7 +1,6 @@
 import "./index.scss";
 import Block, { BlockProps } from "../../../lib/block";
 import  ProfileFormTemplate from "./index.hbs?raw";
-import isEqual from "../../../lib/isEqual";
 
 class ProfileForm extends Block {
     constructor(props:BlockProps) {
@@ -19,18 +18,8 @@ class ProfileForm extends Block {
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        // if(isEqual(oldProps, newProps)) {
         if(oldProps.userData !== newProps.userData) {
-            (this.children.profileHeader as Block).setProps({
-                name:newProps.userData.first_name,
-                // TODO мжет изначально отправлять vayterнемного в другом формате ы
-                src:newProps.userData.avatar
-                // src: "/assets/file.svg"
-                // src:newProps.userData.avatar
-            });
             (this.children.profileParamList as Block).setProps(newProps.userData);
-            console.log(newProps.userData);
-            console.log("PROFLIEFORM");
         }
         return true;
     }

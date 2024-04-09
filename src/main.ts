@@ -30,8 +30,8 @@ router
     .use("/sign-up", RegistrationPage)
     .use("/settings", withUser(ProfilePage))
     .use("/messenger", withChats(ChatPage))
-    .use("/settings/change", withUser(ProfilePageChangeData))
-    .use("/settings/password", withUser(ProfilePageChangePassword))
+    .use("/change", withUser(ProfilePageChangeData))
+    .use("/password", withUser(ProfilePageChangePassword))
     .start();
 
 export default router;

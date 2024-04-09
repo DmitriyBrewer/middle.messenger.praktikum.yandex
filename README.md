@@ -56,8 +56,8 @@
 -   [Страница регистрации](https://deploy--messengerydv.netlify.app/sign-up)
 -   [Старница чата](https://deploy--messengerydv.netlify.app/messenger)
 -   [Старница профиля](https://deploy--messengerydv.netlify.app/settings)
--   [Старница изменения данных профиля](https://deploy--messengerydv.netlify.app/settings/change)
--   [Старница изменения пароля профиля](https://deploy--messengerydv.netlify.app/settings/password)
+-   [Старница изменения данных профиля](https://deploy--messengerydv.netlify.app/change)
+-   [Старница изменения пароля профиля](https://deploy--messengerydv.netlify.app/password)
 -   [Старница 404](https://deploy--messengerydv.netlify.app/404)
 -   [Старница 500](https://deploy--messengerydv.netlify.app/500)
 

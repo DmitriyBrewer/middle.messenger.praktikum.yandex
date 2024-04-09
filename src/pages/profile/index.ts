@@ -13,14 +13,13 @@ import { mockProfile } from "../../constants/mockProfile";
 import { profileController } from "./controller";
 import store from "../../lib/store";
 import { authController } from "../auth/controller";
-
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-            profilePrev: new ProfilePrev({}),
-            profileHeader: new ProfileHeader({
-                name: mockProfile.first_name,
-                src:"profiless"
+            profilePrev: new ProfilePrev({
+                href:"/messenger",
+                alt:"prev",
+                src: "/assets/arrow-left.svg"
             }),
         });
 
@@ -28,16 +27,22 @@ export class ProfilePage extends Block {
             authController.getUserInformation();
         }
 
+        this.children.profileHeader = new ProfileHeader({}),
+
         this.children.profileForm =  new ProfileForm({
-            profileHeader:new ProfileHeader({
-                src:"/assets/union.svg",
-                name: "Имя"
-            }),
             profileParamList: new ProfileParamsList({}),
             footMenu: new ProfileFootMenu({}),
-        }),
-        console.log(store);
-       
+        });       
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps !== newProps) {
+            this.children.profileHeader.setProps({name:newProps.userData.first_name});
+            this.children.profileHeader.setProps({src:newProps.userData.avatar});
+
+        }
+
+        return true;
     }
 
     render() {
@@ -49,34 +54,42 @@ export class ProfilePage extends Block {
 export class ProfilePageChangeData extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-         
             profilePrev: new ProfilePrev({
                 href:"/settings",
                 alt:"prev",
                 src: "/assets/arrow-left.svg"
-            }),
-            profileForm: new ProfileForm({
-                api: (formData: Record<string, string>) => {
-                    profileController.updateProfileController(formData);
-                },
-                profileHeader: new ProfileHeader({
-                    name: mockProfile.first_name,
-                    src:"profiless"
-                }),
-                profileParamList: new ProfileInputList({
-                    data:mockProfile,
-                }),
-                footMenu: new Button({
-                    text: "Сохранить", 
-                    type:"submit",
-                    className: "profileChangeButton"
-                }),
-            }),
-            data: mockProfile
+            }),   
         });
-        if(!store.getState().userData) {
-            authController.getUserInformation();
+
+
+        // if(!store.getState().userData) {
+        authController.getUserInformation();
+        // }
+
+        this.children.profileHeader = new ProfileHeader({}),
+        this.children.profileForm =  new ProfileForm({
+            api: (formData: Record<string, string>) => {
+                profileController.updateProfileController(formData);
+            },
+            profileParamList: new ProfileInputList({
+                data:mockProfile,
+            }),
+            footMenu: new Button({
+                text: "Сохранить", 
+                type:"submit",
+                className: "profileChangeButton"
+            }),
+        });
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps !== newProps) {
+            this.children.profileHeader.setProps({name:newProps.userData.first_name});
+            this.children.profileHeader.setProps({src:newProps.userData.avatar});
+
         }
+
+        return true;
     }
 
     render() {
@@ -92,29 +105,38 @@ export class ProfilePageChangePassword extends Block {
                 alt:"prev",
                 src: "/assets/arrow-left.svg"
             }),
-            profileForm: new ProfileForm({
-                api: (formData: Record<string, string>) => {
-                    profileController.updatePasswordController(formData);
-                },
-                profileHeader: new ProfileHeader({
-                    name: mockProfile.first_name,
-                    src:"/assets/union.svg"
-                }),
-                profileParamList: new ProfilePasswordList({
-                    data:mockProfile,
-                }),
-                footMenu: new Button({
-                    text: "Сохранить", 
-                    type:"submit",
-                    className: "profileChangeButton"
-                }),
-            }),
+         
             data: mockProfile
+        });
+
+        this.children.profileHeader = new ProfileHeader({}),
+        this.children.profileForm= new ProfileForm({
+            api: (formData: Record<string, string>) => {
+                profileController.updatePasswordController(formData);
+            },
+            profileParamList: new ProfilePasswordList({
+                data:mockProfile,
+            }),
+            footMenu: new Button({
+                text: "Сохранить", 
+                type:"submit",
+                className: "profileChangeButton"
+            }),
         });
 
         if(!store.getState().userData) {
             authController.getUserInformation();
         }
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps !== newProps) {
+            this.children.profileHeader.setProps({name:newProps.userData.first_name});
+            this.children.profileHeader.setProps({src:newProps.userData.avatar});
+
+        }
+
+        return true;
     }
 
     render() {
