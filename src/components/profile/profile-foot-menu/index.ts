@@ -9,7 +9,7 @@ class ProfileFootMenu extends Block {
             linkChange: new LinkComponent({
                 href:"/change",
                 text:"Изменить данные",
-                isRouter:true
+                isRouter:true,
             }),
             linkPasswordChange: new LinkComponent({
                 href:"/password",
