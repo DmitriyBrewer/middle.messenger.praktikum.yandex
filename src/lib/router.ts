@@ -70,7 +70,7 @@ export class Router {
         const route = new Route(pathname, block, {rootQuery: this._rootQuery});
   
         (this.routes as Route[]).push(route);
-        console.log(this);
+        // console.log(this);
   
         return this;
     }

@@ -19,7 +19,6 @@ class ChatItem extends Block {
         });
     }
     render() {
-        console.log(this);
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
             message:this.props.last_message, 

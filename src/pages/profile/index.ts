@@ -18,6 +18,10 @@ export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             profilePrev: new ProfilePrev({}),
+            profileHeader: new ProfileHeader({
+                name: mockProfile.first_name,
+                src:"profiless"
+            }),
         });
 
         if(!store.getState().userData) {
@@ -45,6 +49,7 @@ export class ProfilePage extends Block {
 export class ProfilePageChangeData extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
+         
             profilePrev: new ProfilePrev({
                 href:"/settings",
                 alt:"prev",

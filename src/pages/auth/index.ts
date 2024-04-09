@@ -98,7 +98,7 @@ export default class AuthPage extends Block {
 
     render() {
         console.log(store);
-        console.log(this);
+        // console.log(this);
         return this.compile("{{#> BaseLayout}} {{{ authForm }}}{{/ BaseLayout}}", {});
     }
 }

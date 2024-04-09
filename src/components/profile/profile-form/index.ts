@@ -19,7 +19,8 @@ class ProfileForm extends Block {
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(isEqual(oldProps, newProps)) {
+        // if(isEqual(oldProps, newProps)) {
+        if(oldProps.userData !== newProps.userData) {
             (this.children.profileHeader as Block).setProps({
                 name:newProps.userData.first_name,
                 // TODO мжет изначально отправлять vayterнемного в другом формате ы
@@ -29,12 +30,12 @@ class ProfileForm extends Block {
             });
             (this.children.profileParamList as Block).setProps(newProps.userData);
             console.log(newProps.userData);
+            console.log("PROFLIEFORM");
         }
         return true;
     }
 
     render() {
-        console.log(this);
         return this.compile(ProfileFormTemplate, {});
     }
 }

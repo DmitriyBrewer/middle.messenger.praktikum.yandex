@@ -51,7 +51,6 @@ class InputImageComponent extends Block {
     }
 
     render() { 
-        console.log(this);
         return this.compile(InputImageTemplate,{});
     } 
 }
