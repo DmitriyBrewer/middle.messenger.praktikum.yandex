@@ -30,9 +30,9 @@ class ProfilePrev extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
             link: new LinkComponent({
-                href:"/messenger",
+                // href:"",
                 text: new ProfilePrevContent({
-                    href:"/messenger",
+                    // href:"",
                     alt:"prev",
                     src: "/assets/arrow-left.svg"
                 }),
