@@ -1,6 +1,7 @@
 import "./index.scss";
 import Block, { BlockProps } from "../../../lib/block";
 import  ProfileFormTemplate from "./index.hbs?raw";
+import isEqual from "../../../lib/isEqual";
 
 class ProfileForm extends Block {
     constructor(props:BlockProps) {
@@ -18,7 +19,7 @@ class ProfileForm extends Block {
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps.userData!==newProps.userData && newProps.userData) {
+        if(isEqual(oldProps, newProps)) {
             (this.children.profileHeader as Block).setProps({
                 name:newProps.userData.first_name,
                 // TODO мжет изначально отправлять vayterнемного в другом формате ы

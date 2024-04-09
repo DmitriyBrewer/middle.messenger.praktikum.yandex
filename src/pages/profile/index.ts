@@ -69,7 +69,9 @@ export class ProfilePageChangeData extends Block {
             }),
             data: mockProfile
         });
-
+        if(!store.getState().userData) {
+            authController.getUserInformation();
+        }
     }
 
     render() {
@@ -105,9 +107,9 @@ export class ProfilePageChangePassword extends Block {
             data: mockProfile
         });
 
-        // if(!store.getState().userData) {
-        //     authController.getUserInformation();
-        // }
+        if(!store.getState().userData) {
+            authController.getUserInformation();
+        }
     }
 
     render() {
