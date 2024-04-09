@@ -60,7 +60,10 @@ class ProfileApi extends BaseAPI {
         return this.put(`${this.baseUrl}/api/v2/user/password`, options);
     }
 
-    public updateUserProfileAvatar(data: FormData) {
+    public updateUserProfileAvatar(file: File) {
+        const data = new FormData();
+        data.append("avatar", file);
+        
         const options = {
             method: METHODS.PUT,
             data,

@@ -9,6 +9,7 @@ import Block from "./lib/block";
 import store, { StoreEvents } from "./lib/store";
 import { connect } from "./lib/hoc";
 import { getAllChats } from "./pages/chat/api";
+import { profileController } from "./pages/profile/controller";
 
 // class UserController {
 //     public getUser() {
@@ -75,9 +76,43 @@ function mapChatsToProps(state) {
 const withUser = connect(mapUserToProps,{updateFirstChildren:true});
 const withChats = connect(mapChatsToProps,{updateFirstChildren:true});
 
+class TestPage extends Block {
+    constructor(props) {
+        super("div",{...props,
+            events: {
+                change: ()=> {
+                    const element = document.getElementById("avatar");
+                    if (element && element.files && element.files.length == 1) {
+                        console.log("File selected: ", element.files[0]);
+                        const file =  element.files[0];
+                        const formData = new FormData();
+                        formData.append("avatar", file);
+                        console.log(formData);
+                    }
+                    // profileController.updateAvatarController();
+                },
+                submit: async (e)=>{
+                    e.preventDefault();
+                    const element = document.getElementById("avatar");
+                    const file =  element.files[0];
+                    console.log(file);
+                    profileController.updateAvatarController(file);
+                }
+            }
+
+        });
+    }
+
+    render() {
+        return this.compile("<form id=\"formElem\"><input type=\"file\" id=\"avatar\" name=\"avatar\" accept=\"image/png, image/jpeg\" /><input type=\"submit\"></form>", {
+        });
+    }
+}
+
 router
     // .use("/", connect(AuthPage,mapUserToProps))
     .use("/", withUser(AuthPage))
+    .use("/test", TestPage)
     .use("/sign-up", RegistrationPage)
     .use("/settings", withUser(ProfilePage))
     .use("/messenger", withChats(ChatPage))

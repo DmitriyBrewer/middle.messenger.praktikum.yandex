@@ -58,8 +58,8 @@ class ProfileController {
             });
     }
 
-    public updateAvatarController(data: FormData) {
-        this.profileApi.updateUserProfileAvatar(data).then((res) => {
+    public updateAvatarController(file: File) {
+        this.profileApi.updateUserProfileAvatar(file).then((res) => {
             console.log(res);
             // TODO Можно добавить дополнительную логику при успешной загрузке аватара
         })

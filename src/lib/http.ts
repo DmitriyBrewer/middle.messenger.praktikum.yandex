@@ -96,6 +96,9 @@ export class HTTPTransport {
             
             if (isGet || !data) {
                 xhr.send();
+            }
+            else if (data instanceof FormData) {
+                xhr.send(data);
             } else {
                 const dataToSend = new URLSearchParams();
                 data && data.forEach((header: Header) => {
