@@ -20,13 +20,13 @@ class ProfileHeader extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps.src !== newProps.src) {
+            console.log(newProps);
             this.children.image.setProps({src:newProps.src});
         }
         return true;
     }
     
     render() {
-        console.log(this);
         return this.compile(ProfileHeaderTemplate, {
             name: this.props.name
         });

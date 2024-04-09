@@ -41,7 +41,8 @@ class ProfileController {
     public updateProfileController(data: Record<string, string>) {
         this.profileApi.updateUserProfile(data).then((res) => {
             console.log(res);
-            store.set("userData", res);
+            // store.set("userData", res);
+            store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
         })
             .catch((error) => {
                 console.error("Error updating profile:", error);
@@ -60,8 +61,8 @@ class ProfileController {
 
     public updateAvatarController(file: File) {
         this.profileApi.updateUserProfileAvatar(file).then((res) => {
-            console.log(res);
-            // TODO Можно добавить дополнительную логику при успешной загрузке аватара
+            JSON.parse((res as XMLHttpRequest).responseText);
+            store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
         })
             .catch((error) => {
                 console.error("Error updating avatar:", error);

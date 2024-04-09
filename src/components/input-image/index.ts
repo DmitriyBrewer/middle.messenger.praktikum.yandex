@@ -1,13 +1,14 @@
 import "./index.scss";
 import Block, { BlockProps } from "../../lib/block";
 import  InputImageTemplate  from "./index.hbs?raw";
-import InputComponent from "../../ui/input";
 import Image from "../../ui/img";
+import InputFileComponent from "../../ui/input-file";
+import { profileController } from "../../pages/profile/controller";
 
 class InputImageComponent extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
-            input: new InputComponent({
+            input: new InputFileComponent({
                 type:props.type,
                 id:props.id,
                 name: props.name,
@@ -17,9 +18,15 @@ class InputImageComponent extends Block {
                 autocomplete:  props.autocomplete,
                 pattern:  props.pattern,
                 dir:  props.dir,
-                onChange: props.onChange,
                 blur: props.blur,
                 accept: props.accept,
+                events:{
+                    change: ()=> {
+                        const element = document.getElementById("avatarInput");
+                        const file =  element.files[0];
+                        profileController.updateAvatarController(file);
+                    }
+                }
             }),
       
         });
