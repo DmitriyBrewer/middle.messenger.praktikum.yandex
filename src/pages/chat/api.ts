@@ -26,17 +26,12 @@ class ChatAPI extends BaseAPI {
             data: mapDataToEntriesArray(data),
         });
     }
-
-    public addUserToChat(userData: { users: number[], chatId: number }) {
-        const data: Record<string, string> = {
-            users: userData.users.map(String), 
-            chatId: String(userData.chatId),
-        };
+    public addUserToChat(userData: Record<string, string>) {
         return this.put(`${this.baseUrl}/api/v2/chats/users`, {
             headers: [
                 "Content-Type", "application/json",
             ],
-            data: mapDataToEntriesArray(data),
+            data: mapDataToEntriesArray(userData), 
         });
     }
 }

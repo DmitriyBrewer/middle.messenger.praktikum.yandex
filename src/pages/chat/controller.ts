@@ -44,8 +44,6 @@ class ChatController {
         this.chatApi.addUserToChat(userData)
             .then((response) => {
                 console.log("User added to chat successfully:", response);
-                // Добавьте необходимую логику при успешном добавлении пользователя в чат
-                // Например, обновление списка чатов
                 this.getChats();
             })
             .catch((error) => {

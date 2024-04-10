@@ -38,13 +38,7 @@ class ChatHeader extends Block {
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
                 api:(formData: Record<string, string>) => {
-                    const userData = {
-                        users: [0], // ID пользователя
-                        chatId: 4,  // ID чата
-                    };
-                    
-                    chatController.addUserToChatController(userData);
-                    // chatController.addChatController(formData);
+                    chatController.addUserToChatController(formData);
                 },
                 user: new InputComponent({
                     type: "text",

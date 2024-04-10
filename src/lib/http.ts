@@ -104,6 +104,7 @@ export class HTTPTransport {
                 data && data.forEach((header: Header) => {
                     dataToSend.append(header[0], header[1]);
                 });
+                console.log(dataToSend);
                 xhr.send(dataToSend);
             }
         });
