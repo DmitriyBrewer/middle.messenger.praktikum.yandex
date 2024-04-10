@@ -7,6 +7,7 @@ import Modal from "../../modal";
 import NewUser from "../../new-user";
 import InputComponent from "../../../ui/input";
 import Button from "../../../ui/button";
+import { chatController } from "../../../pages/chat/controller";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
@@ -37,6 +38,12 @@ class ChatHeader extends Block {
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
                 api:(formData: Record<string, string>) => {
+                    const userData = {
+                        users: [0], // ID пользователя
+                        chatId: 4,  // ID чата
+                    };
+                    
+                    chatController.addUserToChatController(userData);
                     // chatController.addChatController(formData);
                 },
                 user: new InputComponent({
