@@ -16,6 +16,7 @@ class BaseAPI {
     }
 
     protected put(url: string, options?: Options) {
+        console.log(options);
         return this.http.put(url, options);
     }
 

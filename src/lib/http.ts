@@ -23,6 +23,7 @@ export type Options = {
     timeout?: number,
     headers?: Header,
     repeat?: number,
+    body?: any
   }
   
 type HTTPMethod = (url: string, options?: Options, timeout?: number) => Promise<unknown>;
@@ -45,9 +46,10 @@ export class HTTPTransport {
     };
 
     put: HTTPMethod = (url, options) => {
+        console.log(options);
         const currentOption = options? options : {method: METHODS.PUT};
         const {  timeout } = currentOption;
-        return this.request(url, {...options, method: METHODS.PUT}, timeout);
+        return this.request(url, {...options,body: options?.body, method: METHODS.PUT}, timeout);
     };
 
     delete: HTTPMethod = (url, options) => { 
@@ -57,9 +59,10 @@ export class HTTPTransport {
     };
 
     request: HTTPMethod = (url, options, timeout = 2500) => {
-        const currentOption = options? options : {headers:{}, method:undefined, data:undefined};
-        const {headers = {}, method, data} = currentOption;
-  
+        console.log(options);
+        const currentOption = options? options : {headers:{}, method:undefined, data:undefined, body:undefined};
+        const {headers = {}, method, data, body} = currentOption;
+        console.log(body);
 
         return new Promise(function(resolve, reject) {
             if (!method) {
@@ -93,19 +96,33 @@ export class HTTPTransport {
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
             xhr.withCredentials = true;
-            
-            if (isGet || !data) {
+
+            // if (isGet && !data) {
+            //     xhr.send();
+            // } 
+            if (isGet && !data) {
                 xhr.send();
-            }
+            } 
+            // else if(body) {
+            //     console.log(body);
+            //     console.log("typeof body === string");
+            //     xhr.send(body);
+            // }
             else if (data instanceof FormData) {
                 xhr.send(data);
-            } else {
-                const dataToSend = new URLSearchParams();
-                data && data.forEach((header: Header) => {
-                    dataToSend.append(header[0], header[1]);
-                });
-                console.log(dataToSend);
-                xhr.send(dataToSend);
+            }  else {
+                if(body) {
+                    // const dataToSend = new URLSearchParams(body);
+                    // console.log(dataToSend);
+                    xhr.send([body]);
+                } else {
+                    const dataToSend = new URLSearchParams();
+                    data && data.forEach((header: Header) => {
+                        dataToSend.append(header[0], header[1]);
+                    });
+                    console.log(dataToSend);
+                    xhr.send(dataToSend);
+                }
             }
         });
     };

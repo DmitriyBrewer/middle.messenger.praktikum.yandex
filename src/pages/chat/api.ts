@@ -26,13 +26,42 @@ class ChatAPI extends BaseAPI {
             data: mapDataToEntriesArray(data),
         });
     }
-    public addUserToChat(userData: Record<string, string>) {
+
+    public addUserToChat(userData: Record<string, any>) {
+        const usersRequest = {
+            users: [Number(userData.users)],
+            chatId: Number(userData.chatId)
+        };
+
+        console.log(JSON.stringify(usersRequest));
+
         return this.put(`${this.baseUrl}/api/v2/chats/users`, {
-            headers: [
-                "Content-Type", "application/json",
-            ],
-            data: mapDataToEntriesArray(userData), 
+            method: "PUT",
+            headers: ["Accept", "application/json"],
+            body: JSON.stringify(usersRequest)
         });
+    
+        // return fetch(`${this.baseUrl}/api/v2/chats/users`, {
+        //     method: "PUT",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     },
+        //     body: JSON.stringify(usersRequest),
+        //     credentials: "include" 
+        // })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error("Something went wrong");
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log(data);
+        //     })
+        //     .catch(error => {
+        //         console.error("Error:", error);
+        //     });
     }
 }
 
