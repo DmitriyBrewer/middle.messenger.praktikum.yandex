@@ -1,6 +1,8 @@
 .chatMenu {
-    // display: none;display
+    display: block;
     position: absolute;
+    right: var(--g32);
+    top: var(--g24);
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 10px;
