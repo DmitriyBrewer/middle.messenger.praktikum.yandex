@@ -109,6 +109,15 @@ class ChatHeader extends Block {
         });
 
         this.children.chatmenu = new ChatMenu({
+            closeMenu: new ButtonImage({
+                src:"/assets/close.svg",
+                alt:"close",
+                classNameImage:"closeButtonImage",
+                className:"closeButton",
+                events: {click: ()=>{
+                    (this.children.chatmenu as Block).hide();
+                }}
+            }),
             item1: new ChatMenuItem({
                 content: new Button({text:"Добавить пользователя"}),
                 events: {click: ()=>{
@@ -121,6 +130,7 @@ class ChatHeader extends Block {
                     (this.children.deleteModal as Block).show();
                 }}
             }),
+           
         });
 
         this.props.buttonImage = this.children.buttonImage;
