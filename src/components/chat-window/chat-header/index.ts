@@ -22,9 +22,10 @@ class ChatHeader extends Block {
             alt:"menu",
             classNameImage:"chatHeader__menuImage",
             className:"chatHeader__menu",
-            events: {click: ()=>{
-                (this.children.chatmenu as Block).show();
-            }}
+            events: {
+                click: ()=>{
+                    (this.children.chatmenu as Block).show();
+                }}
         }),
 
         this.children.modal = new Modal({

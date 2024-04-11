@@ -17,11 +17,11 @@ class ChatMenu extends Block {
 
     show() {
         const modalElement = this.getContent();
-        if (modalElement.style.display === "none") {
-            modalElement.style.display = "block"; // При первом нажатии меняем на block
-        } else {
-            modalElement.style.display = "none"; // При повторном нажатии меняем на none
-        }
+        if (modalElement.style.display === "") {
+            modalElement.style.display = "block";
+        } else if (modalElement.style.display === "none") {
+            modalElement.style.display = "block";
+        } else { modalElement.style.display = "none";}
     }
 
     hide() {
