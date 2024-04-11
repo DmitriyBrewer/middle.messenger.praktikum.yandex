@@ -1,5 +1,6 @@
 import { host } from "../../constants/host";
 import store from "../../lib/store";
+import router from "../../main";
 import ProfileApi from "./api";
 
 // class ProfileController {
@@ -66,6 +67,17 @@ class ProfileController {
         })
             .catch((error) => {
                 console.error("Error updating avatar:", error);
+            });
+    }
+
+    public logoutController() {
+        this.profileApi.logoutUserProfile().then((res) => {
+            // JSON.parse((res as XMLHttpRequest).responseText);
+            // store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
+            router.go("/");
+        })
+            .catch((error) => {
+                console.error("Error logout:", error);
             });
     }
 }

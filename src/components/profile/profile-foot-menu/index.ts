@@ -1,7 +1,7 @@
 import Block, { BlockProps } from "../../../lib/block";
+import { profileController } from "../../../pages/profile/controller";
 import Button from "../../../ui/button";
 import LinkComponent from "../../../ui/link";
-import { logout } from "./api";
 import ProfileFootMenuTemplate from "./index.hbs?raw";
 class ProfileFootMenu extends Block {
     constructor(props:BlockProps) {
@@ -21,8 +21,8 @@ class ProfileFootMenu extends Block {
                 text:"Выйти",
                 className:"profile__logout",
                 events: {click: ()=>{
-                    logout();
-                    console.log("logout");}}
+                    profileController.logoutController();
+                }}
             }),
         });
     }

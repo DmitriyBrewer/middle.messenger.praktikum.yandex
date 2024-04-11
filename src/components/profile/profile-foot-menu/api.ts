@@ -1,3 +1,4 @@
+// TODO удалить
 import { host } from "../../../constants/host";
 import { METHODS, http } from "../../../lib/http";
 import router from "../../../main";

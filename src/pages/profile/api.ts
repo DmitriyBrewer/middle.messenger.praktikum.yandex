@@ -71,6 +71,16 @@ class ProfileApi extends BaseAPI {
 
         return this.put(`${this.baseUrl}/api/v2/user/profile/avatar`, options);
     }
+
+    public logoutUserProfile() {
+        const options = {
+            method: METHODS.POST,
+            headers: ["Content-Type", "application/json"],
+            data: ""
+        };
+
+        return this.post(`${this.baseUrl}/api/v2/auth/logout`, options);
+    }
 }
 
 export default ProfileApi;
