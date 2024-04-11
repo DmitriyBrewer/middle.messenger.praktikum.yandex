@@ -14,9 +14,7 @@ class Modal extends Block {
     }
 
     show() {
-        console.log("ol");
         const modalElement = this.getContent();
-        console.log(modalElement);
         modalElement.style.display = "block";
     }
 }
