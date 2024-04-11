@@ -50,6 +50,17 @@ class ChatController {
                 console.error("Error adding user to chat:", error);
             });
     }
+
+    public deleteUserToChatController(userData) {
+        this.chatApi.deleteUserToChat(userData)
+            .then((response) => {
+                console.log("User added to chat successfully:", response);
+                this.getChats();
+            })
+            .catch((error) => {
+                console.error("Error adding user to chat:", error);
+            });
+    }
 }
 
 export const chatController = new ChatController();

@@ -44,6 +44,22 @@ class ChatAPI extends BaseAPI {
             },
             body: JSON.stringify(usersRequest)
         });
+    } 
+
+    public deleteUserToChat(userData: Record<string, any>) {
+        const usersRequest = {
+            users: [Number(userData.users)],
+            chatId: Number(userData.chatId)
+        };
+
+        return this.delete(`${this.baseUrl}/api/v2/chats/users`, {
+            method: METHODS.DELETE,
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(usersRequest)
+        });
     }
 }
 

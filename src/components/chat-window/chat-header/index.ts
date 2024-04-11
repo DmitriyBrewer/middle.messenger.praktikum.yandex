@@ -81,7 +81,7 @@ class ChatHeader extends Block {
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
                 api:(formData: Record<string, string>) => {
-                    // chatController.addUserToChatController(formData);
+                    chatController.deleteUserToChatController(formData);
                 },
                 user: new InputComponent({
                     type: "text",
