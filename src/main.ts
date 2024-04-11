@@ -35,18 +35,3 @@ router
     .start();
 
 export default router;
-  
-// // // Через секунду контент изменится сам, достаточно дёрнуть переход
-// setTimeout(() => {
-//     router.go("/sign-up");
-// }, 1000);
-  
-// // А можно и назад
-// setTimeout(() => {
-//     router.back();
-// }, 3000);
-  
-// // И снова вперёд
-// setTimeout(() => {
-//     router.forward();
-// }, 5000);
