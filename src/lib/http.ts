@@ -14,7 +14,7 @@ function queryStringify(data: Data): string {
     return queryString;
 }
 
-type Header = [string, string]
+type Header = [string, string] | Record<string, string>
 export type Data = Header[]
   
 export type Options = {

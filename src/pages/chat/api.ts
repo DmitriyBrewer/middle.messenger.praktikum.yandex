@@ -1,5 +1,6 @@
 import BaseAPI from "../../lib/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
+import { METHODS } from "../../lib/http";
 
 class ChatAPI extends BaseAPI {
     private baseUrl: string;
@@ -36,32 +37,13 @@ class ChatAPI extends BaseAPI {
         console.log(JSON.stringify(usersRequest));
 
         return this.put(`${this.baseUrl}/api/v2/chats/users`, {
-            method: "PUT",
-            headers: ["Accept", "application/json"],
+            method: METHODS.PUT,
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(usersRequest)
         });
-    
-        // return fetch(`${this.baseUrl}/api/v2/chats/users`, {
-        //     method: "PUT",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Accept": "application/json"
-        //     },
-        //     body: JSON.stringify(usersRequest),
-        //     credentials: "include" 
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error("Something went wrong");
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log(data);
-        //     })
-        //     .catch(error => {
-        //         console.error("Error:", error);
-        //     });
     }
 }
 
