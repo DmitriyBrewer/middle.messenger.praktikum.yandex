@@ -113,4 +113,8 @@ export class Router {
     getRoute(pathname: Pathname) {
         return (this.routes as Route[]).find(route => route.match(pathname));
     }
+
+    getCurrentPathname() {
+        return window.location.pathname;
+    }
 }

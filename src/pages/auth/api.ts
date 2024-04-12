@@ -42,7 +42,9 @@ class AuthApi extends BaseAPI {
                         data.avatar = data.avatar.replaceAll("/", "%2F");
                         data.avatar = `https://ya-praktikum.tech/api/v2/resources/${data.avatar}`;
                         store.set("userData", data);
-                        router.go("/messenger");
+                        if(router.getCurrentPathname() === "/") {
+                            router.go("/messenger");
+                        }
                     } else {
                         throw new Error("Request failed with status: " + (response as XMLHttpRequest).status);
                     }
