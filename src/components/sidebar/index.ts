@@ -49,7 +49,7 @@ class Sidebar extends Block {
                 },
                 input: new InputComponent({
                     type: "text",
-                    id: "newChat",
+                    id: "title",
                     name: "title",
                     placeholder: "Наименовение Чата",
                     helper: "Наименовение Чата",
