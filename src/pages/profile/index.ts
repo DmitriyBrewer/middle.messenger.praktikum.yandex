@@ -22,15 +22,15 @@ export class ProfilePage extends Block {
             })
         });
 
-        // if(!store.getState().userData) {
-        //     authController.getUserInformation();
-        // }
+        if(!store.getState().userData) {
+            authController.getUserInformation();
+        }
 
-        // this.children.profilePrev = new ProfilePrev({
-        //     href:"/messenger",
-        //     alt:"prev",
-        //     src: "/assets/arrow-left.svg"
-        // }),
+        this.children.profilePrev = new ProfilePrev({
+            href:"/messenger",
+            alt:"prev",
+            src: "/assets/arrow-left.svg"
+        }),
 
         this.children.profileHeader = new ProfileHeader({}),
 
