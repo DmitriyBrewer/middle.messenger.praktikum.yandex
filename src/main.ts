@@ -17,7 +17,8 @@ function mapUserToProps(state) {
 
 function mapChatsToProps(state) {
     return {
-        data: state.data
+        data: state.data,
+        selectChat: state.selectChat
     };
 }
 

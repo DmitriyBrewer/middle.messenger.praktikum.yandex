@@ -3,10 +3,13 @@ import ChatItemTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import Button from "../../../ui/button";
 import { chatController } from "../../../pages/chat/controller";
+import store from "../../../lib/store";
 class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
-            events: {click:()=>{console.log(props);}},
+            events: {click:()=>{
+                store.set("selectChat", props);
+                console.log(props);}},
             button: new Button({
                 events: {click:(e)=>{
                     e.stopPropagation();
