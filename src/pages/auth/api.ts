@@ -38,7 +38,10 @@ class AuthApi extends BaseAPI {
             .then((response: unknown) => {
                 if (response instanceof XMLHttpRequest) {
                     if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
-                        store.set("userData", JSON.parse((response as XMLHttpRequest).responseText));
+                        const data = JSON.parse((response as XMLHttpRequest).responseText);
+                        data.avatar = data.avatar.replaceAll("/", "%2F");
+                        data.avatar = `https://ya-praktikum.tech/api/v2/resources/${data.avatar}`;
+                        store.set("userData", data);
                         router.go("/messenger");
                     } else {
                         throw new Error("Request failed with status: " + (response as XMLHttpRequest).status);
