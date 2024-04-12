@@ -10,11 +10,12 @@ import Button from "../../../ui/button";
 import { chatController } from "../../../pages/chat/controller";
 import ChatMenu from "../chat-menu";
 import ChatMenuItem from "../../chat-menu-item";
+import isEqual from "../../../lib/isEqual";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
-        super("span", {...props,
-            chatTitle: new ChatTitle({}),
-        }); 
+        super("span", props); 
+
+        this.children.chatTitle =  new ChatTitle({title:""}),
 
         this.children.buttonImage = new ButtonImage({
             src:"/assets/menu.svg",
@@ -54,15 +55,6 @@ class ChatHeader extends Block {
                     autocomplete: "username",
                     isRequired:true,
                 }),
-                // chatId: new InputComponent({
-                //     type: "text",
-                //     id: "chatId",
-                //     name: "chatId",
-                //     placeholder: "chatId",
-                //     helper: "Id chatId",
-                //     autocomplete: "username",
-                //     isRequired:true,
-                // }),
                 button: new Button({
                     text: "Добавить пользователя",
                     type:"submit",
@@ -136,6 +128,15 @@ class ChatHeader extends Block {
         });
 
         this.props.buttonImage = this.children.buttonImage;
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps !== newProps) {
+            // (this.children.chatHeader as Block).setProps({selectChat:this.props.selectChat.id, title:this.props.selectChat.title});
+            console.log(this.props);
+            this.props && this.props.selectChat &&this.props.selectChat.title && (this.children.chatTitle as Block).setProps({title:this.props.selectChat.title});
+        }
+        return true;
     }
 
     render() {

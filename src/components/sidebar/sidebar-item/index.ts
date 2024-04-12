@@ -8,8 +8,8 @@ class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
             events: {click:()=>{
-                store.set("selectChat", props);
-                console.log(props);}},
+                store.set("selectChat",props);
+            }},
             button: new Button({
                 events: {click:(e)=>{
                     e.stopPropagation();
@@ -21,6 +21,7 @@ class ChatItem extends Block {
             })
         });
     }
+
     render() {
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
