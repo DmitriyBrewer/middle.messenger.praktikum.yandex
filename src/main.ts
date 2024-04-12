@@ -11,7 +11,7 @@ const router = new Router(".root");
 
 function mapUserToProps(state) {   
     return {
-        userData: state.userData,
+        userData: state.userData
     };
 }
 
