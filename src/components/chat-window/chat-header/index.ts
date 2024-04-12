@@ -13,8 +13,7 @@ import ChatMenuItem from "../../chat-menu-item";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
-            chatTitle: new ChatTitle({title: props.title}),
-    
+            chatTitle: new ChatTitle({}),
         }); 
 
         this.children.buttonImage = new ButtonImage({
@@ -41,7 +40,10 @@ class ChatHeader extends Block {
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
                 api:(formData: Record<string, string>) => {
-                    chatController.addUserToChatController(formData);
+                    const chatId = this.props.selectChat.id;
+                    if(chatId) {
+                        chatController.addUserToChatController({...formData, chatId:chatId});
+                    } else console.error("Выберите чат");
                 },
                 user: new InputComponent({
                     type: "text",
@@ -52,15 +54,15 @@ class ChatHeader extends Block {
                     autocomplete: "username",
                     isRequired:true,
                 }),
-                chatId: new InputComponent({
-                    type: "text",
-                    id: "chatId",
-                    name: "chatId",
-                    placeholder: "chatId",
-                    helper: "Id chatId",
-                    autocomplete: "username",
-                    isRequired:true,
-                }),
+                // chatId: new InputComponent({
+                //     type: "text",
+                //     id: "chatId",
+                //     name: "chatId",
+                //     placeholder: "chatId",
+                //     helper: "Id chatId",
+                //     autocomplete: "username",
+                //     isRequired:true,
+                // }),
                 button: new Button({
                     text: "Добавить пользователя",
                     type:"submit",

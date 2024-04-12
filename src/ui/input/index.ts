@@ -32,6 +32,7 @@ class InputComponent extends Block {
             autocomplete: this.props.autocomplete,
             pattern: this.props.pattern,
             dir: this.props.dir,
+            value:this.props.value
         });
     } 
 }

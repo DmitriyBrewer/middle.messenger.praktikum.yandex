@@ -7,7 +7,7 @@ import ChatSend from "./chat-send";
 class ChatWindow extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
-            chatHeader: new ChatHeader({title: props.title}),
+            chatHeader: new ChatHeader({}),
             chatTexts: new MessageList({
                 data:[
                     {
@@ -23,6 +23,15 @@ class ChatWindow extends Block {
             }),
             chatSend: new ChatSend({})
         }); 
+    }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(oldProps.selectChat!==newProps.selectChat) {
+            // (this.children.chatHeader as Block).setProps({selectChat:this.props.selectChat.id, title:this.props.selectChat.title});
+            (this.children.chatHeader as Block).setProps({selectChat:this.props.selectChat});
+
+        }
+        return true;
     }
 
     render() {
