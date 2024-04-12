@@ -20,7 +20,6 @@ export class ChatPage extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatPageTemplate, {sidebar: this.props.sidebar, window:this.props.window });
     }
 }

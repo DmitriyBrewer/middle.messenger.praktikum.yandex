@@ -65,12 +65,13 @@ class Sidebar extends Block {
         });
     }
 
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps.data!==newProps.data) {
-            (this.children.chats as Block).setProps({data:this.props.data});
-        }
-        return true;
-    }
+    // TODO пока скрыл
+    // public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    //     if(oldProps.data!==newProps.data) {
+    //         (this.children.chats as Block).setProps({data:this.props.data});
+    //     }
+    //     return true;
+    // }
 
     render() {
         return this.compile(SidebarTemplate, {});

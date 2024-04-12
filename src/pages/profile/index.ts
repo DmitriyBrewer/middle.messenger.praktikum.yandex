@@ -14,17 +14,17 @@ import store from "../../lib/store";
 import { authController } from "../auth/controller";
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
-        super("div",{...props,
-            profilePrev: new ProfilePrev({
-                href:"/messenger",
-                alt:"prev",
-                src: "/assets/arrow-left.svg"
-            }),
-        });
+        super("div",props);
 
         if(!store.getState().userData) {
             authController.getUserInformation();
         }
+
+        this.children.profilePrev = new ProfilePrev({
+            href:"/messenger",
+            alt:"prev",
+            src: "/assets/arrow-left.svg"
+        }),
 
         this.children.profileHeader = new ProfileHeader({}),
 
