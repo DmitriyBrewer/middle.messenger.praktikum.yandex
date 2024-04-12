@@ -266,7 +266,7 @@ class Block {
         };
     
         updateChildProps((this.children), nextProps, options);
-    
+        console.log(this);
         this._componentDidUpdate(oldProps, this.props);
     };
 
