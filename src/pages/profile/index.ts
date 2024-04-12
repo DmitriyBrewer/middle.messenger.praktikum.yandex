@@ -14,17 +14,23 @@ import store from "../../lib/store";
 import { authController } from "../auth/controller";
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
-        super("div",props);
+        super("div",{...props,
+            profilePrev: new ProfilePrev({
+                href:"/messenger",
+                alt:"prev",
+                src: "/assets/arrow-left.svg"
+            })
+        });
 
-        if(!store.getState().userData) {
-            authController.getUserInformation();
-        }
+        // if(!store.getState().userData) {
+        //     authController.getUserInformation();
+        // }
 
-        this.children.profilePrev = new ProfilePrev({
-            href:"/messenger",
-            alt:"prev",
-            src: "/assets/arrow-left.svg"
-        }),
+        // this.children.profilePrev = new ProfilePrev({
+        //     href:"/messenger",
+        //     alt:"prev",
+        //     src: "/assets/arrow-left.svg"
+        // }),
 
         this.children.profileHeader = new ProfileHeader({}),
 
@@ -35,7 +41,7 @@ export class ProfilePage extends Block {
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps !== newProps) {
+        if(oldProps.userData !== newProps.userData) {
             this.children.profileHeader.setProps({name:newProps.userData.first_name,src:newProps.userData.avatar});
         }
 
