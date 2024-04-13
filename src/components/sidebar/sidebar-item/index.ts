@@ -20,8 +20,6 @@ class ChatItem extends Block {
                 });
             }},
             image: new Image({
-                // data.avatar = data.avatar ? data.avatar.replaceAll("/", "%2F") : null;
-                //         data.avatar = `https://ya-praktikum.tech/api/v2/resources/${data.avatar}`;
                 src:props.avatar ? `https://ya-praktikum.tech/api/v2/resources/${props.avatar.replaceAll("/", "%2F") }`: "/assets/avatar.png",
                 alt:"chatAvatar",
                 className:"chat__avatar"
