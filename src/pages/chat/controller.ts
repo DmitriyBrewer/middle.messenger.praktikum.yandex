@@ -191,11 +191,12 @@ class ChatController {
         });
     
         this.socket.addEventListener("message", (event) => {
-            console.log("Received data:", event.data);
+            // console.log("Received data:", event.data);
+            store.set("messages", JSON.parse(event.data));
             // Обработка полученных старых сообщений
             const oldMessages = JSON.parse(event.data); // Предполагается, что сервер возвращает массив сообщений
             oldMessages.forEach((msg) => {
-                console.log("Old message:", msg);
+                // console.log("Old message:", msg);
                 // Дополнительная логика для обработки каждого старого сообщения
             });
         });

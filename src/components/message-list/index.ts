@@ -2,21 +2,24 @@ import "./index.scss";
 import  ChatTextListTemplate  from "./index.hbs?raw";
 import Block, { BlockProps } from "../../lib/block";
 import ChatText from "../chat-window/chat-text";
+import isEqual from "../../lib/isEqual";
 class MessageList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
-        if (!this.children) {
-            this.children = {};
-        }
-        if (props.data && Array.isArray(props.data)) {
-            this.children.list = props.data.map((itemProps: BlockProps) => new ChatText(itemProps));
-            this.props.list = this.children.list;
-        }
-        
         this.props.className = "chatLists";
     }
 
+    componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if (isEqual(oldProps,newProps)) {
+            if (this.props.messages && Array.isArray(this.props.messages)) {
+                this.children.list = this.props.messages.map((itemProps: BlockProps) => new ChatText(itemProps));
+            }
+        }
+        return true;
+    }
+
     render() {    
+        // console.log(this.props);
         return this.compile(ChatTextListTemplate, {});
     }
 }

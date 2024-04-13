@@ -20,6 +20,7 @@ function mapChatsToProps(state) {
         userData: state.userData,
         data: state.data,
         selectChat: state.selectChat,
+        messages: state.messages,
         updateAllChild:true
     };
 }

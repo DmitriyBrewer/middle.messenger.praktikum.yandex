@@ -7,11 +7,12 @@ class ChatText extends Block {
     }
 
     render() {
+        console.log(this);
         return this.compile(ChatTextTemplate, {
-            message: this.props.message,
-            date:this.props.date,
-            my:this.props.my,
-            statusImage: this.props.statusImage
+            content: this.props.content,
+            date:this.props.content,
+            my:this.props.content,
+            statusImage: this.props.content
         });
     }
 }

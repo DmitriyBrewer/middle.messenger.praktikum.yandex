@@ -9,24 +9,25 @@ class ChatWindow extends Block {
         super("span", {...props,
             chatHeader: new ChatHeader({}),
             chatTexts: new MessageList({
-                data:[
-                    {
-                        message: props.message, 
-                        my:true, 
-                        date: props.time
-                    },
-                    {
-                        message: "Hello",  
-                        date: props.time
-                    }
-                ]
+                // data:[
+                //     {
+                //         message: props.message, 
+                //         my:true, 
+                //         date: props.time
+                //     },
+                //     {
+                //         message: "Hello",  
+                //         date: props.time
+                //     }
+                // ]
+                data: props.message
             }),
             chatSend: new ChatSend({})
         }); 
     }
 
     render() {
-        console.log(this);
+        console.log(this.props);
         return this.compile(ChatWindowTemplate, {
             empty: !this.props.selectChat,
             date: this.props.time
