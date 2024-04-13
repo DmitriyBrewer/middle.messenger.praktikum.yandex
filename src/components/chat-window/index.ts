@@ -4,7 +4,6 @@ import Block, { BlockProps } from "../../lib/block";
 import ChatHeader from "./chat-header";
 import MessageList from "../message-list";
 import ChatSend from "./chat-send";
-import isEqual from "../../lib/isEqual";
 class ChatWindow extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
@@ -24,16 +23,6 @@ class ChatWindow extends Block {
             }),
             chatSend: new ChatSend({})
         }); 
-    }
-
-    // TODO перерендер доленн быть при выборе чата
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps.selectChat !== newProps.selectChat) {
-            (this.children.chatHeader as Block).setProps({selectChat:this.props.selectChat});
-            console.log("rerender");
-
-        }
-        return true;
     }
 
     render() {

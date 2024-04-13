@@ -219,31 +219,31 @@ class Block {
     
     //     this._componentDidUpdate(oldProps, this.props); 
     // };
-    // public setProps = (nextProps: BlockProps): void => {
-    //     if (!nextProps) {
-    //         return;
-    //     }
+    public setPropsT = (nextProps: BlockProps): void => {
+        if (!nextProps) {
+            return;
+        }
     
-    //     const oldProps = { ...this.props };
-    //     Object.assign(this.props, nextProps);
+        const oldProps = { ...this.props };
+        Object.assign(this.props, nextProps);
     
-    //     // Рекурсивная функция для обновления props у всех дочерних элементов
-    //     const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps) => {
-    //         for (const key in children) {
-    //             if (children.hasOwnProperty(key)) {
-    //                 const child = children[key];
-    //                 if (child instanceof Block) {
-    //                     child.setProps(nextProps); // Обновляем props у дочернего элемента
-    //                 }
-    //             }
-    //         }
-    //     };
+        // Рекурсивная функция для обновления props у всех дочерних элементов
+        const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps) => {
+            for (const key in children) {
+                if (children.hasOwnProperty(key)) {
+                    const child = children[key];
+                    if (child instanceof Block) {
+                        child.setProps(nextProps); // Обновляем props у дочернего элемента
+                    }
+                }
+            }
+        };
     
-    //     // Обновляем props у всех дочерних элементов
-    //     updateChildProps(this.children, nextProps);
+        // Обновляем props у всех дочерних элементов
+        updateChildProps(this.children, nextProps);
     
-    //     this._componentDidUpdate(oldProps, this.props);
-    // };
+        this._componentDidUpdate(oldProps, this.props);
+    };
 
     public setProps = (nextProps: BlockProps, options?: UpdatePropsOptions): void => {
         if (!nextProps) {
@@ -260,7 +260,7 @@ class Block {
                     if (child instanceof Block) {
                         if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
                             child.setProps(options?.updateSpecificChild?.props || nextProps);
-                        } else child.setProps(nextProps); 
+                        }  else child.setProps(nextProps);  
                     }
                 }
             }
