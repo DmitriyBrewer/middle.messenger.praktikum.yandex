@@ -260,7 +260,7 @@ class Block {
                     if (child instanceof Block) {
                         if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
                             child.setProps(options?.updateSpecificChild?.props || nextProps);
-                        } else if(options?.updateAllChild) { child.setProps(nextProps); }
+                        } else child.setProps(nextProps); 
                     }
                 }
             }
