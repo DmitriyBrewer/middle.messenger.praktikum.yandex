@@ -12,10 +12,7 @@ export class ChatPage extends Block {
 
         chatController.getChats();
         this.children.sidebar = new Sidebar({data: []});
-        this.children.window = new ChatWindow({
-            ...mockChats[0],
-            empty: false
-        });
+        this.children.window = new ChatWindow({});
 
     }
 
