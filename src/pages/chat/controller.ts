@@ -75,41 +75,133 @@ class ChatController {
     }
 
 
+    // connectToWebSocket(data: Record<string, string>): void {
+    //     const { token } = data;
+    //     const chatId = data.id;
+    //     const userId = data.userId;
+    //     console.log(store);
+    //     console.log(data);
+    //     const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`;
+    //     this.socket = new WebSocket(socketUrl);
+
+    //     this.socket.addEventListener("open", () => {
+    //         console.log("Соединение установлено");
+
+    //         const message = {
+    //             content: "Моё второе сообщение миру!",
+    //             type: "message",
+    //         };
+    //         this.socket.send(JSON.stringify(message));
+    //     });
+
+    //     this.socket.addEventListener("close", (event) => {
+    //         if (event.wasClean) {
+    //             console.log("Соединение закрыто чисто");
+    //         } else {
+    //             console.log("Обрыв соединения");
+    //         }
+
+    //         console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+    //     });
+
+    //     this.socket.addEventListener("message", (event) => {
+    //         console.log("Получены данные:", event.data);
+    //     });
+
+    //     this.socket.addEventListener("error", (event) => {
+    //         console.error("Ошибка:", event.message);
+    //     });
+    // }
+
+    // connectToWebSocket(data: Record<string, string>): void {
+    //     const { token, id, userId } = data;
+    //     const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
+    //     this.socket = new WebSocket(socketUrl);
+    
+    //     this.socket.addEventListener("open", () => {
+    //         console.log("Connection established");
+    
+    //         // Отправляем запрос для получения последних сообщений
+    //         const message = {
+    //             content: "0", // Начинаем с нулевого сообщения
+    //             type: "get old",
+    //         };
+    //         this.socket.send(JSON.stringify(message));
+    //     });
+    
+    //     this.socket.addEventListener("close", (event) => {
+    //         if (event.wasClean) {
+    //             console.log("Connection closed cleanly");
+    //         } else {
+    //             console.log("Connection interrupted");
+    //         }
+    
+    //         console.log(`Code: ${event.code} | Reason: ${event.reason}`);
+    //     });
+    
+    //     this.socket.addEventListener("message", (event) => {
+    //         console.log("Received data:", event.data);
+    //         // Обработка полученных старых сообщений
+    //         const oldMessages = JSON.parse(event.data); // Предполагается, что сервер возвращает массив сообщений
+    //         oldMessages.forEach((msg) => {
+    //             console.log("Old message:", msg);
+    //             // Дополнительная логика для обработки каждого старого сообщения
+    //         });
+    //     });
+    
+    //     this.socket.addEventListener("error", (event) => {
+    //         console.error("Error:", event.message);
+    //     });
+    // }
+
     connectToWebSocket(data: Record<string, string>): void {
-        const { token } = data;
-        const chatId = data.id;
-        const userId = data.userId;
-        console.log(store);
-        console.log(data);
-        const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`;
+        const { token, id, userId } = data;
+        const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
         this.socket = new WebSocket(socketUrl);
-
+    
         this.socket.addEventListener("open", () => {
-            console.log("Соединение установлено");
-
+            console.log("Connection established");
+    
+            // Отправляем запрос для получения последних сообщений
             const message = {
-                content: "Моё второе сообщение миру!",
-                type: "message",
+                content: "0", // Начинаем с нулевого сообщения
+                type: "get old",
             };
             this.socket.send(JSON.stringify(message));
+    
+            // Добавляем отправку нового сообщения при нажатии на кнопку отправки
+            document.querySelector(".chatSend__send").addEventListener("click", () => {
+                const messageToSend = (document.querySelector("#message") as HTMLInputElement).value;
+                const newMessage = {
+                    content: messageToSend,
+                    type: "message",
+                };
+                this.socket.send(JSON.stringify(newMessage)); // Отправляем новое сообщение через веб-сокет
+            });
         });
-
+    
         this.socket.addEventListener("close", (event) => {
             if (event.wasClean) {
-                console.log("Соединение закрыто чисто");
+                console.log("Connection closed cleanly");
             } else {
-                console.log("Обрыв соединения");
+                console.log("Connection interrupted");
             }
-
-            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+    
+            console.log(`Code: ${event.code} | Reason: ${event.reason}`);
         });
-
+    
         this.socket.addEventListener("message", (event) => {
-            console.log("Получены данные:", event.data);
+            console.log("Received data:", event.data);
+            // Обработка полученных старых сообщений
+            const oldMessages = JSON.parse(event.data); // Предполагается, что сервер возвращает массив сообщений
+            oldMessages.forEach((msg) => {
+                console.log("Old message:", msg);
+                // Дополнительная логика для обработки каждого старого сообщения
+            });
         });
-
+    
         this.socket.addEventListener("error", (event) => {
-            console.error("Ошибка:", event.message);
+            console.error("Error:", event.message);
         });
     }
 }

@@ -15,6 +15,7 @@ class ChatSend extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Отправлено сообщение:", formDataObject);
+                        // this.sendMessage(formDataObject.message); // Отправляем сообщение через сокеты
                     });
                 }
             },
@@ -46,6 +47,14 @@ class ChatSend extends Block {
             })
         }); 
     }
+
+    // sendMessage(message: string) {
+    //     const messageObject = {
+    //         content: message,
+    //         type: "message",
+    //     };
+    //     WebSocketInstance.send(JSON.stringify(messageObject)); // Отправляем сообщение через веб-сокет
+    // }
 
     render() {
         return this.compile(ChatSendTemplate, {});
