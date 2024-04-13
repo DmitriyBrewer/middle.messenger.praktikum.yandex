@@ -24,7 +24,7 @@ function mapChatsToProps(state) {
     };
 }
 
-const withUser = connect(mapUserToProps,{updateFirstChildren:true});
+const withUser = connect(mapChatsToProps,{updateFirstChildren:true});
 const withChats = connect(mapChatsToProps,{updateAllChild:true});
 
 router

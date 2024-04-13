@@ -78,7 +78,7 @@ class ChatController {
     connectToWebSocket(data: Record<string, string>): void {
         const { token } = data;
         const chatId = data.id;
-        const userId = 4;
+        const userId = data.userId;
         console.log(store);
         console.log(data);
         const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`;
