@@ -39,9 +39,10 @@ class AuthApi extends BaseAPI {
                 if (response instanceof XMLHttpRequest) {
                     if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
                         const data = JSON.parse((response as XMLHttpRequest).responseText);
-                        data.avatar = data.avatar.replaceAll("/", "%2F");
+                        data.avatar = data.avatar ? data.avatar.replaceAll("/", "%2F") : null;
                         data.avatar = `https://ya-praktikum.tech/api/v2/resources/${data.avatar}`;
                         store.set("userData", data);
+                        console.log(store);
                         if(router.getCurrentPathname() === "/") {
                             router.go("/messenger");
                         }

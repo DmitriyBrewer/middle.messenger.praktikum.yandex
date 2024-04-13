@@ -88,7 +88,7 @@ class ChatController {
             console.log("Соединение установлено");
 
             const message = {
-                content: "My first message to the world!",
+                content: "Моё второе сообщение миру!",
                 type: "message",
             };
             this.socket.send(JSON.stringify(message));

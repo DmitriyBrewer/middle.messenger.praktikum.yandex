@@ -10,7 +10,7 @@ class ChatItem extends Block {
             events: {click:()=>{
                 store.set("selectChat",this.props);
                 console.log(this.props);
-                console.log(store.getState().userData.id);
+                console.log(store);
                 chatController.chatTokenController({
                     title:this.props.title,
                     avatar:null,
