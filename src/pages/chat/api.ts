@@ -28,6 +28,13 @@ class ChatAPI extends BaseAPI {
         });
     }
 
+    public chatToken(data: Record<string, string>) {
+        return this.post(`${this.baseUrl}/api/v2/chats/token/${data.id}`, {
+            headers: ["Content-Type", "application/json"],
+            data: mapDataToEntriesArray(data),
+        });
+    }
+
     public addUserToChat(userData: Record<string, any>) {
         const usersRequest = {
             users: [Number(userData.users)],

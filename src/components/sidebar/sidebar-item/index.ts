@@ -9,11 +9,16 @@ class ChatItem extends Block {
         super("div",{...props, 
             events: {click:()=>{
                 store.set("selectChat",this.props);
+                console.log(this.props);
+                chatController.chatTokenController({
+                    title:this.props.title,
+                    avatar:null,
+                    id:this.props.id
+                });
             }},
             button: new Button({
                 events: {click:(e)=>{
                     e.stopPropagation();
-                    console.log("delete");
                     chatController.deleteChatController({chatId: props.id});
                 }},
                 text:"delete", 

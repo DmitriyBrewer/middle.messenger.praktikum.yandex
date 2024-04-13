@@ -40,6 +40,16 @@ class ChatController {
             });
     }
 
+    public chatTokenController(data: Record<string, string>) {
+        this.chatApi.chatToken(data).then((res) => {
+            console.log(res);
+            // store.set("chatTok", res);
+        })
+            .catch((error) => {
+                console.error("Error token chat:", error);
+            });
+    }
+
     public addUserToChatController(userData) {
         this.chatApi.addUserToChat(userData)
             .then((response) => {
