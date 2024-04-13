@@ -5,6 +5,7 @@ import Button from "../../../ui/button";
 import { chatController } from "../../../pages/chat/controller";
 import store from "../../../lib/store";
 import Image from "../../../ui/img";
+import { formatDate } from "../../../lib/formatDate";
 class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
@@ -40,7 +41,7 @@ class ChatItem extends Block {
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
             message:this.props.last_message.content, 
-            time:this.props.last_message.time,
+            time:formatDate(this.props.last_message.time),
             counter:this.props.unread_count,
             witchId: true
         });
