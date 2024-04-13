@@ -10,6 +10,8 @@
         display: flex;
         flex-direction: column;
         row-gap: var(--g24);
+        height: 90vh;
+        overflow-y: scroll;
     }
 
     &__date {
