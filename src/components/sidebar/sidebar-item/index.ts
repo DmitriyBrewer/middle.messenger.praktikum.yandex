@@ -8,7 +8,7 @@ class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
             events: {click:()=>{
-                store.set("selectChat",props);
+                store.set("selectChat",this.props);
             }},
             button: new Button({
                 events: {click:(e)=>{
