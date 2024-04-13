@@ -13,7 +13,7 @@ class ChatItem extends Block {
                 chatController.chatTokenController({
                     title:this.props.title,
                     avatar:null,
-                    id:this.props.id
+                    id:this.props.id,
                 });
             }},
             button: new Button({

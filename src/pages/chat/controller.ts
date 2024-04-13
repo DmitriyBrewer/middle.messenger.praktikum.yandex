@@ -42,8 +42,10 @@ class ChatController {
 
     public chatTokenController(data: Record<string, string>) {
         this.chatApi.chatToken(data).then((res) => {
-            console.log(res);
-            // store.set("chatTok", res);
+            const response = JSON.parse(res.responseText); // Преобразуем JSON-строку в объект
+            const token = response.token; // Получаем значение токена из объекта ответа
+            console.log(token);
+            chatController.connectToWebSocket({...data, token}); 
         })
             .catch((error) => {
                 console.error("Error token chat:", error);
@@ -71,6 +73,47 @@ class ChatController {
                 console.error("Error adding user to chat:", error);
             });
     }
+
+
+    connectToWebSocket(data: Record<string, string>): void {
+        const { token } = data;
+        const chatId = data.id;
+        const userId = 4;
+        console.log(store);
+        console.log(data);
+        const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`;
+        this.socket = new WebSocket(socketUrl);
+
+        this.socket.addEventListener("open", () => {
+            console.log("Connection established");
+
+            const message = {
+                content: "My first message to the world!",
+                type: "message",
+            };
+            this.socket.send(JSON.stringify(message));
+        });
+
+        this.socket.addEventListener("close", (event) => {
+            if (event.wasClean) {
+                console.log("Connection closed cleanly");
+            } else {
+                console.log("Connection interrupted");
+            }
+
+            console.log(`Code: ${event.code} | Reason: ${event.reason}`);
+        });
+
+        this.socket.addEventListener("message", (event) => {
+            console.log("Received data:", event.data);
+        });
+
+        this.socket.addEventListener("error", (event) => {
+            console.error("Error:", event.message);
+        });
+    }
 }
+
+
 
 export const chatController = new ChatController();
