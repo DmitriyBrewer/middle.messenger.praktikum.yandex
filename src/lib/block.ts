@@ -2,8 +2,9 @@ import { compiledTemplate } from "./compileTemplate";
 import EventBus from "./eventBus";
 
 export interface UpdatePropsOptions {
-    updateFirstChildren?: boolean; // Обновить props у всех дочерних элементов
-    updateSpecificChild?: { name: string, props: BlockProps }; // Обновить конкретный дочерний элемент и его props
+    updateFirstChildren?: boolean; 
+    updateSpecificChild?: { name: string, props: BlockProps }; 
+    updateAllChild?: boolean
 }
 
 export type BlockEvents = Record<string, EventListenerOrEventListenerObject>
@@ -259,7 +260,7 @@ class Block {
                     if (child instanceof Block) {
                         if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
                             child.setProps(options?.updateSpecificChild?.props || nextProps);
-                        }
+                        } else if(options?.updateAllChild) { child.setProps(nextProps); }
                     }
                 }
             }
@@ -269,6 +270,32 @@ class Block {
         console.log(this);
         this._componentDidUpdate(oldProps, this.props);
     };
+
+    // public setProps2 = (nextProps: BlockProps, options?: UpdatePropsOptions): void => {
+    //     if (!nextProps) {
+    //         return;
+    //     }
+    
+    //     const oldProps = { ...this.props };
+    //     Object.assign(this.props, nextProps);
+
+    //     const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps, options?: UpdatePropsOptions): void => {
+    //         for (const key in children) {
+    //             if (children.hasOwnProperty(key)) {
+    //                 const child = children[key];
+    //                 if (child instanceof Block) {
+    //                     if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
+    //                         child.setProps(options?.updateSpecificChild?.props || nextProps);
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     };
+    
+    //     updateChildProps((this.children), nextProps, options);
+    //     console.log(this);
+    //     this._componentDidUpdate(oldProps, this.props);
+    // };
 
     get element(): HTMLElement | null {
         return this._element;

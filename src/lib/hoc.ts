@@ -30,11 +30,13 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed, updateProp
                 super({...props, ...state});
   
                 store.on(StoreEvents.Updated, () => {
+                    console.log("lslds");
                     const newState = mapStateToProps(store.getState());
                     console.log(state);
                     console.log(newState);
                     if (!isEqual(state, newState)) {
-                        console.log("ls");
+                        console.log(this);
+                        // TODO сделать для this и для его children
                         this.setProps({...newState}, updatePropsOptions);
                     }
                     state = newState;
