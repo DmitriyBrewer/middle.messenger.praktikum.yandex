@@ -17,12 +17,12 @@ function mapUserToProps(state) {
 
 function mapChatsToProps(state) {
     return {
+        userData: state.userData,
         data: state.data,
         selectChat: state.selectChat,
         updateAllChild:true
     };
 }
-
 
 const withUser = connect(mapUserToProps,{updateFirstChildren:true});
 const withChats = connect(mapChatsToProps,{updateAllChild:true});
