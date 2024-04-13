@@ -85,7 +85,7 @@ class ChatController {
         this.socket = new WebSocket(socketUrl);
 
         this.socket.addEventListener("open", () => {
-            console.log("Connection established");
+            console.log("Соединение установлено");
 
             const message = {
                 content: "My first message to the world!",
@@ -96,20 +96,20 @@ class ChatController {
 
         this.socket.addEventListener("close", (event) => {
             if (event.wasClean) {
-                console.log("Connection closed cleanly");
+                console.log("Соединение закрыто чисто");
             } else {
-                console.log("Connection interrupted");
+                console.log("Обрыв соединения");
             }
 
-            console.log(`Code: ${event.code} | Reason: ${event.reason}`);
+            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
         });
 
         this.socket.addEventListener("message", (event) => {
-            console.log("Received data:", event.data);
+            console.log("Получены данные:", event.data);
         });
 
         this.socket.addEventListener("error", (event) => {
-            console.error("Error:", event.message);
+            console.error("Ошибка:", event.message);
         });
     }
 }
