@@ -1,4 +1,4 @@
-export function formatDate(dateStr) {
+export function formatDate(dateStr:string) {
     const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
     const daysOfWeek = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
 
