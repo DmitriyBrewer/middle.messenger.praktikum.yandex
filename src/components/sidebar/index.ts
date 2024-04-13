@@ -66,6 +66,7 @@ class Sidebar extends Block {
     }
 
     render() {
+        console.log(this.props);
         return this.compile(SidebarTemplate, {});
     }
 }
