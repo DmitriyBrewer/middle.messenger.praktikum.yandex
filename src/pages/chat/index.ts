@@ -3,7 +3,6 @@ import Block, { BlockProps } from "../../lib/block";
 import ChatPageTemplate from "./index.hbs?raw";
 import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
-import { mockChats } from "../../constants/mockChats";
 import { chatController } from "./controller";
 
 export class ChatPage extends Block {
@@ -17,7 +16,6 @@ export class ChatPage extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatPageTemplate, {sidebar: this.props.sidebar, window:this.props.window });
     }
 }

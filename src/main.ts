@@ -18,7 +18,8 @@ function mapUserToProps(state) {
 function mapChatsToProps(state) {
     return {
         data: state.data,
-        selectChat: state.selectChat
+        selectChat: state.selectChat,
+        updateAllChild:true
     };
 }
 
