@@ -154,6 +154,7 @@ class ChatController {
     //     });
     // }
 
+    // TODO попробовать сделать контроллер
     connectToWebSocket(data: Record<string, string>): void {
         const { token, id, userId } = data;
         const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
@@ -171,6 +172,7 @@ class ChatController {
     
             // Добавляем отправку нового сообщения при нажатии на кнопку отправки
             document.querySelector(".chatSend__send").addEventListener("click", () => {
+                console.log("click");
                 const messageToSend = (document.querySelector("#message") as HTMLInputElement).value;
                 const newMessage = {
                     content: messageToSend,
@@ -194,11 +196,11 @@ class ChatController {
             // console.log("Received data:", event.data);
             store.set("messages", JSON.parse(event.data));
             // Обработка полученных старых сообщений
-            const oldMessages = JSON.parse(event.data); // Предполагается, что сервер возвращает массив сообщений
-            oldMessages.forEach((msg) => {
-                // console.log("Old message:", msg);
-                // Дополнительная логика для обработки каждого старого сообщения
-            });
+            // const oldMessages = JSON.parse(event.data); // Предполагается, что сервер возвращает массив сообщений
+            // oldMessages.forEach((msg) => {
+            //     // console.log("Old message:", msg);
+            //     // Дополнительная логика для обработки каждого старого сообщения
+            // });
         });
     
         this.socket.addEventListener("error", (event) => {
