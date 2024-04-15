@@ -6,11 +6,9 @@ import InputComponent from "../../../ui/input";
 import ButtonImage from "../../../ui/button-image";
 import { validationField } from "../../../lib/validations/isValidLogin";
 import { conditions } from "../../../constants/conditions";
-import WebSocketService from "../../../lib/socket";
+import { chatController } from "../../../pages/chat/controller";
 
 class ChatSend extends Block {
-    private webSocketService: WebSocketService;
-
     constructor(props: BlockProps) {
         super("span", {
             ...props,
@@ -20,10 +18,7 @@ class ChatSend extends Block {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
                         console.log("Отправлено сообщение:", formDataObject);
-                        // TODO отправить сообщение в websocket
-                        if (this.webSocketService) {
-                            this.webSocketService.sendMessageToWebSocket(formDataObject.message);
-                        }
+                        chatController.methodSendWebSocketMessage(formDataObject);
                     });
                 
                 }
@@ -55,8 +50,6 @@ class ChatSend extends Block {
                 classNameImage: "chatSend__arrow",
             })
         });
-
-        this.webSocketService = new WebSocketService();
     }
 
     render() {

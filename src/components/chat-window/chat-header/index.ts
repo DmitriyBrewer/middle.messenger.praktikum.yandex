@@ -10,7 +10,7 @@ import Button from "../../../ui/button";
 import { chatController } from "../../../pages/chat/controller";
 import ChatMenu from "../chat-menu";
 import ChatMenuItem from "../../chat-menu-item";
-import isEqual from "../../../lib/isEqual";
+import { UserData } from "../../../pages/chat/type";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
@@ -40,10 +40,11 @@ class ChatHeader extends Block {
             }),
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
-                api:(formData: Record<string, string>) => {
-                    const chatId = this.props.selectChat.id;
+                api:(formData: UserData) => {
+                    const chatId = (this.props.selectChat as {id:number}).id;
                     if(chatId) {
-                        chatController.addUserToChatController({...formData, chatId:chatId});
+                        const payload: UserData = {...formData, chatId:chatId};
+                        chatController.addUserToChatController(payload);
                     } else console.error("Выберите чат");
                 },
                 user: new InputComponent({
@@ -74,7 +75,7 @@ class ChatHeader extends Block {
             }),
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
-                api:(formData: Record<string, string>) => {
+                api:(formData: UserData) => {
                     chatController.deleteUserToChatController(formData);
                 },
                 user: new InputComponent({
@@ -132,9 +133,7 @@ class ChatHeader extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps !== newProps) {
-            // (this.children.chatHeader as Block).setProps({selectChat:this.props.selectChat.id, title:this.props.selectChat.title});
-            console.log(this.props);
-            this.props && this.props.selectChat &&this.props.selectChat.title && (this.children.chatTitle as Block).setProps({title:this.props.selectChat.title});
+            this.props && this.props.selectChat &&(this.props.selectChat as {title:string}).title && (this.children.chatTitle as Block).setProps({title:(this.props.selectChat as {title:string}).title});
         }
         return true;
     }

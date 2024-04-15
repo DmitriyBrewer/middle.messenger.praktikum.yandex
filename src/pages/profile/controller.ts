@@ -2,36 +2,6 @@ import { host } from "../../constants/host";
 import store from "../../lib/store";
 import router from "../../main";
 import ProfileApi from "./api";
-
-// class ProfileController {
-//     private profileApi: ProfileApi;
-
-//     constructor() {
-//         this.profileApi = new ProfileApi(host);
-//     }
-
-//     public updateProfileController(data: Record<string, string>) {
-//         this.profileApi.updateUserProfile(data).then((res) => {
-//             console.log(res);
-//             store.set("userData", res);
-//         })
-//             .catch((error) => {
-//                 console.error("Error updating profile:", error);
-//             });
-//     }
-
-//     public updatePasswordController(data: Record<string, string>) {
-//         this.profileApi.updateUserPassword(data).then((res) => {
-//             console.log(res);
-//             // TODO Можно добавить дополнительную логику при успешном обновлении пароля
-//         })
-//             .catch((error) => {
-//                 console.error("Error updating password:", error);
-//             });
-//     }
-// }
-
-// export const profileController = new ProfileController();
 class ProfileController {
     private profileApi: ProfileApi;
 
@@ -41,8 +11,6 @@ class ProfileController {
 
     public updateProfileController(data: Record<string, string>) {
         this.profileApi.updateUserProfile(data).then((res) => {
-            console.log(res);
-            // store.set("userData", res);
             store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
         })
             .catch((error) => {
@@ -51,9 +19,7 @@ class ProfileController {
     }
 
     public updatePasswordController(data: Record<string, string>) {
-        this.profileApi.updateUserPassword(data).then((res) => {
-            console.log(res);
-            // TODO Можно добавить дополнительную логику при успешном обновлении пароля
+        this.profileApi.updateUserPassword(data).then(() => {
         })
             .catch((error) => {
                 console.error("Error updating password:", error);
@@ -71,9 +37,7 @@ class ProfileController {
     }
 
     public logoutController() {
-        this.profileApi.logoutUserProfile().then((res) => {
-            // JSON.parse((res as XMLHttpRequest).responseText);
-            // store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
+        this.profileApi.logoutUserProfile().then(() => {
             router.go("/");
         })
             .catch((error) => {

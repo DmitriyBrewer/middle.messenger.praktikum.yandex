@@ -1,6 +1,7 @@
 import BaseAPI from "../../lib/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
 import { METHODS } from "../../lib/http";
+import { UserData } from "./type";
 
 class ChatAPI extends BaseAPI {
     private baseUrl: string;
@@ -35,7 +36,7 @@ class ChatAPI extends BaseAPI {
         });
     }
 
-    public addUserToChat(userData: Record<string, any>) {
+    public addUserToChat(userData: UserData) {
         const usersRequest = {
             users: [Number(userData.users)],
             chatId: Number(userData.chatId)
@@ -53,7 +54,7 @@ class ChatAPI extends BaseAPI {
         });
     } 
 
-    public deleteUserToChat(userData: Record<string, any>) {
+    public deleteUserToChat(userData: UserData) {
         const usersRequest = {
             users: [Number(userData.users)],
             chatId: Number(userData.chatId)
