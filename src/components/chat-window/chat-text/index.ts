@@ -14,10 +14,9 @@ class ChatText extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatTextTemplate, {
             content: this.props.content,
-            date:formatDate(this.props.time),
+            date:this.props.time ? formatDate(this.props.time as string) : "",
             my:this.props.user_id === this.props.userId,
             statusImage: this.props.statusImage
         });

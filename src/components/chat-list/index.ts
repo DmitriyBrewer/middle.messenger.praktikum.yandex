@@ -9,7 +9,6 @@ class ChatList extends Block {
     componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if (isEqual(oldProps,newProps)) {
             if (newProps.data && Array.isArray(newProps.data)) {
-                console.log(newProps);
                 this.children.list = newProps.data.map((itemProps: BlockProps) => new ChatItem(itemProps)
                 );
             }

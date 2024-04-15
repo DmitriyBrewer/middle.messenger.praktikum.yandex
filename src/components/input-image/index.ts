@@ -21,10 +21,18 @@ class InputImageComponent extends Block {
                 blur: props.blur,
                 accept: props.accept,
                 events:{
-                    change: ()=> {
-                        const element = document.getElementById("avatarInput");
-                        const file =  element.files[0];
-                        profileController.updateAvatarController(file);
+                    change: () => {
+                        const element = document.getElementById("avatarInput") as HTMLInputElement | null;
+                        if (element) {
+                            const file = element.files?.[0];
+                            if (file) {
+                                profileController.updateAvatarController(file);
+                            } else {
+                                console.error("No file selected.");
+                            }
+                        } else {
+                            console.error("Element not found.");
+                        }
                     }
                 }
             }),
@@ -44,8 +52,7 @@ class InputImageComponent extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps.src !== newProps.src) {
-            console.log("reres");
-            this.children.image.setProps({src:newProps.src});
+            (this.children.image as Block).setProps({src:newProps.src});
         }
         return true;
     }

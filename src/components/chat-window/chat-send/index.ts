@@ -17,7 +17,6 @@ class ChatSend extends Block {
                 submit: (event: Event) => {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
-                        console.log("Отправлено сообщение:", formDataObject);
                         chatController.methodSendWebSocketMessage(formDataObject);
                     });
                 
