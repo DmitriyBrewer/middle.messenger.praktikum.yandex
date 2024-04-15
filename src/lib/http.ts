@@ -38,7 +38,7 @@ export type Options = {
     timeout?: number,
     headers?: Header,
     repeat?: number,
-    body?: string
+    body?: Record<string,number | number[]>
   }
   
 type HTTPMethod = (url: string, options?: Options, timeout?: number) => Promise<unknown>;
@@ -61,7 +61,6 @@ export class HTTPTransport {
     };
 
     put: HTTPMethod = (url, options) => {
-        console.log(options);
         const currentOption = options? options : {method: METHODS.PUT};
         const {  timeout } = currentOption;
         return this.request(url, {...options,body: options?.body, method: METHODS.PUT}, timeout);
@@ -127,15 +126,7 @@ export class HTTPTransport {
                 xhr.send(data);
             }  else {
                 if(body) {
-                    // TODO
-                    console.log([body]);
-                    // const params = body.split("&");
-                    // params.forEach(param => {
-                    //     const [key, value] = param.split("=");
-                    //     urlSearchParams.append(key, value);
-                    // });
-                
-                    xhr.send(urlSearchParams);
+                    xhr.send(JSON.stringify(body));
                 } else {
                     const dataToSend = new URLSearchParams();
                     data && data.forEach((header: Header) => {
