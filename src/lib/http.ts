@@ -14,23 +14,44 @@ export const METHODS = {
 
 //     return queryString;
 // }
+// function queryStringify(data: Data): string {
+//     const queryString = data.reduce((result, header, index) => {
+//         if (Array.isArray(header)) {
+//             const [key, value] = header;
+//             return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+//         } else {
+//             const key = Object.keys(header)[0];
+//             const value = header[key];
+//             return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+//         }
+//     }, "?");
+
+//     return queryString;
+// }
 function queryStringify(data: Data): string {
-    const queryString = data.reduce((result, header, index) => {
+    let headers: Header[];
+    if (Array.isArray(data)) {
+        headers = data;
+    } else {
+        headers = Array.from(data.entries()).map(([key, value]) => [key, String(value)]);
+    }
+
+    const queryString = headers.reduce((result, header, index) => {
         if (Array.isArray(header)) {
             const [key, value] = header;
-            return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+            return `${result}${key}=${value}${index < headers.length - 1 ? "&" : ""}`;
         } else {
             const key = Object.keys(header)[0];
             const value = header[key];
-            return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+            return `${result}${key}=${value}${index < headers.length - 1 ? "&" : ""}`;
         }
     }, "?");
 
     return queryString;
 }
 
-type Header = [string, string] | Record<string, string>
-export type Data = Header[]
+type Header = [string, string] | Record<string, string> 
+export type Data = Header[] | FormData
   
 export type Options = {
     method?: string,

@@ -54,7 +54,9 @@ class WebSocketService {
 
     private updateMessagesInStore(newMessage: Message) {
         const currentMessages = store.getState().messages || [];
+        // TODO
         const updatedMessages = currentMessages.concat(newMessage);
+
         store.set("messages", updatedMessages);
     }
 

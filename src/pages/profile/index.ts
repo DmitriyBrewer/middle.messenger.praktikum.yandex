@@ -42,7 +42,7 @@ export class ProfilePage extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps.userData !== newProps.userData) {
-            this.children.profileHeader.setProps({name:newProps.userData.first_name,src:newProps.userData.avatar});
+            ( this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name:string}).first_name,src:(newProps.userData as {avatar: string | null}).avatar});
         }
 
         return true;
@@ -84,7 +84,7 @@ export class ProfilePageChangeData extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps !== newProps) {
-            this.children.profileHeader.setProps({name:newProps.userData.first_name,src:newProps.userData.avatar});
+            (this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name: string}).first_name,src:(newProps.userData as {avatar: string | null;}).avatar});
         }
 
         return true;
@@ -125,7 +125,7 @@ export class ProfilePageChangePassword extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps !== newProps) {
-            this.children.profileHeader.setProps({name:newProps.userData.first_name,src:newProps.userData.avatar});
+            (this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name: string}).first_name,src:(newProps.userData as {avatar: string | null;}).avatar});
         }
 
         return true;

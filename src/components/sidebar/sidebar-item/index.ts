@@ -6,6 +6,7 @@ import { chatController } from "../../../pages/chat/controller";
 import store from "../../../lib/store";
 import Image from "../../../ui/img";
 import { formatDate } from "../../../lib/formatDate";
+import { formatAvatarUrl } from "../../../lib/formatAvatarUrl";
 class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
@@ -19,7 +20,7 @@ class ChatItem extends Block {
                 });
             }},
             image: new Image({
-                src:props.avatar ? `https://ya-praktikum.tech/api/v2/resources/${props.avatar.replaceAll("/", "%2F") }`: "/assets/avatar.png",
+                src: props.avatar ? formatAvatarUrl(props.avatar) : "/assets/avatar.png",
                 alt:"chatAvatar",
                 className:"chat__avatar"
             }),
