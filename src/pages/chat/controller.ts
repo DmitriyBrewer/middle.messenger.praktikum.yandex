@@ -2,7 +2,7 @@ import { host } from "../../constants/host";
 import WebSocketService from "../../lib/socket";
 import store from "../../lib/store";
 import ChatAPI from "./api";
-import { UserData } from "./type";
+import { ChatData, ChatId, UserData } from "./type";
 class ChatController {
     private chatApi: ChatAPI;
     private webSocketService: WebSocketService;
@@ -23,7 +23,7 @@ class ChatController {
             });
     }
 
-    public deleteChatController(data: { chatId: string }) {
+    public deleteChatController(data: ChatId) {
         this.chatApi.deleteChat(data).then((res) => {
             console.log(res);
             store.set("data", res);
@@ -45,12 +45,12 @@ class ChatController {
             });
     }
 
-    public chatTokenController(data: Record<string, string>) {
+    public chatTokenController(data: ChatData) {
         this.chatApi.chatToken(data).then((res) => {
             if (res instanceof XMLHttpRequest) {
                 const response = JSON.parse(res.responseText); 
-                const token = response.token;
-                chatController.connectToWebSocket({...data, token}); 
+                const token:string = response.token;
+                chatController.connectToWebSocket(data, token); 
             }
         })
             .catch((error) => {
@@ -88,8 +88,8 @@ class ChatController {
             });
     }
 
-    public connectToWebSocket(data: Record<string, string>): void {
-        this.webSocketService.connectToWebSocket(data);
+    public connectToWebSocket(data: ChatData, token:string): void {
+        this.webSocketService.connectToWebSocket(data,token);
     }
 
     public closeWebSocket(): void {

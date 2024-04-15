@@ -11,12 +11,10 @@ class ChatItem extends Block {
         super("div",{...props, 
             events: {click:()=>{
                 store.set("selectChat",this.props);
-                console.log(this.props);
-                console.log(store);
                 chatController.chatTokenController({
-                    title:this.props.title,
+                    title:this.props.title ? this.props.title as string : "",
                     avatar:null,
-                    id:this.props.id,
+                    id:this.props.title  ?this.props.id as number  :"",
                     userId: store.getState().userData.id
                 });
             }},
@@ -28,7 +26,7 @@ class ChatItem extends Block {
             button: new Button({
                 events: {click:(e)=>{
                     e.stopPropagation();
-                    chatController.deleteChatController({chatId: props.id});
+                    chatController.deleteChatController({chatId: props.id as number });
                 }},
                 text:"delete", 
                 className:"chat__delete"
@@ -37,11 +35,11 @@ class ChatItem extends Block {
     }
 
     render() {
-        console.log(this.props);
+        console.log(this);
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
-            message:this.props.last_message && this.props.last_message.content && this.props.last_message.content, 
-            time:this.props.last_message && this.props.last_message.time && formatDate(this.props.last_message.time),
+            message:this.props.last_message && (this.props.last_message as {content: string}).content && (this.props.last_message as {content: string}).content, 
+            time:this.props.last_message && (this.props.last_message as  {time: string}).time && formatDate((this.props.last_message as {time: string}).time),
             counter:this.props.unread_count,
             witchId: true
         });

@@ -1,7 +1,7 @@
 import BaseAPI from "../../lib/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
 import { METHODS } from "../../lib/http";
-import { UserData } from "./type";
+import { ChatData, ChatId, UserData } from "./type";
 
 class ChatAPI extends BaseAPI {
     private baseUrl: string;
@@ -15,7 +15,7 @@ class ChatAPI extends BaseAPI {
         return this.get(`${this.baseUrl}/api/v2/chats`,{timeout:15000});
     }
 
-    public deleteChat(data: Record<string, string>) {
+    public deleteChat(data: ChatId) {
         return this.delete(`${this.baseUrl}/api/v2/chats`, {
             headers: ["Content-Type", "application/json"],
             data: mapDataToEntriesArray(data),
@@ -29,7 +29,7 @@ class ChatAPI extends BaseAPI {
         });
     }
 
-    public chatToken(data: Record<string, string>) {
+    public chatToken(data: ChatData) {
         return this.post(`${this.baseUrl}/api/v2/chats/token/${data.id}`, {
             headers: ["Content-Type", "application/json"],
             data: mapDataToEntriesArray(data),

@@ -9,7 +9,6 @@ class NewChat extends Block {
             submit: (event: Event) => {
                 event.preventDefault();
                 this.handleFormData((formDataObject) => {
-                    console.log("Отправлено сообщение:", formDataObject);
                     (props as {api: (arg:Record<string, string>)=>void}).api(formDataObject);
                     (props as {hideBlock:()=>void}).hideBlock();
                 });

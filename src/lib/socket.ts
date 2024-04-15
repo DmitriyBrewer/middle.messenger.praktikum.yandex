@@ -1,3 +1,4 @@
+import { ChatData } from "../pages/chat/type";
 import store from "./store";
 
 interface Message {
@@ -14,8 +15,8 @@ interface Message {
 class WebSocketService {
     private socket: WebSocket | null = null;
 
-    connectToWebSocket(data: Record<string, string>): void {
-        const { token, id, userId } = data;
+    connectToWebSocket(data: ChatData, token:string): void {
+        const {  id, userId } = data;
         const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
         this.socket = new WebSocket(socketUrl);
 
