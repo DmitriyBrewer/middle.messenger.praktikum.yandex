@@ -253,21 +253,37 @@ class Block {
         const oldProps = { ...this.props };
         Object.assign(this.props, nextProps);
 
+        // const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps, options?: UpdatePropsOptions): void => {
+        //     for (const key in children) {
+        //         if (children.hasOwnProperty(key)) {
+        //             const child = children[key];
+        //             if (child instanceof Block) {
+        //                 if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
+        //                     child.setProps(options?.updateSpecificChild?.props || nextProps);
+        //                 }  else child.setProps(nextProps);  
+        //             }
+        //         }
+        //     }
+        // };
         const updateChildProps = (children: { [key: string]: Block }, nextProps: BlockProps, options?: UpdatePropsOptions): void => {
             for (const key in children) {
-                if (children.hasOwnProperty(key)) {
+                if (key in children) {
                     const child = children[key];
                     if (child instanceof Block) {
-                        if (options?.updateFirstChildren || (options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
-                            child.setProps(options?.updateSpecificChild?.props || nextProps);
-                        }  else child.setProps(nextProps);  
+                        if ((options?.updateFirstChildren && options?.updateSpecificChild && options.updateSpecificChild.name === key)) {
+                            // child.setProps(options?.updateSpecificChild.props, nextProps);
+                        // TODO
+                            child.setProps(options?.updateSpecificChild.props, options);
+                        } else {
+                            child.setProps(nextProps);
+                        }
                     }
                 }
             }
         };
-    
-        // console.log(this.props);
-        this.props.updateAllChild && updateChildProps((this.children), nextProps, options);
+
+        // TODO
+        this.props.updateAllChild && updateChildProps(this.children as { [key: string]: Block }, nextProps, options);        // this.props.updateAllChild && updateChildProps((this.children), nextProps, options);
         this._componentDidUpdate(oldProps, this.props);
     };
 

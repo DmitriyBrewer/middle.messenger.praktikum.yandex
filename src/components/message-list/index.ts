@@ -12,7 +12,7 @@ class MessageList extends Block {
     componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if (isEqual(oldProps,newProps)) {
             if (this.props.messages && Array.isArray(this.props.messages)) {
-                this.children.list = this.props.messages.map((itemProps: BlockProps) => new ChatText({...itemProps, userId: newProps.userData.id}));
+                this.children.list = this.props.messages.map((itemProps: BlockProps) => new ChatText({...itemProps, userId: (newProps.userData as {id:number}).id}));
             }
         }
         return true;
