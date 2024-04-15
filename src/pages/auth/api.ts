@@ -42,7 +42,6 @@ class AuthApi extends BaseAPI {
                         const data = JSON.parse((response as XMLHttpRequest).responseText);
                         data.avatar= data.avatar ? formatAvatarUrl(data.avatar) : null;
                         store.set("userData", data);
-                        console.log(store);
                         if(router.getCurrentPathname() === "/") {
                             router.go("/messenger");
                         }
