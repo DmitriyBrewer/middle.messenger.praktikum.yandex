@@ -2,7 +2,7 @@
 // export function isEqual(lhs:string, rhs:string) {
 //     return lhs === rhs;
 // }
-type PlainObject<T = unknown> = {
+export type PlainObject<T = unknown> = {
     [k in string]: T;
 };
 
@@ -29,7 +29,14 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
     for (const [key, value] of Object.entries(lhs)) {
         const rightValue = rhs[key];
         if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-            if (isEqual(value, rightValue)) {
+            // TODO
+            // if (!isEqual(value, rightValue)) {
+            //     return false;
+            // }
+            const valueObject: PlainObject<unknown> = isArrayOrObject(value) ? { value } : value;
+            const rightValueObject: PlainObject<unknown> = isArrayOrObject(rightValue) ? { rightValue } : rightValue;
+            
+            if (isEqual(valueObject, rightValueObject)) {
                 continue;
             }
             return false;
