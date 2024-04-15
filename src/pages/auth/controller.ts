@@ -1,14 +1,4 @@
-// import { authHandler } from "./api";
-
-// class AuthController {
-//     public getUser(data:Record<string, string>) {
-//         authHandler(data);
-//     }
-// } 
-
-// export const authController = new AuthController();
 import { mapDataToEntriesArray } from "../../lib/convertData";
-import router from "../../main";
 import AuthApi from "./api";
 
 class AuthController {

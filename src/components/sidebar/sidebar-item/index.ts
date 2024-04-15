@@ -15,7 +15,7 @@ class ChatItem extends Block {
                     title:this.props.title ? this.props.title as string : "",
                     avatar:null,
                     id:this.props.title  ?this.props.id as number  :"",
-                    userId: store.getState().userData.id
+                    userId: (store.getState().userData as {id:number | undefined}).id ? (store.getState().userData as {id:number}).id  : ""
                 });
             }},
             image: new Image({
@@ -35,7 +35,6 @@ class ChatItem extends Block {
     }
 
     render() {
-        console.log(this);
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
             message:this.props.last_message && (this.props.last_message as {content: string}).content && (this.props.last_message as {content: string}).content, 

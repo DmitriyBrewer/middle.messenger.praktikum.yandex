@@ -1,28 +1,27 @@
 import EventBus from "./eventBus";
 
-type Indexed<T = any> = {
+type Indexed<T = unknown> = {
     [key in string]: T;
 };
 
 function merge(lhs: Indexed, rhs: Indexed): Indexed {
     for (const p in rhs) {
-        if (!rhs.hasOwnProperty(p)) {
-            continue;
-        }
-
-        try {
-            if (rhs[p].constructor === Object) {
-                rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
-            } else {
+        if (Object.prototype.hasOwnProperty.call(rhs, p)) {
+            try {
+                if (typeof rhs[p] === "object" && rhs[p] !== null) {
+                    lhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+                } else {
+                    lhs[p] = rhs[p];
+                }
+            } catch (e) {
                 lhs[p] = rhs[p];
             }
-        } catch(e) {
-            lhs[p] = rhs[p];
         }
     }
 
     return lhs;
 }
+
 
 function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
     if (typeof object !== "object" || object === null) {
@@ -35,7 +34,7 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
 
     const result = path.split(".").reduceRight<Indexed>((acc, key) => ({
         [key]: acc,
-    }), value as any);
+    }), value as Indexed<unknown>);
     return merge(object as Indexed, result);
 }
 
@@ -62,38 +61,3 @@ class Store extends EventBus {
 }
   
 export default new Store(); 
-
-// TODO удалить если не нужно
-// const newState = mapStateToProps(state);
-    
-// if (!isEqual(oldState, newState)) {
-//   // обновляем компонент
-// }
-
-// class Store extends EventBus {
-//     private state: Indexed = {};
-
-//     public getState() {
-//         return this.state;
-//     }
-
-//     public set(path: string, value: unknown) {
-//         const oldState = {...this.state};
-//         set(this.state, path, value);
-
-//         this.emitUpdated(oldState);
-//     }
-
-//     private emitUpdated(oldState) {
-//         const newState = { ...this.state }; 
-//         console.log(oldState);
-//         console.log(newState);
-
-//         if (!isEqual(oldState, newState)) {
-//             console.log("iis");
-//             this.emit(StoreEvents.Updated, newState);
-//         }
-//     }
-// }
-
-// export default new Store();

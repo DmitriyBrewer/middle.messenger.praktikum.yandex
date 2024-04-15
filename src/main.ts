@@ -1,21 +1,22 @@
 import "../../middle.messenger.praktikum.yandex/src/components/text-field/index.scss";
 import "./index.scss";
-import { Router } from "./lib/router";
+import {  Router } from "./lib/router";
 import { RegistrationPage } from "./pages/registration";
 import { ProfilePage, ProfilePageChangeData, ProfilePageChangePassword } from "./pages/profile";
 import { ChatPage } from "./pages/chat";
 import AuthPage from "./pages/auth";
-import { connect } from "./lib/hoc";
+import { Indexed, connect } from "./lib/hoc";
   
 const router = new Router(".root");
 
-function mapUserToProps(state) {   
-    return {
-        userData: state.userData
-    };
-}
+// TODO удалить если не нужно
+// function mapUserToProps(state) {   
+//     return {
+//         userData: state.userData
+//     };
+// }
 
-function mapChatsToProps(state) {
+function mapChatsToProps(state:Indexed) {
     return {
         userData: state.userData,
         data: state.data,

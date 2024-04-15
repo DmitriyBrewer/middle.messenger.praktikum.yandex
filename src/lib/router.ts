@@ -2,7 +2,7 @@ import Block, { BlockProps } from "./block";
 import isEqual from "./isEqual";
 import renderComponent from "./renderComponent";
 
-type BlockClass = new (props: BlockProps) => Block;
+export type BlockClass = new (props: BlockProps) => Block;
 
 type Pathname = string
 class Route {
