@@ -40,8 +40,8 @@ class ChatItem extends Block {
         console.log(this.props);
         return this.compile(ChatItemTemplate, {
             title:this.props.title, 
-            message:this.props.last_message.content, 
-            time:formatDate(this.props.last_message.time),
+            message:this.props.last_message && this.props.last_message.content && this.props.last_message.content, 
+            time:this.props.last_message && this.props.last_message.time && formatDate(this.props.last_message.time),
             counter:this.props.unread_count,
             witchId: true
         });

@@ -11,7 +11,7 @@ class ChatAPI extends BaseAPI {
     }
 
     public getAllChats() {
-        return this.get(`${this.baseUrl}/api/v2/chats`);
+        return this.get(`${this.baseUrl}/api/v2/chats`,{timeout:15000});
     }
 
     public deleteChat(data: Record<string, string>) {
