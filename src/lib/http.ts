@@ -23,7 +23,7 @@ export type Options = {
     timeout?: number,
     headers?: Header,
     repeat?: number,
-    body?: any
+    body?: string
   }
   
 type HTTPMethod = (url: string, options?: Options, timeout?: number) => Promise<unknown>;
@@ -112,9 +112,17 @@ export class HTTPTransport {
                 xhr.send(data);
             }  else {
                 if(body) {
+                    console.log(body);
                     // const dataToSend = new URLSearchParams(body);
                     // console.log(dataToSend);
+                    // const urlSearchParams = new URLSearchParams();
+                    // TODO
+                    // body.forEach(param => {
+                    //     const [key, value] = param.split("=");
+                    //     urlSearchParams.append(key, value);
+                    // });
                     xhr.send([body]);
+
                 } else {
                     const dataToSend = new URLSearchParams();
                     data && data.forEach((header: Header) => {

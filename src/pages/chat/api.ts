@@ -42,8 +42,6 @@ class ChatAPI extends BaseAPI {
             chatId: Number(userData.chatId)
         };
 
-        console.log(JSON.stringify(usersRequest));
-
         return this.put(`${this.baseUrl}/api/v2/chats/users`, {
             method: METHODS.PUT,
             headers: {
