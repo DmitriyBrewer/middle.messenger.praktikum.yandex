@@ -13,6 +13,7 @@ function isPlainObject(value: unknown): value is PlainObject {
         && Object.prototype.toString.call(value) === "[object Object]";
 }
 
+// TODO
 function isArray(value: unknown): value is [] {
     return Array.isArray(value);
 }
@@ -29,14 +30,7 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
     for (const [key, value] of Object.entries(lhs)) {
         const rightValue = rhs[key];
         if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-            // TODO
-            // if (!isEqual(value, rightValue)) {
-            //     return false;
-            // }
-            const valueObject: PlainObject<unknown> = isArrayOrObject(value) ? { value } : value;
-            const rightValueObject: PlainObject<unknown> = isArrayOrObject(rightValue) ? { rightValue } : rightValue;
-            
-            if (isEqual(valueObject, rightValueObject)) {
+            if (isEqual({ ...value }, {...rightValue})) {
                 continue;
             }
             return false;

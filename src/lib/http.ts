@@ -5,11 +5,26 @@ export const METHODS = {
     DELETE: "DELETE",
 };
 
+// TODO
+// function queryStringify(data: Data): string {
+//     const queryString = data.reduce((result, [key, value], index) =>
+//         `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`,
+//     "?"
+//     );
+
+//     return queryString;
+// }
 function queryStringify(data: Data): string {
-    const queryString = data.reduce((result, [key, value], index) =>
-        `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`,
-    "?"
-    );
+    const queryString = data.reduce((result, header, index) => {
+        if (Array.isArray(header)) {
+            const [key, value] = header;
+            return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+        } else {
+            const key = Object.keys(header)[0];
+            const value = header[key];
+            return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
+        }
+    }, "?");
 
     return queryString;
 }
@@ -112,17 +127,15 @@ export class HTTPTransport {
                 xhr.send(data);
             }  else {
                 if(body) {
-                    console.log(body);
-                    // const dataToSend = new URLSearchParams(body);
-                    // console.log(dataToSend);
-                    // const urlSearchParams = new URLSearchParams();
                     // TODO
-                    // body.forEach(param => {
+                    console.log([body]);
+                    // const params = body.split("&");
+                    // params.forEach(param => {
                     //     const [key, value] = param.split("=");
                     //     urlSearchParams.append(key, value);
                     // });
-                    xhr.send([body]);
-
+                
+                    xhr.send(urlSearchParams);
                 } else {
                     const dataToSend = new URLSearchParams();
                     data && data.forEach((header: Header) => {

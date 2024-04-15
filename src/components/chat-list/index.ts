@@ -17,6 +17,7 @@ class ChatList extends Block {
     }
 
     render() {  
+        console.log(this);
         return this.compile("{{{list}}}", {});
     }
 }
