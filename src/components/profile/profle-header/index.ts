@@ -21,7 +21,9 @@ class ProfileHeader extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(!isEqual(oldProps,newProps)) {
-            this.setProps({name:(newProps.userData as {first_name: string}).first_name, src: (newProps.userData as {avatar: string | null}).avatar});
+            if(newProps.userData) {
+                this.setProps({name:(newProps.userData as {first_name: string}).first_name, src: (newProps.userData as {avatar: string | null}).avatar});
+            }
         }
         return true;
     }
