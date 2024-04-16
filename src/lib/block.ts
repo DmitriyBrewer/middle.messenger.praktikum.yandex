@@ -1,5 +1,6 @@
 import { compiledTemplate } from "./compileTemplate";
 import EventBus from "./eventBus";
+import isEqual from "./isEqual";
 
 export interface UpdatePropsOptions {
     updateFirstChildren?: boolean; 
@@ -183,7 +184,8 @@ class Block {
         oldProps: BlockProps,
         newProps: BlockProps
     ): boolean {
-        return !!oldProps && !!newProps; 
+        // return !!oldProps && !!newProps; 
+        return  !isEqual(oldProps, newProps);
     }
 
     public handleFormData(callback: (formDataObject: Record<string, string>) => void) {
