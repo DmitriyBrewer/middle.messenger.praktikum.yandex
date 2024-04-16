@@ -62,11 +62,6 @@ export class ProfilePageChangeData extends Block {
             }),   
         });
 
-
-        authController.getUserInformation();
-
-
-        this.children.profileHeader = new ProfileHeader({}),
         this.children.profileForm =  new ProfileForm({
             api: (formData: Record<string, string>) => {
                 profileController.updateProfileController(formData);
@@ -78,15 +73,8 @@ export class ProfilePageChangeData extends Block {
                 className: "profileChangeButton"
             }),
         });
-        this.setProps(props);    
+        this.setProps(props);
 
-    }
-
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(!isEqual(oldProps, newProps)) {
-            ( this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name:string}).first_name,src:(newProps.userData as {avatar: string | null}).avatar});
-        }
-        return true;
     }
 
     render() {
@@ -104,7 +92,6 @@ export class ProfilePageChangePassword extends Block {
             }),
         });
 
-        this.children.profileHeader = new ProfileHeader({}),
         this.children.profileForm= new ProfileForm({
             api: (formData: Record<string, string>) => {
                 profileController.updatePasswordController(formData);
@@ -117,16 +104,7 @@ export class ProfilePageChangePassword extends Block {
             }),
         });
 
-        authController.getUserInformation();
-        this.setProps(props);    
-
-    }
-
-    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(!isEqual(oldProps, newProps)) {
-            ( this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name:string}).first_name,src:(newProps.userData as {avatar: string | null}).avatar});
-        }
-        return true;
+        this.setProps(props);
     }
 
     render() {
