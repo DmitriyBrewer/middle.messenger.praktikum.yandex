@@ -9,24 +9,8 @@ import { conditions } from "../../constants/conditions";
 import LinkComponent from "../../ui/link";
 import store from "../../lib/store";
 import { authController } from "./controller";
-// import { authController } from "./controller";
 
 registerHandlebarsPartials(allPartials);
-
-// class TestController {
-//     public getUser() {
-//         setTimeout(()=>{
-//             store.set("text", "updateProps1");
-//         },1000);
-
-
-//         setTimeout(()=>{
-//             store.set("text", "updateProps1");
-//         },2000);
-//     }
-// } 
-
-// export const testController = new TestController();
 
 class Auth extends Block {
     constructor(props:BlockProps) {

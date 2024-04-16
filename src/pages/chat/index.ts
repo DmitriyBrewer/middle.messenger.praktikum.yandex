@@ -9,15 +9,16 @@ import { authController } from "../auth/controller";
 
 export class ChatPage extends Block {
     constructor(props:BlockProps) {
-        super("div",props);
+        super("div",{...props,
+            sidebar:new Sidebar({data: []}),
+            window: new ChatWindow({})
+        });
 
         // TODO подумать как ещё получать userId
         if(!store.getState().userData) {
             authController.getUserInformation();
         }
         chatController.getChats();
-        this.children.sidebar = new Sidebar({data: []});
-        this.children.window = new ChatWindow({});
     }
 
     render() {
