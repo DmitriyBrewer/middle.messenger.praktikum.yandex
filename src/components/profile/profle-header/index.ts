@@ -2,6 +2,7 @@ import "./index.scss";
 import  ProfileHeaderTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import InputImageComponent from "../../input-image";
+import isEqual from "../../../lib/isEqual";
 class ProfileHeader extends Block {
     constructor(props:BlockProps) {
         super("div",props);
@@ -16,12 +17,11 @@ class ProfileHeader extends Block {
             isRequired: true,
             accept: "image/*", 
         });
-
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps !== newProps) {
-            (this.children.image as Block).setProps({src:`${newProps.src}`});
+        if(!isEqual(oldProps,newProps)) {
+            this.setProps({name:(newProps.userData as {first_name: string}).first_name, src: (newProps.userData as {avatar: string | null}).avatar});
         }
         return true;
     }

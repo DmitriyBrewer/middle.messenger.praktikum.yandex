@@ -12,6 +12,7 @@ import ProfileForm from "../../components/profile/profile-form";
 import { profileController } from "./controller";
 import store from "../../lib/store";
 import { authController } from "../auth/controller";
+import isEqual from "../../lib/isEqual";
 export class ProfilePage extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
@@ -22,10 +23,7 @@ export class ProfilePage extends Block {
             })
         });
 
-        if(!store.getState().userData) {
-            authController.getUserInformation();
-        }
-
+        authController.getUserInformation();
         this.children.profilePrev = new ProfilePrev({
             href:"/messenger",
             alt:"prev",
@@ -37,11 +35,13 @@ export class ProfilePage extends Block {
         this.children.profileForm =  new ProfileForm({
             profileParamList: new ProfileParamsList({}),
             footMenu: new ProfileFootMenu({}),
-        });       
+        });  
+        
+        this.setProps(props);    
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps.userData !== newProps.userData) {
+        if(!isEqual(oldProps, newProps)) {
             ( this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name:string}).first_name,src:(newProps.userData as {avatar: string | null}).avatar});
         }
 

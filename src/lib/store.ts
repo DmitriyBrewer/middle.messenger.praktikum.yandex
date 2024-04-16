@@ -1,15 +1,15 @@
 import EventBus from "./eventBus";
 
-type Indexed<T = unknown> = {
+type State<T = unknown> = {
     [key in string]: T;
 };
 
-function merge(lhs: Indexed, rhs: Indexed): Indexed {
+function merge(lhs: State, rhs: State): State {
     for (const p in rhs) {
         if (Object.prototype.hasOwnProperty.call(rhs, p)) {
             try {
                 if (typeof rhs[p] === "object" && rhs[p] !== null) {
-                    lhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+                    lhs[p] = merge(lhs[p] as State, rhs[p] as State);
                 } else {
                     lhs[p] = rhs[p];
                 }
@@ -23,7 +23,7 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
 }
 
 
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
+function set(object: State | unknown, path: string, value: unknown): State | unknown {
     if (typeof object !== "object" || object === null) {
         return object;
     }
@@ -32,10 +32,10 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
         throw new Error("path must be string");
     }
 
-    const result = path.split(".").reduceRight<Indexed>((acc, key) => ({
+    const result = path.split(".").reduceRight<State>((acc, key) => ({
         [key]: acc,
-    }), value as Indexed<unknown>);
-    return merge(object as Indexed, result);
+    }), value as State<unknown>);
+    return merge(object as State, result);
 }
 
 export enum StoreEvents {
@@ -44,7 +44,7 @@ export enum StoreEvents {
   
 class Store extends EventBus {
 
-    private state: Indexed = {};
+    private state: State = {};
 
     public getState() {
         return this.state;

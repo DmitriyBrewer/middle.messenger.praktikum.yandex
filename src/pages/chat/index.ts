@@ -4,7 +4,6 @@ import ChatPageTemplate from "./index.hbs?raw";
 import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
 import { chatController } from "./controller";
-import store from "../../lib/store";
 import { authController } from "../auth/controller";
 
 export class ChatPage extends Block {
@@ -14,10 +13,7 @@ export class ChatPage extends Block {
             window: new ChatWindow({})
         });
 
-        // TODO подумать как ещё получать userId
-        if(!store.getState().userData) {
-            authController.getUserInformation();
-        }
+        authController.getUserInformation();
         chatController.getChats();
     }
 

@@ -5,18 +5,20 @@ import { RegistrationPage } from "./pages/registration";
 import { ProfilePage, ProfilePageChangeData, ProfilePageChangePassword } from "./pages/profile";
 import { ChatPage } from "./pages/chat";
 import AuthPage from "./pages/auth";
-import { Indexed, connect } from "./lib/hoc";
+import { State, connect } from "./lib/hoc";
   
 const router = new Router(".root");
 
 // TODO удалить если не нужно
-// function mapUserToProps(state) {   
-//     return {
-//         userData: state.userData
-//     };
-// }
+function mapProfileToProps(state:State) {  
+    return {
+        userData: state.userData,
+        updateAllChild:true
 
-function mapChatsToProps(state:Indexed) {
+    };
+}
+
+function mapChatsToProps(state:State) {
     return {
         userData: state.userData,
         data: state.data,
@@ -27,15 +29,15 @@ function mapChatsToProps(state:Indexed) {
 }
 
 const withUser = connect(mapChatsToProps,{updateFirstChildren:true});
-const withChats = connect(mapChatsToProps,{updateAllChild:true});
+const withProfile = connect(mapProfileToProps,{updateAllChild:true});
 
 router
     .use("/", withUser(AuthPage))
     .use("/sign-up", RegistrationPage)
-    .use("/settings", withUser(ProfilePage))
-    .use("/messenger", withChats(ChatPage))
-    .use("/change", withUser(ProfilePageChangeData))
-    .use("/password", withUser(ProfilePageChangePassword))
+    .use("/settings", withProfile(ProfilePage))
+    .use("/messenger", withUser(ChatPage))
+    .use("/change", (ProfilePageChangeData))
+    .use("/password", (ProfilePageChangePassword))
     .start();
 
 export default router;

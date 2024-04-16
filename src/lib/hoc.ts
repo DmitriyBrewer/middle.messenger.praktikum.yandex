@@ -3,11 +3,11 @@ import isEqual from "./isEqual";
 import { BlockClass } from "./router";
 import store, { StoreEvents } from "./store";
 
-export type Indexed<T = unknown> = {
+export type State<T = unknown> = {
     [key in string]: T;
 };
 
-export function connect(mapStateToProps: (state: Indexed) => Indexed, updatePropsOptions?:UpdatePropsOptions) {
+export function connect(mapStateToProps: (state: State) => State, updatePropsOptions?:UpdatePropsOptions) {
     return function(Component: BlockClass) {
         return class extends Component {
             constructor(props: BlockProps) {
