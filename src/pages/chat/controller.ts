@@ -15,12 +15,10 @@ class ChatController {
     public getChats() {
         this.chatApi.getAllChats().then((chats) => {
             if (chats instanceof XMLHttpRequest) {
-                console.log( JSON.parse(chats.response));
-                // store.set("data", JSON.parse(chats.response));
-                console.log( JSON.parse(chats.response));
-                const newData = JSON.parse(chats.response); // Создание нового объекта для передачи в set
+                // console.log( JSON.parse(chats.response));
+                const newData = JSON.parse(chats.response);
                 store.set("data", newData);
-            } 
+            }
         })
             .catch((error) => {
                 console.error("Error fetching chats:", error);

@@ -51,14 +51,19 @@ class Store extends EventBus {
     }
   
     public set(path: string, value: unknown) {
+        console.log(path);
+        console.log(value);
+    
         console.log(this.state);
-        const newState = { ...this.state }; // Создание нового объекта состояния на основе текущего
-        set(newState, path, value); // Изменение нового объекта состояния
+        const newState = { ...this.state };
 
-        console.log(newState); // Вывод нового состояния в консоль
+        set(newState, path, value); 
+        this.state = newState; 
 
-        this.state = newState; // Обновление текущего объекта состояния
-        this.emit(StoreEvents.Updated, newState); // Передача нового состояния в событие Updated
+        console.log(newState); 
+    
+        console.log(this.state);
+        this.emit(StoreEvents.Updated); 
     }
 }
   

@@ -18,6 +18,9 @@ export class ChatPage extends Block {
     }
 
     // public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+    //     console.log(oldProps);
+    //     console.log(newProps);
+
     //     if(!isEqual(oldProps,newProps)) {
     //         alert("rerender");
     //     }
@@ -25,6 +28,7 @@ export class ChatPage extends Block {
     // }
 
     render() {
+        
         return this.compile(ChatPageTemplate, {sidebar: this.props.sidebar, window:this.props.window });
     }
 }

@@ -11,19 +11,17 @@ export function connect(mapStateToProps: (state: State) => State, updatePropsOpt
     return function(Component: BlockClass) {
         return class extends Component {
             constructor(props: BlockProps) {
-                let state = mapStateToProps(store.getState());
+                const state = mapStateToProps(store.getState());
                 super({ ...props, ...state });
 
                 store.on(StoreEvents.Updated, () => {
-                    const prevState = { ...state }; // Глубокое копирование предыдущего состояния
-                    console.log(prevState);
+                    console.log(state);
                     const newState = mapStateToProps(store.getState());
                     console.log(newState);
 
-                    if (!isEqual(prevState, newState)) {
-                        this.setProps({ ...newState }, updatePropsOptions);
+                    if (!isEqual(state, newState)) {
+                        this.setProps({...newState}, updatePropsOptions);
                     }
-                    state = { ...newState }; // Обновление предыдущего состояния
                 });
             }
         };

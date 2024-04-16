@@ -66,6 +66,7 @@ class Sidebar extends Block {
     }
 
     render() {
+    
         return this.compile(SidebarTemplate, {});
     }
 }
