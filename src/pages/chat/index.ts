@@ -8,13 +8,13 @@ import { authController } from "../auth/controller";
 
 export class ChatPage extends Block {
     constructor(props:BlockProps) {
-        super("div",{...props,
-            sidebar:new Sidebar({data: []}),
-            window: new ChatWindow({})
-        });
+        super("div",props);
 
         authController.getUserInformation();
         chatController.getChats();
+
+        this.children.sidebar = new Sidebar({}),
+        this.children.window = new ChatWindow({});
     }
 
     render() {
