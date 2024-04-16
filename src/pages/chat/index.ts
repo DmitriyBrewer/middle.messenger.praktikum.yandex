@@ -5,7 +5,6 @@ import Sidebar from "../../components/sidebar";
 import ChatWindow from "../../components/chat-window";
 import { chatController } from "./controller";
 import { authController } from "../auth/controller";
-
 export class ChatPage extends Block {
     constructor(props:BlockProps) {
         super("div",props);

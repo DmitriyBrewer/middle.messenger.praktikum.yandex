@@ -28,8 +28,8 @@ function mapChatsToProps(state:State) {
     };
 }
 
-const withUser = connect(mapChatsToProps,{updateFirstChildren:true});
-const withProfile = connect(mapProfileToProps,{updateAllChild:true});
+const withUser = connect(mapChatsToProps);
+const withProfile = connect(mapProfileToProps);
 
 router
     .use("/", withUser(AuthPage))
