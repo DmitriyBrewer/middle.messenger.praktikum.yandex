@@ -36,7 +36,7 @@ class WebSocketService {
 
             this.socket && this.socket.addEventListener("message", (event) => {
                 const messages = JSON.parse(event.data);
-                store.set("messages", messages);
+                store.set("messages", messages.reverse());
             });
         });
 
@@ -70,7 +70,6 @@ class WebSocketService {
             user_id: newMessage.user_id,
         };
     
-        console.log(currentMessages);
         // eslint-disable-next-line
        // @ts-ignore не успеваю решить эту проблему типизации
         const updatedMessages = [...currentMessages, sanitizedMessage]; 
