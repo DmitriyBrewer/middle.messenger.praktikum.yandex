@@ -1,4 +1,3 @@
-import "../../middle.messenger.praktikum.yandex/src/components/text-field/index.scss";
 import "./index.scss";
 import {  Router } from "./lib/router";
 import { RegistrationPage } from "./pages/registration";
