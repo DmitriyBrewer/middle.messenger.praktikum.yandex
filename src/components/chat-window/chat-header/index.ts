@@ -19,7 +19,8 @@ class ChatHeader extends Block {
         super("span", props); 
 
         this.children.image = new Image({
-            src:"assets/file.svg",
+            src:"assets/avatar.png",
+            alt:"avatar",
             className: "chatHeader__avatar"
         });
 
