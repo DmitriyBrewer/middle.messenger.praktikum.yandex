@@ -7,6 +7,7 @@ import store from "../../../lib/store";
 import Image from "../../../ui/img";
 import { formatDate } from "../../../lib/formatDate";
 import { formatAvatarUrl } from "../../../lib/formatAvatarUrl";
+import ButtonImage from "../../../ui/button-image";
 class ChatItem extends Block {
     constructor(props:BlockProps) {
         super("div",{...props, 
@@ -23,6 +24,17 @@ class ChatItem extends Block {
                 src: props.avatar ? formatAvatarUrl(props.avatar) : "/assets/avatar.png",
                 alt:"chatAvatar",
                 className:"chat__avatar"
+            }),
+            changeAvatar: new ButtonImage({
+                events: {click:(e)=>{
+                    e.stopPropagation();
+                    chatController.deleteChatController({chatId: props.id as number });
+                }},
+                src:"/assets/union.svg",
+                alt:"file",
+                className: "chat__changeImage",
+                width:20,
+                height:20
             }),
             button: new Button({
                 events: {click:(e)=>{
