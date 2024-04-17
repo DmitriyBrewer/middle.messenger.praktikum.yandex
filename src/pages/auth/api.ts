@@ -41,7 +41,9 @@ class AuthApi extends BaseAPI {
                     if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
                         const data = JSON.parse((response as XMLHttpRequest).responseText);
                         data.avatar= data.avatar ? formatAvatarUrl(data.avatar) : null;
-                        store.set("userData", data);
+                        if(router.getCurrentPathname() !== "/") {
+                            store.set("userData", data);
+                        }
                         if(router.getCurrentPathname() === "/") {
                             router.go("/messenger");
                         }
