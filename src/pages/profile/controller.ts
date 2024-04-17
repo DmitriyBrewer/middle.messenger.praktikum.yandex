@@ -1,4 +1,5 @@
 import { host } from "../../constants/host";
+import { formatAvatarUrl } from "../../lib/formatAvatarUrl";
 import store from "../../lib/store";
 import router from "../../main";
 import ProfileApi from "./api";
@@ -11,7 +12,9 @@ class ProfileController {
 
     public updateProfileController(data: Record<string, string>) {
         this.profileApi.updateUserProfile(data).then((res) => {
-            store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
+            const data = JSON.parse((res as XMLHttpRequest).responseText);
+            data.avatar= data.avatar ? formatAvatarUrl(data.avatar) : null;
+            store.set("userData",data);
         })
             .catch((error) => {
                 console.error("Error updating profile:", error);
@@ -28,8 +31,9 @@ class ProfileController {
 
     public updateAvatarController(file: File) {
         this.profileApi.updateUserProfileAvatar(file).then((res) => {
-            JSON.parse((res as XMLHttpRequest).responseText);
-            store.set("userData",JSON.parse((res as XMLHttpRequest).responseText));
+            const data = JSON.parse((res as XMLHttpRequest).responseText);
+            data.avatar= data.avatar ? formatAvatarUrl(data.avatar) : null;
+            store.set("userData",data);
         })
             .catch((error) => {
                 console.error("Error updating avatar:", error);

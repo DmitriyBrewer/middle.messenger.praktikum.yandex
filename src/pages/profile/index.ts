@@ -41,9 +41,8 @@ export class ProfilePage extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(!isEqual(oldProps, newProps)) {
-            ( this.children.profileHeader as Block).setProps({name:(newProps.userData as {first_name:string}).first_name,src:(newProps.userData as {avatar: string | null}).avatar});
+            (this.children.profileHeader as Block).setProps(newProps);
         }
-
         return true;
     }
 
