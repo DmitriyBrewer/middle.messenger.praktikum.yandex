@@ -7,6 +7,7 @@ import { ChatPage } from "./pages/chat";
 import AuthPage from "./pages/auth";
 import { connect } from "./lib/hoc";
 import { mapChatsToProps, mapProfileToProps } from "./lib/mapProps";
+import { ErrorPage404, ErrorPage500 } from "./pages/error-page";
   
 const router = new Router(".root");
 
@@ -20,6 +21,8 @@ router
     .use("/messenger", withChat(ChatPage))
     .use("/change", (ProfilePageChangeData))
     .use("/password", (ProfilePageChangePassword))
+    .use("/500", (ErrorPage500))
+    .use("/404", (ErrorPage404))
     .start();
 
 export default router;

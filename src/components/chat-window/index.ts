@@ -8,7 +8,6 @@ class ChatWindow extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
             chatHeader: new ChatHeader({}),
-          
         }); 
 
         this.children.chatTexts= new MessageList({

@@ -12,18 +12,10 @@ import ChatMenu from "../chat-menu";
 import ChatMenuItem from "../../chat-menu-item";
 import { UserData } from "../../../pages/chat/type";
 import InputImageComponent from "../../input-image";
-import Image from "../../../ui/img";
-import { formatAvatarUrl } from "../../../lib/formatAvatarUrl";
 import isEqual from "../../../lib/isEqual";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
-
-        this.children.image = new Image({
-            src:"assets/avatar.png",
-            alt:"avatar",
-            className: "chatHeader__avatar"
-        });
 
         this.children.avatar = new InputImageComponent({
             src:"/assets/union.svg",
@@ -153,12 +145,6 @@ class ChatHeader extends Block {
                 {
                     title:(this.props.selectChat as {title:string}).title,
                 });
-
-            this.props && this.props.selectChat &&(this.props.selectChat as {avatar:string | null}).avatar && (this.children.image as Block).setProps(
-                {
-                    src:formatAvatarUrl((this.props.selectChat as {avatar:string}).avatar),
-                });
-
         }
         return true;
     }

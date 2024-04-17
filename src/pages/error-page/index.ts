@@ -13,15 +13,32 @@ class ErrorPage extends Block {
             subtitle: this.props.subtitle
         });
     }
-
 }
 
-export const errorPage500 = new ErrorPage({
-    title:"500",
-    subtitle:"Мы уже фиксим"
-});
+export class ErrorPage500 extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            error:  new ErrorPage({
+                title:"500",
+                subtitle:"Мы уже фиксим"
+            })
+        });
+    }
+    render() {
+        return this.compile("{{{error}}}", {});
+    }
+}
 
-export const errorPage404 = new ErrorPage({
-    title:"404",
-    subtitle:"Не туда попали"
-});
+export class ErrorPage404 extends Block {
+    constructor(props:BlockProps) {
+        super("div",{...props,
+            error:  new ErrorPage({
+                title:"404",
+                subtitle:"Не туда попали"
+            })
+        });
+    }
+    render() {
+        return this.compile("{{{error}}}", {});
+    }
+}
