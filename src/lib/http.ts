@@ -5,29 +5,6 @@ export const METHODS = {
     DELETE: "DELETE",
 };
 
-// TODO
-// function queryStringify(data: Data): string {
-//     const queryString = data.reduce((result, [key, value], index) =>
-//         `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`,
-//     "?"
-//     );
-
-//     return queryString;
-// }
-// function queryStringify(data: Data): string {
-//     const queryString = data.reduce((result, header, index) => {
-//         if (Array.isArray(header)) {
-//             const [key, value] = header;
-//             return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
-//         } else {
-//             const key = Object.keys(header)[0];
-//             const value = header[key];
-//             return `${result}${key}=${value}${index < data.length - 1 ? "&" : ""}`;
-//         }
-//     }, "?");
-
-//     return queryString;
-// }
 function queryStringify(data: Data): string {
     let headers: Header[];
     if (Array.isArray(data)) {
@@ -94,10 +71,8 @@ export class HTTPTransport {
     };
 
     request: HTTPMethod = (url, options, timeout = 2500) => {
-        console.log(options);
         const currentOption = options? options : {headers:{}, method:undefined, data:undefined, body:undefined};
         const {headers = {}, method, data, body} = currentOption;
-        console.log(body);
 
         return new Promise(function(resolve, reject) {
             if (!method) {
@@ -132,17 +107,10 @@ export class HTTPTransport {
             xhr.ontimeout = reject;
             xhr.withCredentials = true;
 
-            // if (isGet && !data) {
-            //     xhr.send();
-            // } 
             if (isGet && !data) {
                 xhr.send();
             } 
-            // else if(body) {
-            //     console.log(body);
-            //     console.log("typeof body === string");
-            //     xhr.send(body);
-            // }
+     
             else if (data instanceof FormData) {
                 xhr.send(data);
             }  else {
@@ -153,7 +121,6 @@ export class HTTPTransport {
                     data && data.forEach((header: Header) => {
                         dataToSend.append(header[0], header[1]);
                     });
-                    console.log(dataToSend);
                     xhr.send(dataToSend);
                 }
             }

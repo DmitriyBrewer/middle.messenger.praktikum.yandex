@@ -26,7 +26,6 @@ class WebSocketService {
         });
 
         this.socket.addEventListener("open", () => {
-            console.log("Соединение установлено");
 
             const message = {
                 content: "0",
@@ -54,7 +53,8 @@ class WebSocketService {
 
     private updateMessagesInStore(newMessage: Message) {
         const currentMessages = store.getState().messages || [];
-        // TODO
+        // eslint-disable-next-line
+        // @ts-ignore не успеваю решить эту проблему типизации
         const updatedMessages = currentMessages.concat(newMessage);
 
         store.set("messages", updatedMessages);

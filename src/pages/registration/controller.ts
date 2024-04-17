@@ -12,8 +12,7 @@ class RegistrationController {
         const convertedData = mapDataToEntriesArray(formData);
 
         this.registrationApi.signUpUser(convertedData)
-            .then((data) => {
-                console.log("User signed up successfully:", data);
+            .then(() => {
                 this.getUserInformation(); 
             })
             .catch((error) => {
@@ -24,7 +23,6 @@ class RegistrationController {
     private getUserInformation() {
         this.registrationApi.getUserInfo()
             .then(() => {
-                console.log("User information retrieved successfully");
             })
             .catch((error) => {
                 console.error("Error getting user information:", error);

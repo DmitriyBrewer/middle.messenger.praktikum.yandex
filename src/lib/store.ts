@@ -20,8 +20,6 @@ function set(object: State | unknown, path: string, value: unknown): State | unk
     const result = path.split(".").reduceRight<State>((acc, key) => ({
         [key]: acc,
     }), value as State<unknown>);
-    console.log(result);
-    console.log(merge(object as State, result));
     return merge(object as State, result);
 }
 
@@ -37,9 +35,7 @@ class Store extends EventBus {
     }
 
     public set(path: string, value: unknown) {
-        console.log(this.state);
         set(this.state, path, value);
-        console.log(this.state);
 
         this.emit(StoreEvents.Updated,this.state);
     }

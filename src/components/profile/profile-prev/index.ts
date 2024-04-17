@@ -1,5 +1,3 @@
-// TODO возникает ошибка исправить 
-// Uncaught TypeError: Cannot convert undefined or null to object
 import "./index.scss";
 
 import ProfilePrevTemplate  from "./index.hbs?raw";

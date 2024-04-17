@@ -7,7 +7,6 @@ import AuthTemplate from "./index.hbs?raw";
 import { validationField } from "../../lib/validations/isValidLogin";
 import { conditions } from "../../constants/conditions";
 import LinkComponent from "../../ui/link";
-import store from "../../lib/store";
 import { authController } from "./controller";
 
 registerHandlebarsPartials(allPartials);
@@ -21,7 +20,6 @@ class Auth extends Block {
                 submit: (event: Event) => {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
-                        console.log("Данные формы:", formDataObject);
                         authController.signInUser(formDataObject);
                     });
                 }
@@ -81,8 +79,6 @@ export default class AuthPage extends Block {
     }
 
     render() {
-        console.log(store);
-        // console.log(this);
         return this.compile("{{#> BaseLayout}} {{{ authForm }}}{{/ BaseLayout}}", {});
     }
 }

@@ -18,12 +18,6 @@ class Registration extends Block {
                     });
                 }
             },
-            // TODO удалить
-            linkTest: new LinkComponent({
-                href:"/messenger",
-                text:"tet",
-                isRouter:true
-            }),
             email: new TextFieldComponent({
                 type:"text", 
                 id:"email",

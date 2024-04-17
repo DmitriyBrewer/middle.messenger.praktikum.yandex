@@ -22,10 +22,8 @@ class RegistrationApi extends BaseAPI {
         return this.post(`${host}/api/v2/auth/signup`, signUpOptions)
             .then((response: unknown) => {
                 if (response instanceof XMLHttpRequest) {
-                    console.log(response);
                     if (response.status >= 200 && response.status < 300) {
                         const jsonData = JSON.parse(response.responseText);
-                        console.log(jsonData);
                         return jsonData;
                     } else {
                         throw new Error("Request failed with status: " + response.status);

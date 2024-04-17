@@ -15,7 +15,6 @@ class ChatController {
     public getChats() {
         this.chatApi.getAllChats().then((chats) => {
             if (chats instanceof XMLHttpRequest) {
-                // console.log( JSON.parse(chats.response));
                 const newData = JSON.parse(chats.response);
                 store.set("data", newData);
             }
@@ -27,7 +26,6 @@ class ChatController {
 
     public deleteChatController(data: ChatId) {
         this.chatApi.deleteChat(data).then((res) => {
-            console.log(res);
             store.set("data", res);
             this.getChats();
         })
@@ -68,8 +66,7 @@ class ChatController {
 
     public addUserToChatController(userData:UserData) {
         this.chatApi.addUserToChat(userData)
-            .then((response) => {
-                console.log("User added to chat successfully:", response);
+            .then(() => {
                 this.getChats();
             })
             .catch((error) => {
@@ -79,8 +76,7 @@ class ChatController {
 
     public deleteUserToChatController(userData:UserData) {
         this.chatApi.deleteUserToChat(userData)
-            .then((response) => {
-                console.log("User added to chat successfully:", response);
+            .then(() => {
                 this.getChats();
             })
             .catch((error) => {

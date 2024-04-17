@@ -21,8 +21,6 @@ class Route {
     navigate(pathname: Pathname) {
         if (this.match(pathname)) {
             this._pathname = pathname;
-            // TODO
-            // this.render();
             this.render(this._props);
         }
     }
@@ -34,22 +32,11 @@ class Route {
     }
   
     match(pathname:Pathname) {
-        // TODO было return isEqual(pathname, this._pathname); было , проверитьь все ли ок
         const pathnameObject: PlainObject<string> = { pathname };
         const thisPathnameObject: PlainObject<string> = { pathname: this._pathname };
         return isEqual(pathnameObject, thisPathnameObject);
     }
   
-    // TODO
-    // render() {
-    //     if (!this._block) {
-    //         this._block = new this._blockClass();
-    //         renderComponent((this._props.rootQuery as string), this._block);
-    //         return;
-    //     }
-  
-    //     this._block.show();
-    // }
     render(props: BlockProps) {
         if (!this._block) {
             this._block = new this._blockClass(props);
@@ -108,8 +95,6 @@ export class Router {
         }
   
         this._currentRoute = route;
-        // TODO
-        // route.render(route, pathname);
         route.render({pathname});
     }
   

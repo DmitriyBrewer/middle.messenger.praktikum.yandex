@@ -1,7 +1,3 @@
-// TODO удалить если не нужно
-// export function isEqual(lhs:string, rhs:string) {
-//     return lhs === rhs;
-// }
 export type PlainObject<T = unknown> = {
     [k in string]: T;
 };
@@ -13,7 +9,6 @@ function isPlainObject(value: unknown): value is PlainObject {
         && Object.prototype.toString.call(value) === "[object Object]";
 }
 
-// TODO
 function isArray(value: unknown): value is [] {
     return Array.isArray(value);
 }

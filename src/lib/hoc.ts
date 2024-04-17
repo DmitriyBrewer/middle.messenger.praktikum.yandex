@@ -12,20 +12,16 @@ export function connect(mapStateToProps: (state: State) => State, updatePropsOpt
         return class extends Component {
             constructor(props: BlockProps) {
                 let state = mapStateToProps(store.getState());
-                console.log(state);
                 super({ ...props, ...state });
 
                 store.on(StoreEvents.Updated, () => {
-                    console.log(state);
                     const newState = mapStateToProps(store.getState());
-                    console.log(newState);
 
                     if (!isEqual(state, newState)) {
                         this.setProps({...newState}, updatePropsOptions);
                     }
 
                     state = newState;
-                    console.log(state);
                 });
             }
         };

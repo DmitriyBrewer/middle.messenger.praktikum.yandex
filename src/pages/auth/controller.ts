@@ -13,7 +13,6 @@ class AuthController {
 
         try {
             await this.authApi.signInUser(convertedData);
-            console.log("User signed in successfully");
             this.getUserInformation();
         } catch (error) {
             console.error("Error signing in user:", error);

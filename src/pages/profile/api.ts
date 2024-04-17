@@ -35,7 +35,6 @@ class ProfileApi extends BaseAPI {
         
         const options: Options = {
             method: METHODS.PUT,
-            // TODO проверить работает ли ручка
             data: data,
         };
 
