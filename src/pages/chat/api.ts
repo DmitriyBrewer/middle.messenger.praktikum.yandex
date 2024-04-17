@@ -1,6 +1,6 @@
 import BaseAPI from "../../lib/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
-import { METHODS } from "../../lib/http";
+import { METHODS, Options } from "../../lib/http";
 import { ChatData, ChatId, UserData } from "./type";
 
 class ChatAPI extends BaseAPI {
@@ -34,6 +34,19 @@ class ChatAPI extends BaseAPI {
             headers: ["Content-Type", "application/json"],
             data: mapDataToEntriesArray(data),
         });
+    }
+
+    public addChatAvatar(file: File, chatId: number) {
+        const data = new FormData();
+        data.append("avatar", file);
+        data.append("chatId", chatId.toString());
+        
+        const options: Options = {
+            method: METHODS.PUT,
+            data: data
+        };
+
+        return this.put(`${this.baseUrl}/api/v2/user/chats/avatar`, options);
     }
 
     public addUserToChat(userData: UserData) {

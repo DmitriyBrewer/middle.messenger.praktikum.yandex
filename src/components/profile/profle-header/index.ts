@@ -3,6 +3,7 @@ import  ProfileHeaderTemplate from "./index.hbs?raw";
 import Block, { BlockProps } from "../../../lib/block";
 import InputImageComponent from "../../input-image";
 import isEqual from "../../../lib/isEqual";
+import { profileController } from "../../../pages/profile/controller";
 class ProfileHeader extends Block {
     constructor(props:BlockProps) {
         super("div",props);
@@ -16,6 +17,9 @@ class ProfileHeader extends Block {
             placeholder: "Выберите изображение",
             isRequired: true,
             accept: "image/*", 
+            api:(fileData: File) => {
+                profileController.updateAvatarController(fileData);
+            }
         });
     }
 

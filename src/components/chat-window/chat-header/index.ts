@@ -11,9 +11,32 @@ import { chatController } from "../../../pages/chat/controller";
 import ChatMenu from "../chat-menu";
 import ChatMenuItem from "../../chat-menu-item";
 import { UserData } from "../../../pages/chat/type";
+import InputImageComponent from "../../input-image";
+import Image from "../../../ui/img";
+import { formatAvatarUrl } from "../../../lib/formatAvatarUrl";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
+
+        this.children.image = new Image({
+            src:"assets/file.svg",
+            className: "chatHeader__avatar"
+        });
+
+        this.children.avatar = new InputImageComponent({
+            src:"/assets/union.svg",
+            className:"imageFile",
+            type: "file",
+            id: "chatAvatar",
+            name: "avatar",
+            placeholder: "Выберите изображение",
+            isRequired: true,
+            accept: "image/*", 
+            api:(fileData: File) => {
+                const chatId = (this.props.selectChat as {id:number}).id;
+                chatController.addChatAvatarToChatController(fileData,chatId);
+            }
+        }),
 
         this.children.chatTitle =  new ChatTitle({title:""}),
 
@@ -119,19 +142,28 @@ class ChatHeader extends Block {
            
         });
 
-        this.props.buttonImage = this.children.buttonImage;
+
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps !== newProps) {
-            this.props && this.props.selectChat &&(this.props.selectChat as {title:string}).title && (this.children.chatTitle as Block).setProps({title:(this.props.selectChat as {title:string}).title});
+            this.props && this.props.selectChat &&(this.props.selectChat as {title:string}).title && (this.children.chatTitle as Block).setProps(
+                {
+                    title:(this.props.selectChat as {title:string}).title,
+                });
+
+            this.props && this.props.selectChat &&(this.props.selectChat as {avatar:string | null}).avatar && (this.children.image as Block).setProps(
+                {
+                    src:formatAvatarUrl((this.props.selectChat as {avatar:string}).avatar),
+                });
+
         }
         return true;
     }
 
     render() {
         return this.compile(ChatHeaderTemplate, {
-            buttonImage: this.props.buttonImage
+        
         });
     }
 }

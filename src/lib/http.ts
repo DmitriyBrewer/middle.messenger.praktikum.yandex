@@ -36,7 +36,7 @@ export type Options = {
     timeout?: number,
     headers?: Header,
     repeat?: number,
-    body?: Record<string,number | number[]>
+    body?: Record<string,number | number[] | string>
   }
   
 type HTTPMethod = (url: string, options?: Options, timeout?: number) => Promise<unknown>;

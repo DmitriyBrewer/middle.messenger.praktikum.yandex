@@ -25,8 +25,14 @@
         border-radius: 20px;
     }
 
-    &____menuImage {
+    &___menuImage {
         width: 3px;
         height: 15px;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
     }
 }

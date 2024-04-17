@@ -78,15 +78,4 @@
     &__delete {
         background: var(--primary-error);
     }
-
-    &__buttons {
-        display: flex;
-        flex-direction: column;
-        row-gap: var(--g4);
-    }
-
-    &__changeImage {
-        background: none;
-        border: none;
-    }
 }

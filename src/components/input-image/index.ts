@@ -3,8 +3,6 @@ import Block, { BlockProps } from "../../lib/block";
 import  InputImageTemplate  from "./index.hbs?raw";
 import Image from "../../ui/img";
 import InputFileComponent from "../../ui/input-file";
-import { profileController } from "../../pages/profile/controller";
-
 class InputImageComponent extends Block {
     constructor(props:BlockProps) {
         super("div",{...props,
@@ -22,11 +20,11 @@ class InputImageComponent extends Block {
                 accept: props.accept,
                 events:{
                     change: () => {
-                        const element = document.getElementById("avatarInput") as HTMLInputElement | null;
+                        const element = document.getElementById(props.id as string) as HTMLInputElement | null;
                         if (element) {
                             const file = element.files?.[0];
                             if (file) {
-                                profileController.updateAvatarController(file);
+                                (props as {api: (arg:File)=>void}).api(file);
                             } else {
                                 console.error("No file selected.");
                             }
@@ -40,8 +38,8 @@ class InputImageComponent extends Block {
         });
 
         this.children.image = new Image({
-            width: 150,
-            height: 150,
+            width: this.props.width ||  150,
+            height: this.props.height ||  150,
             src:this.props.src,
             alt:"avatar",
             className:"profileHeader__avatarDefault"
@@ -52,7 +50,11 @@ class InputImageComponent extends Block {
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if(oldProps.src !== newProps.src) {
-            (this.children.image as Block).setProps({src:newProps.src});
+            (this.children.image as Block).setProps({
+                src:newProps.src,
+                width: newProps.width,
+                height: newProps.height,
+            });
         }
         return true;
     }

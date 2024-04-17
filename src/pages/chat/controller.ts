@@ -74,6 +74,16 @@ class ChatController {
             });
     }
 
+    public addChatAvatarToChatController(file:File, chatId:number) {
+        this.chatApi.addChatAvatar(file,chatId)
+            .then(() => {
+                this.getChats();
+            })
+            .catch((error) => {
+                console.error("Error adding image to chat:", error);
+            });
+    }
+
     public deleteUserToChatController(userData:UserData) {
         this.chatApi.deleteUserToChat(userData)
             .then(() => {
