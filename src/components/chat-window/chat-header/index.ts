@@ -14,6 +14,7 @@ import { UserData } from "../../../pages/chat/type";
 import InputImageComponent from "../../input-image";
 import Image from "../../../ui/img";
 import { formatAvatarUrl } from "../../../lib/formatAvatarUrl";
+import isEqual from "../../../lib/isEqual";
 class ChatHeader extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
@@ -147,7 +148,7 @@ class ChatHeader extends Block {
     }
 
     public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
-        if(oldProps !== newProps) {
+        if(!isEqual(oldProps,newProps)) {
             this.props && this.props.selectChat &&(this.props.selectChat as {title:string}).title && (this.children.chatTitle as Block).setProps(
                 {
                     title:(this.props.selectChat as {title:string}).title,
@@ -163,9 +164,7 @@ class ChatHeader extends Block {
     }
 
     render() {
-        return this.compile(ChatHeaderTemplate, {
-        
-        });
+        return this.compile(ChatHeaderTemplate, {buttonImage:this.props.buttonImage});
     }
 }
 
