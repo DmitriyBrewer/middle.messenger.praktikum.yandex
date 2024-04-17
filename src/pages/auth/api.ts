@@ -17,7 +17,7 @@ class AuthApi extends BaseAPI {
             .then((response: unknown) => {
                 if (response instanceof XMLHttpRequest) {
                     if ((response as XMLHttpRequest).status >= 200 && (response as XMLHttpRequest).status < 300) {
-                        // router.go("/messenger");
+                        return response;
                     } else {
                         throw new Error("Request failed with status: " + (response as XMLHttpRequest).status);
                     }
