@@ -10,6 +10,8 @@ export function merge(lhs: State, rhs: State): State {
         }
 
         try {
+        // eslint-disable-next-line
+        // @ts-ignore не получается корректно типизировать не теряя логики
             if (rhs[p].constructor === Object) {
                 rhs[p] = merge(lhs[p] as State, rhs[p] as State);
             } else {
