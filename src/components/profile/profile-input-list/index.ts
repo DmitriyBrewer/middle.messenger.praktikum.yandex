@@ -3,6 +3,7 @@ import Block, { BlockChildren, BlockProps } from "../../../lib/block";
 import { conditions } from "../../../constants/conditions";
 import ProfileInputParam from "../profile-input-param";
 import { validationField } from "../../../lib/validations/isValidLogin";
+import isEqual from "../../../lib/isEqual";
 class ProfileInputList extends Block {
     constructor(props:BlockProps) {
         super("span", props); 
@@ -108,6 +109,15 @@ class ProfileInputList extends Block {
 
         this.props.list = this.children.list;
         this.props.className = "profileParams";
+    }
+
+    componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if (!isEqual(oldProps,newProps)) {
+            if (newProps.list && Array.isArray(newProps.list)) {
+                (this.children.list as Block).setProps(newProps);
+            }
+        }
+        return true;
     }
 
     render() {    

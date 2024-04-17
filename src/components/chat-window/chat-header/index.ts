@@ -76,7 +76,11 @@ class ChatHeader extends Block {
             content: new NewUser({
                 hideBlock: ()=>(this.children.modal as Block).hide(),
                 api:(formData: UserData) => {
-                    chatController.deleteUserToChatController(formData);
+                    const chatId = (this.props.selectChat as {id:number}).id;
+                    if(chatId) {
+                        const payload: UserData = {...formData, chatId:chatId};
+                        chatController.deleteUserToChatController(payload);
+                    } else console.error("Выберите чат");
                 },
                 user: new InputComponent({
                     type: "text",
@@ -86,19 +90,6 @@ class ChatHeader extends Block {
                     helper: "Id user",
                     autocomplete: "username",
                     isRequired:true,
-                }),
-                chatId: new InputComponent({
-                    type: "text",
-                    id: "chatId",
-                    name: "chatId",
-                    placeholder: "chatId",
-                    helper: "Id chatId",
-                    autocomplete: "username",
-                    isRequired:true,
-                }),
-                button: new Button({
-                    text: "Удалить пользователя",
-                    type:"submit",
                 }),
             }),
         });

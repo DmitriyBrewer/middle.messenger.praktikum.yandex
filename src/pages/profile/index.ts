@@ -73,7 +73,13 @@ export class ProfilePageChangeData extends Block {
             }),
         });
         this.setProps(props);
+    }
 
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(!isEqual(oldProps, newProps)) {
+            (this.children.profileForm as Block).setProps(newProps);
+        }
+        return true;
     }
 
     render() {
@@ -105,6 +111,14 @@ export class ProfilePageChangePassword extends Block {
 
         this.setProps(props);
     }
+
+    public componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
+        if(!isEqual(oldProps, newProps)) {
+            (this.children.profileForm as Block).setProps(newProps);
+        }
+        return true;
+    }
+
 
     render() {
         return this.compile(ProfilePageTemplate, {});
