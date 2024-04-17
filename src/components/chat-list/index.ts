@@ -4,11 +4,12 @@ import ChatItem from "../sidebar/sidebar-item";
 class ChatList extends Block {
     constructor(props: BlockProps) {
         super("span", props); 
+
+        this.setProps(props);
     }
 
     componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): boolean {
         if (!isEqual(oldProps,newProps)) {
-            console.log("rerender");
             if (newProps.data && Array.isArray(newProps.data)) {
                 this.children.list = newProps.data.map((itemProps: BlockProps) => new ChatItem(itemProps)
                 );
@@ -18,7 +19,6 @@ class ChatList extends Block {
     }
 
     render() {  
-        console.log(this);
         return this.compile("{{{list}}}", {});
     }
 }

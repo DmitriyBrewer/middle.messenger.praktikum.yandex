@@ -5,37 +5,19 @@ import { RegistrationPage } from "./pages/registration";
 import { ProfilePage, ProfilePageChangeData, ProfilePageChangePassword } from "./pages/profile";
 import { ChatPage } from "./pages/chat";
 import AuthPage from "./pages/auth";
-import { State, connect } from "./lib/hoc";
+import { connect } from "./lib/hoc";
+import { mapChatsToProps, mapProfileToProps } from "./lib/mapProps";
   
 const router = new Router(".root");
 
-// TODO удалить если не нужно
-function mapProfileToProps(state:State) {  
-    return {
-        userData: state.userData,
-        updateAllChild:true
-
-    };
-}
-
-function mapChatsToProps(state:State) {
-    return {
-        userData: state.userData,
-        data: state.data,
-        selectChat: state.selectChat,
-        messages: state.messages,
-        updateAllChild:true
-    };
-}
-
-const withUser = connect(mapChatsToProps);
+const withChat = connect(mapChatsToProps);
 const withProfile = connect(mapProfileToProps);
 
 router
-    .use("/", withUser(AuthPage))
-    .use("/sign-up", RegistrationPage)
+    .use("/", (AuthPage))
+    .use("/sign-up", (RegistrationPage))
     .use("/settings", withProfile(ProfilePage))
-    .use("/messenger", withUser(ChatPage))
+    .use("/messenger", withChat(ChatPage))
     .use("/change", (ProfilePageChangeData))
     .use("/password", (ProfilePageChangePassword))
     .start();

@@ -1,26 +1,11 @@
 import EventBus from "./eventBus";
+import { merge } from "./merge";
 
 type State<T = unknown> = {
     [key in string]: T;
 };
 
-function merge(lhs: State, rhs: State): State {
-    for (const p in rhs) {
-        if (Object.prototype.hasOwnProperty.call(rhs, p)) {
-            try {
-                if (typeof rhs[p] === "object" && rhs[p] !== null) {
-                    lhs[p] = merge(lhs[p] as State, rhs[p] as State);
-                } else {
-                    lhs[p] = rhs[p];
-                }
-            } catch (e) {
-                lhs[p] = rhs[p];
-            }
-        }
-    }
 
-    return lhs;
-}
 
 
 function set(object: State | unknown, path: string, value: unknown): State | unknown {
@@ -35,6 +20,8 @@ function set(object: State | unknown, path: string, value: unknown): State | unk
     const result = path.split(".").reduceRight<State>((acc, key) => ({
         [key]: acc,
     }), value as State<unknown>);
+    console.log(result);
+    console.log(merge(object as State, result));
     return merge(object as State, result);
 }
 
@@ -43,27 +30,18 @@ export enum StoreEvents {
   }
   
 class Store extends EventBus {
-
     private state: State = {};
 
     public getState() {
         return this.state;
     }
-  
+
     public set(path: string, value: unknown) {
-        console.log(path);
-        console.log(value);
-    
         console.log(this.state);
-        const newState = { ...this.state };
-
-        set(newState, path, value); 
-        this.state = newState; 
-
-        console.log(newState); 
-    
+        set(this.state, path, value);
         console.log(this.state);
-        this.emit(StoreEvents.Updated); 
+
+        this.emit(StoreEvents.Updated,this.state);
     }
 }
   

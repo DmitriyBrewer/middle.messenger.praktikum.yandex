@@ -14,7 +14,6 @@ class Registration extends Block {
                 submit: (event: Event) => {
                     event.preventDefault();
                     this.handleFormData((formDataObject) => {
-                        console.log("Данные формы:", formDataObject);
                         registrationController.registerUser(formDataObject);
                     });
                 }

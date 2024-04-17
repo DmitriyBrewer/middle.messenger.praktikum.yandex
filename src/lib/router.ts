@@ -116,6 +116,7 @@ export class Router {
     go(pathname: Pathname) {
         (this.history as History).pushState({}, "", pathname);
         this._onRoute(pathname);
+
     }
   
     back() {
