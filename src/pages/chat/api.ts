@@ -38,15 +38,18 @@ class ChatAPI extends BaseAPI {
 
     public addChatAvatar(file: File, chatId: number) {
         const data = new FormData();
-        data.append("avatar", file);
         data.append("chatId", chatId.toString());
-        
+        data.append("avatar", file, file.name);
+    
         const options: Options = {
             method: METHODS.PUT,
-            data: data
+            data: data,
+            headers: {
+                "Accept": "application/json"
+            }
         };
-
-        return this.put(`${this.baseUrl}/api/v2/user/chats/avatar`, options);
+    
+        return this.put(`${this.baseUrl}/api/v2/chats/avatar`, options);
     }
 
     public addUserToChat(userData: UserData) {
