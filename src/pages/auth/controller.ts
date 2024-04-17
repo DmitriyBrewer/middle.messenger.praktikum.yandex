@@ -1,4 +1,5 @@
 import { mapDataToEntriesArray } from "../../lib/convertData";
+import router from "../../main";
 import AuthApi from "./api";
 
 class AuthController {
@@ -25,6 +26,7 @@ class AuthController {
             console.log("User information retrieved successfully:", userInfo);
         } catch (error) {
             console.error("Error getting user information:", error);
+            router.back();
         }
     }
 }
