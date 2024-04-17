@@ -8,14 +8,19 @@ class ChatWindow extends Block {
     constructor(props:BlockProps) {
         super("span", {...props,
             chatHeader: new ChatHeader({}),
-            chatTexts: new MessageList({
-                data: props.message
-            }),
-            chatSend: new ChatSend({})
+          
         }); 
+
+        this.children.chatTexts= new MessageList({
+            data: props.message
+        }),
+        this.children.chatSend= new ChatSend({});
+
+        this.setProps(props);
     }
 
     render() {
+        console.log(this);
         return this.compile(ChatWindowTemplate, {
             empty: !this.props.selectChat,
             date: this.props.time

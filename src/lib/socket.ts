@@ -33,6 +33,11 @@ class WebSocketService {
                 type: "get old",
             };
             this.socket?.send(JSON.stringify(message));
+
+            this.socket && this.socket.addEventListener("message", (event) => {
+                const messages = JSON.parse(event.data);
+                store.set("messages", messages);
+            });
         });
 
         this.socket.addEventListener("close", (event) => {
@@ -51,27 +56,7 @@ class WebSocketService {
             this.socket.close();
         }
     }
-
-    // private updateMessagesInStore(newMessage: Message) {
-    //     const currentMessages = store.getState().messages || [];
-    //     const sanitizedMessage = {
-    //         chat_id: newMessage.chat_id,
-    //         content: sanitizeInput(newMessage.content),
-    //         file: newMessage.file,
-    //         id: newMessage.id,
-    //         is_read: newMessage.is_read,
-    //         time: newMessage.time,
-    //         type: sanitizeInput(newMessage.type),
-    //         user_id: newMessage.user_id,
-    //     };
-
-    //     // eslint-disable-next-line
-    //     // @ts-ignore не успеваю решить эту проблему типизации
-    //     const updatedMessages = currentMessages.concat(newMessage);
-
-    //     store.set("messages", updatedMessages);
-    // }
-    // TODO
+    
     private updateMessagesInStore(newMessage: Message) {
         const currentMessages = store.getState().messages || [];
         const sanitizedMessage = {
@@ -85,10 +70,10 @@ class WebSocketService {
             user_id: newMessage.user_id,
         };
     
+        console.log(currentMessages);
         // eslint-disable-next-line
        // @ts-ignore не успеваю решить эту проблему типизации
-        const updatedMessages = [...currentMessages, sanitizedMessage];
-    
+        const updatedMessages = [...currentMessages, sanitizedMessage]; 
         store.set("messages", updatedMessages);
     }
 
