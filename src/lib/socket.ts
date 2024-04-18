@@ -16,32 +16,35 @@ interface Message {
 class WebSocketService {
     private socket: WebSocket | null = null;
 
-    connectToWebSocket(data: ChatData, token:string): void {
-        const {  id, userId } = data;
+    connectToWebSocket(data: ChatData, token: string): void {
+        const { id, userId } = data;
         const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
         this.socket = new WebSocket(socketUrl);
 
-        this.socket.addEventListener("message", (event) => {
-            try {
-                const message = JSON.parse(event.data);
-                this.updateMessagesInStore(message);
-            } catch (error) {
-                console.error("Ошибка JSON:", error);
+        this.socket.addEventListener("message", (event) => {        
+            if (!Array.isArray(JSON.parse(event.data))) {
+                try {
+                    const message = JSON.parse(event.data);
+                    this.updateMessagesInStore(message);
+                } catch (error) {
+                    console.error("Ошибка JSON при обработке сообщения:", error);
+                }
+            } else {
+                try {
+                    const messages = JSON.parse(event.data);
+                    store.set("messages", messages.reverse());
+                } catch (error) {
+                    console.error("Ошибка JSON при обработке сообщений:", error);
+                }
             }
         });
 
         this.socket.addEventListener("open", () => {
-
             const message = {
                 content: "0",
                 type: "get old",
             };
             this.socket?.send(JSON.stringify(message));
-
-            this.socket && this.socket.addEventListener("message", (event) => {
-                const messages = JSON.parse(event.data);
-                store.set("messages", messages.reverse());
-            });
         });
 
         this.socket.addEventListener("close", (event) => {
@@ -60,7 +63,7 @@ class WebSocketService {
             this.socket.close();
         }
     }
-    
+
     private updateMessagesInStore(newMessage: Message) {
         const currentMessages = store.getState().messages || [];
         const sanitizedMessage = {
@@ -73,10 +76,9 @@ class WebSocketService {
             type: sanitizeInput(newMessage.type),
             user_id: newMessage.user_id,
         };
-    
         // eslint-disable-next-line
        // @ts-ignore не успеваю решить эту проблему типизации
-        const updatedMessages = [...currentMessages, sanitizedMessage]; 
+        const updatedMessages = [...currentMessages, sanitizedMessage];
         store.set("messages", updatedMessages);
     }
 
