@@ -40,11 +40,15 @@ class WebSocketService {
         });
 
         this.socket.addEventListener("open", () => {
-            const message = {
-                content: "0",
-                type: "get old",
-            };
-            this.socket?.send(JSON.stringify(message));
+            try {
+                const message = {
+                    content: "0",
+                    type: "get old",
+                };
+                this.socket?.send(JSON.stringify(message));
+            } catch (error) {
+                console.error("Ошибка при отправке сообщения на сокете:", error);
+            }
         });
 
         this.socket.addEventListener("close", (event) => {
