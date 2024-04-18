@@ -1,0 +1,27 @@
+.chatWindow {
+    display: flex;
+    flex-direction: column;
+    padding: var(--g12);
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--g24);
+        height: 90vh;
+        overflow-y: scroll;
+    }
+
+    &__date {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-date);
+        font-weight: var(--fw-chat-date);
+        margin: 0;
+    }
+}
