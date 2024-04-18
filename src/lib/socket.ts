@@ -22,8 +22,12 @@ class WebSocketService {
         this.socket = new WebSocket(socketUrl);
 
         this.socket.addEventListener("message", (event) => {
-            const message = JSON.parse(event.data);
-            this.updateMessagesInStore(message);
+            try {
+                const message = JSON.parse(event.data);
+                this.updateMessagesInStore(message);
+            } catch (error) {
+                console.error("Ошибка JSON:", error);
+            }
         });
 
         this.socket.addEventListener("open", () => {
