@@ -11,13 +11,18 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint --fix src --ext .ts && tsc --noEmit",
-        "start": "npm run build && node --experimental-modules server.mjs"
+        "start": "npm run build && node --experimental-modules server.mjs",
+        "test":"mocha"
     },
     "devDependencies": {
+        "@types/chai": "^4.3.15",
+        "@types/mocha": "^10.0.6",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.1.0",
+        "chai": "^5.1.0",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
+        "mocha": "^10.4.0",
         "node-sass": "^9.0.0",
         "prettier": "^3.2.5",
         "sass": "^1.71.1",
