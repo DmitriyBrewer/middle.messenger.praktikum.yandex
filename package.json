@@ -13,8 +13,7 @@
         "lint": "eslint --fix src --ext .ts && tsc --noEmit",
         "start": "npm run build && node --experimental-modules server.mjs",
         "test": "mocha src/**/*.spec.ts --require test/babel-register.js",
-        "precommit": "npm run lint",
-        "prepare": "husky install"
+        "precommit": "npm run lint"
     },
     "devDependencies": {
         "@babel/cli": "^7.12.1",
