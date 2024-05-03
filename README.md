@@ -43,6 +43,10 @@
 
     npm run lint
 
+6. Тест кода (mocha + chai)
+
+    npm run test
+
 ## Используемые технологии
 
 -   Vite
