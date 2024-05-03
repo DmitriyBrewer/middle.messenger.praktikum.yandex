@@ -6,10 +6,8 @@ describe("HTML Template Test", () => {
         const expectedClass = "title";
         const expectedPlaceholder = "{{title}}";
 
-        // Проверяем наличие класса
         expect(htmlString).to.include(`class="${expectedClass}"`);
 
-        // Проверяем наличие местозаполнителя
         expect(htmlString).to.include(expectedPlaceholder);
     });
 });
