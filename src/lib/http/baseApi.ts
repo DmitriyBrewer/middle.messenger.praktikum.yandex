@@ -7,19 +7,19 @@ class BaseAPI {
         this.http = new HTTPTransport();
     }
 
-    protected get(url: string, options?: Options) {
+    get(url: string, options?: Options) {
         return this.http.get(url, options);
     }
 
-    protected post(url: string, options?: Options) {
+    post(url: string, options?: Options) {
         return this.http.post(url, options);
     }
 
-    protected put(url: string, options?: Options) {
+    put(url: string, options?: Options) {
         return this.http.put(url, options);
     }
 
-    protected delete(url: string, options?: Options) {
+    delete(url: string, options?: Options) {
         return this.http.delete(url, options);
     }
 }

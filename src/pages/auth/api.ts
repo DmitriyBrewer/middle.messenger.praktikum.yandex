@@ -1,7 +1,7 @@
 import { host } from "../../constants/host";
-import BaseAPI from "../../lib/baseApi";
+import BaseAPI from "../../lib/http/baseApi";
 import { formatAvatarUrl } from "../../lib/formatAvatarUrl";
-import { Data, METHODS, Options } from "../../lib/http";
+import { Data, METHODS, Options } from "../../lib/http/http";
 import store from "../../lib/store";
 import router from "../../main";
 

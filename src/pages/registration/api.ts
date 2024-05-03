@@ -1,6 +1,6 @@
 import { host } from "../../constants/host";
-import BaseAPI from "../../lib/baseApi";
-import { Data, METHODS, Options } from "../../lib/http";
+import BaseAPI from "../../lib/http/baseApi";
+import { Data, METHODS, Options } from "../../lib/http/http";
 import router from "../../main";
 
 export type RegistrationForm = {

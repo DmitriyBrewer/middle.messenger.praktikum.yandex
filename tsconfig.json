@@ -20,5 +20,6 @@
     "sourceMap": true,
     "strictNullChecks": true
   },
-  "include": ["src"]
+  "include": ["src/**/*", "src/index.spec.ts"],
+  "exclude": ["node_modules"]
 }

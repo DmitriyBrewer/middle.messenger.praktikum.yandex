@@ -1,6 +1,6 @@
-import BaseAPI from "../../lib/baseApi";
+import BaseAPI from "../../lib/http/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
-import { METHODS, Options } from "../../lib/http";
+import { METHODS, Options } from "../../lib/http/http";
 import { ChatData, ChatId, UserData } from "./type";
 
 class ChatAPI extends BaseAPI {

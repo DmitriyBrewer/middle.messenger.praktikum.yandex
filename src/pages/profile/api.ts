@@ -1,6 +1,6 @@
-import BaseAPI from "../../lib/baseApi";
+import BaseAPI from "../../lib/http/baseApi";
 import { mapDataToEntriesArray } from "../../lib/convertData";
-import { METHODS, Options } from "../../lib/http";
+import { METHODS, Options } from "../../lib/http/http";
 class ProfileApi extends BaseAPI {
     private baseUrl: string;
 
