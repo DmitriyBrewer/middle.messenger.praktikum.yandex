@@ -1,0 +1,33 @@
+.profileParam {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: var(--b);
+    padding: var(--g4) 0;
+
+    &__param {
+        margin: 0;
+        color: var(--primary-text);
+        font-size: var(--fs-profile-param);
+        font-weight: var(--fw-profile-param);
+    }
+
+    &__value {
+        margin: 0;
+        color: var(--secondary-text);
+        font-size: var(--fs-input-text);
+        font-weight: var(--fw-input-text);
+    }
+
+    &__input {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__error {
+        color: var(--primary-error);
+        font-size: var(--fs-hint-text);
+        margin: 0;
+    }
+}

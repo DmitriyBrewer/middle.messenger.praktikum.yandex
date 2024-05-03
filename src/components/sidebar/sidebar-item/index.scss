@@ -1,0 +1,94 @@
+.chat {
+    cursor: pointer;
+    border-bottom: var(--b);
+    padding: var(--g4) 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: var(--g4);
+    align-items: center;
+
+    &:hover {
+        background-color: var(--secondary);
+    }
+
+    &_active {
+        background-color: var(--primary-light);
+    }
+
+    &__info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: var(--g12);
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        row-gap: var(--g4);
+    }
+
+    &__message {
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-last);
+        font-weight: var(--fw-chat-last);
+        margin: 0;
+        max-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__minor {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    &__date {
+        color: var(--secondary-text);
+        font-size: var(--fs-chat-date);
+        font-weight: var(--fw-chat-date);
+        max-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__counter {
+        font-size: var(--fs-base);
+        font-weight: var(--fw-base);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--primary-light);
+        background-color: var(--primary);
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+    }
+
+    &__chatTitle {
+        color: var(--primary-text);
+        font-size: var(--fs-chat-name);
+        font-weight: var(--fw-chat-name);
+        margin: 0;
+        max-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    &__delete {
+        background: var(--primary-error);
+    }
+}

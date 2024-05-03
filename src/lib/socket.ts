@@ -1,0 +1,100 @@
+import { ChatData } from "../pages/chat/type";
+import { sanitizeInput } from "./sanitizeInput";
+import store from "./store";
+
+interface Message {
+    chat_id: number;
+    content: string;
+    file: string | null;
+    id: number;
+    is_read: boolean;
+    time: string;
+    type: string;
+    user_id: number;
+}
+
+class WebSocketService {
+    private socket: WebSocket | null = null;
+
+    connectToWebSocket(data: ChatData, token: string): void {
+        const { id, userId } = data;
+        const socketUrl = `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`;
+        this.socket = new WebSocket(socketUrl);
+
+        this.socket.addEventListener("message", (event) => {        
+            if (!Array.isArray(JSON.parse(event.data))) {
+                try {
+                    const message = JSON.parse(event.data);
+                    this.updateMessagesInStore(message);
+                } catch (error) {
+                    console.error("Ошибка JSON при обработке сообщения:", error);
+                }
+            } else {
+                try {
+                    const messages = JSON.parse(event.data);
+                    store.set("messages", messages.reverse());
+                } catch (error) {
+                    console.error("Ошибка JSON при обработке сообщений:", error);
+                }
+            }
+        });
+
+        this.socket.addEventListener("open", () => {
+            try {
+                const message = {
+                    content: "0",
+                    type: "get old",
+                };
+                this.socket?.send(JSON.stringify(message));
+            } catch (error) {
+                console.error("Ошибка при отправке сообщения на сокете:", error);
+            }
+        });
+
+        this.socket.addEventListener("close", (event) => {
+            if (event.wasClean) {
+                console.log("Соединение закрыто корректно");
+            } else {
+                console.log("Соединение прервано");
+            }
+
+            console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+        });
+    }
+
+    closeWebSocket(): void {
+        if (this.socket) {
+            this.socket.close();
+        }
+    }
+
+    private updateMessagesInStore(newMessage: Message) {
+        const currentMessages = store.getState().messages || [];
+        const sanitizedMessage = {
+            chat_id: newMessage.chat_id,
+            content: sanitizeInput(newMessage.content),
+            file: newMessage.file,
+            id: newMessage.id,
+            is_read: newMessage.is_read,
+            time: newMessage.time,
+            type: sanitizeInput(newMessage.type),
+            user_id: newMessage.user_id,
+        };
+        // eslint-disable-next-line
+       // @ts-ignore не успеваю решить эту проблему типизации
+        const updatedMessages = [...currentMessages, sanitizedMessage];
+        store.set("messages", updatedMessages);
+    }
+
+    sendMessageToWebSocket(message: string) {
+        if (this.socket) {
+            const newMessage = {
+                content: message,
+                type: "message",
+            };
+            this.socket.send(JSON.stringify(newMessage));
+        }
+    }
+}
+
+export default WebSocketService;

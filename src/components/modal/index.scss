@@ -1,0 +1,11 @@
+.modal {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    display: none;
+    background-color: var(--secondary-bg);
+    width: 250px;
+    height: 250px;
+    border: var(--b);
+    padding: var(--g8);
+}

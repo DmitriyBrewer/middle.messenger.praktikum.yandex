@@ -1,0 +1,37 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-bg);
+    box-sizing: border-box;
+    padding: var(--g20) var(--g12);
+    row-gap: var(--g16);
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.sidebarMenu {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--g24) var(--g12);
+}
+
+.chats {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.closeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    background-color: var(--primary-error)
+}
+
+.closeButtonImage{
+    height: 15px;
+    width: 15px;
+}
