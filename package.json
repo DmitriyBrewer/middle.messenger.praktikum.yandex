@@ -28,7 +28,7 @@
         "chai": "^4.2.0",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
-        "husky": "^0.14.3",
+        "husky": "^8.0.0",
         "mocha": "latest",
         "node-sass": "^9.0.0",
         "prettier": "^3.2.5",
