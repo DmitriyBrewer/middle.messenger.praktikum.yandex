@@ -1,7 +1,7 @@
 import { expect } from "chai";
 
 describe("Тест Handlebars шаблона", () => {
-    it("должен корректно отображать форму", () => {
+    it("Корректное отображение формы", () => {
         const html = `
       <form class="vertical formWrapper">
         {{> Title title='Вход'}}
@@ -16,10 +16,10 @@ describe("Тест Handlebars шаблона", () => {
       </form>
     `;
 
-        // Здесь может быть логика имитации работы с DOM без jsdom
-
-        // Простой пример утверждения
         const formIncluded = html.includes("<form class=\"vertical formWrapper\">");
         expect(formIncluded).to.be.true;
+
+        const titleIncluded = html.includes("{{> Title title='Вход'}}");
+        expect(titleIncluded).to.be.true;
     });
 });

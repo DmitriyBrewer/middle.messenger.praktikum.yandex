@@ -1,6 +1,6 @@
-import Block, { BlockProps } from "./block";
-import isEqual, { PlainObject } from "./isEqual";
-import renderComponent from "./renderComponent";
+import Block, { BlockProps } from "../block";
+import isEqual, { PlainObject } from "../isEqual";
+import renderComponent from "../renderComponent";
 
 export type BlockClass = new (props: BlockProps) => Block;
 
@@ -45,6 +45,15 @@ class Route {
         }
     
         this._block.show();
+    }
+
+    
+    getPathname(): string {
+        return this._pathname;
+    }
+
+    getBlockClass(): BlockClass {
+        return this._blockClass;
     }
 }
   

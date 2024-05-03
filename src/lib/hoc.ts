@@ -1,6 +1,6 @@
 import  {  BlockProps, UpdatePropsOptions } from "./block";
 import isEqual from "./isEqual";
-import { BlockClass } from "./router";
+import { BlockClass } from "./router/router";
 import store, { StoreEvents } from "./store";
 
 export type State<T = unknown> = {

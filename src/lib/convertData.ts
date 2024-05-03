@@ -1,4 +1,4 @@
-import { Data } from "./http";
+import { Data } from "./http/http";
 
 export function mapDataToEntriesArray<T>(data: T): Data | undefined {
     if (typeof data === "object" && data !== null) {

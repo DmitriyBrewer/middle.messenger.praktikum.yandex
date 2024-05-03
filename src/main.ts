@@ -1,5 +1,5 @@
 import "./index.scss";
-import {  Router } from "./lib/router";
+import {  Router } from "./lib/router/router";
 import { RegistrationPage } from "./pages/registration";
 import { ProfilePage, ProfilePageChangeData, ProfilePageChangePassword } from "./pages/profile";
 import { ChatPage } from "./pages/chat";
