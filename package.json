@@ -5,24 +5,29 @@
     "engines": {
         "node": "18.17.1"
     },
-    "type": "module",
+    "types": "",
     "scripts": {
         "dev": "vite --port=3000",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint --fix src --ext .ts && tsc --noEmit",
         "start": "npm run build && node --experimental-modules server.mjs",
-        "test":"mocha"
+        "test": "mocha src/**/*.spec.ts --require test/babel-register.js"
     },
     "devDependencies": {
-        "@types/chai": "^4.3.15",
-        "@types/mocha": "^10.0.6",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.1.0",
-        "chai": "^5.1.0",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
-        "mocha": "^10.4.0",
+        "@babel/cli": "^7.12.1",
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-typescript": "^7.12.1",
+        "@babel/register": "^7.12.1",
+        "@types/chai": "^4.2.14",
+        "@types/mocha": "^5.2.7",
+        "chai": "^4.2.0",
+        "mocha": "latest",
         "node-sass": "^9.0.0",
         "prettier": "^3.2.5",
         "sass": "^1.71.1",
